@@ -6,10 +6,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
  	<jsp:param name="title" value="MainPage"/>
 </jsp:include>
-
-<style>
-      
-  </style>    
+    
 	<section id="home" data-background="${path}/resources/images/section-5.jpg" style="overflow: hidden; height: 100vh;">
 		<!-- <div class="video-player" data-property="{videoURL:'https://www.youtube.com/watch?v=bNucJgetMjE', containment:'.home-section', startAt:18, mute:false, autoPlay:true, loop:true, opacity:1, showControls:false, showYTLogo:false, vol:25}"></div> -->
 		<div>
