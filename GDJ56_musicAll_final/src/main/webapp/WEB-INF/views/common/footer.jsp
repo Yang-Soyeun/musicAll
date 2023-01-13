@@ -8,33 +8,32 @@
 		<div class="row">
 			<div class="col-sm-3">
 				<div class="widget">
-					<h5 class="widget-title font-alt">About Titan</h5>
+					<h5 class="widget-title font-alt">About Music,All</h5>
 					<p>The languages only differ in their grammar, their pronunciation and their most common words.</p>
-					<p>Phone: +1 234 567 89 10</p>Fax: +1 234 567 89 10
-					<p>Email:<a href="#">somecompany@example.com</a></p>
+					<p>Phone: +1 234 567 89 10</p>Fax:+012 345 67890
+					<p>Email:<a href="#">info@example.com</a></p>
+					<p>Address:<a href="#">115, Gasan digital 2-ro, Geumcheon-gu, Seoul, Republic of Korea</a></p>
 				</div>
 			</div>
 			<div class="col-sm-3">
 				<div class="widget">
 					<h5 class="widget-title font-alt">Quicks Links</h5>
 					<ul class="icon-list">
-						<li>Home <a href="#">Designer Desk Essentials</a></li>
-						<li>공연 <a href="#">Realistic Business Card Mockup</a></li>
-						<li>예매 <a href="#">Eco bag Mockup</a></li>
-						<li>스토어 <a href="#">Bottle Mockup</a></li>
-						<li>1:1 문의 <a href="#">Our trip to the Alps</a></li>
+						<li><a href="#">Home</a></li>
+						<li><a href="#">공연</a></li>
+						<li><a href="#">예매</a></li>
+						<li><a href="#">스토어 </a></li>
+						<li><a href="#">1:1 문의 </a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="col-sm-3">
 				<div class="widget">
-					<h5 class="widget-title font-alt">Blog Categories</h5>
+					<h5 class="widget-title font-alt">Newsletter</h5>
 					<ul class="icon-list">
-						<li><a href="#">Photography - 7</a></li>
-						<li><a href="#">Web Design - 3</a></li>
-						<li><a href="#">Illustration - 12</a></li>
-						<li><a href="#">Marketing - 1</a></li>
-						<li><a href="#">Wordpress - 16</a></li>
+						<li><a href="#">news1 </a></li>
+						<li><a href="#">news2 </a></li>
+						<li><a href="#">news3 </a></li>
 					</ul>
 				</div>
 			</div>
@@ -67,6 +66,7 @@
 								</div>
 								<div class="widget-posts-meta">15 February</div>
 							</div>
+							
 						</li>
 					</ul>
 				</div>
