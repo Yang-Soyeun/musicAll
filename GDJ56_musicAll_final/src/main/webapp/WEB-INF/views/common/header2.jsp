@@ -103,50 +103,11 @@
                   <li><a href="index_shop.html">Shop</a></li>
                 </ul>
               </li> -->
-              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Headers</a>
-                <ul class="dropdown-menu">
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Static Image Header</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="index_mp_fullscreen_static.html">Fulscreen</a></li>
-                      <li><a href="index_mp_classic_static.html">Classic</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Flexslider Header</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="index_mp_fullscreen_flexslider.html">Fulscreen</a></li>
-                      <li><a href="index_mp_classic_flexslider.html">Classic</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Video Background Header</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="index_mp_fullscreen_video_background.html">Fulscreen</a></li>
-                      <li><a href="index_mp_classic_video_background.html">Classic</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Text Rotator Header</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="index_mp_fullscreen_text_rotator.html">Fulscreen</a></li>
-                      <li><a href="index_mp_classic_text_rotator.html">Classic</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Gradient Overlay Header</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="index_mp_fullscreen_gradient_overlay.html">Fulscreen</a></li>
-                      <li><a href="index_mp_classic_gradient_overlay.html">Classic</a></li>
-                    </ul>
-                  </li>
+              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">공연</a>
+              </li>
                 </ul>
               </li>
-              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Pages</a>
-                <ul class="dropdown-menu">
-                  <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">About</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="about1.html">About 1</a></li>
-                      <li><a href="about2.html">About 2</a></li>
-                      <li><a href="about3.html">About 3</a></li>
-                      <li><a href="about4.html">About 4</a></li>
-                      <li><a href="about5.html">About 5</a></li>
-                    </ul>
+              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">예매</a>
                   </li>
                   <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Services</a>
                     <ul class="dropdown-menu">
@@ -187,7 +148,7 @@
                   <li><a href="404.html">Page 404</a></li>
                 </ul>
               </li>
-              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Portfolio</a>
+              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">스토어</a>
                 <ul class="dropdown-menu" role="menu">
                   <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Boxed</a>
                     <ul class="dropdown-menu">
@@ -265,7 +226,7 @@
                   </li>
                 </ul>
               </li>
-              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Blog</a>
+              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">1:1문의</a>
                 <ul class="dropdown-menu" role="menu">
                   <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Standard</a>
                     <ul class="dropdown-menu">
