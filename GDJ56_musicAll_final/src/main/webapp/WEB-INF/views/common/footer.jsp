@@ -16,13 +16,13 @@
 			</div>
 			<div class="col-sm-3">
 				<div class="widget">
-					<h5 class="widget-title font-alt">Recent Comments</h5>
+					<h5 class="widget-title font-alt">Quicks Links</h5>
 					<ul class="icon-list">
-						<li>Maria on <a href="#">Designer Desk Essentials</a></li>
-						<li>John on <a href="#">Realistic Business Card Mockup</a></li>
-						<li>Andy on <a href="#">Eco bag Mockup</a></li>
-						<li>Jack on <a href="#">Bottle Mockup</a></li>
-						<li>Mark on <a href="#">Our trip to the Alps</a></li>
+						<li>Home <a href="#">Designer Desk Essentials</a></li>
+						<li>공연 <a href="#">Realistic Business Card Mockup</a></li>
+						<li>예매 <a href="#">Eco bag Mockup</a></li>
+						<li>스토어 <a href="#">Bottle Mockup</a></li>
+						<li>1:1 문의 <a href="#">Our trip to the Alps</a></li>
 					</ul>
 				</div>
 			</div>
