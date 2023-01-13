@@ -16,7 +16,7 @@ body {
 
 img {
   max-width: 100%;
-  height: auto;
+  height: 60px;
 }
 
 iframe {
@@ -171,7 +171,7 @@ a,
 
 /* Module header */
 .module-small {
-  padding: 70px 0;
+  padding: 20px 0;
 }
 
 .module-extra-small {
@@ -244,11 +244,11 @@ a,
 .bg-dark-30 .alt-module-subtitle h5,
 .bg-dark-60 .alt-module-subtitle h5,
 .bg-dark-90 .alt-module-subtitle h5 {
-  color: #fff;
+  color: #6e1515;
 }
 
 .bg-dark {
-  background: #111;
+  background: #dbdbdb;
 }
 
 .bg-dark-30:before {
@@ -1239,14 +1239,14 @@ General Styles - Owlcarousel
 	Navbar
 --------------------------------------------------------------*/
 .navbar-custom {
-  background-color: rgba(10, 10, 10, 0.9);
+  background-color: #6e1515;
   border: 0;
   border-radius: 0;
   z-index: 1000;
   font-family: "Roboto Condensed", sans-serif;
-  text-transform: uppercase;
+/*   text-transform: uppercase; */
   letter-spacing: 3px;
-  font-size: 11px;
+  font-size: 15px;
   transition: background, padding 0.4s ease-in-out 0s;
 }
 
@@ -1265,7 +1265,7 @@ General Styles - Owlcarousel
 .navbar-custom .navbar-brand {
   letter-spacing: 4px;
   font-weight: 400;
-  font-size: 22px;
+  font-size: 26px;
   color: #fff;
 }
 
