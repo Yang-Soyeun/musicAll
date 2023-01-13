@@ -7,66 +7,106 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Drivin - Driving School Website Template</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
-
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"> 
-
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="${path}/resources/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="${path}/resources/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="${path}/resources/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--  
+    Document Title
+    =============================================
+    -->
+    <title>musicAll</title>
+    <!--  
+    Favicons
+    =============================================
+    -->
+    <link rel="apple-touch-icon" sizes="57x57" href="${path}/resources/images/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="${path}/resources/images/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="${path}/resources/images/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="${path}/resources/images/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="${path}/resources/images/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="${path}/resources/images/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="${path}/resources/images/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="${path}/resources/images/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="${path}/resources/images/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="${path}/resources/images/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="${path}/resources/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="${path}/resources/images/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/images/favicons/favicon-16x16.png">
+    <!-- <link rel="manifest" href="/manifest.json"> -->
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="${path}/resources/images/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!--  
+    Stylesheets
+    =============================================
+    
+    -->
+    <!-- Default stylesheets-->
+    <link href="${path}/resources/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Template specific stylesheets-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Volkhov:400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link href="${path}/resources/lib/animate.css/animate.css" rel="stylesheet">
+    <link href="${path}/resources/lib/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="${path}/resources/lib/et-line-font/et-line-font.css" rel="stylesheet">
+    <link href="${path}/resources/lib/flexslider/flexslider.css" rel="stylesheet">
+    <link href="${path}/resources/lib/owl.carousel/dist/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="${path}/resources/lib/owl.carousel/dist/assets/owl.theme.default.min.css" rel="stylesheet">
+    <link href="${path}/resources/lib/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
+    <link href="${path}/resources/lib/simple-text-rotator/simpletextrotator.css" rel="stylesheet">
+    <!-- Main stylesheet and color file-->
     <link href="${path}/resources/css/style.css" rel="stylesheet">
+    <link id="color-scheme" href="${path}/resources/css/colors/default.css" rel="stylesheet">
+    
+	<script src="${path}/resources/lib/jquery/dist/jquery.js"></script>
+    <script src="${path}/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="${path}/resources/lib/wow/dist/wow.js"></script>
+    <script src="${path}/resources/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
+    <script src="${path}/resources/lib/isotope/dist/isotope.pkgd.js"></script>
+    <script src="${path}/resources/lib/imagesloaded/imagesloaded.pkgd.js"></script>
+    <script src="${path}/resources/lib/flexslider/jquery.flexslider.js"></script>
+    <script src="${path}/resources/lib/owl.carousel/dist/owl.carousel.min.js"></script>
+    <script src="${path}/resources/lib/smoothscroll.js"></script>
+    <script src="${path}/resources/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
+    <script src="${path}/resources/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
+    <script src="${path}/resources/js/plugins.js"></script>
+    <script src="${path}/resources/js/main.js"></script>
     
     
-        <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="${path}/resources/lib/wow/wow.min.js"></script>
-    <script src="${path}/resources/lib/easing/easing.min.js"></script>
-    <script src="${path}/resources/lib/waypoints/waypoints.min.js"></script>
-    <script src="${path}/resources/lib/owlcarousel/owl.carousel.min.js"></script>
 </head>
 
-<body>
-		    <!-- Spinner Start -->
-		    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-		        <div class="spinner-grow text-primary" role="status"></div>
-		    </div>
-		    <!-- Spinner End -->
-		    <!-- Navbar Start -->
-		    <nav class="navbar navbar-expand-lg navbar-light sticky-top p-0">
-		        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-		            <h2 class="m-0"><img src="${path}/resources/images/logo-removebg-preview.png" width="50" height="50">MusicAll</h2>
-		        </a>
-		        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-		            <span class="navbar-toggler-icon"></span>
-		        </button>
-		        <div class="collapse navbar-collapse" id="navbarCollapse">
-		            <div class="navbar-nav ms-auto p-4 p-lg-0">
-		                <a href="index.html" class="nav-item nav-link active">Home</a>
-		                <a href="about.html" class="nav-item nav-link">공연</a>
-		                <a href="courses.html" class="nav-item nav-link">예매</a>
-		                <a href="contact.html" class="nav-item nav-link">스토어</a>
-		                <a href="contact.html" class="nav-item nav-link">1:1 문의</a>
-		            </div>
-		            <a href="" class="btn py-4 px-lg-3 d-none d-lg-block" style="color: #A50000;">로그인<i class="fa fa-arrow-right ms-3"></i></a>
-		        </div>
-		    </nav>
-	    <!-- Navbar End -->
+  <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
+    <main>
+      <div class="page-loader">
+        <div class="loader">Loading...</div>
+      </div>
+      <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html">MusicAll</a>
+          </div>
+          <div class="collapse navbar-collapse" id="custom-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown"><a href="${path }/user/login.do" >공연</a></li>
+              <li class="dropdown"><a href="#" >예매</a></li>
+              <li class="dropdown"><a href="#" >스토어</a></li>
+              <li class="dropdown"><a href="#" >1:1문의</a></li>
+              <li class="dropdown"><a href="#" >로그인</a></li>
+              <li class="dropdown"><a href="#" >회원가입</a></li>
+              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">마이페이지</a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="alerts-and-wells.html"><i class="fa fa-bolt"></i> Alerts and Wells</a></li>
+                  <li><a href="buttons.html"><i class="fa fa-link fa-sm"></i> Buttons</a></li>
+                  <li><a href="tabs_and_accordions.html"><i class="fa fa-tasks"></i> Tabs &amp; Accordions</a></li>
+                  <li><a href="content_box.html"><i class="fa fa-list-alt"></i> Contents Box</a></li>
+                  <li><a href="forms.html"><i class="fa fa-check-square-o"></i> Forms</a></li>
+                  <li><a href="icons.html"><i class="fa fa-star"></i> Icons</a></li>
+                  <li><a href="progress-bars.html"><i class="fa fa-server"></i> Progress Bars</a></li>
+                  <li><a href="typography.html"><i class="fa fa-font"></i> Typography</a></li>
+                </ul>
+              </li>
+            
+            </ul>
+          </div>
+        </div>
+      </nav>
