@@ -78,7 +78,7 @@
                   <li class="clearfix">
                      <div class="widget-posts-image">
                         <a href="#">
-                           <img src="${path}/resources/images/chacha.jpg" alt="Post Thumbnail">
+                           <img src="${path}/resources/images/cha2.jpg" alt="Post Thumbnail">
                         </a>
                      </div>
                      <div class="widget-posts-body">
