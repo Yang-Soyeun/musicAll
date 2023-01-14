@@ -1,0 +1,292 @@
+
+                .col_5{
+                    flex: 1 0 0%;
+                }
+
+
+                .containerform{
+                    font-size: 2.0rem;
+                    width: 100%;
+                    padding-right: var(--bs-gutter-x, .75rem);
+                    padding-left: var(--bs-gutter-x, .75rem);
+                    margin-right: auto;
+                    margin-left: auto;
+                    --bs-gutter-x: 1.5rem;
+                    --bs-gutter-y: 0;
+                    padding-bottom: 4%;
+                    padding-top:4%;
+
+                }
+                
+                .prdTitle{
+			    margin-top: 0;
+			    margin-bottom: 0.5rem;
+			    font-weight: 600;
+			    line-height: 1.2;
+			    color: #0C2B4B;
+			    font-size:2.5rem;
+			    
+                }
+                li.infoItem{
+                	font-size:1.8rem;
+                }
+
+
+				ul.info{
+					font-size:1.5rem;
+				
+				}
+
+				.posterBoxImage{
+					width:300px;
+					height:400px;
+				}
+              
+                .containerform {
+                    max-width: 1300px;
+                }
+
+                .row_5{
+
+                    --bs-gutter-x: 1.5rem;
+                    --bs-gutter-y: 0;
+                    display: flex;
+                    flex-wrap: wrap;
+                    margin-top: calc(var(--bs-gutter-y) * -1);
+                    margin-right: calc(var(--bs-gutter-x) / -2);
+                    margin-left: calc(var(--bs-gutter-x) / -2);
+                }
+
+                .row_5>*{    
+                    width: 100%;
+                    max-width: 100%;
+                    padding-right: calc(var(--bs-gutter-x) / 2);
+                    padding-left: calc(var(--bs-gutter-x) / 2);
+
+                }
+
+
+      
+
+                .infoItem {
+                    margin-top: 0;
+                    margin-bottom: 1rem;
+                }
+
+                .infoItem {
+    list-style: none;
+}
+
+
+               .infoItem {
+            padding-left: 2rem;
+        }
+
+
+
+                #icon{
+                  
+                font-size:2.0rem;
+                border-bottom : gray solid 1px;
+                padding:1%;
+
+                }
+                
+
+
+                #ticketing{
+                  margin: 0;
+   
+				    
+				    font-weight: 400;
+				    line-height: 1.5;
+				    color: #757575;
+				    background-color: #fff;
+				    -webkit-text-size-adjust: 100%;
+				    -webkit-tap-highlight-color: rgba(0,0,0,0);
+                    padding:4%;
+
+                }
+
+                #time{
+                    border-top:1px solid #ddd;
+                    border-radius: 20px;
+                    width:400px;
+                    margin: 10px;
+                    margin-left:-5%;
+                    padding: 20px 20px 10px;
+                    text-align:center;
+
+                }
+                ul,
+                ol {
+                    list-style: none;
+                }
+
+                html,
+                body {
+                    box-sizing: border-box;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                *,
+                *:before,
+                *:after {
+                    box-sizing: inherit;
+                }
+
+                .clearfix:after {
+                    content: '';
+                    display: block;
+                    clear: both;
+                    float: none;
+                }
+
+                /* ======== Calendar ======== */
+                .my-calendar {
+                 font-weight: 800;
+                    border-radius: 10%;
+                    width: 400px;
+                    margin: 30px;
+                    padding: 20px 20px 10px;
+                    text-align: center;
+                   	font-size:1.5rem;
+                    border: 1px solid #ddd;
+                    cursor: default;
+                    color:black;
+                    font-family: "Work Sans",sans-serif;
+                    
+                }
+
+                .my-calendar .clicked-date {
+                    border-radius: 25px;
+                    margin-top: 36px;
+                    float: left;
+                    width: 42%;
+                    padding: 46px 0 26px;
+                    background: #ddd;
+                    text-align: center;
+                }
+
+                .my-calendar .calendar-box {
+                    margin-left: 4%;
+                    width: 87%;
+                    padding-left: 30px;
+                }
+
+                .clicked-date .cal-day {
+                    font-size: 24px;
+                }
+
+                .clicked-date .cal-date {
+                    font-size: 130px;
+                }
+
+                .ctr-box {
+                    padding: 0 16px;
+                    margin-bottom: 20px;
+                    font-size: 20px;
+                }
+
+                .ctr-box .btn-cal {
+                    position: relative;
+                    float: left;
+                    width: 25px;
+                    height: 25px;
+                    margin-top: 5px;
+                    font-size: 16px;
+                    cursor: pointer;
+                    border: none;
+                    background: none;
+                }
+
+                .ctr-box .btn-cal:after {
+                    content: '<';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    line-height: 25px;
+                    font-weight: bold;
+                    font-size: 20px;
+                }
+
+                .ctr-box .btn-cal.next {
+                    float: right;
+                }
+
+                .ctr-box .btn-cal.next:after {
+                    content: '>';
+                }
+
+                .cal-table {
+                    width: 100%;
+                    color:black;
+                }
+
+                .cal-table th {
+                    width: 14.2857%;
+                    padding-bottom: 5px;
+                    font-size: 16px;
+                    font-weight: 900;
+                    padding : 1px 1px 5px;
+                    
+                     text-align: center;
+                }
+
+                .cal-table td {
+                    padding: 3px 0;
+                    height: 50px;
+                    font-size: 15px;
+                    vertical-align: middle;
+                    text-align: center;
+                }
+
+                .cal-table td.day {
+                    position: relative;
+                    cursor: pointer;
+                    font-weight: 800;
+                    
+                }
+
+                .cal-table td.today {
+                    background: #ffd255;
+                    border-radius: 50%;
+                    color: #fff;
+                }
+
+                .cal-table td.day-active {
+                    background: #ff8585;
+                    border-radius: 50%;
+                    color: #fff;
+                }
+
+                .cal-table td.has-event:after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 4px;
+                    background: #FFC107;
+                }
+                
+ 
+                
+                .booking>button{
+                	font-size:20px;
+                
+                }
+                
+                .w-btn-indigo-outline {
+			    border: 3px solid aliceblue;
+			    color: black;
+			}
+			
+			.w-btn-indigo-outline:hover {
+			    color: #A50000;
+			    background: aliceblue;
+			}
