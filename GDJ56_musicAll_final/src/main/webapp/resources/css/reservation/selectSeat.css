@@ -18,25 +18,51 @@
                  padding:4%;
 
              }
-                
+          
+         .stage-view{
+         	text-align : center;
+         	padding:4%;
+         
+         
+         } 
+          
+          
                 
 		.seat-wrapper {
-		    background-color: #222222;
+		    background-color: #F2F2F2;
 		    width: 700px;
 		    height: 460px;
+		    margin-left : 10%;
 		    /* padding-top: 120px; */
 		}
 		
+		#right-container{
+		    background-color: gainsboro;
+		    width: 260px;
+		    height:430px;
+		   	margin-left:10%;
+			margin-top:1%; 
+		    text-align:center;
+		    border-radius: 5%;
+		    font-size:18px;
+			
+		
+		}
+		.test{
+			display:flex;
+			margin-left:5%;
+		
+		}
 		.seat {
 	    width: 30px;
 	    height: 30px;
 	}
 
 		.seat {
-		    font-size: 13px;
-		    background-color: #555555;
+		    font-size: 11px;
+		    background-color: #BDBDBD;
 		    color: white;
-		    border: 1px solid rgba(255, 0, 0, 0.6);
+		    border: 1px solid #A4A4A4;
 		}
 		
 	
