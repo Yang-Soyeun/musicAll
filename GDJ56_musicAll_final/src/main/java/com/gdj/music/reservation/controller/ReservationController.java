@@ -7,10 +7,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/booking")
 public class ReservationController {
 
-	
-	@RequestMapping("bookingview.do")
+	//예매하기 화면
+	@RequestMapping("/bookingview.do")
 	public String bookingView() {
 		
 		return "/reservation/bookingView";
 	}
+	
+	
+	//좌석선택 화면
+	@RequestMapping("/selectSeat.do")
+	public String selectSeat() {
+		
+		return "/reservation/selectSeat";
+		
+		
+		
+	}
+	
+	
 }

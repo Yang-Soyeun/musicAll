@@ -26,7 +26,7 @@
                 <img class="posterBoxImage" src="${path }/resources/images/reservation/22014586_p.png" >
             </div>
             <div class="col_5" style="margin-top:8%;font-size:1.1rem;">
-                <ul class="info">
+                <ul class="info" style="color:black;">
                     <li class="infoItem"><strong class="infoLabel">장소</strong>
                         <div class="infoDesc">블루스퀘어
                             신한카드홀<i></i></div><br>
@@ -95,7 +95,7 @@
 	</div>
                 <!-- // .my-calendar -->
                 <div class="booking">
-                    <button class="btn btn-danger" style="width:420px;margin-left:5%" type="button">예매하기</button>
+                    <button class="btn btn-danger" style="width:420px;margin-left:5%" onclick="location.assign('${path}/booking/selectSeat.do')">예매하기</button>
                   </div>
                
            </div>
