@@ -14,4 +14,9 @@ public class MypageController {
 		return "mypage/musicalListView";
 	}
 	
+	//관심공연
+	@RequestMapping("/likeMusical.do")
+	public String likeMusical() {
+		return "mypage/likeMusical";
+	}
 }
