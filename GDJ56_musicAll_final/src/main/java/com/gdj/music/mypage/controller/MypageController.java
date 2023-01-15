@@ -14,4 +14,15 @@ public class MypageController {
 		return "mypage/musicalListView";
 	}
 	
+	//관심공연
+	@RequestMapping("/likeMusical.do")
+	public String likeMusical() {
+		return "mypage/likeMusical";
+	}
+	
+	//포인트
+	@RequestMapping("/pointList.do")
+	public String pointList() {
+		return "mypage/pointList";
+	}
 }
