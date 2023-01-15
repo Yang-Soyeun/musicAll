@@ -16,7 +16,7 @@ body {
 
 img {
   max-width: 100%;
-  height: 60px;
+  height: auto;
 }
 
 iframe {
@@ -323,7 +323,7 @@ a,
 }
 
 .pt-20 {
-  padding-top: 20px !important;
+/*   padding-top: 20px !important; */
 }
 
 .pt-30 {
@@ -2335,7 +2335,7 @@ Google map
 .checkout-table > tfoot > tr > th,
 .checkout-table > thead > tr > td,
 .checkout-table > thead > tr > th {
-  padding: 12px;
+/*   padding: 20px; */
 }
 
 .checkout-table tr td,
@@ -2348,7 +2348,7 @@ Google map
 
 .checkout-table tbody tr td:first-child,
 .checkout-table tbody tr th:first-child {
-  max-width: 36px;
+  max-width: 40px;
 }
 
 /* Sidebar / Widget common*/
@@ -2575,7 +2575,7 @@ Google map
 }
 
 .product-title {
-  margin: 0 0 20px;
+/*   margin: 0 0 20px; */
   color: #111;
 }
 
