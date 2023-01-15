@@ -95,14 +95,12 @@
               <li class="dropdown"><a href="#" >회원가입</a></li>
               <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">마이페이지</a>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="alerts-and-wells.html"><i class="fa fa-bolt"></i> Alerts and Wells</a></li>
-                  <li><a href="buttons.html"><i class="fa fa-link fa-sm"></i> Buttons</a></li>
-                  <li><a href="tabs_and_accordions.html"><i class="fa fa-tasks"></i> Tabs &amp; Accordions</a></li>
-                  <li><a href="content_box.html"><i class="fa fa-list-alt"></i> Contents Box</a></li>
-                  <li><a href="forms.html"><i class="fa fa-check-square-o"></i> Forms</a></li>
-                  <li><a href="icons.html"><i class="fa fa-star"></i> Icons</a></li>
-                  <li><a href="progress-bars.html"><i class="fa fa-server"></i> Progress Bars</a></li>
-                  <li><a href="typography.html"><i class="fa fa-font"></i> Typography</a></li>
+                  <li><a href="alerts-and-wells.html"><i class="fa fa-cog"></i> 회원정보 수정</a></li>
+                  <li><a href="buttons.html"><i class="fa fa-list-ul fa-sm"></i> 공연예약 정보</a></li>
+                  <li><a href="tabs_and_accordions.html"><i class="fa fa-heart"></i> 관심 공연</a></li>
+                  <li><a href="content_box.html"><i class="fa fa-database"></i> 포인트</a></li>
+                  <li><a href="forms.html"><i class="fa fa-gift"></i> 상품 구매내역</a></li>
+                  <li><a href="icons.html"><i class="fa fa-pencil-square-o"></i> 내가 쓴 글</a></li>
                 </ul>
               </li>
             
