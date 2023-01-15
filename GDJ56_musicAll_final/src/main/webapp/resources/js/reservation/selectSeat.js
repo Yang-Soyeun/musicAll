@@ -3,7 +3,7 @@ let selectedSeatsArray = new Array();
 const seatWrapper = document.querySelector('.seat-wrapper');
 let clicked = '';
 let div = '';
-let seat = document.querySelectorAll('.seat');
+
 const selectedSeats = document.querySelector('.selected-seats');
 const allSeat = document.querySelector('.all-seats');
 const remainSeat = document.querySelector('.remain-seats');
@@ -54,7 +54,7 @@ for (let i = 0; i < 10; i++) {
     div.classList = 'seatButtonWrapper';
     seatWrapper.append(div);
 
-    for (let j = 0; j < 12; j++) {
+    for (let j = 0; j < 16; j++) {
         const input = document.createElement('input');
         input.type = 'button';
         input.name = 'seats';
@@ -68,14 +68,15 @@ for (let i = 0; i < 10; i++) {
 
    
 }
-
+let seat = document.querySelectorAll('.seat');
 seat.forEach(data => {
-    //console.log(data.value.substring(1, data.value.length));
+	console.log(data.value);
+    console.log(data.value.substring(1, data.value.length));
     // console.log(data.value.substring(0, data.value.length - 1));
     //좌석이 2나 9로 끝나는얘들은 왼쪽이나 오른쪽으로 띄워주기위한 class추가
-    if (data.value.substring(1, data.value.length) === '2') {
+    if (data.value.substring(1, data.value.length) === '4') {
         data.classList.add('left-margin');
-    } else if (data.value.substring(1, data.value.length) === '9') {
+    } else if (data.value.substring(1, data.value.length) === '11') {
         data.classList.add('right-margin');
     }
     //앞자리가 E로끝나는 좌석들에 class 추가
