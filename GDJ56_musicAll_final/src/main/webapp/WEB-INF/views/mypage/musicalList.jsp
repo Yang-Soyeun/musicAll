@@ -29,8 +29,8 @@
                     </tr>
                     <tr>
                       <td>
-                        <a href="${path }/mypage/musicalListView.do">
-                        	<h5 class="product-title font-alt">122</h5>
+                        <a href="${path }/mypage/musicalListView.do" >
+                        	<h5 style="color:#6e1515;font-weight:800;" class="product-title font-alt">122</h5>
                         </a>
                       </td>
                       <td class="">

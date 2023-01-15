@@ -65,7 +65,7 @@
 							<img src="${path}/resources/nari2/images/나의글모음.webp" alt="" />
 						</span>
 						<a href="generic.html">
-							<h2>나의글모음</h2>
+							<h2>내가 쓴 글</h2>
 						</a>
 					</article>
 				</section>
