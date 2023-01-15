@@ -6,7 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/mypage")
 public class MypageController {
-	
+	//마이페이지메인
+	@RequestMapping("/mypageMain.do")
+	public String mypageMain(){
+		return "mypage/mypageMain";
+	}
 	//예매내역리스트
 	@RequestMapping("/musicalList.do")
 	public String musicalList(){

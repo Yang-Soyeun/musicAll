@@ -93,7 +93,7 @@
               <li class="dropdown"><a href="#" >1:1문의</a></li>
               <li class="dropdown"><a href="#" >로그인</a></li>
               <li class="dropdown"><a href="#" >회원가입</a></li>
-              <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">마이페이지</a>
+              <li class="dropdown"><a class="dropdown-toggle" href="${path }/mypage/mypageMain.do" data-toggle="dropdown">마이페이지</a>
                 <ul class="dropdown-menu" role="menu">
                   <li><a href="alerts-and-wells.html"><i class="fa fa-cog"></i> 회원정보 수정</a></li>
                   <li><a href="${path }/mypage/musicalList.do"><i class="fa fa-list-ul fa-sm"></i> 공연예매 정보</a></li>
