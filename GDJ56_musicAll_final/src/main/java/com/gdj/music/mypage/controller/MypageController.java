@@ -7,9 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/mypage")
 public class MypageController {
 	
+	//예매내역리스트
+	@RequestMapping("/musicalList.do")
+	public String musicalList(){
+		
+		return "mypage/musicalList";
+	}
+	
 	//예매세부내역
 	@RequestMapping("/musicalListView.do")
-	public String musicalViewList(){
+	public String musicalListView(){
 		
 		return "mypage/musicalListView";
 	}
@@ -24,5 +31,11 @@ public class MypageController {
 	@RequestMapping("/pointList.do")
 	public String pointList() {
 		return "mypage/pointList";
+	}
+	
+	//상품구매내역
+	@RequestMapping("/shoppingList.do")
+	public String shoppingList() {
+		return "mypage/shoppingList";
 	}
 }
