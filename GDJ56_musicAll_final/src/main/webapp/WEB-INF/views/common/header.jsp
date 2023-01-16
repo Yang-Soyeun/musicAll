@@ -100,7 +100,7 @@
                   <li><a href="${path }/mypage/likeMusical.do"><i class="fa fa-heart"></i> 관심 공연</a></li>
                   <li><a href="${path }/mypage/pointList.do"><i class="fa fa-database"></i> 포인트</a></li>
                   <li><a href="${path }/mypage/shoppingList.do"><i class="fa fa-gift"></i> 상품 구매내역</a></li>
-                  <li><a href="icons.html"><i class="fa fa-pencil-square-o"></i> 내가 쓴 글</a></li>
+                  <li><a href="${path }/mypage/myContentList.do"><i class="fa fa-pencil-square-o"></i> 내가 쓴 글</a></li>
                 </ul>
               </li>
             

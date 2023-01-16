@@ -42,4 +42,9 @@ public class MypageController {
 	public String shoppingList() {
 		return "mypage/shoppingList";
 	}
+	//내가 쓴 글
+	@RequestMapping("/myContentList.do")
+	public String myContentList() {
+		return "mypage/myContentList";
+	}
 }

@@ -6,10 +6,12 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp">
     <jsp:param name="title" value=" "/>
 </jsp:include>
-<div class="main">
+	<div class="main">
         <section class="module">
+              
+        	<!-- 검색창!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
           <div class="container">
-            <div class="row">
+          <div class="row">
               <div class="col-sm-6 col-sm-offset-3">
                 <h1 class="module-title font-alt">공연 예매정보</h1>
               </div>
@@ -29,8 +31,8 @@
                     </tr>
                     <tr>
                       <td>
-                        <a href="${path }/mypage/musicalListView.do">
-                        	<h5 class="product-title font-alt">122</h5>
+                        <a href="${path }/mypage/musicalListView.do" >
+                        	<h5 style="color:#6e1515;font-weight:800;" class="product-title font-alt">122</h5>
                         </a>
                       </td>
                       <td class="">
@@ -105,6 +107,6 @@
             </div>
           </div>
         </section>
-        </div>
+	</div>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
