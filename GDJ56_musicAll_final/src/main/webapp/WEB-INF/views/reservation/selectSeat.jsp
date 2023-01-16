@@ -40,7 +40,7 @@
             <b>총 결제 금액</b><br><br>
             176,000원
             <br><br>
-             <button class="btn btn-danger" style="width:270px;;margin-left:-2%;font-size:15px;" onclick="location.assign('${path}/booking/selectSeat.do')">결제하기</button>
+             <button class="btn btn-danger" style="width:270px;;margin-left:-2%;font-size:15px;" onclick="location.assign('${path}/booking/pay.do')">결제하기</button>
        	  </div>
     </div>
     
