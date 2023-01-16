@@ -20,10 +20,14 @@ public class ReservationController {
 	public String selectSeat() {
 		
 		return "/reservation/selectSeat";
-		
-		
-		
+	
 	}
 	
+	//결제 화면
+	@RequestMapping("pay.do")
+	public String bookingpay() {
+		
+		return "/reservation/bookingPay";
+	}
 	
 }
