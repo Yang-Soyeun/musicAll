@@ -1,5 +1,31 @@
-package com.gdj.music.user.model.service;
+package com.gdj.music.member.model.service;
 
-public class LoginServiceImpl implements LoginService {
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.gdj.music.member.model.dao.MemberDao;
+import com.gdj.music.member.model.vo.Member;
+
+@Service
+public class MemberServiceImpl implements MemberService {
+
+	private MemberDao dao;
+	private SqlSessionTemplate session;
+	
+	@Autowired
+	public MemberServiceImpl(MemberDao dao, SqlSessionTemplate session) {
+		super();
+		this.dao = dao;
+		this.session = session;
+	}
+
+	@Override
+	public Member loginEnd(Member m) {
+		return dao.loginEnd(m,session);
+	}
+	
+	
+	
+	
 }

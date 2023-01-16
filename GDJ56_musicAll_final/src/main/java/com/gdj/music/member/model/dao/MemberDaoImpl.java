@@ -1,5 +1,18 @@
-package com.gdj.music.user.model.dao;
+package com.gdj.music.member.model.dao;
 
-public class LoginDaoImpl implements LoginDao {
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.stereotype.Repository;
 
+import com.gdj.music.member.model.vo.Member;
+
+@Repository
+public class MemberDaoImpl implements MemberDao {
+
+	
+	@Override
+	public Member loginEnd(Member m, SqlSessionTemplate session) {
+		return session.selectOne("member.loginEnd",m);
+	}
+
+	
 }

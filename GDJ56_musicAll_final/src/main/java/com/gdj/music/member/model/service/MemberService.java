@@ -1,5 +1,9 @@
-package com.gdj.music.user.model.service;
+package com.gdj.music.member.model.service;
 
-public interface LoginService {
+import com.gdj.music.member.model.vo.Member;
+
+public interface MemberService {
+
+	Member loginEnd(Member m);
 
 }

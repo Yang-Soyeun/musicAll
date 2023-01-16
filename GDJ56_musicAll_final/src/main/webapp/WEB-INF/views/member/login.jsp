@@ -20,32 +20,32 @@
   <body class="text-center">
     
     <!--  html 전체 영역을 지정하는 container -->
-    <div id="container" style="margin-top: -130px">
+    <div id="container" style="margin-top: 250px">
       <!--  login 폼 영역을 : loginBox -->
       <div id="loginBox">
       
         <!-- 로그인 페이지 타이틀 -->
         <div id="loginBoxTitle">musicAll Login</div>
         <!-- 아이디, 비번, 버튼 박스 -->
-        <div id="inputBox">
-          <div class="input-form-box"><span class="h6">아이디 </span><input type="text" name="uid" class="form-control"></div>
-          <div class="input-form-box"><span class="h6">비밀번호 </span><input type="password" name="upw" class="form-control"></div>
-          <div class="button-login-box" >
-            <button type="button" class="btn btn-primary btn-xs" style="width:100%">로그인</button>
-          </div>
-        </div>
-        
+        <form action="${path }/member/loginEnd.do" method="post">
+	        <div id="inputBox">
+	          <div class="input-form-box"><span class="h6">아이디 </span><input type="text" name="memberId" class="form-control"></div>
+	          <div class="input-form-box"><span class="h6">비밀번호 </span><input type="password" name="memberPw" class="form-control"></div>
+	          <div class="button-login-box" >
+	            <button type="submit" class="btn btn-primary btn-xs" style="width:100%">로그인</button>
+	          </div>
+	        </div>
+        </form>
       </div>
     </div>
+ 	
+ 	<script>
+ 	
+ 	</script>
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
  
   </body>
-
-
-
-
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
