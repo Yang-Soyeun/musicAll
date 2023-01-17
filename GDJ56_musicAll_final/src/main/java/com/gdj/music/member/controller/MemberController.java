@@ -33,7 +33,7 @@ public class MemberController {
 	
 	//로그인 구현
 	@RequestMapping("/loginEnd.do")
-	public String loginEnd(String memberId, String memberPw, HttpSession session) {
+	public void loginEnd(String memberId, String memberPw, HttpSession session,HttpServletResponse response ) throws IOException{
 		Member m = Member.builder().member_Id(memberId).password(memberPw).build();
 		
 		Member loginMember = service.loginEnd(m);
@@ -42,12 +42,13 @@ public class MemberController {
 		
 		//DB에 등록된 아이디와 비밀번호가 일치하지 않으면!
 		if(!memberPw.equals(loginMember.getPassword())) {
-			return "member/login";
+			response.getWriter().print(false);
+		}else {
+			//일치하면 session에 값을 넣어준다
+			session.setAttribute("loginMember", loginMember);
+			response.getWriter().print(true);
 		}
-		//일치하면 session에 값을 넣어준다
-		session.setAttribute("loginMember", loginMember);
 		
-		return "redirect:/";
 	}
 	
 	//회원가입 선택
@@ -78,6 +79,7 @@ public class MemberController {
 	//로그아웃 구현
 	@RequestMapping("/logout.do")
 	public String logOut(HttpSession session) {
+		
 		session.invalidate();
 		
 		return "redirect:/";
