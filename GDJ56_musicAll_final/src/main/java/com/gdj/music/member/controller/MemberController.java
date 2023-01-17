@@ -1,12 +1,13 @@
 package com.gdj.music.member.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 
 import com.gdj.music.member.model.service.MemberService;
 import com.gdj.music.member.model.vo.Member;
@@ -49,16 +50,38 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	//로그아웃
+	//회원가입 선택
+	@RequestMapping("/joinchoice.do")
+	public String joinView() {
+		return "/member/joinChoice";
+	}
+	
+	//ajax 개인회원가입 페이지 이동
+	@RequestMapping("/join.do")
+	public String join(Member m) {
+		
+		System.out.println(m);
+		
+		return "/member/join";
+	}
+	
+	//ajax 개인회원가입
+	@RequestMapping("/joinend.do")
+	public void joinend(Member m,HttpServletResponse response) throws IOException{
+		
+		int result = service.join(m);
+		
+		response.getWriter().print(result);
+	}
+	
+	
+	//로그아웃 구현
 	@RequestMapping("/logout.do")
-	public String logout(HttpSession session) {
+	public String logOut(HttpSession session) {
 		session.invalidate();
 		
 		return "redirect:/";
 	}
 	
-	@RequestMapping("/join.do")
-	public String joinView() {
-		return "/member/join";
-	}
+	
 }

@@ -8,4 +8,6 @@ public interface MemberDao {
 
 	Member loginEnd(Member m, SqlSessionTemplate session);
 
+	int join(Member m, SqlSessionTemplate session);
+
 }

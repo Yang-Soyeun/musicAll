@@ -93,7 +93,7 @@
               <li class="dropdown"><a href="#" >1:1문의</a></li>
               <c:if test="${loginMember==null }">
 	              <li class="dropdown"><a href="${path }/member/login.do" >로그인</a></li>
-	              <li class="dropdown"><a href="${path }/member/join.do" >회원가입</a></li>
+	              <li class="dropdown"><a href="${path }/member/joinchoice.do" >회원가입</a></li>
               </c:if>
               <c:if test="${loginMember!=null }"><!-- 로그인을 하면 -->
 	              <li class="dropdown"><a class="dropdown-toggle" href="${path }/mypage/mypageMain.do" data-toggle="dropdown">마이페이지</a>
