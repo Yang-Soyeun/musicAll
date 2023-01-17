@@ -1,4 +1,4 @@
-package com.gdj.music.user.model.vo;
+package com.gdj.music.member.model.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,12 +11,10 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Member {
 
-	private int memberNo;
-	private String memberId;
-	private String memberName;
-	private String memberPw;
+	private int member_No;
+	private String member_Id;
+	private String name;
+	private String password;
 	private String email;
 	private String phone;
-	private int point;
-	private String play;
 }

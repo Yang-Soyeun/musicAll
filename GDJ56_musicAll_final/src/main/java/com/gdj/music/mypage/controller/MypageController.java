@@ -1,11 +1,21 @@
 package com.gdj.music.mypage.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.gdj.music.mypage.model.service.MypageService;
 
 @Controller
 @RequestMapping("/mypage")
 public class MypageController {
+	
+	private MypageService service;
+	@Autowired
+	public MypageController(MypageService service) {
+		this.service=service;
+	}
+	
 	//마이페이지메인
 	@RequestMapping("/mypageMain.do")
 	public String mypageMain(){
@@ -41,5 +51,10 @@ public class MypageController {
 	@RequestMapping("/shoppingList.do")
 	public String shoppingList() {
 		return "mypage/shoppingList";
+	}
+	//내가 쓴 글
+	@RequestMapping("/myContentList.do")
+	public String myContentList() {
+		return "mypage/myContentList";
 	}
 }
