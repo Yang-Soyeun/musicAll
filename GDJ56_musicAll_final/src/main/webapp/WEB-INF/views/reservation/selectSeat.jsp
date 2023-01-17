@@ -39,13 +39,12 @@
             A12 (R석, 88000원)<br><br>
             <b>총 결제 금액</b><br><br>
             176,000원
+            <br><br>
+             <button class="btn btn-danger" style="width:270px;;margin-left:-2%;font-size:15px;" onclick="location.assign('${path}/booking/pay.do')">결제하기</button>
        	  </div>
     </div>
     
-	<div class="booking">
-        <button class="btn btn-danger" style="width:270px;float:right;margin-right:19.5%;font-size:15px;" onclick="location.assign('${path}/booking/selectSeat.do')">결제하기</button>
-    </div>
-    
+
 	<div class="select-theater-place">
 		<span>남은좌석</span><span class="remain-seats">152</span>/<span
 			class="all-seats">172</span>
