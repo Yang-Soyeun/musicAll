@@ -6,4 +6,6 @@ public interface MemberService {
 
 	Member loginEnd(Member m);
 
+	int join(Member m);
+
 }
