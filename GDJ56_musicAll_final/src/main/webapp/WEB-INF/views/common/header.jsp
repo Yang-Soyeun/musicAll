@@ -87,11 +87,11 @@
           </div>
           <div class="collapse navbar-collapse" id="custom-collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown"><a href="${path }/user/login.do" >공연</a></li>
+              <li class="dropdown"><a href="${path }/perfor/performanceList.do" >공연</a></li>
               <li class="dropdown"><a href="${path }/booking/bookingview.do" >예매</a></li>
               <li class="dropdown"><a href="#" >스토어</a></li>
               <li class="dropdown"><a href="#" >1:1문의</a></li>
-              <li class="dropdown"><a href="#" >로그인</a></li>
+              <li class="dropdown"><a href="${path }/user/login.do" >로그인</a></li>
               <li class="dropdown"><a href="#" >회원가입</a></li>
               <li class="dropdown"><a class="dropdown-toggle" href="${path }/mypage/mypageMain.do" data-toggle="dropdown">마이페이지</a>
                 <ul class="dropdown-menu" role="menu">
@@ -108,3 +108,4 @@
           </div>
         </div>
       </nav>
+      </main>
