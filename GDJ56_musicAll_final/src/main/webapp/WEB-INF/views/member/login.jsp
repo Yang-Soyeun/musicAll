@@ -14,7 +14,7 @@
     <title>로그인</title>
 
     <!-- 나의 스타일 추가 -->
-    <link rel="stylesheet" href="${path }/resources/css/login.css">
+    <link rel="stylesheet" href="${path }/resources/css/member/login.css">
 
   </head>
   <body class="text-center">
