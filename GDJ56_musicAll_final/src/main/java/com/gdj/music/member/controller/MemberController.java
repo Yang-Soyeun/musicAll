@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.gdj.music.member.model.service.MemberService;
 import com.gdj.music.member.model.vo.Member;
@@ -48,6 +49,13 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	//로그아웃
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		
+		return "redirect:/";
+	}
 	
 	@RequestMapping("/join.do")
 	public String joinView() {

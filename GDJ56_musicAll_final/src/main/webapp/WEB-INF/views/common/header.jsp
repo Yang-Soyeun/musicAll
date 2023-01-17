@@ -106,7 +106,7 @@
 	                  <li><a href="${path }/mypage/myContentList.do"><i class="fa fa-pencil-square-o"></i> 내가 쓴 글</a></li>
 	                </ul>
 	              </li>
-              <li class="dropdown"><a href="#" >로그아웃</a></li>
+              <li class="dropdown"><a href="${path }/member/logout.do" >로그아웃</a></li>
               </c:if>
             
             </ul>
