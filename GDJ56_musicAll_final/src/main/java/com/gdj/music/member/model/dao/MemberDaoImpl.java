@@ -18,6 +18,12 @@ public class MemberDaoImpl implements MemberDao {
 	public int join(Member m, SqlSessionTemplate session) {
 		return session.insert("member.join",m);
 	}
+
+	@Override
+	public Member findidEnd(Member member, SqlSessionTemplate session) {
+		return session.selectOne("member.findId",member);
+	}
+	
 	
 	
 

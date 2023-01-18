@@ -10,4 +10,6 @@ public interface MemberDao {
 
 	int join(Member m, SqlSessionTemplate session);
 
+	Member findidEnd(Member member, SqlSessionTemplate session);
+
 }
