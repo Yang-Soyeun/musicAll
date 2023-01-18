@@ -51,11 +51,7 @@ public class MypageController {
 		List<Point> list=service.selectPointList();
 		mv.addObject("mypoint",service.selectPointList());
 		
-		for(Point l: list) {
-			System.out.println(l);
-		}
 		System.out.println(list);
-		
 		
 		mv.setViewName("mypage/pointList");
 		return mv;

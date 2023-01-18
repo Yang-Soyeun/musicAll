@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp">
@@ -24,34 +25,49 @@
 		              <td><b>분류</b></td>
 		              <td><b>내역</b></td>
 		            </tr>
-		            <tr>
-		              <td>
-		                <h5 class="product-title font-alt">2022-02-05</h5>
-		              </td>
-		              <td class="">
-		                <h5 class="fa  fa-plus"></h5>
-		              </td>
-		              <td class="">
-		                <h5 class="product-title font-alt">예매 시 적립</h5>
-		              </td>
-		              <td class="">
-		                <h5 class="product-title" style="letter-spacing:2px;">+150point</h5>
-		              </td>
-		            </tr>
-		            <tr>
-		              <td>
-		                <h5 class="product-title font-alt">2023-01-15</h5>
-		              </td>
-		              <td class="">
-		                <h5 class="fa  fa-minus"></h5>
-		              </td>
-		              <td class="">
-		                <h5 class="product-title font-alt">관람 포인트 사용</h5>
-		              </td>
-		              <td class="">
-		                <h5 class="product-title "style="letter-spacing:2px;">-2,000point</h5>
-		              </td>
-		            </tr>
+		            <c:if test="${not empty mypoint }">
+		            	<c:forEach var="mp" items="${mypoint }">
+				            <tr>
+				              <td>
+				                <h5 class="product-title font-alt"><c:out value="${mp.mpDate }"/></h5>
+				              </td>
+				              <td class="">
+				                <c:if test="${mp.mpType eq '+'}"><h5 class="fa  fa-plus"></h5></c:if>
+				                <c:if test="${mp.mpType eq '-'}"><h5 class="fa  fa-minus"></h5></c:if>
+				              </td>
+				              <td class="">
+				                <h5 class="product-title font-alt">예매 시 적립</h5>
+				              </td>
+				              <td class="">
+				                <h5 class="product-title" style="letter-spacing:2px;">
+				                	<c:out value="${mp.mpType }"/>
+				                	<fmt:formatNumber value="${mp.mpPrice }" pattern="###,###"/>point
+				                </h5>
+				              </td>
+				            </tr>
+				    	</c:forEach>
+		            </c:if>
+		            <c:if test="${empty mypoint }">
+		            	<tr>
+		            		<td colspan="4">
+		            			<h5>포인트 내역이 없습니다</h5>
+		            		</td>
+		            	</tr>
+		            </c:if>
+<!-- 		            <tr> -->
+<!-- 		              <td> -->
+<!-- 		                <h5 class="product-title font-alt">2023-01-15</h5> -->
+<!-- 		              </td> -->
+<!-- 		              <td class=""> -->
+<!-- 		                <h5 class="fa  fa-minus"></h5> -->
+<!-- 		              </td> -->
+<!-- 		              <td class=""> -->
+<!-- 		                <h5 class="product-title font-alt">관람 포인트 사용</h5> -->
+<!-- 		              </td> -->
+<!-- 		              <td class=""> -->
+<!-- 		                <h5 class="product-title "style="letter-spacing:2px;">-2,000point</h5> -->
+<!-- 		              </td> -->
+<!-- 		            </tr> -->
 		            
 		          </tbody>
 		        </table>
