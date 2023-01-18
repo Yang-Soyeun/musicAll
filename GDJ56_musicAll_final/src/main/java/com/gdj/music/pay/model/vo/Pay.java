@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Pay {
 	
-	private int p_code;
-	private String p_way;
-	private double p_price;
-	private Date p_date;
+	private int pCode;
+	private String pWay;
+	private double pPrice;
+	private Date pDate;
 
 }
