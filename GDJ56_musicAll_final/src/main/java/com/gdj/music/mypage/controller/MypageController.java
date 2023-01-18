@@ -48,7 +48,7 @@ public class MypageController {
 	//포인트
 	@RequestMapping("/pointList.do")
 	public ModelAndView pointList(ModelAndView mv) {
-		List<Point> list=service.selectPointList();
+		List<Point> list=service.selectPointList();//memberNo넣어야함 수정필요
 		mv.addObject("mypoint",service.selectPointList());
 		
 		System.out.println(list);
