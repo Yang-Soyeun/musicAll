@@ -87,10 +87,27 @@
           </div>
           <div class="collapse navbar-collapse" id="custom-collapse">
             <ul class="nav navbar-nav navbar-right">
+
+              <li class="dropdown"><a href="${path }/perfor/performanceList.do" >공연</a></li>
+
               <li class="dropdown"><a href="#" >공연</a></li>
               <li class="dropdown"><a href="${path }/booking/bookingview.do" >예매</a></li>
               <li class="dropdown"><a href="#" >스토어</a></li>
               <li class="dropdown"><a href="#" >1:1문의</a></li>
+
+              <li class="dropdown"><a href="${path }/user/login.do" >로그인</a></li>
+              <li class="dropdown"><a href="#" >회원가입</a></li>
+              <li class="dropdown"><a class="dropdown-toggle" href="${path }/mypage/mypageMain.do" data-toggle="dropdown">마이페이지</a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="alerts-and-wells.html"><i class="fa fa-cog"></i> 회원정보 수정</a></li>
+                  <li><a href="${path }/mypage/musicalList.do"><i class="fa fa-list-ul fa-sm"></i> 공연예매 정보</a></li>
+                  <li><a href="${path }/mypage/likeMusical.do"><i class="fa fa-heart"></i> 관심 공연</a></li>
+                  <li><a href="${path }/mypage/pointList.do"><i class="fa fa-database"></i> 포인트</a></li>
+                  <li><a href="${path }/mypage/shoppingList.do"><i class="fa fa-gift"></i> 상품 구매내역</a></li>
+                  <li><a href="icons.html"><i class="fa fa-pencil-square-o"></i> 내가 쓴 글</a></li>
+                </ul>
+              </li>
+
               <c:if test="${loginMember==null }">
 	              <li class="dropdown"><a href="${path }/member/login.do" >로그인</a></li>
 	              <li class="dropdown"><a href="${path }/member/joinchoice.do" >회원가입</a></li>
@@ -108,11 +125,15 @@
 	              </li>
               <li class="dropdown"><a href="${path }/member/logout.do" >로그아웃</a></li>
               </c:if>
+
             
             </ul>
           </div>
         </div>
       </nav>
+
+      </main>
+
 
       <!-- 비밀번호 확인창 -->
       <div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
@@ -141,3 +162,4 @@
 				</div>
 			</div>
 		</div>
+

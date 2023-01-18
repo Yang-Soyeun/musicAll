@@ -1,0 +1,150 @@
+		#title-box{
+           margin-top: 10px;
+           margin-left: 500px;
+        }
+        .myform fieldset{
+            display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
+            direction: rtl; /* 이모지 순서 반전 */
+            border: 0; /* 필드셋 테두리 제거 */
+        }
+        .myform fieldset legend{
+            text-align: left;
+        }
+        .myform input[type=radio]{
+            display: none; /* 라디오박스 감춤 */
+        }
+        .myform label{
+            font-size: 1.5em; /* 이모지 크기 */
+            color: transparent; /* 기존 이모지 컬러 제거 */
+            text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
+        }
+        .myform label:hover{
+            text-shadow: 0 0 0 #a00; /* 마우스 호버 */
+        }
+        .myform label:hover ~ label{
+            text-shadow: 0 0 0 #a00; /* 마우스 호버 뒤에 오는 이모지들 */
+        }
+        .myform input[type=radio]:checked ~ label{
+            text-shadow: 0 0 0 #a00; /* 마우스 클릭 체크 */
+        }
+        .myform2 fieldset{
+            display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
+            direction: rtl; /* 이모지 순서 반전 */
+            border: 0; /* 필드셋 테두리 제거 */
+        }
+        .myform2 fieldset legend{
+            text-align: left;
+        }
+        .myform2 input[type=radio]{
+            display: none; /* 라디오박스 감춤 */
+        }
+        .myform2 label{
+            font-size: 1em; /* 이모지 크기 */
+            color: transparent; /* 기존 이모지 컬러 제거 */
+            text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
+        }
+        .myform2 label:hover{
+            text-shadow: 0 0 0 #a00; /* 마우스 호버 */
+        }
+        .myform2 label:hover ~ label{
+            text-shadow: 0 0 0 #a00; /* 마우스 호버 뒤에 오는 이모지들 */
+        }
+        .myform2 input[type=radio]:checked ~ label{
+            text-shadow: 0 0 0 #a00; /* 마우스 클릭 체크 */
+        }
+        #info-box{
+            margin-left: 500px;
+            width: 900px;
+            height: 650px;
+            background-color: #E6E6E6;
+        }
+        #imgView{
+            width: 300px;
+            height: 450px;
+            margin-top: -500px;
+            margin-left: 60px;
+        }
+        .info{
+            line-height: 1;
+            font-size: 18px;
+        }
+        .info-box2{
+            margin-top: 50px;
+            margin-left: 150px;
+            display: inline-block;
+        }
+        .info-box3{
+            margin-top: 40px;
+            margin-left: 50px;
+            display: inline-block;
+
+        }
+        #go1{
+            margin-top: 10px;
+            width: 300px;
+            height: 30px;
+            font-size: 15px;
+            <!--background-color: #a50000;-->
+            color: white;
+        }
+        #go2{
+            margin-top: 10px;
+            width: 300px;
+            height: 30px;
+            font-size: 15px;
+            /* background-color: #a50000; */
+            color: white;
+        }
+        #downContainer a{
+            font-size: 25px;
+            /*margin-left: 350px;*/
+            text-decoration: none;/*a href 밑줄 등 글자 꾸밈 없음*/
+            color: #6E6E6E;
+            line-height: 40px;
+        }
+        #downContainer{
+            margin-left: 300px;
+            margin-top: 20px;
+            text-align: center;/*중앙정렬*/
+            padding: 20px 0 20px 0;
+        }
+        #downContainer li {
+            display: inline-block;/*여백 없이 좌측으로 붙은 li*/
+            padding: 0 40px 0 0;
+            margin-left: 200px;
+            
+        }
+          
+        #downContainer a:after {/*after 가상요소*/
+           /*a요소를 블록 요소라고 선언*/
+             width:70px;/*카테고리 메뉴 밑줄의 크기를 동일하게 주기 위해 width 설정*/
+              /* 혹시 a요소 크기만큼 생기길 바란다면 width 삭제 */ 
+            content: '';/*content안은 밑줄 디자인을 위해 비워두세요.*/
+            border-bottom: solid 2px #6E6E6E;
+            transform: scaleX(0);/*크기를 0으로 줌으로써 평상시엔 밑줄 없음*/
+            transition: transform 250ms ease-in-out; /*변형 방식*/
+        }
+        #downContainer a:hover:after {
+            transform: scaleX(1);/*a 속성에 hover시 after를 기존 크기로 변경*/
+        }
+
+        .oneComment{
+           margin-left: 500px;
+           border: solid 1px #D8D8D8;
+           border-radius: 20px;
+           width: 900px;
+           display: none;
+           
+        }
+        #perInfo{
+            margin-left: -540px;
+            
+        }
+        #Comment{
+            margin-left: -400px;
+            
+
+        }
+        #starBox{
+        margin-left: 30px;
+        }
