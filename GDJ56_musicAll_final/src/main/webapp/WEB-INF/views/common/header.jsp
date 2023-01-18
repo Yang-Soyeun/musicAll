@@ -89,8 +89,6 @@
             <ul class="nav navbar-nav navbar-right">
 
               <li class="dropdown"><a href="${path }/perfor/performanceList.do" >공연</a></li>
-
-              <li class="dropdown"><a href="#" >공연</a></li>
               <li class="dropdown"><a href="${path }/booking/bookingview.do" >예매</a></li>
               <li class="dropdown"><a href="#" >스토어</a></li>
               <li class="dropdown"><a href="#" >1:1문의</a></li>
