@@ -4,10 +4,6 @@
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <link href="${path}/resources/css/performance/performanceList.css" rel="stylesheet">
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
 <jsp:include page="/WEB-INF/views/common/header.jsp">
  	<jsp:param name="title" value="MainPage"/>
 </jsp:include>
@@ -33,7 +29,7 @@
     <div class="search-box">
         <form action="." method="post">
             <input type="text" id="searchPer" placeholder="제목으로 검색하기" >&nbsp;
-            <input type="text" id="datepicker" style="width:200px; height:48px;"/>
+            <input type="text" id="datepicker" style="width:200px; height:48px;">
             <button class="searchBtn" type="submit" >검색</button>
 
         </form>
@@ -61,7 +57,21 @@
 </section>
 
 <script>
-	$("#datepicker").datepicker();
+	$(function(){
+	    $('#datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
+	})
 </script>
+
+<!-- jquery 기본 js파일 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0
+/jquery.min.js"></script>
+
+<!-- //jquery ui js파일 -->
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui
+/1.12.1/jquery-ui.min.js"></script>
+
+<!-- //jquery ui css파일 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs
+/jqueryui/1.12.1/jquery-ui.min.css"/>
 <br>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

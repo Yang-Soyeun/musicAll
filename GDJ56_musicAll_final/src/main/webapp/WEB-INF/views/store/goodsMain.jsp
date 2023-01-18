@@ -6,6 +6,8 @@
  	<jsp:param name="title" value="MainPage"/>
 </jsp:include>
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
+
 <body>
     <!-- Spinner Start -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -16,11 +18,11 @@
 
 
 <!-- Start Content -->
-    <div class="container py-5">
+    <div class="container py-5" style="margin: 8%; margin-left: 14%;">
         <div class="row">
 
             <div class="col-lg-3">
-                <h1 class="h2 pb-4">Categories</h1>
+                <h1 class="h2 pb-4">카테고리</h1>
                 <ul class="list-unstyled templatemo-accordion">
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
@@ -85,7 +87,7 @@
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="s.jpg">
+                               <img src="${path }/resources/images/store/goods.jpg" id="countimg1" style="width: 300px;height: 350px;">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <!-- <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
@@ -118,7 +120,7 @@
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="assets/img/shop_02.jpg">
+                                <img src="${path }/resources/images/store/goods.jpg" id="countimg1" style="width: 300px;height: 350px;">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <!-- <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
@@ -151,7 +153,7 @@
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="assets/img/shop_03.jpg">
+                                <img src="${path }/resources/images/store/goods.jpg" id="countimg1" style="width: 300px;height: 350px;">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <!-- <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
@@ -184,7 +186,7 @@
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="assets/img/shop_04.jpg">
+                                <img src="${path }/resources/images/store/goods.jpg" id="countimg1" style="width: 300px;height: 350px;">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <!-- <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
@@ -217,7 +219,7 @@
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="assets/img/shop_05.jpg">
+                                <img src="${path }/resources/images/store/goods.jpg" id="countimg1" style="width: 300px;height: 350px;">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <!-- <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
@@ -250,7 +252,7 @@
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="assets/img/shop_06.jpg">
+                                <img src="${path }/resources/images/store/goods.jpg" id="countimg1" style="width: 300px;height: 350px;">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <!-- <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
@@ -283,7 +285,7 @@
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="assets/img/shop_07.jpg">
+                                <img src="${path }/resources/images/store/goods.jpg" id="countimg1" style="width: 300px;height: 350px;">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <!-- <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
@@ -316,7 +318,7 @@
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="assets/img/shop_08.jpg">
+                               	<img src="${path }/resources/images/store/goods.jpg" id="countimg1" style="width: 300px;height: 350px;">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <!-- <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
@@ -349,7 +351,7 @@
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="assets/img/shop_09.jpg">
+                                <img src="${path }/resources/images/store/goods.jpg" id="countimg1" style="width: 300px;height: 350px;">
                                 <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <!-- <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
@@ -396,6 +398,7 @@
             </div>
 
         </div>
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top" style="float: right;"><i class="bi bi-arrow-up"></i></a>
     </div>
     <!-- End Content -->
 
@@ -406,19 +409,19 @@
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    
 
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/wow/wow.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script> -->
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <!-- <script src="js/main.js"></script> -->
 </body>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
