@@ -4,16 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.gdj.music.goods.model.service.GoodsService;
+import com.gdj.music.goods.model.service.GoodsServiceImpl;
 
 @Controller
 @RequestMapping("/goods")
 public class GoodsController {
 	
-	GoodsService service;
+	GoodsServiceImpl service;
 
 	@Autowired
-	public GoodsController(GoodsService service) {
+	public GoodsController(GoodsServiceImpl service) {
 		super();
 		this.service = service;
 	}
