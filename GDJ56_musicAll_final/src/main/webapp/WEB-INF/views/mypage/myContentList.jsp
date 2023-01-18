@@ -169,7 +169,7 @@
 		      
 		      <!-- 페이지바 -->
 		      <div class="col-sm-12">
-			      <div class="pagination font-alt">
+			      <div class="pagination">
 			      	<a href="#"><i class="fa fa-angle-left"></i></a>
 			      	<a class="active" href="#">1</a>
 			      	<a href="#">2</a>
@@ -178,6 +178,7 @@
 			      	<a href="#"><i class="fa fa-angle-right"></i></a>
 			      </div>
 		      </div>
+		      
 		      
 		    </div>
 		  </div>
