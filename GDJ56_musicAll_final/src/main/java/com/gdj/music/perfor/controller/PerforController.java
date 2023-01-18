@@ -18,4 +18,9 @@ public class PerforController {
 		return "perfor/performanceView";
 	}
 
+	@RequestMapping("/performance.do")
+	public String performance() {
+		return "";
+	}
+	
 }
