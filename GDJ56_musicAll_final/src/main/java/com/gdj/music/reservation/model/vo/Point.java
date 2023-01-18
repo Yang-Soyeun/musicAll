@@ -12,4 +12,6 @@ public class Point {
 	private String mpType;
 	private int memberNo;
 	private Date mpDate;
+	private String mpHistory;
+	private int mpPoint;
 }

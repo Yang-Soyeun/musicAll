@@ -12,7 +12,10 @@
 		  <div class="container">
 		    <div class="row">
 		      <div class="col-sm-6 col-sm-offset-3">
-		        <h1 class="module-title font-alt">현재 나의 포인트 <span style="font-style:oblique; color: #A50000;">13,000p</span></h1>
+		        <h1 class="module-title font-alt">현재 나의 포인트 
+			        <span style="font-style:oblique; color: #A50000;">
+			        <fmt:formatNumber value="${mypoint.get(0).mpPoint }" pattern="###,###"/>p</span>
+		        </h1>
 		      </div>
 		    </div>
 		    <div class="row">
@@ -36,7 +39,7 @@
 				                <c:if test="${mp.mpType eq '-'}"><h5 class="fa  fa-minus"></h5></c:if>
 				              </td>
 				              <td class="">
-				                <h5 class="product-title font-alt">예매 시 적립</h5>
+				                <h5 class="product-title font-alt"><c:out value="${mp.mpHistory }"/></h5>
 				              </td>
 				              <td class="">
 				                <h5 class="product-title" style="letter-spacing:2px;">
@@ -74,16 +77,18 @@
 		      </div>
 		      
 		      <!-- 페이지바 -->
-		      <div class="col-sm-12">
-			      <div class="pagination font-alt">
-			      	<a href="#"><i class="fa fa-angle-left"></i></a>
-			      	<a class="active" href="#">1</a>
-			      	<a href="#">2</a>
-			      	<a href="#">3</a>
-			      	<a href="#">4</a>
-			      	<a href="#"><i class="fa fa-angle-right"></i></a>
+		      <center>
+			      <div class="col-sm-12">
+				      <div class="pagination font-alt">
+				      	<a href="#"><i class="fa fa-angle-left"></i></a>
+				      	<a class="active" href="#">1</a>
+				      	<a href="#">2</a>
+				      	<a href="#">3</a>
+				      	<a href="#">4</a>
+				      	<a href="#"><i class="fa fa-angle-right"></i></a>
+				      </div>
 			      </div>
-		      </div>
+		      </center>
 		      
 		    </div>
 		  </div>
