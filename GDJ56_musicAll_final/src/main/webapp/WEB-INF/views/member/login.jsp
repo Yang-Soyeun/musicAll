@@ -14,7 +14,7 @@
     <title>로그인</title>
 
     <!-- 나의 스타일 추가 -->
-    <link rel="stylesheet" href="${path }/resources/css/login.css">
+    <link rel="stylesheet" href="${path }/resources/css/member/login.css">
 
   </head>
   <body class="text-center">
@@ -27,20 +27,46 @@
         <!-- 로그인 페이지 타이틀 -->
         <div id="loginBoxTitle">musicAll Login</div>
         <!-- 아이디, 비번, 버튼 박스 -->
-        <form action="${path }/member/loginEnd.do" method="post">
 	        <div id="inputBox">
-	          <div class="input-form-box"><span class="h6">아이디 </span><input type="text" name="memberId" class="form-control"></div>
-	          <div class="input-form-box"><span class="h6">비밀번호 </span><input type="password" name="memberPw" class="form-control"></div>
+	          <div class="input-form-box"><span class="h6">아이디 </span><input type="text" id="memberId" class="form-control"></div>
+	          <div class="input-form-box"><span class="h6">비밀번호 </span><input type="password" id="password" class="form-control"></div>
+	          <div id="login_result" style="color:red;"></div>
 	          <div class="button-login-box" >
-	            <button type="submit" class="btn btn-primary btn-xs" style="width:100%">로그인</button>
+	            <input type="button" class="btn btn-danger btn-circle" style="width:100%" value="로그인" onclick="fn_loginresult();">
 	          </div>
 	        </div>
-        </form>
       </div>
     </div>
  	
  	<script>
- 	
+ 		const fn_loginresult=()=>{
+ 			let d = {
+ 					"memberId" : $("#memberId").val(),
+ 					"memberPw" : $("#password").val()
+ 			};
+ 			let id = $("#memberId").val();
+ 			let pw = $("#password").val();
+ 			if(id==null || id=="" ){
+ 				$("#login_result").html("아이디를 입력해주세요");
+ 			}else if(pw==null || pw==""){
+ 				$("#login_result").html("비밀번호를 입력해주세요");
+ 			}else{
+	 			$.ajax({
+	 				url:"${path}/member/loginEnd.do",
+	 				data:d,
+	 				dataType:"json",
+	 				type:'POST',
+	 				success:data=>{
+	 					if(data==false){
+	 						$("#login_result").html("아이디 또는 비밀번호를 잘못 입력하셨습니다.");
+	 					}else{
+	 						location.assign("${path}/");
+	 					}
+	 				}
+	 				
+	 			});
+ 			}
+ 		}
  	</script>
 
     <!-- Bootstrap Bundle with Popper -->

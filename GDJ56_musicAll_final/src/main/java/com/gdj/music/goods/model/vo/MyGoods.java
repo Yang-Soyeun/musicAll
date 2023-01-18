@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @Builder
 public class MyGoods {
 	
-	private int sb_code;
-	private int sb_count;
-	private int g_code;
-	private int member_no;
-	private int p_code;
+	private int sbCode;
+	private int sbCount;
+	private int gCode;
+	private int memberNo;
+	private int pCode;
 
 }

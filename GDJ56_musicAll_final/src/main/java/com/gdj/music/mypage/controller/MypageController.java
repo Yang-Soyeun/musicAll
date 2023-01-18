@@ -1,10 +1,14 @@
 package com.gdj.music.mypage.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.gdj.music.mypage.model.service.MypageService;
+import com.gdj.music.reservation.model.vo.Point;
 
 @Controller
 @RequestMapping("/mypage")
@@ -43,8 +47,14 @@ public class MypageController {
 	
 	//포인트
 	@RequestMapping("/pointList.do")
-	public String pointList() {
-		return "mypage/pointList";
+	public ModelAndView pointList(ModelAndView mv) {
+		List<Point> list=service.selectPointList();
+		mv.addObject("mypoint",service.selectPointList());
+		
+		System.out.println(list);
+		
+		mv.setViewName("mypage/pointList");
+		return mv;
 	}
 	
 	//상품구매내역

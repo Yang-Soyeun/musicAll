@@ -1,0 +1,99 @@
+	#menu{
+            margin-left:280px;
+
+        }
+        #nowShowing{
+        	font-weight:bold;
+        
+        }
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #menu>li {
+            float:left;
+            list-style-type: none;
+            margin-left: 100px;
+            font-size:19px;
+          
+            
+        }
+
+        .hbody {
+            <!--background-color:#a50000;-->
+            width: 100%;
+            height: 80px;
+        }
+
+        .nav2 {
+            display: flex;
+        /*justify-content: space-between;*/
+            align-items: center;
+            padding: 20px 50px;
+            color: black;
+        }
+
+        .title {
+            font-size: 2em;
+        }
+
+        .title > a {
+            color: white;
+        }
+
+        .search-box {
+            
+            margin-top: 30px;
+            left: 80%;
+            transform: translate(-50%, -50%);
+        }
+        .select-box{
+            margin-top: 5px;
+            float:right;
+            margin-right:20px;
+        }
+        
+        .photo-box{
+            margin-top: 5px;
+            margin-left: 98px;
+        }
+        .perView{
+            width: 300px;
+            height: 400px;
+            margin-left: 110px;
+            border-radius:10px;
+
+        }
+        .count-box{
+            margin-top: 65px;
+            margin-left: 140px;
+           
+        }
+        #countimg1{
+            margin-left: 300px;
+             
+        }
+        #countimg2{
+            margin-left: 340px;
+        }
+        #countimg3{
+            margin-top: 15px;
+            margin-left: 340px;
+        }
+        #countimg4{
+            margin-top: 15px;
+            margin-left: 325px;
+        }
+        #searchPer{
+        	width:600px;
+        	height:50px;
+        }
+		.searchBtn{
+			width:50px;
+			height:30px;
+		}

@@ -14,5 +14,12 @@ public class MemberDaoImpl implements MemberDao {
 		return session.selectOne("member.loginEnd",m);
 	}
 
+	@Override
+	public int join(Member m, SqlSessionTemplate session) {
+		return session.insert("member.join",m);
+	}
+	
+	
+
 	
 }
