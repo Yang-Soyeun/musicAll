@@ -19,8 +19,13 @@ public class GoodsController {
 	}
 	
 	@RequestMapping("/goodsMain.do")
-	public String loginView() {
+	public String goodsMain() {
 		return "/store/goodsMain";
+	}
+	
+	@RequestMapping("/goodsView.do")
+	public String goodsView() {
+		return "/store/goodsView";
 	}
 	
 
