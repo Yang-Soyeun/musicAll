@@ -14,7 +14,7 @@
 
       <!-- <div class="video-player" data-property="{videoURL:'https://www.youtube.com/watch?v=bNucJgetMjE', containment:'.home-section', startAt:18, mute:false, autoPlay:true, loop:true, opacity:1, showControls:false, showYTLogo:false, vol:25}"></div> -->
       <div>
-         <video src="${path }/resources/video/main.mp4" muted autoplay loop></video>
+         <%-- <video src="${path }/resources/video/main.mp4" muted autoplay loop></video> --%>
       </div>
    </section>
 <%-- <jsp:include page="/WEB-INF/views/common/footer.jsp"/> --%>
