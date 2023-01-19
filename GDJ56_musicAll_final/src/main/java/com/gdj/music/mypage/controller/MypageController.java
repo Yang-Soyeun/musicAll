@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.gdj.music.common.interceptor.PageFactory;
 import com.gdj.music.mypage.model.service.MypageService;
+import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
 
 @Controller
@@ -54,6 +55,7 @@ public class MypageController {
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
 			@RequestParam(value="numPerpage", defaultValue="5")int numPerpage) {
 		int member_No=No;
+		
 		List<Point> list=service.selectPointListPage(member_No,
 				Map.of("cPage",cPage,"numPerpage",numPerpage)
 				);//전체포인트이력
@@ -78,7 +80,22 @@ public class MypageController {
 	}
 	//내가 쓴 글
 	@RequestMapping("/myContentList.do")
-	public String myContentList() {
-		return "mypage/myContentList";
+	public ModelAndView myContentList(ModelAndView mv,int No,
+			@RequestParam(value="cPage", defaultValue="1")int cPage,
+			@RequestParam(value="numPerpage", defaultValue="5")int numPerpage) {
+		//1대1문의
+		int member_No=No;
+		
+		List<Question> list=service.selectQsListPage(member_No,
+				Map.of("cPage",cPage,"numPerpage",numPerpage)
+				);//전체 문의내역리스트
+		int totalData=service.selectQsCount(member_No);
+		
+		mv.addObject("myQs",list);//전체1대1문의 내역
+		mv.addObject("pageBarQs",PageFactory.searchPage(cPage,numPerpage,totalData,"myContentList.do",member_No));//1대1문의 페이지바
+		
+		
+		mv.setViewName("mypage/myContentList");
+		return mv;
 	}
 }
