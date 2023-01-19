@@ -85,5 +85,26 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	@RequestMapping("/findId.do")
+	public String findid() {
+		return "/member/findid";
+	}
+	
+	@RequestMapping("/findidEnd.do")
+	public void findidEnd(Member member,HttpServletResponse response) throws IOException {
+		
+		Member m = service.findidEnd(member);
+		
+		if(m==null) {
+			response.getWriter().print("");
+			
+		}else {
+			response.getWriter().print(m.getMember_Id());
+		}
+			
+		
+	}
+	
+	
 	
 }
