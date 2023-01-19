@@ -11,6 +11,7 @@
 </jsp:include>
 
 
+
 <div id="ticketing">
         <div id="icon">
             <img src="${path }/resources/images/reservation/아이콘.png" width="50px" height="50px" style="margin-top:-1%;margin-left:15%;"/><b style="color:black">뮤지컬 예매</b><img src="${path }/resources/images/reservation/아이콘2.jpg" width="30px" style="margin-top:-5px;margin-left:100px;">
@@ -22,14 +23,13 @@
         <div class="row_5">
             <div class="col_5" style="margin-top:1%">
                 <br>
-                <h4 class="prdTitle"><b>뮤지컬 〈물랑루즈!〉 </b></h4><br>
+                <h4 class="prdTitle"><b></b></h4><br>
                 <img class="posterBoxImage" src="${path }/resources/images/reservation/22014586_p.png" >
             </div>
             <div class="col_5" style="margin-top:8%;font-size:1.1rem;">
                 <ul class="info" style="color:black;">
                     <li class="infoItem"><strong class="infoLabel">장소</strong>
-                        <div class="infoDesc">블루스퀘어
-                            신한카드홀<i></i></div><br>
+                        <div class="infoDesc"><i></i></div><br>
                     </li>
                     <li class="infoItem"><strong class="infoLabel">공연기간</strong>
                         <div class="infoDesc">
@@ -95,17 +95,25 @@
 	</div>
                 <!-- // .my-calendar -->
                 <div class="booking">
-                    <button class="btn btn-danger" style="width:420px;margin-left:5%" onclick="location.assign('${path}/booking/selectSeat.do')">예매하기</button>
+                    <button class="btn btn-danger" style="width:420px;margin-left:5%" onclick="nextPage();">예매하기</button>
                   </div>
                
            </div>
           </div>
          </div>
         </div>
-               
-
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-  <script src="${path}/resources/js/reservation/bookingView.js"></script>
+ <script src="${path}/resources/js/reservation/bookingView.js"></script> 
+<script>
+const nextPage = () =>{
+const day = document.querySelector(".day-active");
+//console.log(day.getAttribute("data-fdate"));
+const day2 = new Date(day.getAttribute("data-fdate"));
+console.log(day2);
 
+/* 		location.assign('${path}/booking/selectSeat.do'); */
+}
+
+</script>
 

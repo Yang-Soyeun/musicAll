@@ -58,7 +58,7 @@
     <link href="${path}/resources/css/style.css" rel="stylesheet">
     <link id="color-scheme" href="${path}/resources/css/colors/default.css" rel="stylesheet">
     
-	<script src="${path}/resources/lib/jquery/dist/jquery.js"></script>
+   <script src="${path}/resources/lib/jquery/dist/jquery.js"></script>
     <script src="${path}/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="${path}/resources/lib/wow/dist/wow.js"></script>
     <script src="${path}/resources/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
@@ -89,14 +89,14 @@
             <ul class="nav navbar-nav navbar-right">
 
               <li class="dropdown"><a href="${path }/perfor/performanceList.do" >공연</a></li>
-              <li class="dropdown"><a href="${path }/booking/bookingview.do" >예매</a></li>
+              <li class="dropdown"><a href="${path }/booking/bookingview.do?mCode=3" >예매</a></li>
               <li class="dropdown"><a href="${path }/goods/goodsMain.do" >스토어</a></li>
               <li class="dropdown"><a href="#" >1:1문의</a></li>
 
 
               <c:if test="${loginMember==null }">
-	              <li class="dropdown"><a href="${path }/member/login.do" >로그인</a></li>
-	              <li class="dropdown"><a href="${path }/member/joinchoice.do" >회원가입</a></li>
+                 <li class="dropdown"><a href="${path }/member/login.do" >로그인</a></li>
+                 <li class="dropdown"><a href="${path }/member/joinchoice.do" >회원가입</a></li>
               </c:if>
               <c:if test="${ (loginMember!=null) && (loginMember.member_Id ne 'admin') }"><!-- 일반회원이 로그인을 하면 -->
 	              <li class="dropdown"><a class="dropdown-toggle" href="${path }/mypage/mypageMain.do" data-toggle="dropdown">마이페이지</a>
@@ -112,8 +112,8 @@
 	              <li class="dropdown"><a href="${path }/member/logout.do" >로그아웃</a></li>
               </c:if>
               <c:if test="${(loginMember!=null) && (loginMember.member_Id eq 'admin') }" ><!-- 관리자가 로그인하면-->
-              	<li class="dropdown"><a href="${path }/member/logout.do" >로그아웃</a></li>
-			  </c:if>
+                 <li class="dropdown"><a href="${path }/member/logout.do" >로그아웃</a></li>
+           </c:if>
             
             </ul>
           </div>
@@ -125,29 +125,28 @@
 
       <!-- 비밀번호 확인창 -->
       <div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
-		aria-labelledby="loginModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3 class="modal-title" id="loginModalLabel"><b>회원정보 수정</b></h3>
-						<h5 class="modal-title" id="loginModalLabel">회원 정보 수정을 위해 비밀번호를 다시 입력해주세요.</h5>
-						<!-- <button type="button" class="close" 
-						data-dismiss="modal" aria-label="close">
-							<span aria-hidden="true">&times;</span>
-						</button> -->
-					</div>
-					<form action="" method="post">
-						<div class="modal-body">
-							<input type="password" name="userPwd" class="form-control"
-								placeholder="비밀번호 입력" required>
-						</div>
-						<div class="modal-footer">
-							<button type="submit" class="btn btn-g btn-round"><i class="fa fa-cog fa-spin"></i>확인</button>
-							<button type="button" class="btn btn-g btn-round"
-							data-dismiss="modal">취소</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-
+      aria-labelledby="loginModalLabel" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h3 class="modal-title" id="loginModalLabel"><b>회원정보 수정</b></h3>
+                  <h5 class="modal-title" id="loginModalLabel">회원 정보 수정을 위해 비밀번호를 다시 입력해주세요.</h5>
+                  <!-- <button type="button" class="close" 
+                  data-dismiss="modal" aria-label="close">
+                     <span aria-hidden="true">&times;</span>
+                  </button> -->
+               </div>
+               <form action="" method="post">
+                  <div class="modal-body">
+                     <input type="password" name="userPwd" class="form-control"
+                        placeholder="비밀번호 입력" required>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="submit" class="btn btn-g btn-round"><i class="fa fa-cog fa-spin"></i>확인</button>
+                     <button type="button" class="btn btn-g btn-round"
+                     data-dismiss="modal">취소</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
