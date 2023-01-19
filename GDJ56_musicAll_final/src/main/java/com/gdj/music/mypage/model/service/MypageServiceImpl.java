@@ -23,9 +23,16 @@ public class MypageServiceImpl implements MypageService {
 	
 	//포인트리스트출력
 	@Override
-	public List<Point> selectPointList() {
-		return dao.selectPointList(session);
+	public List<Point> selectPointList(int member_No) {
+		return dao.selectPointList(session, member_No);
 	}
+	
+	//남은 포인트 출력
+	@Override
+	public Point selectPoint(int member_No) {
+		return dao.selectPoint(session,member_No);
+	}
+	
 	
 	
 }

@@ -45,13 +45,15 @@ public class MypageController {
 		return "mypage/likeMusical";
 	}
 	
-	//포인트
+	//포인트내역출력
 	@RequestMapping("/pointList.do")
-	public ModelAndView pointList(ModelAndView mv) {
-		List<Point> list=service.selectPointList();//memberNo넣어야함 수정필요
-		mv.addObject("mypoint",service.selectPointList());
+	public ModelAndView pointList(ModelAndView mv,int member_No) {
 		
-		System.out.println(list);
+		List<Point> list=service.selectPointList(member_No);
+		Point result=service.selectPoint(member_No);
+		
+		mv.addObject("mypoint",list);//전체포인트이력
+		mv.addObject("mpPoint",result);//남은포인트
 		
 		mv.setViewName("mypage/pointList");
 		return mv;
