@@ -64,7 +64,8 @@
 		      
 		      <!-- 페이지바 -->
 		      <center>
-			      <div class="col-sm-12">
+		      	${pageBar }
+			      <!-- <div class="col-sm-12">
 				      <div class="pagination font-alt">
 				      	<a href="#"><i class="fa fa-angle-left"></i></a>
 				      	<a class="active" href="#">1</a>
@@ -73,7 +74,7 @@
 				      	<a href="#">4</a>
 				      	<a href="#"><i class="fa fa-angle-right"></i></a>
 				      </div>
-			      </div>
+			      </div> -->
 		      </center>
 		      
 		    </div>

@@ -1,6 +1,7 @@
 package com.gdj.music.mypage.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +24,19 @@ public class MypageServiceImpl implements MypageService {
 	
 	//포인트리스트출력
 	@Override
-	public List<Point> selectPointList(int member_No) {
-		return dao.selectPointList(session, member_No);
+	public List<Point> selectPointListPage(int member_No, Map<String,Integer> param) {
+		return dao.selectPointListPage(session, member_No,param);
 	}
 	
 	//남은 포인트 출력
 	@Override
 	public Point selectPoint(int member_No) {
 		return dao.selectPoint(session,member_No);
+	}
+	//페이징 처리
+	@Override
+	public int selectPointCount(int member_No) {
+		return dao.selectPointCount(session,member_No);
 	}
 	
 	
