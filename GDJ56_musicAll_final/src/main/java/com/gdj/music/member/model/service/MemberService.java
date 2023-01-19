@@ -10,4 +10,5 @@ public interface MemberService {
 
 	Member findidEnd(Member member);
 
+
 }

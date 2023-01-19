@@ -1,4 +1,4 @@
-package com.gdj.music.perfor.vo;
+package com.gdj.music.perfor.model.vo;
 
 import lombok.Builder;
 import lombok.Data;

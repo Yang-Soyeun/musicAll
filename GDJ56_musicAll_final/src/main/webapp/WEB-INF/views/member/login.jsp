@@ -49,13 +49,9 @@
             <div class="findInfoWrap">
                 <a href="javascript:window.open('${path}/member/findId.do', 'window_name', 'width=430, height=500, location=no, status=no, scrollbars=yes');" >아이디찾기</a>
                 |
-                <a href="javascript:location.assign('${path}/member/findPw.do');">비밀번호찾기</a>
+                <a href="javascript:window.open('${path}/member/findPw.do', 'window_name', 'width=430, height=500, location=no, status=no, scrollbars=yes');" >비밀번호찾기</a>
                 |
                 <a href="javascript:location.assign('${path}/member/joinchoice.do');" >회원가입</a>
-<%--                 <input type="button" class="btn btn-danger btn-circle" value="아이디 찾기" onclick="window.open('${path}/member/findId.do', 'window_name', 'width=430, height=500, location=no, status=no, scrollbars=yes');" />
-                <input type="button" class="btn btn-danger btn-circle" value="비밀번호 찾기" onclick="location.assign('${path}/member/findPw.do');" />
-                <input type="button" class="btn btn-danger btn-circle" value="회원가입" onclick="location.assign('${path}/member/joinchoice.do');" />
- --%>
             </div>
       </div>
     </div>

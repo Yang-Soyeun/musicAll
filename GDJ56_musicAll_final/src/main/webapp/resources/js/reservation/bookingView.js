@@ -153,10 +153,18 @@
                         const today = new Date();
                         const day = d[i].getAttribute("data-fdate");
                         const day2 = new Date(day);
-                       
+                       function getDayOfWeek(){ 
+			
+                        
+                        const week = ['일', '월', '화', '수', '목', '금', '토'];
+                        const dayOfWeek = week[day2.getDay()];
+
+                        return dayOfWeek;
+
+                        }
                         
                          
-                            if(day2>today){
+                            if(day2>today&&getDayOfWeek()=='월'&&day2<new Date("2023-03-11")){
                                 d[i].addEventListener('click', selectDay);
                             }
                             else{

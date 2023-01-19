@@ -48,7 +48,7 @@
 						<span class="image">
 							<img src="${path}/resources/nari2/images/포인트.webp" alt="" />
 						</span>
-						<a href="${path }/mypage/pointList.do">
+						<a href="${path }/mypage/pointList.do?No=${loginMember.member_No}">
 							<h2>포인트</h2>
 						</a>
 					</article>
@@ -64,7 +64,7 @@
 						<span class="image">
 							<img src="${path}/resources/nari2/images/나의글모음.webp" alt="" />
 						</span>
-						<a href="${path }/mypage/myContentList.do">
+						<a href="${path }/mypage/myContentList.do?No=${loginMember.member_No}">
 							<h2>내가 쓴 글</h2>
 						</a>
 					</article>

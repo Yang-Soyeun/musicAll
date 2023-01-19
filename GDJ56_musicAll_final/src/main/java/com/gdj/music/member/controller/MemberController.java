@@ -82,11 +82,13 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	//아이디찾기 팝업화면 이동
 	@RequestMapping("/findId.do")
 	public String findid() {
 		return "/member/findid";
 	}
 	
+	//아이디 찾기 ajax 구현
 	@RequestMapping("/findidEnd.do")
 	public void findidEnd(Member member,HttpServletResponse response) throws IOException {
 		
@@ -98,9 +100,28 @@ public class MemberController {
 		}else {
 			response.getWriter().print(m.getMember_Id());
 		}
-			
-		
 	}
+	
+	//비밀번호찾기 팝업화면 이동
+	@RequestMapping("/findPw.do")
+	public String findpw() {
+		return "/member/findpw";
+	}
+	
+//	//비밀번호 찾기 ajax 구현
+//		@RequestMapping("/findpwEnd.do")
+//		public void findpwEnd(Member member,HttpServletResponse response) throws IOException {
+//			
+//			Member m = service.findpwEnd(member);
+//			
+////			if(m==null) {
+////				response.getWriter().print("");
+////				
+////			}else {
+////				response.getWriter().print(m.getMember_Id());
+////			}
+//		}
+	
 	
 	
 	

@@ -12,4 +12,5 @@ public interface MemberDao {
 
 	Member findidEnd(Member member, SqlSessionTemplate session);
 
+
 }
