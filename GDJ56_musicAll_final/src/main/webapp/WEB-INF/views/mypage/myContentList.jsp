@@ -123,7 +123,7 @@
 	    </div>
 	  
         <!-- 검색창 -->
-        <form class="row" style="margin-bottom:20px;">
+        <form action="${path }/mypage/searchQs.do" class="row" style="margin-bottom:20px;">
           <div class="col-sm-4 mb-sm-20 " style="float: right;">
               <div class="search-box">
                 <input class="form-control" type="text" placeholder="Search...">
@@ -131,10 +131,10 @@
               </div>
       		</div>
           <div class="col-sm-2 mb-sm-20 " style="float: right;">
-            <select class="form-control">
+            <select name="keyword" class="form-control">
               <option selected="selected">전체</option>
-              <option>제목</option>
-              <option>내용</option>
+              <option value="qsTitle">제목</option>
+              <option value="qsContent">내용</option>
             </select>
           </div>
         </form>
