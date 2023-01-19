@@ -14,7 +14,7 @@
 		      <div class="col-sm-6 col-sm-offset-3">
 		        <h1 class="module-title font-alt">현재 나의 포인트 
 			        <span style="font-style:oblique; color: #A50000;">
-			        <fmt:formatNumber value="${mpPoint.mpPoint==null?'0':'mpPoint.mpPoint'}" pattern="###,###"/>p</span>
+			        <fmt:formatNumber value="${mpPoint.mpPoint==null?'0':mpPoint.mpPoint}" pattern="###,###"/>p</span>
 		        </h1>
 		      </div>
 		    </div>
