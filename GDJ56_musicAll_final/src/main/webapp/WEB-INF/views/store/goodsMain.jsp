@@ -7,7 +7,8 @@
 </jsp:include>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
-
+	<link href="${path}/resources/css/goods/cart.css" rel="stylesheet">
+	<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
 	.card-body {margin: 8%; margin-bottom: -13%;}
 	/* .col-sm-3 {width: 22%;} */
@@ -18,117 +19,6 @@
 	.card-body-1 {margin: 8%;}
 	.h2 {color: #d73535;}
 	
-	*,*:before,*:after {
-		  box-sizing:border-box;
-		}
-		
-	.page-wrapper {
-	  min-height:100%;
-	  display:flex;
-	  align-items:center;
-	  justify-content:center;
-	  button {
-	    padding:20px;
-	    border:none;
-	    background:lighten(#292d48,65);
-	    position:relative;
-	    outline:none;
-	    border-radius:5px;
-	    color:#292d48;
-	    font-size:18px;
-	    .cart-item {
-	      position:absolute;
-	      height:24px;
-	      width:24px;
-	      top:-10px;
-	      right:-10px;
-	      &:before {
-	        content:'1';
-	        display:block;
-	        line-height:24px;
-	        height:24px;
-	        width:24px;
-	        font-size:12px;
-	        font-weight:600;
-	        background:#2bd156;
-	        color:white;
-	        border-radius:20px;
-	        text-align:center;
-	      }
-	    }
-	    &.sendtocart {
-	      .cart-item {
-	        display:block;
-	        animation: xAxis 1s forwards cubic-bezier(1.000,0.440,0.840,0.165);
-	        &:before {
-	          animation: yAxis 1s alternate forwards cubic-bezier(0.165, 0.840, 0.440, 1.000);
-	        }
-	      }
-	    }
-	  }
-	}
-
-.cart {
-  
-  top:20px;
-  right:20px;
-  width:50px;
-  height:50px;
-  
-  align-items:center;
-  justify-content:center;
-  border-radius:5px;
-  i {
-    font-size:25px;
-    color:white;
-  }
-  &:before {
-    content:attr(data-totalitems);
-    font-size:12px;
-    font-weight:600;
-    position:absolute;
-    top:-12px;
-    right:-12px;
-    background:#2bd156;
-    line-height:24px;
-    padding:0 5px;
-    height:24px;
-    min-width:24px;
-    color:white;
-    text-align:center;
-    border-radius:24px;
-  }
-  &.shake {
-    animation: shakeCart .4s ease-in-out forwards;
-  }
-}
-
-@keyframes xAxis {
-  100% {
-    transform: translateX(calc(50vw - 105px));
-  }
-}
-
-@keyframes yAxis {
-  100% {
-    transform: translateY(calc(-50vh + 75px));
-  }
-}
-
-@keyframes shakeCart {
-  25% {
-    transform:translateX(6px)
-  }
-  50% {
-    transform:translateX(-4px);
-  }
-  75% {
-    transform:translateX(2px);
-  }
-  100% {
-    transform:translateX(0);
-  }
-}
 </style>
 <body>
     <!-- Spinner Start -->
@@ -148,17 +38,17 @@
                 <ul class="list-unstyled templatemo-accordion">
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                            Gender
+                            
                             <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul class="collapse show list-unstyled pl-3">
-                            <li><a class="text-decoration-none" href="#">Men</a></li>
-                            <li><a class="text-decoration-none" href="#">Women</a></li>
+                            <li><a class="text-decoration-none" href="#"></a></li>
+                            <li><a class="text-decoration-none" href="#"></a></li>
                         </ul>
                     </li>
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                            Sale
+                            
                             <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseTwo" class="collapse list-unstyled pl-3">
@@ -168,7 +58,7 @@
                     </li>
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                            Product
+                            
                             <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
                         <ul id="collapseThree" class="collapse list-unstyled pl-3">
@@ -208,18 +98,21 @@
                 </div>
                <div id="cart" class="cart" data-totalitems="0">
 						  <button type="button" class="btn btn-secondary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
-  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-</svg>
-              </button>
+			                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+							  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+							</svg>
+              			</button>
 						</div>
+						<!-- <div id="cart" class="cart" data-totalitems="0">
+						  <i class="fas fa-shopping-cart"></i>
+						</div> -->
                 
                 <div class="row" >
                     <div class="col-md-4" >
                         <div class="card mb-4 product-wap rounded-0">
                         	<div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                 <ul class="list-unstyled">
-                                   <li><a href="shop-single.html" class="h3 text-decoration-none">2021 라흐마니노프 가죽 키링</a></li>
+                                   <li><a href="${path }/goods/goodsView.do" class="h3 text-decoration-none">2021 라흐마니노프 가죽 키링</a></li>
                                    
                                 </ul>
                             </div>
