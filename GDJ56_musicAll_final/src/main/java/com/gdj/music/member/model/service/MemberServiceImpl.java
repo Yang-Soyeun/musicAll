@@ -29,6 +29,11 @@ public class MemberServiceImpl implements MemberService {
 	public int join(Member m) {
 		return dao.join(m,session);
 	}
+
+	@Override
+	public Member findidEnd(Member member) {
+		return dao.findidEnd(member, session);
+	}
 	
 	
 	

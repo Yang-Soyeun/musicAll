@@ -35,6 +35,28 @@
 	            <input type="button" class="btn btn-danger btn-circle" style="width:100%" value="로그인" onclick="fn_loginresult();">
 	          </div>
 	        </div>
+	        <div class="snsLoginWrap">
+                <a href="javascript:snsAuthPopup('naver');" class="openid naver">
+                    <span>네이버 로그인</span>
+                </a>
+                |
+                <a href="javascript:snsAuthPopup('kakao');" class="openid kakao">
+                    <span>카카오 로그인</span>
+                </a>
+                <p class="caution">개인정보 보호를 위해 공용 PC에서 사용 후 SNS 계정의 로그아웃 상태를 반드시 확인해주세요.</p>
+            </div>
+            <hr style="border-color:black;"/>
+            <div class="findInfoWrap">
+                <a href="javascript:window.open('${path}/member/findId.do', 'window_name', 'width=430, height=500, location=no, status=no, scrollbars=yes');" >아이디찾기</a>
+                |
+                <a href="javascript:location.assign('${path}/member/findPw.do');">비밀번호찾기</a>
+                |
+                <a href="javascript:location.assign('${path}/member/joinchoice.do');" >회원가입</a>
+<%--                 <input type="button" class="btn btn-danger btn-circle" value="아이디 찾기" onclick="window.open('${path}/member/findId.do', 'window_name', 'width=430, height=500, location=no, status=no, scrollbars=yes');" />
+                <input type="button" class="btn btn-danger btn-circle" value="비밀번호 찾기" onclick="location.assign('${path}/member/findPw.do');" />
+                <input type="button" class="btn btn-danger btn-circle" value="회원가입" onclick="location.assign('${path}/member/joinchoice.do');" />
+ --%>
+            </div>
       </div>
     </div>
  	
@@ -58,7 +80,7 @@
 	 				type:'POST',
 	 				success:data=>{
 	 					if(data==false){
-	 						$("#login_result").html("아이디 또는 비밀번호를 잘못 입력하셨습니다.");
+	 						$("#login_result").html("아이디 또는 비밀번호를 잘못 입력하셨습니다.");	
 	 					}else{
 	 						location.assign("${path}/");
 	 					}

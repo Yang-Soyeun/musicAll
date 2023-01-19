@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 
-<div class="module-small bg-dark" style="margin-top:130px">
+<div class="module-small bg-dark" style="margin-top:80px">
    <div class="container">
       <div class="row">
          <div class="col-sm-3">

@@ -8,4 +8,6 @@ public interface MemberService {
 
 	int join(Member m);
 
+	Member findidEnd(Member member);
+
 }

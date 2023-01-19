@@ -14,7 +14,7 @@
 		      <div class="col-sm-6 col-sm-offset-3">
 		        <h1 class="module-title font-alt">현재 나의 포인트 
 			        <span style="font-style:oblique; color: #A50000;">
-			        <fmt:formatNumber value="${mypoint.get(0).mpPoint }" pattern="###,###"/>p</span>
+			        <fmt:formatNumber value="${mpPoint.mpPoint==null?'0':mpPoint.mpPoint}" pattern="###,###"/>p</span>
 		        </h1>
 		      </div>
 		    </div>
@@ -57,36 +57,25 @@
 		            		</td>
 		            	</tr>
 		            </c:if>
-<!-- 		            <tr> -->
-<!-- 		              <td> -->
-<!-- 		                <h5 class="product-title font-alt">2023-01-15</h5> -->
-<!-- 		              </td> -->
-<!-- 		              <td class=""> -->
-<!-- 		                <h5 class="fa  fa-minus"></h5> -->
-<!-- 		              </td> -->
-<!-- 		              <td class=""> -->
-<!-- 		                <h5 class="product-title font-alt">관람 포인트 사용</h5> -->
-<!-- 		              </td> -->
-<!-- 		              <td class=""> -->
-<!-- 		                <h5 class="product-title "style="letter-spacing:2px;">-2,000point</h5> -->
-<!-- 		              </td> -->
-<!-- 		            </tr> -->
 		            
 		          </tbody>
 		        </table>
 		      </div>
 		      
 		      <!-- 페이지바 -->
-		      <div class="col-sm-12">
-			      <div class="pagination font-alt">
-			      	<a href="#"><i class="fa fa-angle-left"></i></a>
-			      	<a class="active" href="#">1</a>
-			      	<a href="#">2</a>
-			      	<a href="#">3</a>
-			      	<a href="#">4</a>
-			      	<a href="#"><i class="fa fa-angle-right"></i></a>
-			      </div>
-		      </div>
+		      <center>
+		      	${pageBar }
+			      <!-- <div class="col-sm-12">
+				      <div class="pagination font-alt">
+				      	<a href="#"><i class="fa fa-angle-left"></i></a>
+				      	<a class="active" href="#">1</a>
+				      	<a href="#">2</a>
+				      	<a href="#">3</a>
+				      	<a href="#">4</a>
+				      	<a href="#"><i class="fa fa-angle-right"></i></a>
+				      </div>
+			      </div> -->
+		      </center>
 		      
 		    </div>
 		  </div>
