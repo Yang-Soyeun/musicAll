@@ -7,12 +7,16 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.gdj.music.member.model.service.MemberService;
 import com.gdj.music.member.model.vo.Member;
 
 @Controller
+@SessionAttributes({"loginMember"})//==model에 저장된 attribute 중 loginMember는 session이야
 @RequestMapping("/member")
 public class MemberController {
 	
@@ -31,9 +35,26 @@ public class MemberController {
 		return "/member/login";
 	}
 	
+//	//로그인 구현
+//	@RequestMapping("/loginEnd.do")
+//	public void loginEnd(String memberId, String memberPw, HttpSession session,HttpServletResponse response ) throws IOException{
+//		Member m = Member.builder().member_Id(memberId).password(memberPw).build();
+//		
+//		Member loginMember = service.loginEnd(m);
+//		
+//		System.out.println(loginMember);
+//		
+//		//DB에 등록된 아이디와 비밀번호가 일치하지 않으면!
+//		if(!memberPw.equals(loginMember.getPassword())) {
+//			response.getWriter().print(false);
+//		}else {
+//		session.setAttribute("loginMember", loginMember);
+//		response.getWriter().print(true);
+//		}
+//	}
 	//로그인 구현
 	@RequestMapping("/loginEnd.do")
-	public void loginEnd(String memberId, String memberPw, HttpSession session,HttpServletResponse response ) throws IOException{
+	public void loginEnd(String memberId, String memberPw, HttpServletResponse response,Model model ) throws IOException{
 		Member m = Member.builder().member_Id(memberId).password(memberPw).build();
 		
 		Member loginMember = service.loginEnd(m);
@@ -44,8 +65,9 @@ public class MemberController {
 		if(!memberPw.equals(loginMember.getPassword())) {
 			response.getWriter().print(false);
 		}else {
-		session.setAttribute("loginMember", loginMember);
-		response.getWriter().print(true);
+//			session.setAttribute("loginMember", loginMember);
+			model.addAttribute("loginMember",loginMember);
+			response.getWriter().print(true);
 		}
 	}
 	//회원가입 선택
@@ -73,11 +95,21 @@ public class MemberController {
 	}
 	
 	
+//	//로그아웃 구현
+//	@RequestMapping("/logout.do")
+//	public String logOut(HttpSession session) {
+//		
+//		session.invalidate();
+//		
+//		return "redirect:/";
+//	}
 	//로그아웃 구현
 	@RequestMapping("/logout.do")
-	public String logOut(HttpSession session) {
+	public String logOut(SessionStatus session) {
 		
-		session.invalidate();
+		if(!session.isComplete()) {//session이 소멸되지 않았으면
+			session.setComplete();	//session 삭제
+		}
 		
 		return "redirect:/";
 	}
