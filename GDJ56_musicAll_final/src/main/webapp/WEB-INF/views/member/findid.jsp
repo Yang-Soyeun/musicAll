@@ -21,19 +21,16 @@
 		<div class="searchTab">
 			<ul>
 				<li class="current">
-					<a href="javascript:egsIncorp.sendEventEgs( 'id_search', 'tap_find_id' ); javascript:changeTab('/member/matchid.do?_method=initialPopUp');">아이디 찾기</a>
+					<a href="javascript:chagePage('idsearchWrap');">아이디 찾기</a>
 				</li>
 				<li class="">
-					<a href="javascript:egsIncorp.sendEventEgs( 'id_search', 'tap_find_pw' ); javascript:changeTab('/member/matchpwd.do?_method=initialPopUp');">비밀번호 찾기</a>
+					<a href="javascript:chagePage('pwsearchWrap');">비밀번호 찾기</a>
 				</li>
 			</ul>
 		</div>
 		<div class="idsearchWrap">
 			<div class="searchType">
 					<div class="typeList current">
-						<div class="title">
-							<p>등록된 이메일로 찾기</p>
-						</div>
 						<div class="inputEnter">
 							<div class="inputBox">
 								<div class="styleInput">
@@ -53,8 +50,39 @@
 				</div>
 			</div>
 		</div>
+		<!-- <div class="pwsearchWrap" style="display:none">
+			<div class="searchType">
+					<div class="typeList current">
+						<div class="inputEnter">
+							<div class="inputBox">
+								<div class="styleInput">
+									<input name="memNm" id="memberid" type="text" class="iInput" placeholder="아이디">
+									<span id="conClear" class="delBtn" style="display: none;"></span>
+								</div>
+								<div class="styleInput">
+									<input name="memNm" id="name" type="text" class="iInput" placeholder="이름">
+									<span id="conClear" class="delBtn" style="display: none;"></span>
+								</div>
+								<div class="styleInput">
+									<input name="memEmail1" id="email" type="text" class="iInput" placeholder="이메일">
+									<span id="conClear" class="delBtn" style="display: none;"></span>
+								</div>
+								<div class="styleInput" id="confNum">
+									<span class="time"></span>
+									<input id="certSeq2" type="text" class="iInput" inputmode="numeric" placeholder="인증번호 8자리" style="display: none;"> 
+								</div>
+							</div>
+							<div class="btnArea">
+								<button type="submit" onclick="" class="btnRed" style="display: block;">인증번호 전송</button>
+								<input type="button" onclick="bt_findpw();" class="btnRed" value="비밀번호 찾기">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> -->
+		</div>
 	</div>
-</div>
+
 
 <div class="modal fade" id="joinModal" tabindex="-1" role="dialog"
 		aria-labelledby="joinModalLabel" aria-hidden="true">
@@ -80,6 +108,29 @@
 	const closepop=()=>{
 		window.close();
 	}
+	
+/* 	//탭이동(아이디찾기)
+	const chagePage=(id)=>{
+		if('idsearchWrap'==id){
+			$("."+id).show();
+			$(".pwsearchWrap").hide();
+		}else{
+			$("."+id).show();
+			$(".idsearchWrap").hide();
+		}
+	}
+	
+	//탭이동(비밀번호찾기)
+	const changePage2=(id)=>{
+		if('pwsearchWrap'==id){
+			$("."+id).show();
+			$(".idsearchWrap").hide();
+		}else{
+			$("."+id).show();
+			$(".pwsearchWrap").hide();
+		}
+	} */
+	
 	
 	//아이디찾기 구현
 	const bt_findid=()=>{
@@ -115,6 +166,17 @@
 			});
 		}
 	}
+	
+	//비밀번호찾기
+	const bt_findid=()=>{
+		let d ={
+				"name":$("#name").val(),
+				"email":$("#email").val()
+		};
+	
+	
+	
+	
 </script>
 
 </body>
