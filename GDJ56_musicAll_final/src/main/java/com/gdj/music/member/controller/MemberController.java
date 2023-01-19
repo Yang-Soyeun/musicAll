@@ -44,13 +44,10 @@ public class MemberController {
 		if(!memberPw.equals(loginMember.getPassword())) {
 			response.getWriter().print(false);
 		}else {
-			//일치하면 session에 값을 넣어준다
-			session.setAttribute("loginMember", loginMember);
-			response.getWriter().print(true);
+		session.setAttribute("loginMember", loginMember);
+		response.getWriter().print(true);
 		}
-		
 	}
-	
 	//회원가입 선택
 	@RequestMapping("/joinchoice.do")
 	public String joinView() {
