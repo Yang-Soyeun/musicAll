@@ -1,7 +1,9 @@
 package com.gdj.music.reservation.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,7 +31,16 @@ public class ReservationController {
 	public String bookingView(int mCode, Model model ) {
 		
 		List<Map<String,Performance>> p= service.selectPerform(mCode);
+		List day = new ArrayList();
+		for(int i=0;i<p.size();i++) {
+			day.add(p.get(i).get("S_DAY"));
+			
+		}
+		
+		model.addAttribute("day",day.stream().distinct().collect(Collectors.toList()));
+		
 		model.addAttribute("performance",p);
+		
 		return "reservation/bookingView";
 	}
 	
