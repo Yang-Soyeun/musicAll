@@ -99,21 +99,22 @@
                  <li class="dropdown"><a href="${path }/member/joinchoice.do" >회원가입</a></li>
               </c:if>
               <c:if test="${ (loginMember!=null) && (loginMember.member_Id ne 'admin') }"><!-- 일반회원이 로그인을 하면 -->
-	              <li class="dropdown"><a class="dropdown-toggle" href="${path }/mypage/mypageMain.do" data-toggle="dropdown">마이페이지</a>
-	                <ul class="dropdown-menu" role="menu">
-	                  <li><a href="#" data-toggle="modal" data-target="#loginModal"><i class="fa fa-cog"></i> 회원정보 수정</a></li>
-	                  <li><a href="${path }/mypage/musicalList.do"><i class="fa fa-list-ul fa-sm"></i> 공연예매 정보</a></li>
-	                  <li><a href="${path }/mypage/likeMusical.do"><i class="fa fa-heart"></i> 관심 공연</a></li>
-	                  <li><a href="${path }/mypage/pointList.do?No=${loginMember.member_No}"><i class="fa fa-database"></i> 포인트</a></li>
-	                  <li><a href="${path }/mypage/shoppingList.do"><i class="fa fa-gift"></i> 상품 구매내역</a></li>
-	                  <li><a href="${path }/mypage/myContentList.do?No=${loginMember.member_No}"><i class="fa fa-pencil-square-o"></i> 내가 쓴 글</a></li>
-	                </ul>
-	              </li>
-	              <li class="dropdown"><a href="${path }/member/logout.do" >로그아웃</a></li>
+                 <li class="dropdown"><a class="dropdown-toggle" href="${path }/mypage/mypageMain.do" data-toggle="dropdown">마이페이지</a>
+                   <ul class="dropdown-menu" role="menu">
+                     <li><a href="#" data-toggle="modal" data-target="#loginModal"><i class="fa fa-cog"></i> 회원정보 수정</a></li>
+                     <li><a href="${path }/mypage/musicalList.do"><i class="fa fa-list-ul fa-sm"></i> 공연예매 정보</a></li>
+                     <li><a href="${path }/mypage/likeMusical.do"><i class="fa fa-heart"></i> 관심 공연</a></li>
+                     <li><a href="${path }/mypage/pointList.do?No=${loginMember.member_No}"><i class="fa fa-database"></i> 포인트</a></li>
+                     <li><a href="${path }/mypage/shoppingList.do"><i class="fa fa-gift"></i> 상품 구매내역</a></li>
+                     <li><a href="${path }/mypage/myContentList.do?No=${loginMember.member_No}"><i class="fa fa-pencil-square-o"></i> 내가 쓴 글</a></li>
+                   </ul>
+                 </li>
+                 <li class="dropdown"><a href="${path }/member/logout.do" >로그아웃</a></li>
               </c:if>
               <c:if test="${(loginMember!=null) && (loginMember.member_Id eq 'admin') }" ><!-- 관리자가 로그인하면-->
                  <li class="dropdown"><a href="${path }/member/logout.do" >로그아웃</a></li>
            </c:if>
+            
             </ul>
           </div>
         </div>
