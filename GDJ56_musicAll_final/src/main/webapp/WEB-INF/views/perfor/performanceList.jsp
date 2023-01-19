@@ -29,7 +29,7 @@
     <div class="search-box">
         <form action="." method="post">
             <input type="text" id="searchPer" placeholder="제목으로 검색하기" >&nbsp;
-            <input type="text" id="datepicker" style="width:200px; height:48px;">
+            <input type="text" id="datepicker" placeholder="관람일자로 검색하기" style="width:200px; height:48px;">
             <button class="searchBtn" type="submit" >검색</button>
 
         </form>
