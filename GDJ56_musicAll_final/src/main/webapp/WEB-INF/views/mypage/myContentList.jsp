@@ -42,7 +42,7 @@
 	        <div class="post">
 	          <div class="post-thumbnail">
 	          	<a href="#">
-	          		<img src="${path }/resources/nari1/images/레베카.jfif" alt="Blog-post Thumbnail" class="reviewImg"/>
+	          		<img src="${path }/resources/images/performance/matilda.gif" alt="Blog-post Thumbnail" class="reviewImg"/>
 	          	</a>
 	          </div>
 	          <div class="post-header font-alt">
@@ -149,7 +149,7 @@
 	              <td><b>제목</b></td>
 	              <td><b>작성자</b></td>
 	              <td><b>답변유무</b></td>
-	              <td><b>날짜</b></td>
+	              <td><b>작성일</b></td>
 	            </tr>
 	            
 	            <c:if test="${not empty myQs }">
@@ -171,7 +171,9 @@
 			                <h5 class="product-title font-alt"><c:out value="${qs.qsResult }"/></h5>
 			              </td>
 			              <td class="">
-			                <h5 class="product-title font-alt"><c:out value="${qs.qsDate }"/></h5>
+			                <h5 class="product-title font-alt">
+			                	<fmt:formatDate value="${qs.qsDate }" type="both" pattern="yyyy-MM-dd (E) hh:mm:ss"/>
+			                </h5>
 			              </td>
 		            	</tr>
 		            </c:forEach>
