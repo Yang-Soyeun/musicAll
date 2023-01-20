@@ -82,21 +82,7 @@
                         </table>
                     </div>
 					
-		                    <div id="time">
-		          <%--           <c:if test="${not empty performance }">
-								<c:forEach var="per" items="${performance }">
-								
-									<c:forEach var="d" items="${day }">
-									<c:if test="${d==per.get('S_DAY') }">
-		                        <button class="w-btn-outline w-btn-indigo-outline" type="button">
-							        <label>${d }${per.get("S_NUM")}회 </label>
-							    </button>
-							    	</c:if>
-							    	
-							    </c:forEach>
-							   
-    						</c:forEach>
-    					</c:if>	 --%>
+		                    <div id="time"  style='padding-top:10%;'>
 		                	</div>
                 
 	</div>
@@ -114,77 +100,76 @@
  <script src="${path}/resources/js/reservation/bookingView.js"></script> 
 <script>
 
-const turn = () =>{
-		const d = document.querySelector(".day-active");
-		    
-	        const day = d.getAttribute("data-fdate");
-	        const day2 = new Date(day);
-	       function getDayOfWeek(){ 
-
-	        
-	        const week = ['일', '월', '화', '수', '목', '금', '토'];
-	        const dayOfWeek = week[day2.getDay()];
-
-	        return dayOfWeek;
-
-	        }
+	const turn = () =>{
+			const d = document.querySelector(".day-active");
+			    
+		        const day = d.getAttribute("data-fdate");
+		        const day2 = new Date(day);
+		       function getDayOfWeek(){ 
+	
+		        
+		        const week = ['일', '월', '화', '수', '목', '금', '토'];
+		        const dayOfWeek = week[day2.getDay()];
+	
+		        return dayOfWeek;
+	
+		        }
 	       $("#time").html("");
- <c:if test="${not empty performance }">
-<c:forEach var="per" items="${performance }">
-	<c:forEach var="d" items="${day }">
-	
-		if(getDayOfWeek()=="${d}"&&"${d}"=="${per.get('S_DAY')}"){
-			/* $("#time").append("<button class='w-btn-outline w-btn-indigo-outline' type='button'><label>"+${per.get('S_NUM')}+"회&nbsp"+"${per.get('S_STARTTIME')}"+"</label></button>") */
-			$("#time").append("<input type='radio' id='select"+${per.get('S_NUM')} +"'name='shop'><label for='select"+${per.get('S_NUM')}+"'>"+${per.get('S_NUM')}+"회&nbsp"+"${per.get('S_STARTTIME')}"+"</label>&nbsp")
-		}
-	</c:forEach>
-</c:forEach>
-</c:if> } 
-
-const disabled = () =>{
-    const d = document.querySelectorAll(".day")   
- 
-    for(var i=0;i<d.length;i++){
-    
-        const today = new Date();
-        const day = d[i].getAttribute("data-fdate");
-        const day2 = new Date(day);
-       function getDayOfWeek(){ 
-
-        
-        const week = ['일', '월', '화', '수', '목', '금', '토'];
-        const dayOfWeek = week[day2.getDay()];
-
-        return dayOfWeek;
-
-        }
-       
-       <c:if test="${not empty performance }">
+		 <c:if test="${not empty performance }">
 			<c:forEach var="per" items="${performance }">
-	            if(getDayOfWeek()=="${per.get('S_DAY')}"&&day2>today&&day2<new Date("2023-03-11")){
-	                d[i].addEventListener('click', selectDay);
-	                d[i].addEventListener('click', turn);
-	                d[i].setAttribute("style","color:black");
-	            }
-            </c:forEach>
-        </c:if>
-         
-       
-         }
-
-    }
-    disabled();
-    $btnPrev.addEventListener('click',disabled);
-	$btnNext.addEventListener('click', disabled);
-	const nextPage = () =>{
-	const day = document.querySelector(".day-active");
-	//console.log(day.getAttribute("data-fdate"));
-	const day2 = new Date(day.getAttribute("data-fdate"));
-	//console.log(day2);
-	//console.log("${performance.get(0).get('S_DAY')}");
-	 		location.assign('${path}/booking/selectSeat.do'); 
-	}
+				<c:forEach var="d" items="${day }">
 	
+					if(getDayOfWeek()=="${d}"&&"${d}"=="${per.get('S_DAY')}"){
+					$("#time").append("<input type='radio' id='select"+${per.get('S_NUM')} +"'name='reserve' value="+"${per.get('S_STARTTIME')}"+"><label for='select"+${per.get('S_NUM')}+"'>"+${per.get('S_NUM')}+"회&nbsp"+"${per.get('S_STARTTIME')}"+"</label>&nbsp")}
+				</c:forEach>
+			</c:forEach>
+		 </c:if> } 
+
+		const disabled = () =>{
+		    const d = document.querySelectorAll(".day")   
+		 
+		    for(var i=0;i<d.length;i++){
+		    
+		        const today = new Date();
+		        const day = d[i].getAttribute("data-fdate");
+		        const day2 = new Date(day);
+		       	function getDayOfWeek(){ 
+		
+		        
+		        const week = ['일', '월', '화', '수', '목', '금', '토'];
+		        const dayOfWeek = week[day2.getDay()];
+		
+		        return dayOfWeek;
+		
+		        }
+		       
+		       <c:if test="${not empty performance }">
+					<c:forEach var="per" items="${performance }">
+			            if(getDayOfWeek()=="${per.get('S_DAY')}"&&day2>today&&day2<new Date("2023-03-11")){
+			                d[i].addEventListener('click', selectDay);
+			                d[i].addEventListener('click', turn);
+			                d[i].setAttribute("style","color:black");
+			            }
+		            </c:forEach>
+		        </c:if>     
+		         }
+		    }
+		    disabled();
+		    $btnPrev.addEventListener('click',disabled);
+			$btnNext.addEventListener('click', disabled);
+			
+			const nextPage = () =>{
+			const day = document.querySelector(".day-active");
+			//console.log(day.getAttribute("data-fdate"));
+			//const day2 = new Date(day.getAttribute("data-fdate"));
+			const day2 = day.getAttribute("data-fdate");
+			const time = $('input[name=reserve]:checked').val();
+			console.log(time);
+			location.assign("${path}/booking/selectSeat.do?date="+day2+"&&time="+time); 
+	
+		
+		}
+			
  	
  	
 </script>
