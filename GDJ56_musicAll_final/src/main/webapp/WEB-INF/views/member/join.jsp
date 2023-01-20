@@ -172,7 +172,7 @@
 				</div>
 			</div>
 		</div>
-
+		
 <script>
 	
 	const fn_join=()=>{
