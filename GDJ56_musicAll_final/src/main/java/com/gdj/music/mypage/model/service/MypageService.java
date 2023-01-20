@@ -3,6 +3,7 @@ package com.gdj.music.mypage.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
 
@@ -14,4 +15,7 @@ public interface MypageService {
 	
 	List<Question> selectQsListPage(int member_No,Map<String,Integer> param);//1대1문의내역
 	int selectQsCount(int member_No);//1대1문의 페이징처리
+	
+	List<Map<String,Goods>> selectSpListPage(int member_No,Map<String,Integer> param);//굿즈쇼핑내역
+	int selectSpCount(int member_No);//굿즈쇼핑 페이징처리
 }
