@@ -47,7 +47,7 @@ public class ReservationController {
 	
 	//좌석선택 화면
 	@RequestMapping("/selectSeat.do")
-	public String selectSeat() {
+	public String selectSeat(String date, String time) {
 		
 		return "/reservation/selectSeat";
 	
