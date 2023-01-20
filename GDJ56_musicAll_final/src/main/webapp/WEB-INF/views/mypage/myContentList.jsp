@@ -42,7 +42,7 @@
 	        <div class="post">
 	          <div class="post-thumbnail">
 	          	<a href="#">
-	          		<img src="${path }/resources/nari1/images/레베카.jfif" alt="Blog-post Thumbnail" class="reviewImg"/>
+	          		<img src="${path }/resources/images/performance/matilda.gif" alt="Blog-post Thumbnail" class="reviewImg"/>
 	          	</a>
 	          </div>
 	          <div class="post-header font-alt">

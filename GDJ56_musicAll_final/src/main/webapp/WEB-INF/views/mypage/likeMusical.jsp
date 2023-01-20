@@ -65,7 +65,7 @@
 									<div class="product-item men">
 										<div class="product discount product_filter">
 											<div class="product_image">
-												<img src="${path}/resources/nari1/images/프랑켄슈타인.jfif" alt="">
+												<img src="${path }/resources/images/performance/matilda.gif" alt="">
 											</div>
 											<div class="favorite active"></div>
 

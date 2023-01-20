@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.mypage.model.dao.MypageDao;
 import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
@@ -50,6 +51,19 @@ public class MypageServiceImpl implements MypageService {
 	public int selectQsCount(int member_No) {
 		return dao.selectQsCount(session,member_No);
 	}
+	
+	//굿즈쇼핑내역
+	@Override
+	public List<Map<String,Goods>> selectSpListPage(int member_No, Map<String, Integer> param) {
+		return dao.selectSpListPage(session,member_No,param);
+	}
+	//굿즈쇼핑 페이징처리
+	@Override
+	public int selectSpCount(int member_No) {
+		return dao.selectSpCount(session,member_No);
+	}
+	
+	
 	
 	
 	
