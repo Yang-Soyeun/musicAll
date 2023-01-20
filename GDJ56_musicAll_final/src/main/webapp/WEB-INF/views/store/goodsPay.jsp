@@ -64,31 +64,14 @@
 				<div><img src="${path }/resources/images/store/goods.jpg" id="countimg1"></div>
 			</div>
 			
-			<div class="payForm" style="diplay: flex; justify-content: center;">
-				<div style="">구매자</div>
-				<div style=""><input type="text" value="수빈" style="boder: none;"/></div>
+			<div class="payForm" style="display: grid; justify-content: center; margin-left: -18%;">
+			
+				<h4>구매자</h4>
+				<input type="text" value="수빈" style="border: none;"/>
 				
-		        <div id="point">
-		            <div>총 포인트&nbsp;&nbsp;&nbsp;<input type="text" value="5000" readonly></div>
-		            <div style="margin-left:5%;">사용할 포인트&nbsp;&nbsp;&nbsp;<input type="text" >&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-secondary" style="background-color:lightgray;color:black;margin-top:-1%;font-size:15px;">적용</button></div>
-		        </div>
-		        <div style="margin-left:10%;padding:1%;"></div>
-		        <div id="point">
-		            <div>총 포인트&nbsp;&nbsp;&nbsp;<input type="text" value="5000" readonly></div>
-		            <div style="margin-left:5%;">사용할 포인트&nbsp;&nbsp;&nbsp;<input type="text" >&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-secondary" style="background-color:lightgray;color:black;margin-top:-1%;font-size:15px;">적용</button></div>
-		        </div>
-		        <div style="margin-left:10%;padding:1%;"></div>
-		        <div id="point">
-		            <div>총 포인트&nbsp;&nbsp;&nbsp;<input type="text" value="5000" readonly></div>
-		            <div style="margin-left:5%;">사용할 포인트&nbsp;&nbsp;&nbsp;<input type="text" >&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-secondary" style="background-color:lightgray;color:black;margin-top:-1%;font-size:15px;">적용</button></div>
-		        </div>
-		        <div><br><img src="${path }/resources/images/reservation/결제.png"  width="200px" style="margin-left:12.2%;padding:1%;"><br>
-		            <div style="margin-left:14%;">티켓수량 : 2   R석 : 2   할인 가격: 5000</div>
-		            <div style="margin-left:50%;font-size:20px;"><p><b>총 금액</b>&nbsp;<b style="color:red;">171000원</b></p></div>
-		            <div style="margin-left:48%;">※ 적립 예정 포인트 : 1,710</div>
-		        </div>
-		        <div style="margin-top:7%;margin-left:27%;">
-		            <button class="btn btn-danger" style="width:200px;margin-left:5%;font-size:15px;" type="button" >결제완료</button>
+		        
+		        <div style="margin-top:7%;">
+		            <button class="btn btn-danger" style="width:200px; font-size:15px;" type="button" >결제완료</button>
 		            <button class="btn btn-secondary" style="width:110px;background-color:lightgray;color:black;font-size:15px;">취소</button>
 		        </div>
 	        </div>
