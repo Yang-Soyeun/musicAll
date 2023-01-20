@@ -224,7 +224,7 @@
 
                 .cal-table {
                     width: 100%;
-                    color:black;
+                    color:gray;
                 }
 
                 .cal-table th {
@@ -291,3 +291,29 @@
 			    color: #A50000;
 			    background: aliceblue;
 			}
+			
+			#time {
+		    padding: 15px 10px;
+		}
+		#time input[type=radio]{
+		    display: none;
+		}
+		#time input[type=radio]+label{
+		    display: inline-block;
+		    cursor: pointer;
+		    height: 24px;
+		    width: 90px;
+		    border: 1px solid #333;
+		    line-height: 24px;
+		    text-align: center;
+		    font-weight:bold;
+		    font-size:13px;
+		}
+		#time input[type=radio]+label{
+		    background-color: #fff;
+		    color: #333;
+		}
+		#time input[type=radio]:checked+label{
+		    background-color: #A50000;
+		    color: white;
+		}

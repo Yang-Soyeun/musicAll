@@ -98,4 +98,10 @@ public class MypageController {
 		mv.setViewName("mypage/myContentList");
 		return mv;
 	}
+	//1대1문의내역 검색
+	@RequestMapping("/searchQs.do")
+	public ModelAndView searchQs(ModelAndView mv,String keyword) {
+		System.out.println(keyword);
+		return mv;
+	}
 }
