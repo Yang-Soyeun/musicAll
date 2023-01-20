@@ -105,7 +105,7 @@
                      <li><a href="${path }/mypage/musicalList.do"><i class="fa fa-list-ul fa-sm"></i> 공연예매 정보</a></li>
                      <li><a href="${path }/mypage/likeMusical.do"><i class="fa fa-heart"></i> 관심 공연</a></li>
                      <li><a href="${path }/mypage/pointList.do?No=${loginMember.member_No}"><i class="fa fa-database"></i> 포인트</a></li>
-                     <li><a href="${path }/mypage/shoppingList.do"><i class="fa fa-gift"></i> 상품 구매내역</a></li>
+                     <li><a href="${path }/mypage/shoppingList.do?No=${loginMember.member_No}"><i class="fa fa-gift"></i> 상품 구매내역</a></li>
                      <li><a href="${path }/mypage/myContentList.do?No=${loginMember.member_No}"><i class="fa fa-pencil-square-o"></i> 내가 쓴 글</a></li>
                    </ul>
                  </li>
