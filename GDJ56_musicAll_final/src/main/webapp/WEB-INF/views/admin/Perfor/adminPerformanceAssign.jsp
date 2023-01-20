@@ -8,6 +8,10 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 <section>
     <style>
         /* Form */
@@ -37,86 +41,100 @@
     </style>
         
         <!-- Form -->
+     <form id="perforFrm" action="${path }/adminPerfor/insertPerformance.do"
+        method="post" enctype="multipart/form-data">
         <table class="question">
             <caption class="qtit"><b style="font-size:20px; margin-left:20px;">공연등록</b></caption>
             <tr>
                 <th class="th" scope="row"><b>공연 제목</b></th>
-                    <td><input type="text" class="wid53" title="이메일" placeholder="ex : 마틸다"></td>
+                    <td><input type="text" name="perTitle" class="wid53" title="이메일" placeholder="ex : 마틸다"></td>
             </tr>
             <tr>
                 <th class="th" scope="row"><b>공연 타입</b></th>
                     <td>
                         <p>
                         <label>
-                            <input type="radio" name="re_course" value="radio" id="program_0" value="종류1">
+                            <input type="radio" name="perType" id="original" value="오리지널">
                                 오리지널 내한공연 </label>
                         <label>
-                            <input type="radio" name="re_course" value="radio" id="program_1" value="종류2">
+                            <input type="radio" name="perType" id="license" value="라이센스">
                                 라이센스 </label>
                         <label>
-                            <input type="radio" name="re_course" value="radio" id="program_2" value="종류3">
+                            <input type="radio" name="perType"  id="makeMusical" value="창작뮤지컬">
                                 창작뮤지컬  </label>
                         <label>
-                            <input type="radio" name="re_course" value="radio" id="program_3" value="종류4">
+                            <input type="radio" name="perType"  id="nonverbal" value="넌버벌">
                                 넌버벌 퍼포먼스 </label>
                         <label>
-                            <input type="radio" name="re_course" value="radio" id="program_3" value="종류4">
+                            <input type="radio" name="perType"  id="child" value="아동">
                                 아동 </label>
                         </p>
                     </td>
-                    <!-- <td><select lass="wid10" title="핸드폰 앞 자리 선택">
-                        <option value="010">010</option>
-                        <option value="011">011</option>
-                        <option value="016">016</option>
-                        <option value="017">017</option>
-                        <option value="018">018</option>
-                        <option value="019">019</option>
-                    </select><input type="text" title="전화번호 앞" maxlength="4" lass="wid20" /><input type="text"  title="전화번호뒤" maxlength="4" lass="wid20" /></td> -->
             </tr>
             <tr>
                 <th class="th" scope="row"><b>공연 관람가능 연령</b>
                 <td>
                     <p>
                         <label>
-                            <input type="radio" name="re_course" value="radio" id="program_0" value="종류1">
+                            <input type="radio" name="age" value="전체관람가" id="allCan">
                                 전체관람가 </label>
                         <label>
-                            <input type="radio" name="re_course" value="radio" id="program_1" value="종류2">
+                            <input type="radio" name="age" value="8세이상" id="overEight">
                                 8세 이상 </label>
                         <label>
-                            <input type="radio" name="re_course" value="radio" id="program_2" value="종류3">
+                            <input type="radio" name="age" value="12세이상" id="overTwelve">
                                 12세 이상 </label>
                         <label>
-                            <input type="radio" name="re_course" value="radio" id="program_3" value="종류4">
+                            <input type="radio" name="age" value="15세이상" id="overFifteen">
                                 15세 이상 </label>
                     </p>
                 </td>
             </tr>
                 <tr>
-                    <th class="th" scope="row"><b>공연 요일</b></th>
+                    <th class="th" scope="row"><b>공연 요일, 공연 시간</b></th>
                     <td>
                         <p>
                         <label>
-                            <input type="checkbox" name="re_course" value="radio" id="program_0" value="종류1">
-                                월 </label>
+                            <input type="checkbox" name="perDay" id="mon" value="월">
+                                월 
+                        </label>1회차:&nbsp;<input type="text" id="mon_time1" class="time1" name="mon_time1" class="form-control" style="width:140px;">
+                        		2회차:&nbsp;<input type="text" id="mon_time2" class="time1" name="mon_time2" class="form-control" style="width:140px;">
+                        <br>
                         <label>
-                            <input type="checkbox" name="re_course" value="radio" id="program_1" value="종류2">
-                                화 </label>
+                            <input type="checkbox" name="perDay" id="tues" value="화">
+                                화 
+                        </label>1회차:&nbsp;<input type="text" id="tues_time1" class="time1" name="tues_time1" class="form-control" style="width:140px;">
+                        		2회차:&nbsp;<input type="text" id="tues_time2" class="time1" name="tues_time2" class="form-control" style="width:140px;">
+                        <br>
                         <label>
-                            <input type="checkbox" name="re_course" value="radio" id="program_2" value="종류3">
-                                수  </label>
+                            <input type="checkbox" name="perDay" id="wends" value="수">
+                                수  
+                        </label>1회차:&nbsp;<input type="text" id="wends_time1" class="time1" name="wends_time1" class="form-control" style="width:140px;">
+                        		2회차:&nbsp;<input type="text" id="wends_time2" class="time1" name="wends_time2" class="form-control" style="width:140px;">
+                        <br>
                         <label>
-                            <input type="checkbox" name="re_course" value="radio" id="program_3" value="종류4">
-                                목 </label>
+                            <input type="checkbox" name="perDay" id="thurs" value="목">
+                                목 
+                        </label>1회차:&nbsp;<input type="text" id="thurs_time1" class="time1" name="thurs_time1" class="form-control" style="width:140px;">
+                        		2회차:&nbsp;<input type="text" id="thurs_time2" class="time1" name="thurs_time2" class="form-control" style="width:140px;">
+                        <br>
                         <label>
-                            <input type="checkbox" name="re_course" value="radio" id="program_3" value="종류4">
-                                금 </label>
+                            <input type="checkbox" name="perDay" id="fri" value="금">
+                                금 
+                        </label>1회차:&nbsp;<input type="text" id="time1" class="time1" name="fri_time1" class="form-control" style="width:140px;">
+                        		2회차:&nbsp;<input type="text" id="time1" class="time1" name="fri_time1" class="form-control" style="width:140px;">
+                        <br>
                         <label>
-                            <input type="checkbox" name="re_course" value="radio" id="program_3" value="종류4">
-                                토 </label>
+                            <input type="checkbox" name="perDay" id="sature" value="토">
+                                토 
+                        </label>1회차:&nbsp;<input type="text" id="sature_time1" class="time1" name="sature_time1" class="form-control" style="width:140px;">
+                        		2회차:&nbsp;<input type="text" id="sature_time1" class="time1" name="sature_time2" class="form-control" style="width:140px;">
+                       <br>
                        <label>
-                            <input type="checkbox" name="re_course" value="radio" id="program_3" value="종류4">
-                                일 </label>                         
+                            <input type="checkbox" name="perDay" id="sun" value="일">
+                                일 
+                      </label>1회차:&nbsp;<input type="text" id="sun_time1" class="time1" name="sun_time1" class="form-control" style="width:140px;">
+                        		2회차:&nbsp;<input type="text" id="sun_time2" class="time1" name="sun_time1" class="form-control" style="width:140px;">                         
                         </p>
                     </td>
                 </tr>
@@ -130,36 +148,28 @@
                         <input type="text" class="add wid53"   name="address" id="address"  maxlength="80">
                     </td> -->
                 </tr>
-                <tr>
-                    <th class="th" scope="row"><b>공연 시간</b></th>
-                    <td>
-                      <p>
-                        <label>
-                          <input type="radio" name="re_course" value="radio" id="program_0" value="종류1">
-                          1회차 (17:00) </label>
-                        <label>
-                          <input type="radio" name="re_course" value="radio" id="program_1" value="종류2">
-                          2회차 (20:00) </label>
-                          
-                      </p>
+                 <tr>
+                    <th class="th" scope="row"><b>공연 상영시간</b></th>
+                    <td>              
+                        <input type="text" name="watchTime" placeholder="ex)120" style="width:200px;"/>분
                     </td>
                 </tr>
                 <tr>
                     <th class="th" scope="row"><b>공연 장소</b></th>
-                        <td><input type="text" class="wid53" title="이메일" placeholder="ex :예술의 전당 CJ 토월극장"></td>
+                        <td><input type="text" name="perPlace" class="wid53" placeholder="ex :예술의 전당 CJ 토월극장"></td>
                 </tr>
                 <tr>
                     <th class="th" scope="row"><b>공연 가격</b>
                     <td>
-                        <p>VIP석:</p><input type="text" class="wid53" title="이메일" placeholder="ex :150000" style="width:200px;">원
-                        <p>R석:</p><input type="text" class="wid53" title="이메일" placeholder="ex :150000" style="width:200px;">원
-                        <p>S석:</p><input type="text" class="wid53" title="이메일" placeholder="ex :150000" style="width:200px;">원
+                        <p>VIP석:</p><input type="text" name="vipPrice" class="wid53"  placeholder="ex :150000" style="width:200px;">원
+                        <p>R석:</p><input type="text" name="rPrice" class="wid53"  placeholder="ex :150000" style="width:200px;">원
+                        <p>S석:</p><input type="text" name="sPrice" class="wid53"  placeholder="ex :150000" style="width:200px;">원
                     </td>
                 </tr>
                 <tr>
                     <th class="th" scope="row"><b>공연 메인포스터</b>
                     <td>
-                        <input type="file" onchange="readURL(this);" >
+                        <input type="file" name="upFile" onchange="readURL(this);" >
                         <br /><br />
                         <img id="preview" style="width:300px; height: 400px;"/>
                     </td>
@@ -167,7 +177,7 @@
                 <tr>
                     <th class="th" scope="row"><b>공연 상세정보</b>
                     <td>
-                        <input type="file" onchange="readURL2(this);" >
+                        <input type="file" name="upFile" onchange="readURL2(this);" >
                         <br /><br />
                         <img id="preview2" style="width:300px; height: 400px;"/>
                     </td>
@@ -176,13 +186,37 @@
 
           </table>
               <div class="btngreen">
-                  <a href="#" class="Btn">신청하기</a>
+                  <a href="#" class="Btn" onclick="return chk_form()">신청하기</a>
               </div>
         <!-- //Form -->    
+     </form>
         <script>
+        	//upFile 사진 보내기
+	        $(()=>{
+				$("[name=upFile]").change(e=>{
+					console.dir(e.target);
+					const fileName=e.target.files[0].name;
+					$(e.target).next(".custom-file-label").text(fileName);
+				});
+			});
 
-            //날짜
+            //daterangepicker
             $('input[name="daterange"]').daterangepicker();
+            
+            //timepicker
+            $(function() {
+                $(".time1").timepicker({
+                    timeFormat: 'h:mm p',
+                    interval: 60,
+                    minTime: '10',
+                    maxTime: '9:00pm',
+                    defaultTime: '10',
+                    startTime: '12:00',
+                    dynamic: false,
+                    dropdown: true,
+                    scrollbar: true        
+                });
+            });
 
             // 썸네일
             function readURL(input) {
@@ -196,6 +230,7 @@
 		            document.getElementById('preview').src = "";
 	            }
             }
+            
             //상세정보
             function readURL2(input) {
 	            if (input.files && input.files[0]) {
@@ -208,6 +243,13 @@
 		            document.getElementById('preview').src = "";
 	            }
             }
+            //a태그로 form 보내기
+            function chk_form() {
+            	document.getElementById('perforFrm').submit();
+            }
+            //
+           
+            
         </script>
 </section>
 </body>
