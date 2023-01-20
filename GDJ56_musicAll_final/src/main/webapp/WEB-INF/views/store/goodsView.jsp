@@ -23,7 +23,7 @@
 <script src="${path }/resources/js/store/single_custom.js"></script>
 
 <style>
-	#addtocart, #buy {border: none; background-color: transparent;}
+	#addtocart, #buy {border: none; background-color: transparent; color: white;}
 	.btn {padding: 8px 14px;}
 	.d-flex {display: flex!important;}
 	.justify-content-center {justify-content: center!important;}
