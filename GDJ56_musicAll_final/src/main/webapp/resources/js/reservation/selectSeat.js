@@ -144,9 +144,14 @@ function inputClickEvent(input) {
         	 for(let i=0;i<clicked.length;i++){
         		clicked[i].style.removeProperty('background-color');
         	}
+        	
+        	
             //선택한 번호의 갯수를 넘기면 동작 못하게 하는 코드
             if (clicked.length > 4) {
                 input.classList.remove('clicked');
+                money-=seatPrice;
+                
+           		
                 if(color==='E'||color2 ==='E'||color==='F'||color2 ==='F'){
            			input.style.backgroundColor='#DB3A00';
            		}else if(color==='A'||color2 ==='A'||color==='B'||color2 ==='B'
@@ -161,7 +166,13 @@ function inputClickEvent(input) {
                         timeOut: 2000
                     }
                 );
+                
+          		  clicked.forEach(data => {
+               		 selectedSeatsArray.push(data.value);
+           		 });
+           		 selectedSeatsArray.splice(selectedSeatsArray.indexOf(e.target.value), 1);
                 return;
+                
             }
 
             clicked.forEach(data => {
@@ -169,9 +180,9 @@ function inputClickEvent(input) {
             });
         }
 
-
+		
         //console.log(selectedSeatsArray.length);
-        //console.log(selectedSeatsArray);
+        console.log(selectedSeatsArray);
         //좌석번호의 innerHTML 설정
         selectedSeats.innerHTML = selectedSeatsArray;
         reserveNumber.innerHTML = selectedSeatsArray.length;

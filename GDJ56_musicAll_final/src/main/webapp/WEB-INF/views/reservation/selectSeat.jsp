@@ -62,6 +62,6 @@ seatWrapper.append(img);
 const pay = () =>{
 
 	location.assign("${path}/booking/pay.do?seat="+selectedSeatsArray+"&&money="+money);	
-}
+	}
 
 </script>
