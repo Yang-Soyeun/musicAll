@@ -102,9 +102,7 @@ function inputClickEvent(input) {
         const seatPrice=(Number)(document.querySelector('.'+seatName).value);
         //console.log(seatPrice);
       
-        
-        
-        
+    
         //중복방지 함수
         selectedSeatsArray = selectedSeatsArray.filter(
             (element, index) => selectedSeatsArray.indexOf(element) != index
@@ -112,22 +110,44 @@ function inputClickEvent(input) {
 
         //click class가 존재할때(제거해주는 toggle)
         if (input.classList.contains('clicked')) {
+
             input.classList.remove('clicked');
             money-=seatPrice;
             clicked = document.querySelectorAll('.clicked');
-            //배열안의 값 제거
+            color = input.value.substring(0,input.value.length-1);
+            color2 = input.value.substring(0,input.value.length-2);
+            console.log(color);
+           	if(color==='E'||color2 ==='E'||color==='F'||color2 ==='F'){
+           		input.style.backgroundColor='green';
+           	}else if(color==='A'||color2 ==='A'||color==='B'||color2 ==='B'
+           	||color==='C'||color2 ==='C'||color==='D'||color2 ==='D'){
+           		input.style.backgroundColor='#CCA63D';
+           	}else{
+           		input.style.backgroundColor='purple';
+           	}
+           	
+           
+			//배열안의 값 제거
             selectedSeatsArray.splice(selectedSeatsArray.indexOf(e.target.value), 1);
             clicked.forEach(data => {
                 selectedSeatsArray.push(data.value);
             });
+            
+
             //class가 존재안할때 추가해주는 toggle
         } else {
             input.classList.add('clicked');
+          
             clicked = document.querySelectorAll('.clicked');
-              money+=seatPrice;
+        	 money+=seatPrice;
+        	 
+        	 for(let i=0;i<clicked.length;i++){
+        		clicked[i].style.removeProperty('background-color');
+        	}
             //선택한 번호의 갯수를 넘기면 동작 못하게 하는 코드
             if (clicked.length > 8) {
                 input.classList.remove('clicked');
+                input.style.backgroundColor="green";
                 toastr.error(
                     '<div style="color:white">지정한 인원수를 넘었습니다</div>',
                     '<div style="color:white">인원수 확인</div>', {
@@ -143,10 +163,11 @@ function inputClickEvent(input) {
         }
 
 
-        console.log(selectedSeatsArray.length);
-       
+        //console.log(selectedSeatsArray.length);
+         console.log(selectedSeatsArray);
         //좌석번호의 innerHTML 설정
         selectedSeats.innerHTML = selectedSeatsArray;
+        reserveNumber.innerHTML = selectedSeatsArray.length;
       	console.log(money);
         allMoney.innerHTML=money.toLocaleString('ko-KR')+'원';
       
@@ -199,4 +220,15 @@ function mapping(input,input2, i, j) {
         input2.value= 79000
         input2.classList = 'K'+j;      
     }
+}
+
+const seatLevel = document.querySelectorAll('.seatButtonWrapper');
+for(let i=0;i<4;i++){
+	$(seatLevel[i]).children().css("backgroundColor",'#CCA63D');
+}
+for(let i=4;i<6;i++){
+	$(seatLevel[i]).children().css("backgroundColor",'green');
+}
+for(let i=6;i<seatLevel.length;i++){
+	$(seatLevel[i]).children().css("backgroundColor",'purple');
 }

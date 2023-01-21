@@ -49,17 +49,6 @@
        	  </div>
     </div>
     
-<div style="margin-left:30%;margin-top:2%">
-	<!-- <div class="select-theater-place">
-		<span>남은좌석</span><span class="remain-seats"></span>/<span
-			class="all-seats"></span>
-	</div> -->
-
-						
-					
-	
-						<div class="reserve-number-title">선택된 좌석 수</div>
-						
 					
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
