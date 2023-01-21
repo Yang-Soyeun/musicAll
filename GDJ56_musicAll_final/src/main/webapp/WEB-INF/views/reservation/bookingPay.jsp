@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp">
@@ -52,11 +54,11 @@
         <div style="margin-left:10%;padding:1%;"><img src="${path }/resources/images/reservation/포인트.png" width="500px"></div>
         <div id="point">
             <div>총 포인트&nbsp;&nbsp;&nbsp;<input type="text" value="5000" readonly></div>
-            <div style="margin-left:5%;">사용할 포인트&nbsp;&nbsp;&nbsp;<input type="text" >&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-secondary" style="background-color:lightgray;color:black;margin-top:-1%;font-size:15px;">적용</button></div>
+            <div style="margin-left:5%;">사용할 포인트&nbsp;&nbsp;&nbsp;<input type="text" class="point" >&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-secondary" onclick="apply();"style="background-color:lightgray;color:black;margin-top:-1%;font-size:15px;">적용</button></div>
         </div>
         <div><br><img src="${path }/resources/images/reservation/결제.png"  width="200px" style="margin-left:12.2%;padding:1%;"><br>
-            <div style="margin-left:14%;">티켓수량 : 2   R석 : 2   할인 가격: 5000</div>
-            <div style="margin-left:50%;font-size:20px;"><p><b>총 금액</b>&nbsp;<b style="color:red;">171000원</b></p></div>
+            <div style="margin-left:14%;">티켓수량 : ${fn:length(seatArr)}&nbsp;&nbsp;  할인 가격:&nbsp;<span class="discount">0</span></div>
+            <div style="margin-left:50%;font-size:20px;"><p><b>총 금액</b>&nbsp;&nbsp;<b style="color:red;" class="price"><fmt:formatNumber value="${money }" pattern="#,###" />원</b></p></div>
             <div style="margin-left:48%;">※ 적립 예정 포인트 : 1,710</div>
         </div>
         <div style="margin-top:7%;margin-left:27%;">
@@ -66,3 +68,13 @@
     </div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+<script>
+	const apply = () =>{
+	console.log($(".point").val());
+	const discount = (Number)($(".point").val());
+	$(".discount").html(discount);
+	$(".price").html((${money}-discount).toLocaleString('ko-KR')+"원");
+	
+	}
+	
+</script>

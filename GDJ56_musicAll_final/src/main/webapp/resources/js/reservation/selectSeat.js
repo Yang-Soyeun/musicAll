@@ -118,12 +118,12 @@ function inputClickEvent(input) {
             color2 = input.value.substring(0,input.value.length-2);
             console.log(color);
            	if(color==='E'||color2 ==='E'||color==='F'||color2 ==='F'){
-           		input.style.backgroundColor='green';
+           		input.style.backgroundColor='#DB3A00';
            	}else if(color==='A'||color2 ==='A'||color==='B'||color2 ==='B'
            	||color==='C'||color2 ==='C'||color==='D'||color2 ==='D'){
            		input.style.backgroundColor='#CCA63D';
            	}else{
-           		input.style.backgroundColor='purple';
+           		input.style.backgroundColor='green';
            	}
            	
            
@@ -145,7 +145,7 @@ function inputClickEvent(input) {
         		clicked[i].style.removeProperty('background-color');
         	}
             //선택한 번호의 갯수를 넘기면 동작 못하게 하는 코드
-            if (clicked.length > 8) {
+            if (clicked.length > 4) {
                 input.classList.remove('clicked');
                 input.style.backgroundColor="green";
                 toastr.error(
@@ -164,11 +164,11 @@ function inputClickEvent(input) {
 
 
         //console.log(selectedSeatsArray.length);
-         console.log(selectedSeatsArray);
+        //console.log(selectedSeatsArray);
         //좌석번호의 innerHTML 설정
         selectedSeats.innerHTML = selectedSeatsArray;
         reserveNumber.innerHTML = selectedSeatsArray.length;
-      	console.log(money);
+      	//console.log(money);
         allMoney.innerHTML=money.toLocaleString('ko-KR')+'원';
       
     });
@@ -227,8 +227,8 @@ for(let i=0;i<4;i++){
 	$(seatLevel[i]).children().css("backgroundColor",'#CCA63D');
 }
 for(let i=4;i<6;i++){
-	$(seatLevel[i]).children().css("backgroundColor",'green');
+	$(seatLevel[i]).children().css("backgroundColor",'#DB3A00');
 }
 for(let i=6;i<seatLevel.length;i++){
-	$(seatLevel[i]).children().css("backgroundColor",'purple');
+	$(seatLevel[i]).children().css("backgroundColor",'green');
 }

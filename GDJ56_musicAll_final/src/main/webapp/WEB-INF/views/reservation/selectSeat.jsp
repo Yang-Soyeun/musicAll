@@ -45,11 +45,23 @@
             <br><b>총 결제 금액</b><br><br>
             <span class="allMoney"></span>
             <br><br><br>
-             <button class="btn btn-danger" style="width:270px;;margin-left:-2%;font-size:15px;" onclick="location.assign('${path}/booking/pay.do')">결제하기</button>
+             <button class="btn btn-danger" style="width:270px;;margin-left:-2%;font-size:15px;" onclick="pay();">결제하기</button>
        	  </div>
     </div>
     
 					
-</div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
- <script src="${path}/resources/js/reservation/selectSeat.js"></script>
+<script src="${path}/resources/js/reservation/selectSeat.js"></script>
+<script>
+img = document.createElement('img');
+img.src='${path }/resources/images/reservation/좌석별.png';
+img.width=200;
+img.style.marginLeft='65%';
+seatWrapper.append(img);
+
+const pay = () =>{
+
+	location.assign("${path}/booking/pay.do?seat="+selectedSeatsArray+"&&money="+money);	
+}
+
+</script>
