@@ -68,12 +68,12 @@
 	
 		
 			.seat:active {
-			    background-color: red;
+			    background-color: blue;
 			    color: white;
 			}
 			
 			.clicked {
-			    background-color: red;
+			    background-color: blue;
 			    color: white;
 			}
 			
