@@ -34,6 +34,16 @@ public class MemberServiceImpl implements MemberService {
 	public Member findidEnd(Member member) {
 		return dao.findidEnd(member, session);
 	}
+
+	@Override
+	public Member findpwEnd(Member member) {
+		return dao.findpwEnd(member,session);
+	}
+
+	@Override
+	public int newPw(String newPw, String repwid) {
+		return dao.newPw(newPw,repwid,session);
+	}
 	
 	
 	

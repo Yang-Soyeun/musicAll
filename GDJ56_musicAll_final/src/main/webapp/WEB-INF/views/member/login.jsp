@@ -47,9 +47,9 @@
             </div>
             <hr style="border-color:black;"/>
             <div class="findInfoWrap">
-                <a href="javascript:window.open('${path}/member/findId.do', 'window_name', 'width=430, height=500, location=no, status=no, scrollbars=yes');" >아이디찾기</a>
+                <a href="javascript:window.open('${path}/member/findId.do?gbn=id', 'window_name', 'width=500, height=500, location=no, status=no, scrollbars=yes');" >아이디찾기</a>
                 |
-                <a href="javascript:window.open('${path}/member/findPw.do', 'window_name', 'width=430, height=500, location=no, status=no, scrollbars=yes');" >비밀번호찾기</a>
+                <a href="javascript:window.open('${path}/member/findId.do?gbn=pw', 'window_name', 'width=500, height=500, location=no, status=no, scrollbars=yes');" >비밀번호찾기</a>
                 |
                 <a href="javascript:location.assign('${path}/member/joinchoice.do');" >회원가입</a>
             </div>

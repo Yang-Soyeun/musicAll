@@ -23,6 +23,23 @@ public class MemberDaoImpl implements MemberDao {
 	public Member findidEnd(Member member, SqlSessionTemplate session) {
 		return session.selectOne("member.findId",member);
 	}
+
+	@Override
+	public Member findpwEnd(Member member, SqlSessionTemplate session) {
+		return session.selectOne("member.findPw",member);
+	}
+
+	@Override
+	public int newPw(String newPw, String repwid, SqlSessionTemplate session) {
+		Member m = new Member();
+		m.setPassword(newPw);
+		m.setMember_Id(repwid);
+		
+		return session.update("member.newPw",m);
+	}
+	
+	
+	
 	
 	
 

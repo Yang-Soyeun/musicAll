@@ -12,5 +12,9 @@ public interface MemberDao {
 
 	Member findidEnd(Member member, SqlSessionTemplate session);
 
+	Member findpwEnd(Member member, SqlSessionTemplate session);
+
+	int newPw(String newPw, String repwid, SqlSessionTemplate session);
+
 
 }

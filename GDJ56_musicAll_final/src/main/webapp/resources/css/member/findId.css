@@ -897,13 +897,6 @@
   display: inline-block;
 }
 
-.contentsWrap .idsearchWrap .searchType .typeList .inputEnter .styleInput .time {
-  position: absolute;
-  top: 12px;
-  right: 10px;
-  z-index: 2;
-  display: inline-block;
-  line-height: 11px;
-  font-size: 11px;
-  color: #ef3e42;
-}
+
+
+

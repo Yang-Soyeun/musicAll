@@ -28,5 +28,10 @@ public class GoodsController {
 		return "/store/goodsView";
 	}
 	
+	@RequestMapping("/goodsPay.do")
+	public String goodsPay() {
+		return "/store/goodsPay";
+	}
+	
 
 }
