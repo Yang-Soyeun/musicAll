@@ -159,15 +159,25 @@
 			$btnNext.addEventListener('click', disabled);
 			
 			const nextPage = () =>{
-			const day = document.querySelector(".day-active");
-			//console.log(day.getAttribute("data-fdate"));
-			//const day2 = new Date(day.getAttribute("data-fdate"));
-			const day2 = day.getAttribute("data-fdate");
-			const time = $('input[name=reserve]:checked').val();
-			console.log(time);
-			location.assign("${path}/booking/selectSeat.do?date="+day2+"&&time="+time); 
-	
-		
+				<c:if test="${loginMember==null }">
+					alert("로그인 후 이용해주세요.");
+				</c:if>
+				<c:if test="${loginMember!=null }">
+					const day = document.querySelector(".day-active");
+					if(day==null){
+						alert("날짜를 선택해주세요");
+					}
+					else{
+						const day2 = day.getAttribute("data-fdate");
+						const time = $('input[name=reserve]:checked').val();
+						if(time==null){
+							alert("시간을 선택해주세요");
+							return;
+						}
+						
+						location.assign("${path}/booking/selectSeat.do?mCode="+${mCode}+"&&date="+day2+"&&time="+time); 
+					}
+				</c:if>
 		}
 			
  	

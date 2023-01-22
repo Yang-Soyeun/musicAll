@@ -60,8 +60,23 @@ img.style.marginLeft='65%';
 seatWrapper.append(img);
 
 const pay = () =>{
-
-	location.assign("${path}/booking/pay.do?seat="+selectedSeatsArray+"&&money="+money);	
+	<c:if test="${loginMember==null }">
+		alert("로그인 후 이용해주세요.");
+	</c:if>
+	<c:if test="${loginMember!=null }">
+		if(selectedSeatsArray.length==0){
+			alert("좌석을 선택해주세요.")
+			return;
+		}
+		let info = new Array();
+		info.push("${mCode}");
+		info.push("${date}");
+		info.push("${time}");
+		info.push(money);
+		location.assign("${path}/booking/pay.do?info="+info+"&&seat="+selectedSeatsArray);
+		
+		//location.assign("${path}/booking/pay.do?seat="+selectedSeatsArray+"&&money="+money);	
+	</c:if>
 	}
-
+	
 </script>
