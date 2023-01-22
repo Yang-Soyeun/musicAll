@@ -54,8 +54,8 @@ public class ReservationController {
 	}
 	
 	//결제 화면
-	@RequestMapping("pay.do")
-	public String bookingpay(String[] seat,String money,Model model) {
+	@RequestMapping("/pay.do")
+	public String bookingPay(String[] seat,String money,Model model) {
 	
 		int money2 = Integer.parseInt(money);
 		model.addAttribute("money",money2);
@@ -63,4 +63,10 @@ public class ReservationController {
 		return "/reservation/bookingPay";
 	}
 	
+	//결제완료 화면
+	@RequestMapping("/payend.do")
+	public String bookingPayEnd() {
+		
+		return "/reservation/bookingPayEnd";
+	}
 }

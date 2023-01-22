@@ -4,10 +4,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
-
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
  	<jsp:param name="title" value="MainPage"/>
 </jsp:include>
+<body onload="noBack();" 
+    onpageshow="if(event.persisted) noBack();" 
+    onunload="">
 <style>
 
 
@@ -44,6 +47,7 @@
 
     }
 </style>
+
 <div id="ticketing">
         <div id="icon">
             <img src="${path }/resources/images/reservation/아이콘3.png" width="50px" height="50px" style="margin-top:-1%;margin-left:15%;"/><b style="color:gray">뮤지컬 예매</b><img src="${path }/resources/images/reservation/아이콘2.jpg" width="30px" style="margin-top:-5px;margin-left:100px;">
@@ -59,22 +63,50 @@
         <div><br><img src="${path }/resources/images/reservation/결제.png"  width="200px" style="margin-left:12.2%;padding:1%;"><br>
             <div style="margin-left:14%;">티켓수량 : ${fn:length(seatArr)}&nbsp;&nbsp;  할인 가격:&nbsp;<span class="discount">0</span></div>
             <div style="margin-left:50%;font-size:20px;"><p><b>총 금액</b>&nbsp;&nbsp;<b style="color:red;" class="price"><fmt:formatNumber value="${money }" pattern="#,###" />원</b></p></div>
-            <div style="margin-left:48%;">※ 적립 예정 포인트 : 1,710</div>
+            <div style="margin-left:48%;" class="point2"></div>
         </div>
         <div style="margin-top:7%;margin-left:27%;">
-            <button class="btn btn-danger" style="width:200px;margin-left:5%;font-size:15px;" type="button" >결제완료</button>
+            <button class="btn btn-danger" style="width:200px;margin-left:5%;font-size:15px;" type="button" onclick="requestPay();">결제완료</button>
             <button class="btn btn-secondary" style="width:110px;background-color:lightgray;color:black;font-size:15px;">취소</button>
         </div>
     </div>
 </div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 <script>
-	const apply = () =>{
-	console.log($(".point").val());
-	const discount = (Number)($(".point").val());
-	$(".discount").html(discount);
-	$(".price").html((${money}-discount).toLocaleString('ko-KR')+"원");
+ 	
+	$(".point2").html('※ 적립 예정 포인트 : '+((${money})/10).toLocaleString('ko-KR')); 
 	
+	const apply = () =>{	
+		const discount=(Number)($(".point").val());
+		$(".discount").html(discount);
+		$(".price").html((${money}-discount).toLocaleString('ko-KR')+"원");
+		$(".point2").html('※ 적립 예정 포인트 : '+((${money}-discount)/10).toLocaleString('ko-KR')); 
+		
 	}
+	
+	const requestPay = () =>{
+		const discount=(Number)($(".point").val());
+		IMP.init("imp28146203");
+		IMP.request_pay({
+			pg : "html5_inicis",
+			name : "티켓예매",
+			pay_method : "card",
+			amount : ${money}-discount,
+		}, function(rsp){
+			console.log(rsp);
+			if(rsp.success){
+				alert("결제가 완료되었습니다.");
+				//location.replace("${path}/booking/payend.do")
+			}
+		else{
+			 
+			alert(rsp.error_msg);
+		}
+	});
+		
+}	
+
+	function noBack(){window.history.forward();}
+
 	
 </script>
