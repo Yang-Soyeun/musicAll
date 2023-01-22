@@ -21,10 +21,10 @@
                 <p class="text">지금 회원가입 하신 후 musicAll에서 <br>다양한 서비스를 경험해보세요</p>
                 <button type="button" class="uBtn point btnJoin" onclick="location.assign('${path}/member/join.do');" >개인 회원가입</button>
                 <div class="snsJoinArea">
-                    <ul class="listSns">
-                        <li class="snsNaver"><a href="#" class="btnSns snsNaverBtn"><span>네이버로 가입</span></a></li>
-                        <li class="snsKakao"><a href="#" class="btnSns snsKakaoBtn"><span>카카오로 가입</span></a></li>
-                    </ul>
+                    <div class="listSns">
+                        <div class="snsNaver"><a href="#" class="btnSns snsNaverBtn"><span>네이버로 가입</span></a></div>&nbsp;&nbsp;
+                        <div class="snsKakao"><a href="#" class="btnSns snsKakaoBtn"><span>카카오로 가입</span></a></div>
+                    </div>
                     <p class="guideText">SNS계정 회원가입(만 14세 이상 가능)</p>
                 </div>
             </div>

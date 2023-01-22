@@ -10,5 +10,9 @@ public interface MemberService {
 
 	Member findidEnd(Member member);
 
+	Member findpwEnd(Member member);
+
+	int newPw(String newPw, String repwid);
+
 
 }

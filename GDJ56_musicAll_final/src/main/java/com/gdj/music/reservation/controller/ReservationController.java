@@ -47,7 +47,7 @@ public class ReservationController {
 	
 	//좌석선택 화면
 	@RequestMapping("/selectSeat.do")
-	public String selectSeat() {
+	public String selectSeat(String date, String time) {
 		
 		return "/reservation/selectSeat";
 	
@@ -55,8 +55,11 @@ public class ReservationController {
 	
 	//결제 화면
 	@RequestMapping("pay.do")
-	public String bookingpay() {
-		
+	public String bookingpay(String[] seat,String money,Model model) {
+	
+		int money2 = Integer.parseInt(money);
+		model.addAttribute("money",money2);
+		model.addAttribute("seatArr",seat);
 		return "/reservation/bookingPay";
 	}
 	

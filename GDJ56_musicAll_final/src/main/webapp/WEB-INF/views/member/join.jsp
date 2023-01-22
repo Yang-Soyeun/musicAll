@@ -22,7 +22,7 @@
 						<div class="uInput">
 							<label for="inputId">아이디</label>
 							<div class="inputBox">
-								<input type="text" id="member_id" class="inputText" placeholder="6~20자 영문, 숫자" tabindex="1" value="">
+								<input type="text" id="member_id" class="inputText" placeholder="6~20자 영문, 숫자" tabindex="1" value="" maxlength="20" required="required">
 								<button type="button" class="btnDel" aria-label="삭제"></button>
 							</div>
 						</div>
@@ -36,7 +36,7 @@
 						<div class="uInput">
 							<label for="inputPw">비밀번호</label>
 							<div class="inputBox">
-								<input type="password" id="password" class="inputText" placeholder="8~12자 영문, 숫자, 특수문자" tabindex="2" value="">
+								<input type="password" id="password" class="inputText" placeholder="8~12자 영문, 숫자, 특수문자" tabindex="2" value="" maxlength="12" required="required">
 								<button type="button" class="btnDel" aria-label="삭제"></button>
 							</div>
 						</div>
@@ -50,7 +50,7 @@
 						<div class="uInput">
 							<label for="inputPwConfirm">비밀번호 확인</label>
 							<div class="inputBox">
-								<input type="password" id="password_check" class="inputText" placeholder="8~12자 영문, 숫자, 특수문자" tabindex="3" value="">
+								<input type="password" id="password_check" class="inputText" placeholder="8~12자 영문, 숫자, 특수문자" tabindex="3" value="" maxlength="12" required="required">
 								<button type="button" class="btnDel" aria-label="삭제"></button>
 							</div>
 						</div>
@@ -95,6 +95,8 @@
 								</select>
 							</label>
 						</div>
+					</div>
+					<div class="col">
 						<div class="uBtnArea">
 							<button type="button" class="uBtn borderType">인증번호받기</button>
 						</div>
@@ -140,11 +142,11 @@
 				</div>
 				<div class="certifyTime" style="display: none;">인증유효시간 <span class="time">00:00</span></div>
 			</div>
-				<div class="ubtnArea">
-					<div class="col">
-						<button type="button" class="btn btn-danger btn-circle" onclick="fn_join();">가입완료</button>
-					</div>
+			<div class="ubtnArea row">
+				<div class="col text-center">
+					<button type="button" class="btn btn-danger btn-circle" onclick="fn_join();">가입완료</button>
 				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -170,7 +172,7 @@
 				</div>
 			</div>
 		</div>
-
+		
 <script>
 	
 	const fn_join=()=>{

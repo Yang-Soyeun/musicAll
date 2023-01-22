@@ -42,7 +42,7 @@
 	        <div class="post">
 	          <div class="post-thumbnail">
 	          	<a href="#">
-	          		<img src="${path }/resources/nari1/images/레베카.jfif" alt="Blog-post Thumbnail" class="reviewImg"/>
+	          		<img src="${path }/resources/images/performance/matilda.gif" alt="Blog-post Thumbnail" class="reviewImg"/>
 	          	</a>
 	          </div>
 	          <div class="post-header font-alt">
@@ -126,15 +126,17 @@
         <form action="${path }/mypage/searchQs.do" class="row" style="margin-bottom:20px;">
           <div class="col-sm-4 mb-sm-20 " style="float: right;">
               <div class="search-box">
-                <input class="form-control" type="text" placeholder="Search...">
+                <input class="form-control" id="keyword" name="keyword" type="text" placeholder="Search..." required>
                 <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+                <input type="hidden" name="member_No" id="member_No" value="1">
               </div>
       		</div>
           <div class="col-sm-2 mb-sm-20 " style="float: right;">
-            <select name="keyword" class="form-control">
-              <option selected="selected">전체</option>
-              <option value="qsTitle">제목</option>
-              <option value="qsContent">내용</option>
+            <select id="type" name="type" class="form-control">
+              <option selected value="qs_title">제목</option>
+              <option value="qs_content">내용</option>
+              <option value="qs_result">답변유무(Y/N)</option>
+              		<!-- 답변유무 클릭하면 selectbox가 또 나오면 좋을듯!!! -->
             </select>
           </div>
         </form>
@@ -149,29 +151,31 @@
 	              <td><b>제목</b></td>
 	              <td><b>작성자</b></td>
 	              <td><b>답변유무</b></td>
-	              <td><b>날짜</b></td>
+	              <td><b>작성일</b></td>
 	            </tr>
 	            
 	            <c:if test="${not empty myQs }">
 	            	<c:forEach var="qs" items="${myQs }">
-	            		<tr>
+	            		<tr class="QsTr">
 			              <td>
-			                <h5 class="product-title font-alt"><c:out value="${qs.qsNo }"/></h5>
+			                <h5 id="qsNo" class="product-title font-alt"><c:out value="${qs.qsNo }"/></h5>
 			              </td>
 			              <td>
-			                <h5 class="product-title font-alt"><c:out value="${qs.qsHeadTitle }"/></h5>
+			                <h5 id="qsHeadTitle" class="product-title font-alt"><c:out value="${qs.qsHeadTitle }"/></h5>
 			              </td>
 			              <td class="">
-			                <h5 class="product-title font-alt"><i class="fa fa-lock"></i><c:out value="${qs.qsTitle }"/></h5>
+			                <h5 class="product-title font-alt"><i id="qsTitle" class="fa fa-lock"><c:out value="${qs.qsTitle }"/></i></h5>
 			              </td>
 			              <td class="">
-			                <h5 class="product-title" style="letter-spacing:2px;"><c:out value="${loginMember.member_Id}"/></h5>
+			                <h5 id="member_Id" class="product-title" style="letter-spacing:2px;"><c:out value="${loginMember.member_Id}"/></h5>
 			              </td>
 			              <td class="">
-			                <h5 class="product-title font-alt"><c:out value="${qs.qsResult }"/></h5>
+			                <h5 id="qsResult" class="product-title font-alt"><c:out value="${qs.qsResult }"/></h5>
 			              </td>
 			              <td class="">
-			                <h5 class="product-title font-alt"><c:out value="${qs.qsDate }"/></h5>
+			                <h5 id="qsDate" class="product-title font-alt">
+			                	<fmt:formatDate value="${qs.qsDate }" type="both" pattern="yyyy-MM-dd (E) hh:mm:ss"/>
+			                </h5>
 			              </td>
 		            	</tr>
 		            </c:forEach>
@@ -186,15 +190,52 @@
 	          </tbody>
 	        </table>
 	      </div>
-	      
 	      <!-- 페이지바 -->
 	      <center>
 	      	${pageBarQs }
 	      </center>
-	      
-	      
 	    </div>
 	  </div>
 	</section>
 </div>
+
+<!-- 	<script> -->
+<!-- 		const fn_searchQuestion=()=>{ -->
+<!-- 		console.log($("#No").val()); -->
+<!-- 			$.ajax({ -->
+<%--  				url:"${path }/mypage/searchQs.do", --%>
+<!--  				data:{type:$("#type").val(),keyword:$("#keyword").val(),No:$("#member_No").val()}, -->
+<!--  				success:data=>{ -->
+<!--  					console.log(data); -->
+<!--  					console.log($(".QsTr #qsNo")); -->
+<!--  					for(i=0;i<5;i++){ -->
+<!--  						console.log(data[i].qsDate); -->
+						
+						
+<!--  						console.log($(".QsTr #qsNo")[i].innerText); -->
+<!--  						$(".QsTr #qsNo")[i].innerText=data[i].qsNo; -->
+<!--  						$(".QsTr #qsHeadTitle")[i].innerText=data[i].qsHeadTitle; -->
+<!--  						$(".QsTr #qsTitle")[i].innerText=data[i].qsTitle; -->
+<!--  						$(".QsTr #qsResult")[i].innerText=data[i].qsResult; -->
+<!--  						$(".QsTr #qsDate")[i].innerText=data[i].qsDate; -->
+<!-- 					} -->
+<!--  				} -->
+				
+<!--  			}); -->
+<!--  		}; -->
+<!-- 	</script> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

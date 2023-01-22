@@ -1,7 +1,10 @@
 package com.gdj.music.mypage.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gdj.music.common.interceptor.PageFactory;
+import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.mypage.model.service.MypageService;
 import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
+import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/mypage")
@@ -62,8 +67,6 @@ public class MypageController {
 		Point result=service.selectPoint(member_No);//남은포인트
 		
 		int totalData=service.selectPointCount(member_No);//페이징처리 위한 카운트
-//		System.out.println(list);
-//		System.out.println(totalData);
 		
 		mv.addObject("mypoint",list);//전체포인트이력
 		mv.addObject("mpPoint",result);//남은포인트
@@ -73,11 +76,31 @@ public class MypageController {
 		return mv;
 	}
 	
-	//상품구매내역
+	//상품구매내역	 환불처리 해야함!!!!!!!!!!!!!!!!!!!
 	@RequestMapping("/shoppingList.do")
-	public String shoppingList() {
-		return "mypage/shoppingList";
+	public ModelAndView shoppingList(ModelAndView mv,int No,
+			@RequestParam(value="cPage", defaultValue="1")int cPage,
+			@RequestParam(value="numPerpage", defaultValue="5")int numPerpage) {
+		int member_No=No;
+		
+		List<Map<String,Goods>> map=service.selectSpListPage(member_No,
+				Map.of("cPage",cPage,"numPerpage",numPerpage)
+				);//굿즈쇼핑내역
+//		for(Map m:map) {
+//			System.out.println("굿즈이름"+m.get("G_NAME"));
+//			System.out.println(m.entrySet());
+//			
+//		}
+		int totalData=service.selectSpCount(member_No);//페이징처리 위한 카운트
+		
+		mv.addObject("myShopping",map);//쇼핑내역저장
+		mv.addObject("pageBar",PageFactory.searchPage(cPage,numPerpage,totalData,"myContentList.do",member_No));//쇼핑페이지바
+		
+		mv.setViewName("mypage/shoppingList");
+		return mv;
 	}
+	
+	
 	//내가 쓴 글
 	@RequestMapping("/myContentList.do")
 	public ModelAndView myContentList(ModelAndView mv,int No,
@@ -98,10 +121,38 @@ public class MypageController {
 		mv.setViewName("mypage/myContentList");
 		return mv;
 	}
-	//1대1문의내역 검색
+	
+	//1대1문의내역 검색 
 	@RequestMapping("/searchQs.do")
-	public ModelAndView searchQs(ModelAndView mv,String keyword) {
-		System.out.println(keyword);
+	public ModelAndView searchQs(ModelAndView mv,@RequestParam Map search,
+			@RequestParam(value="cPage", defaultValue="1")int cPage,
+			@RequestParam(value="numPerpage", defaultValue="5")int numPerpage) {
+//		System.out.println(param.get("member_No"));
+//		System.out.println(search);
+		int member_No=Integer.parseInt(String.valueOf(search.get("member_No")));
+//		System.out.println("멤버 번호 :" +member_No);
+		
+		List<Question> list=service.searchQs(search,
+				Map.of("cPage",cPage,"numPerpage",numPerpage)
+				);
+		int totalData=service.searchQsCount(search);
+//		System.out.println(list);
+		mv.addObject("myQs",list);
+		mv.addObject("pageBarQs",PageFactory.searchPage(cPage,numPerpage,totalData,"myContentList.do",member_No));//1대1문의 페이지바
+		
+		mv.setViewName("mypage/myContentList");
 		return mv;
+
 	}
+//	//1대1문의내역 검색 :ajax
+//	@RequestMapping("/searchQs.do")
+//	public void searchQs(ModelAndView mv,@RequestParam Map param,HttpServletResponse response) throws IOException {
+//		System.out.println(param);
+//		List<Question> list=service.searchQs(param);
+//		System.out.println("출력 값: "+list);
+//		
+//		response.setContentType("application/json;charset=utf-8");//Gson
+//		new Gson().toJson(list,response.getWriter());//Gson
+//		
+//	}
 }
