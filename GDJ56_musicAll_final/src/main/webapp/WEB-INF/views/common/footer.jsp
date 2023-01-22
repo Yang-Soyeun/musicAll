@@ -45,7 +45,7 @@
                   <li class="clearfix">
                      <div class="widget-posts-image">
                         <a href="#">
-                           <img src="${path}/resources/images/rp-1.jpg" alt="Post Thumbnail">
+                           <img src="${path}/resources/images/chihuahua.jpg" alt="Post Thumbnail">
                         </a>
                      </div>
                      <div class="widget-posts-body">
