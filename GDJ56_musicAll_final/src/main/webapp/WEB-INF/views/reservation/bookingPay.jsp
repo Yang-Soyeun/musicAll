@@ -58,7 +58,7 @@
         <div style="margin-left:10%;padding:1%;"><img src="${path }/resources/images/reservation/포인트.png" width="500px"></div>
         <div id="point">
             <div>총 포인트&nbsp;&nbsp;&nbsp;<input type="text" value="5000" readonly></div>
-            <div style="margin-left:5%;">사용할 포인트&nbsp;&nbsp;&nbsp;<input type="text" class="point" >&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-secondary" onclick="apply();"style="background-color:lightgray;color:black;margin-top:-1%;font-size:15px;">적용</button></div>
+            <div style="margin-left:5%;">사용할 포인트&nbsp;&nbsp;&nbsp;<input type="number" style="width:186px;" min="0" max="5000" class="point" >&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-secondary" onclick="apply();"style="background-color:lightgray;color:black;margin-top:-1%;font-size:15px;">적용</button></div>
         </div>
         <div><br><img src="${path }/resources/images/reservation/결제.png"  width="200px" style="margin-left:12.2%;padding:1%;"><br>
             <div style="margin-left:14%;">티켓수량 : ${fn:length(seatArr)}&nbsp;&nbsp;  할인 가격:&nbsp;<span class="discount">0</span></div>
@@ -78,6 +78,10 @@
 	
 	const apply = () =>{	
 		const discount=(Number)($(".point").val());
+		if(discount>1000000){
+			alert("포인트가 부족합니다.");
+			return;
+		}
 		$(".discount").html(discount);
 		$(".price").html((${money}-discount).toLocaleString('ko-KR')+"원");
 		$(".point2").html('※ 적립 예정 포인트 : '+((${money}-discount)/10).toLocaleString('ko-KR')); 
@@ -85,25 +89,42 @@
 	}
 	
 	const requestPay = () =>{
-		const discount=(Number)($(".point").val());
-		IMP.init("imp28146203");
-		IMP.request_pay({
-			pg : "html5_inicis",
-			name : "티켓예매",
-			pay_method : "card",
-			amount : ${money}-discount,
-		}, function(rsp){
-			console.log(rsp);
-			if(rsp.success){
-				alert("결제가 완료되었습니다.");
-				//location.replace("${path}/booking/payend.do")
+		<c:if test="${loginMember==null }">
+			alert("로그인 후 이용해주세요.");
+		</c:if>
+		<c:if test="${loginMember!=null }">
+			const discount=(Number)($(".point").val());
+			IMP.init("imp28146203");
+			IMP.request_pay({
+				pg : "html5_inicis",
+				name : "티켓예매",
+				pay_method : "card",
+				amount : ${money}-discount,
+			}, function(rsp){
+				
+				const discount=(Number)($(".point").val());
+				const amount = ${money}-discount;
+	
+				if(rsp.success){
+					alert("결제가 완료되었습니다.");
+					let info = new Array();
+					
+					info.push(${loginMember.member_No});
+					info.push(${info[0]});
+					info.push("${info[1]}");
+					info.push("${info[2]}");
+					info.push(amount);
+					info.push(rsp.imp_uid);
+					info.push("${fn:join(seatArr,",")}");
+					
+					location.assign("${path}/booking/payend.do?info="+info);
+				}
+			else{
+				 
+				alert(rsp.error_msg);
 			}
-		else{
-			 
-			alert(rsp.error_msg);
-		}
-	});
-		
+		});
+		</c:if>
 }	
 
 	function noBack(){window.history.forward();}
