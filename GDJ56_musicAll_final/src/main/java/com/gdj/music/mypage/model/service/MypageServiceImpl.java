@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gdj.music.goods.model.vo.Goods;
+import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.mypage.model.dao.MypageDao;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
@@ -25,6 +26,17 @@ public class MypageServiceImpl implements MypageService {
 		this.session = session;
 	}
 	
+	//회원정보 수정 비번 확인
+	@Override
+	public Member checkPwd(Member m) {
+		return dao.checkPwd(session,m);
+	}
+	//회원정보 수정위한 데이터 확인
+	@Override
+	public Member updateMember(int member_No) {
+		return dao.updateMember(session, member_No);
+	}
+
 	//포인트리스트출력
 	@Override
 	public List<Point> selectPointListPage(int member_No, Map<String,Integer> param) {
