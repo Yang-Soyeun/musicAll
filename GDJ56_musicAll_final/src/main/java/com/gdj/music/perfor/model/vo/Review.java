@@ -1,14 +1,18 @@
 package com.gdj.music.perfor.model.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Review {
-	private int review_No;
+	private int reviewNo;
 	private String reviewContent;
 	private Date reviewDate;
 	private int score;

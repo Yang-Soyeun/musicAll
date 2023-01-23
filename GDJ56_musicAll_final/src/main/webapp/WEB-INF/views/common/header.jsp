@@ -102,8 +102,8 @@
                  <li class="dropdown"><a class="dropdown-toggle" href="${path }/mypage/mypageMain.do" data-toggle="dropdown">마이페이지</a>
                    <ul class="dropdown-menu" role="menu">
                      <li><a href="#" data-toggle="modal" data-target="#loginModal"><i class="fa fa-cog"></i> 회원정보 수정</a></li>
-                     <li><a href="${path }/mypage/musicalList.do"><i class="fa fa-list-ul fa-sm"></i> 공연예매 정보</a></li>
-                     <li><a href="${path }/mypage/likeMusical.do"><i class="fa fa-heart"></i> 관심 공연</a></li>
+                     <li><a href="${path }/mypage/musicalList.do?No=${loginMember.member_No}"><i class="fa fa-list-ul fa-sm"></i> 공연예매 정보</a></li>
+                     <li><a href="${path }/mypage/likeMusical.do?No=${loginMember.member_No}"><i class="fa fa-heart"></i> 관심 공연</a></li>
                      <li><a href="${path }/mypage/pointList.do?No=${loginMember.member_No}"><i class="fa fa-database"></i> 포인트</a></li>
                      <li><a href="${path }/mypage/shoppingList.do?No=${loginMember.member_No}"><i class="fa fa-gift"></i> 상품 구매내역</a></li>
                      <li><a href="${path }/mypage/myContentList.do?No=${loginMember.member_No}"><i class="fa fa-pencil-square-o"></i> 내가 쓴 글</a></li>
@@ -131,18 +131,17 @@
                <div class="modal-header">
                   <h3 class="modal-title" id="loginModalLabel"><b>회원정보 수정</b></h3>
                   <h5 class="modal-title" id="loginModalLabel">회원 정보 수정을 위해 비밀번호를 다시 입력해주세요.</h5>
-                  <!-- <button type="button" class="close" 
-                  data-dismiss="modal" aria-label="close">
-                     <span aria-hidden="true">&times;</span>
-                  </button> -->
                </div>
                <form action="" method="post">
                   <div class="modal-body">
-                     <input type="password" name="userPwd" class="form-control"
+                     <input type="password" name="password" id="memberPwd" class="form-control"
                         placeholder="비밀번호 입력" required>
+                     <input type="hidden" name="member_No" id="member_No" value="${loginMember.member_No }">
+                        <small><span id="checkPwd" style="color:red; display:none;">잘못된 비밀번호입니다.</span></small>
                   </div>
                   <div class="modal-footer">
-                     <button type="submit" class="btn btn-g btn-round"><i class="fa fa-cog fa-spin"></i>확인</button>
+                     <button type="button" class="btn btn-g btn-round"
+                     	 onclick="fn_updateMember();"><i class="fa fa-cog fa-spin"></i>확인</button>
                      <button type="button" class="btn btn-g btn-round"
                      data-dismiss="modal">취소</button>
                   </div>
@@ -150,3 +149,17 @@
             </div>
          </div>
       </div>
+      
+      
+      <script>
+      	const fn_updateMember=()=>{
+      		$.get("${path}/mypage/checkPwd.do?member_No="+$("#member_No").val()+"&password="+$("#memberPwd").val()
+					,data=>{
+						if(data==null || data==""){//비밀번호 틀리면
+							$("span#checkPwd").show();
+						}else{//비밀번호 일치하면
+							location.replace("${path }/mypage/updateMember.do?member_No="+data.member_No);
+						}
+					});
+      	}
+      </script>

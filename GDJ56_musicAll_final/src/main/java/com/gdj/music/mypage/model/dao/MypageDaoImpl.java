@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.gdj.music.goods.model.vo.Goods;
+import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
 
@@ -67,7 +68,34 @@ public class MypageDaoImpl implements MypageDao {
 	
 	
 	
+	//한줄평 리스트출력
+	@Override
+	public List<Map<String,Review>> selectRvListPage(SqlSessionTemplate session, int member_No, Map<String, Integer> param) {
+		return session.selectList("mypage.selectRvListPage",member_No,
+				new RowBounds((param.get("cPage")-1)*param.get("numPerpage")
+				,param.get("numPerpage")));
+	}
+	//한줄평 페이징카운트
+	@Override
+	public int selectRvCount(SqlSessionTemplate session, int member_No) {
+		return session.selectOne("mypage.selectRvCount",member_No);
+	}
+	//한줄평 정렬
+	@Override
+	public List<Map<String, Review>> orderReview(SqlSessionTemplate session, Map<String, Integer> order,Map<String,Integer> param) {
+		return session.selectList("mypage.orderReview",order,
+				new RowBounds((param.get("cPage")-1)*param.get("numPerpage")
+				,param.get("numPerpage")));
+	}
+	//한줄평 정렬 페이징카운트
+	@Override
+	public int orderReviewCount(SqlSessionTemplate session, Map<String, Integer> param) {
+		return session.selectOne("mypage.orderReviewCount",param);
+	}
 	
+	
+
+
 
 	//굿즈쇼핑내역
 	@Override

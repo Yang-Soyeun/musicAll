@@ -15,7 +15,8 @@ public class Pay {
 	
 	private int pCode;
 	private String pWay;
-	private double pPrice;
+	private int pPrice;
 	private Date pDate;
+	private String pUid;
 
 }

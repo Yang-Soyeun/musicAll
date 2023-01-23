@@ -1,8 +1,8 @@
 package com.gdj.music.pay.model.service;
 
-import org.springframework.stereotype.Service;
+import com.gdj.music.pay.model.vo.Pay;
+import com.gdj.music.reservation.model.vo.Reservation;
 
-@Service
-public class PayService {
-
+public interface PayService {
+	int insertPay(Pay p,Reservation r);
 }

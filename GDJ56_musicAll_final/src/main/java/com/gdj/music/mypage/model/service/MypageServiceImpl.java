@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.mypage.model.dao.MypageDao;
+import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
 
@@ -70,8 +71,32 @@ public class MypageServiceImpl implements MypageService {
 	
 	
 	
+	//한줄평 리스트출력
+	@Override
+	public List<Map<String,Review>> selectRvListPage(int member_No, Map<String, Integer> param) {
+		return dao.selectRvListPage(session,member_No,param);
+	}
+	//한줄평 페이징카운트
+	@Override
+	public int selectRvCount(int member_No) {
+		return dao.selectRvCount(session,member_No);
+	}
+	//한줄평 정렬
+	@Override
+	public List<Map<String, Review>> orderReview(Map<String, Integer> order,Map<String,Integer> param) {
+		return dao.orderReview(session, order, param);
+	}
+	//한줄평 정렬 페이징카운트
+	@Override
+	public int orderReviewCount(Map<String, Integer> order) {
+		return dao.orderReviewCount(session, order);
+	}
 	
 	
+	
+	
+
+
 	//굿즈쇼핑내역
 	@Override
 	public List<Map<String,Goods>> selectSpListPage(int member_No, Map<String, Integer> param) {
