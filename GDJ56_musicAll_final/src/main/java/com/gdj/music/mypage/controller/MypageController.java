@@ -15,9 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.gdj.music.common.interceptor.PageFactory;
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.mypage.model.service.MypageService;
+import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 @Controller
 @RequestMapping("/mypage")
@@ -101,26 +103,77 @@ public class MypageController {
 	}
 	
 	
-	//내가 쓴 글
+	//내가 쓴 글(내 한줄평 + 1대1문의내역 리스트)
 	@RequestMapping("/myContentList.do")
 	public ModelAndView myContentList(ModelAndView mv,int No,
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
 			@RequestParam(value="numPerpage", defaultValue="5")int numPerpage) {
-		//1대1문의
+		
 		int member_No=No;
 		
-		List<Question> list=service.selectQsListPage(member_No,
+		//1대1문의
+		List<Question> qsList=service.selectQsListPage(member_No,
 				Map.of("cPage",cPage,"numPerpage",numPerpage)
 				);//전체 문의내역리스트
 		int totalData=service.selectQsCount(member_No);
-		
-		mv.addObject("myQs",list);//전체1대1문의 내역
+
+		mv.addObject("myQs",qsList);//전체1대1문의 내역
 		mv.addObject("pageBarQs",PageFactory.searchPage(cPage,numPerpage,totalData,"myContentList.do",member_No));//1대1문의 페이지바
+
+		
+		//한줄평
+		List<Map<String,Review>> rvList=service.selectRvListPage(member_No,
+				Map.of("cPage",cPage,"numPerpage",numPerpage)
+				);//내 한줄평 리스트
+		totalData=service.selectRvCount(member_No);
+		
+		mv.addObject("myRv",rvList);//한줄평 리스트저장
+		mv.addObject("pageBarRv",PageFactory.searchPage(cPage,numPerpage,totalData,"myContentList.do",member_No));//한줄평 페이지바
+		
+		
+		
+		
 		
 		
 		mv.setViewName("mypage/myContentList");
 		return mv;
 	}
+	//한줄평 정렬
+	@RequestMapping("orderReview.do")
+	public void orderReview(@RequestParam Map order,HttpServletResponse response,
+			@RequestParam(value="cPage", defaultValue="1")int cPage,
+			@RequestParam(value="numPerpage", defaultValue="5")int numPerpage) throws IOException{
+		System.out.println(order);
+		List<Map<String,Review>> orderList=service.orderReview(order,
+				Map.of("cPage",cPage,"numPerpage",numPerpage)
+				);
+		
+		int totalData=service.orderReviewCount(order);
+		
+//		System.out.println(orderList);
+		
+		
+		response.setContentType("application/json;charset=utf-8");//Gson
+		
+//		Gson g = new Gson();
+//		g.toJson(orderList);
+//		g.toJson(totalData);
+//		response.getWriter().print(g);
+		
+		new Gson().toJson(orderList,response.getWriter());//Gson
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//1대1문의내역 검색 
 	@RequestMapping("/searchQs.do")
@@ -144,6 +197,8 @@ public class MypageController {
 		return mv;
 
 	}
+	
+	
 //	//1대1문의내역 검색 :ajax
 //	@RequestMapping("/searchQs.do")
 //	public void searchQs(ModelAndView mv,@RequestParam Map param,HttpServletResponse response) throws IOException {
