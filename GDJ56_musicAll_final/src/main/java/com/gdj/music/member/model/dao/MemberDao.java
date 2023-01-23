@@ -1,8 +1,11 @@
 package com.gdj.music.member.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.gdj.music.member.model.vo.Member;
+import com.gdj.music.member.model.vo.Terms;
 
 public interface MemberDao {
 
@@ -15,6 +18,14 @@ public interface MemberDao {
 	Member findpwEnd(Member member, SqlSessionTemplate session);
 
 	int newPw(String newPw, String repwid, SqlSessionTemplate session);
+
+	Member idDupicate(String member_id, SqlSessionTemplate session);
+
+	List<Terms> joinTermsY(SqlSessionTemplate session);
+
+	List<Terms> joinTermsN(SqlSessionTemplate session);
+
+	Terms joinTerms1(int term_code, SqlSessionTemplate session);
 
 
 }

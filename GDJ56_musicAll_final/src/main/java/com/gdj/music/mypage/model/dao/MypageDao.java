@@ -6,16 +6,20 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.gdj.music.goods.model.vo.Goods;
+import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
 
 public interface MypageDao {
+	
+	Member checkPwd(SqlSessionTemplate session,Member m);//비번체크
+	Member updateMember(SqlSessionTemplate session,int member_No);//회원정보수정 위한 데이터확인
+	
+	
 	List<Point> selectPointListPage(SqlSessionTemplate session,int member_No,Map<String,Integer> param);//포인트리스트 출력
 	Point selectPoint(SqlSessionTemplate session,int member_No);//남은포인트 출력
 	int selectPointCount(SqlSessionTemplate session,int member_No);//페이징처리
-	
-	
 	
 	
 	

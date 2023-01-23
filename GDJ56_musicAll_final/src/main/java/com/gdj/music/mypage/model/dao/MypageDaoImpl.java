@@ -8,12 +8,29 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.gdj.music.goods.model.vo.Goods;
+import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
 
 @Repository
 public class MypageDaoImpl implements MypageDao {
+
+	
+	//회원정보 수정 비번 확인
+	@Override
+	public Member checkPwd(SqlSessionTemplate session, Member m) {
+		return session.selectOne("mypage.checkPwd",m);
+	}
+	//회원정보 수정위한 데이터 확인
+	@Override
+	public Member updateMember(SqlSessionTemplate session, int member_No) {
+		return session.selectOne("mypage.updateMember",member_No);
+	}
+	
+
+
+
 
 	//포인트리스트 출력
 	@Override

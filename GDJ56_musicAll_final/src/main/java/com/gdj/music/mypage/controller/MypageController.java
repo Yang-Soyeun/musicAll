@@ -10,16 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gdj.music.common.interceptor.PageFactory;
 import com.gdj.music.goods.model.vo.Goods;
+import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.mypage.model.service.MypageService;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 @Controller
 @RequestMapping("/mypage")
@@ -36,6 +37,28 @@ public class MypageController {
 	public String mypageMain(){
 		return "mypage/mypageMain";
 	}
+	
+	//회원정보 수정 전 비밀번호 확인
+	@RequestMapping("/checkPwd.do")
+	@ResponseBody
+	public Member checkPwd(Member m) {
+		Member result=service.checkPwd(m);
+		
+		return result;
+	}
+	//회원정보 업데이트 화면전환
+	@RequestMapping("/updateMember.do")
+	public ModelAndView updateMember(ModelAndView mv,int member_No) {
+
+		Member m=service.updateMember(member_No);
+		
+		mv.addObject("mem",m);
+		mv.setViewName("mypage/updateMember");
+		return mv;
+	}
+	
+	
+	
 	//예매내역리스트
 	@RequestMapping("/musicalList.do")
 	public String musicalList(){
@@ -52,9 +75,18 @@ public class MypageController {
 	
 	//관심공연
 	@RequestMapping("/likeMusical.do")
-	public String likeMusical() {
-		return "mypage/likeMusical";
+	public ModelAndView likeMusical(ModelAndView mv,
+			@RequestParam(value="No", defaultValue="1") int member_No,
+			@RequestParam(value="cPage", defaultValue="1")int cPage,
+			@RequestParam(value="numPerpage", defaultValue="5")int numPerpage) {
+		
+		
+		
+		mv.setViewName("mypage/likeMusical");
+		return mv;
 	}
+	
+	
 	
 	//포인트내역출력
 	@RequestMapping("/pointList.do")
