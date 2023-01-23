@@ -185,11 +185,12 @@
                 
 
           </table>
+
               <div class="btngreen">
                   <a href="javascript:chk_form(event);" id="enrollPer" class="Btn" >신청하기</a>
               </div>
         <!-- //Form -->    
-     </form>
+      </form>
         <script>
             //daterangepicker
             $('input[name="daterange"]').daterangepicker();
@@ -239,15 +240,18 @@
             //$("#enrollPer").click(e=>{
             const chk_form=(e)=>{	
             	
-            
+        		let perDay=new FormData();
         		let form=new FormData();
+        		
             	$('input:checked').each((i,e)=>{
-					form.append("perDay",
+					perDay.append("perDay",
 							$(e).val()+","+$(e).parent().next().val()
 							+","+$(e).parent().next().next().val())            		
-            	})
+				
+            	});
+            	console.log(perDay);
+            
             	
-        		
         		const sumnail=$("input[name=upFile]")[0].files;
 				const file=$("input[name=upFile2]")[0].files;
         		
@@ -273,17 +277,19 @@
  				//var sature=$("#sature:checked").val();
  				//var sun=$("#sun:checked").val();
 				
- 				var daterange=$("input[name=daterange").val(); 
- 				var watchTime=$("input[name=watchTile]").val();
+ 				var daterange=$("input[name=daterange]").val(); 
+ 				var watchTime=$("input[name=watchTime]").val();
  				var perPlace=$("input[name=perPlace").val();
  				var vipPrice=$("input[name=vipPrice]").val();
- 				var rPrice=$("input[name=rPrice").val();
- 				var sPrice=$("inputname=sPrice").val();
+ 				var rPrice=$("input[name=rPrice]").val();
+ 				var sPrice=$("input[name=sPrice]").val();
 				
  				form.append("perTitle",perTitle);
+ 				console.log(perTitle);
  				form.append("perType",perType);
+ 				console.log(perType);
  				form.append("age",age);
- 				form.append("aniName",aniName);
+ 			
 				
 // 				if(mon=="월"){
 // 					 form.append("mon",mon);
@@ -328,35 +334,38 @@
  				form.append("vipPrice",vipPrice);
  				form.append("rPrice",rPrice);
  				form.append("sPrice",sPrice);
-				
-
- 				if(sumnail.length<1){
- 					 if(file.length<1){
+ 				console.log(daterange);
+ 				console.log(form);
+ 				//if(sumnail.length<1){
+ 					 //if(file.length<1){
 					   $.ajax({
 						url :"${path}/adminPerfor/insertPerformance.do",
-						data : form,
-						type : "post",
-						contentType:false,
-						processData:false,
+						data: {perTitle:perTitle,perType:perType,age:age,daterange:daterange,watchTime:watchTime,
+							perPlace:perPlace,vipPrice:vipPrice,rPrice:rPrice,sPrice:sPrice}
+						//type : "post",
+						//contentType:false,
+						//processData:false,
+						//traditional: true
 						success : e=>{
-							 console.log(e.msg);	 
-							 console.log(e.loc); 
-							var loc2 = e.loc;
-							alert(e.msg);
-							 location.replace('${path}/adminPerfor/'+loc2);
+							//console.log(data);
+							 //console.log(e.msg);	 
+							 //console.log(e.loc); 
+							//var loc2 = e.loc;
+							//alert(e.msg);
+							 //location.replace('${path}/adminPerfor/'+loc2);
 								alert("공연등록 성공");
-								$("#upFile2").val("");
+								//$("#upFile2").val("");
 						},
 						error:(r,m,e)=>{
-									alert("공연등록 실패!다시 등록해주세요.");
+							alert("공연등록 실패!다시 등록해주세요.");
 								}
-					 	}) 
- 					}else{
- 						alert("사진을 첨부해주세요.");
- 					}
- 				}else{
- 					alert("대표이미지를 설정해야 합니다.");
- 				}
+					 	});
+ 					//}else{
+ 						//alert("사진을 첨부해주세요.");
+ 					//}
+ 				//}else{
+ 					//alert("대표이미지를 설정해야 합니다.");
+ 				//}
 				
 				
         	};

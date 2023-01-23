@@ -2,6 +2,7 @@ package com.gdj.music.admin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gdj.music.perfor.model.vo.Hall;
 //import com.bs.spring.board.model.vo.Attachment;
 import com.gdj.music.perfor.model.vo.Performance;
+import com.gdj.music.perfor.model.vo.Schedule;
 
 @Controller
 @RequestMapping("/adminPerfor")
@@ -35,25 +39,20 @@ public class AdminPerforController {
 	}
 	
 //	//등록할 공연 데이터 보내기 
+	@ResponseBody
 	@RequestMapping("/insertPerformance.do")
-	public void insertPerformance(
-		@RequestParam(value="mTitle") String perTitle,
-		@RequestParam(value="mType") String perType,
-		@RequestParam(value="mAge") String age,
-		@RequestParam(value="sDay") String[] perDay,
-		@RequestParam(value="sTime") int watchTime,
-		@RequestParam(value="hName") String perPlace,
-		@RequestParam(value="vipPrice") int vipPrice,
-		@RequestParam(value="rPrice") int rPrice,
-		@RequestParam(value="sPrice") int sPrice,
-		String daterange,ModelAndView mv, MultipartFile[] upFile ,HttpSession session){
+	public String insertPerformance(
+		String perTitle,String perType,String age,String daterange,int watchTime,String perPlace,
+		int vipPrice,int rPrice,int sPrice){
 		
-		System.out.println(perDay);
+		//System.out.println(sumnail[0].getName());
+		//System.out.println(sumnail[0].getOriginalFilename());
+		//System.out.println(file[0].getName());
+		//System.out.println(file[0].getOriginalFilename());
+		//System.out.println(perDay);		
+				
 		
-		
-		
-		
-		
+
 //		//파일 업로드처리하기
 //		//저장위치가져오기
 //			String path=session.getServletContext().getRealPath("/resources/performance/");
@@ -93,6 +92,7 @@ public class AdminPerforController {
 //		System.out.println(per);
 //		model.addAttribute("performance",per);
 //		return "/admin/Perfor/adminPerformanceList";
+		return "ok";
 	}
 	
 }
