@@ -131,18 +131,17 @@
                <div class="modal-header">
                   <h3 class="modal-title" id="loginModalLabel"><b>회원정보 수정</b></h3>
                   <h5 class="modal-title" id="loginModalLabel">회원 정보 수정을 위해 비밀번호를 다시 입력해주세요.</h5>
-                  <!-- <button type="button" class="close" 
-                  data-dismiss="modal" aria-label="close">
-                     <span aria-hidden="true">&times;</span>
-                  </button> -->
                </div>
                <form action="" method="post">
                   <div class="modal-body">
-                     <input type="password" name="userPwd" class="form-control"
+                     <input type="password" name="password" id="memberPwd" class="form-control"
                         placeholder="비밀번호 입력" required>
+                     <input type="hidden" name="member_No" id="member_No" value="${loginMember.member_No }">
+                        <small><span id="checkPwd" style="color:red; display:none;">잘못된 비밀번호입니다.</span></small>
                   </div>
                   <div class="modal-footer">
-                     <button type="submit" class="btn btn-g btn-round"><i class="fa fa-cog fa-spin"></i>확인</button>
+                     <button type="button" class="btn btn-g btn-round"
+                     	 onclick="fn_updateMember();"><i class="fa fa-cog fa-spin"></i>확인</button>
                      <button type="button" class="btn btn-g btn-round"
                      data-dismiss="modal">취소</button>
                   </div>
@@ -150,3 +149,17 @@
             </div>
          </div>
       </div>
+      
+      
+      <script>
+      	const fn_updateMember=()=>{
+      		$.get("${path}/mypage/checkPwd.do?member_No="+$("#member_No").val()+"&password="+$("#memberPwd").val()
+					,data=>{
+						if(data==null || data==""){//비밀번호 틀리면
+							$("span#checkPwd").show();
+						}else{//비밀번호 일치하면
+							location.replace("${path }/mypage/updateMember.do?member_No="+data.member_No);
+						}
+					});
+      	}
+      </script>
