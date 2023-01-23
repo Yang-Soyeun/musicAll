@@ -1,11 +1,14 @@
 package com.gdj.music.member.model.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gdj.music.member.model.dao.MemberDao;
 import com.gdj.music.member.model.vo.Member;
+import com.gdj.music.member.model.vo.Terms;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -44,6 +47,34 @@ public class MemberServiceImpl implements MemberService {
 	public int newPw(String newPw, String repwid) {
 		return dao.newPw(newPw,repwid,session);
 	}
+
+	@Override
+	public Member idDuplicate(String member_id) {
+		return dao.idDupicate(member_id, session);
+	}
+	
+	@Override
+	public List<Terms> joinTermsY(){
+		return dao.joinTermsY(session);
+	}
+
+	@Override
+	public List<Terms> joinTermsN() {
+		return dao.joinTermsN(session);
+	}
+
+	@Override
+	public Terms joinTerm1(int term_code) {
+		return dao.joinTerms1(term_code,session);
+	}
+	
+	
+
+	
+
+	
+	
+	
 	
 	
 	

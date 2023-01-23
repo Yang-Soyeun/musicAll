@@ -1,6 +1,7 @@
 package com.gdj.music.member.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,7 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.gdj.music.common.EmailSendModule;
 import com.gdj.music.member.model.service.MemberService;
 import com.gdj.music.member.model.vo.Member;
+import com.gdj.music.member.model.vo.Terms;
 import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 
 @Controller
@@ -158,6 +161,54 @@ public class MemberController {
 		
 		response.getWriter().print(result);
 		
+	}
+	
+	//아이디중복확인
+	@RequestMapping("/idduplicate.do")
+	public void idduplicate(String member_id, HttpServletResponse response) throws IOException {
+		Member m = service.idDuplicate(member_id);
+		System.out.println(m);
+		
+		
+		response.getWriter().print(m);
+	}
+	
+	//회원가입 이메일 인증
+	@RequestMapping("/cofirmEmail.do")
+	public void confirmEmail(String email,HttpServletResponse response) throws JsonIOException, IOException {
+		JsonObject jo = new JsonObject();
+		
+		jo.addProperty("number", module.joinEmail(email));
+		Gson g = new Gson();
+		g.toJson(jo, response.getWriter());
+	}
+	
+	//회원가입 약관동의
+	@RequestMapping("/terms.do")
+	public ModelAndView joinTerms(ModelAndView mv) {
+		
+		List<Terms>listY = service.joinTermsY();
+		
+		List<Terms>listN = service.joinTermsN();
+		
+		
+		mv.addObject("listY",listY);
+		mv.addObject("listN",listN);
+		
+		mv.setViewName("/member/terms");
+		return mv;
+	}
+	
+	//약관동의 팝업
+	@RequestMapping("/term1.do")
+	public ModelAndView joinTerm1(int term_code,ModelAndView mv) {
+		
+		Terms t = service.joinTerm1(term_code);
+		
+		mv.addObject("terms",t);
+		
+		mv.setViewName("/member/termsNum");
+		return mv;
 	}
 	
 			

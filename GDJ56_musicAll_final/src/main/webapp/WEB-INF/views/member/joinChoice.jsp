@@ -19,7 +19,7 @@
             <div class="joinBlock singleBlock" style="margin-top: 100px;">
                 <h2 class="title">musicAll 회원가입</h2>
                 <p class="text">지금 회원가입 하신 후 musicAll에서 <br>다양한 서비스를 경험해보세요</p>
-                <button type="button" class="uBtn point btnJoin" onclick="location.assign('${path}/member/join.do');" >개인 회원가입</button>
+                <button type="button" class="uBtn point btnJoin" onclick="location.assign('${path}/member/terms.do');" >개인 회원가입</button>
                 <div class="snsJoinArea">
                     <div class="listSns">
                         <div class="snsNaver"><a href="#" class="btnSns snsNaverBtn"><span>네이버로 가입</span></a></div>&nbsp;&nbsp;
