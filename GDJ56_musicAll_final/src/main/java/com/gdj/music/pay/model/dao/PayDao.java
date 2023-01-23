@@ -1,8 +1,11 @@
 package com.gdj.music.pay.model.dao;
 
-import org.springframework.stereotype.Repository;
+import org.mybatis.spring.SqlSessionTemplate;
 
-@Repository
-public class PayDao {
+import com.gdj.music.pay.model.vo.Pay;
+import com.gdj.music.reservation.model.vo.Reservation;
 
+public interface PayDao {
+	int insertPay(SqlSessionTemplate session, Pay p);
+	int insertBooking(SqlSessionTemplate session, Reservation r);
 }
