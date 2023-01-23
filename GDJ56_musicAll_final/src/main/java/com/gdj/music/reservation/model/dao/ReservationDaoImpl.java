@@ -17,4 +17,23 @@ public class ReservationDaoImpl implements ReservationDao {
 		return session.selectList("booking.selectPerform",mCode);
 	}
 
+	@Override
+	public int selectHall(SqlSessionTemplate session, int mCode) {
+		// TODO Auto-generated method stub
+		return session.selectOne("booking.selectHall",mCode);
+	}
+
+	@Override
+	public List<String> selectSeats(SqlSessionTemplate session, Map<String,Object> map) {
+		// TODO Auto-generated method stub
+		return session.selectList("booking.selectSeats",map);
+	}
+
+	@Override
+	public String selectMusical(SqlSessionTemplate session, int mCode) {
+		// TODO Auto-generated method stub
+		return session.selectOne("booking.selectMusical",mCode);
+	}
+
+	
 }

@@ -86,4 +86,8 @@
 			    height: 30px;
 			}
 			
+			.selected{
+				border:1px solid #EAEAEA;
+			}
+			
 			

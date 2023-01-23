@@ -100,13 +100,15 @@
 				name : "티켓예매",
 				pay_method : "card",
 				amount : ${money}-discount,
+				buyer_name:"${loginMember.name}",
+				buyer_email:"${loginMember.email}"
 			}, function(rsp){
 				
 				const discount=(Number)($(".point").val());
 				const amount = ${money}-discount;
 	
 				if(rsp.success){
-					alert("결제가 완료되었습니다.");
+					
 					let info = new Array();
 					
 					info.push(${loginMember.member_No});

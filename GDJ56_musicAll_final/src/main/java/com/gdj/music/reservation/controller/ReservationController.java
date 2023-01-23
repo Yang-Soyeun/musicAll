@@ -16,6 +16,7 @@ import com.gdj.music.pay.model.vo.Pay;
 import com.gdj.music.perfor.model.vo.Performance;
 import com.gdj.music.reservation.model.service.ReservationService;
 import com.gdj.music.reservation.model.vo.Reservation;
+import com.gdj.music.reservation.model.vo.Seat;
 
 
 @Controller
@@ -53,9 +54,14 @@ public class ReservationController {
 	//좌석선택 화면
 	@RequestMapping("/selectSeat.do")
 	public String selectSeat(int mCode,String date, String time,Model model) {
+		int hCode = service.selectHall(mCode);
+		Map<String,Object> map = Map.of("hCode",hCode,"rDate",date,"rTime",time);
+		List<String> seats = service.selectSeats(map);
+		System.out.println(seats);
 		model.addAttribute("mCode",mCode);
 		model.addAttribute("date",date);
 		model.addAttribute("time",time);
+		model.addAttribute("seats",seats);
 		return "/reservation/selectSeat";
 	
 	}
@@ -84,9 +90,31 @@ public class ReservationController {
 		Reservation r = Reservation.builder().rSeat(seats.split(",")).mCode(Integer.parseInt(info[1]))
 						.memberNo(Integer.parseInt(info[0])).rDate(info[2]).rTime(info[3]).build();
 		int result = service2.insertPay(p, r);
-		if(result>0) mv.setViewName("/reservation/bookingPayEnd");
-		else mv.setViewName("/reservation/bookingPay");
-		return mv;
-		//return "/reservation/bookingPayEnd";
+		int hCode = service.selectHall(Integer.parseInt(info[1]));
+		int result2=0;
+		if(result>0) {
+			for(int i=6;i<info.length;i++) {
+				Seat s = Seat.builder().seatName(info[i]).hCode(hCode).rDate(info[2]).rTime(info[3]).build();
+				result2 = service2.insertSeat(s);
+			}
+			if(result2>0) {
+				String title = service.selectMusical(Integer.parseInt(info[1]));
+				mv.addObject("msg","예매가 완료되었습니다.");
+				mv.addObject("info",info);
+				mv.addObject("title",title);
+				mv.setViewName("/reservation/bookingPayEnd");
+			}
+			return mv;
+		}
+		else {
+			mv.addObject("msg","예매 실패! 다시 시도해주세요.");
+			mv.addObject("loc","/");
+			mv.setViewName("common/msg");
+			return mv;
+		}
+		
+		
+		
 	}
+	
 }
