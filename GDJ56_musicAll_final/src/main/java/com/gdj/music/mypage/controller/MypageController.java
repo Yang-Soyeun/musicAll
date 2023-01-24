@@ -17,6 +17,7 @@ import com.gdj.music.common.interceptor.PageFactory;
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.mypage.model.service.MypageService;
+import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
@@ -78,12 +79,52 @@ public class MypageController {
 	public ModelAndView likeMusical(ModelAndView mv,
 			@RequestParam(value="No", defaultValue="1") int member_No,
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
-			@RequestParam(value="numPerpage", defaultValue="5")int numPerpage) {
+			@RequestParam(value="numPerpage", defaultValue="12")int numPerpage) {
 		
+		List<Map<String,Mlike>> list=service.selectMlikeList(member_No,
+				Map.of("cPage",cPage,"numPerpage",numPerpage)
+				);
 		
+		int totalData=service.selectMlikeCount(member_No);
 		
+//		System.out.println(list.get(0).get("I_NAME"));
+//		for(Map<String, Mlike> m:list) {
+//			System.out.println(m);
+//		}
+		
+		mv.addObject("mLike",list);
+		mv.addObject("pageBar",PageFactory.searchPage(cPage,numPerpage,totalData,"likeMusical.do",member_No));
 		mv.setViewName("mypage/likeMusical");
 		return mv;
+	}
+	
+	//관심공연 삭제
+	@RequestMapping("/deleteMlike.do")
+	@ResponseBody
+	public List<Map<String,Mlike>> deleteMlike(ModelAndView mv,@RequestParam Map ml,
+			@RequestParam(value="cPage", defaultValue="1")int cPage,
+			@RequestParam(value="numPerpage", defaultValue="12")int numPerpage) {
+		
+		System.out.println(ml);
+//		System.out.println(ml.get("member_No"));
+		
+		int result=service.deleteMlike(ml);//삭제문 잠시 주석처리 
+//		System.out.println(result);
+//		int result=1;
+		int member_No=Integer.parseInt(String.valueOf(ml.get("member_No")));
+		
+		if(result>0) {
+			List<Map<String,Mlike>> list=service.selectMlikeList(member_No,
+					Map.of("cPage",cPage,"numPerpage",numPerpage)
+					);
+			System.out.println(list);
+			
+			
+			
+			return list;
+		}else {
+			return null;
+		}
 	}
 	
 	

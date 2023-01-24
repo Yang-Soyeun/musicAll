@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.member.model.vo.Member;
+import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
@@ -18,6 +19,12 @@ public interface MypageService {
 	List<Point> selectPointListPage(int member_No,Map<String,Integer> param);//페이징처리,포인트리스트 출력
 	Point selectPoint(int member_No);//남은포인트 출력
 	int selectPointCount(int member_No);//포인트 페이징처리
+	
+	List<Map<String,Mlike>> selectMlikeList(int member_No,Map<String,Integer> param);//관심공연 리스트출력
+	int selectMlikeCount(int member_No);//관심공연 페이징처리
+	
+	
+	int deleteMlike(Map<String,Mlike> ml);//관심공연 삭제
 	
 	
 	List<Question> selectQsListPage(int member_No,Map<String,Integer> param);//1대1문의내역

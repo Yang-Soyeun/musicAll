@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.member.model.vo.Member;
+import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
@@ -51,8 +52,24 @@ public class MypageDaoImpl implements MypageDao {
 		return session.selectOne("mypage.selectPointCount",member_No);
 	}
 	
-
-	
+	//관심공연 리스트출력
+	@Override
+	public List<Map<String, Mlike>> selectMlikeList(SqlSessionTemplate session, int member_No,
+			Map<String, Integer> param) {
+		return session.selectList("mypage.selectMlikeList",member_No,
+				new RowBounds((param.get("cPage")-1)*param.get("numPerpage")
+				,param.get("numPerpage")));
+	}
+	//관심공연 페이징처리
+	@Override
+	public int selectMlikeCount(SqlSessionTemplate session, int member_No) {
+		return session.selectOne("mypage.selectMlikeCount",member_No);
+	}
+	//관심공연 삭제
+	@Override
+	public int deleteMlike(SqlSessionTemplate session, Map<String,Mlike> ml) {
+		return session.delete("mypage.deleteMlike",ml);
+	}
 	
 	
 	
