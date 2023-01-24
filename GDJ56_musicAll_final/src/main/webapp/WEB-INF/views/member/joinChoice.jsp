@@ -23,7 +23,7 @@
                 <button type="button" class="uBtn point btnJoin" onclick="location.assign('${path}/member/terms.do');" >개인 회원가입</button>
                 <div class="snsJoinArea">
                     <div class="listSns">
-                        <div class="snsKakao"><a href="javascript:bt_kakao();" class="btnSns snsKakaoBtn"><span>카카오로 가입</span></a></div>
+                        <div class="snsKakao"><a href="javascript:bt_kakao();" class="btnSns snsKakaoBtn"  style="width: 175px;"><span>카카오로 가입</span></a></div>
                     </div>
                     <p class="guideText">SNS계정 회원가입(만 14세 이상 가능)</p>
                 </div>
