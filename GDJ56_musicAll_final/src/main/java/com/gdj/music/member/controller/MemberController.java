@@ -3,20 +3,28 @@ package com.gdj.music.member.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gdj.music.common.EmailSendModule;
+import com.gdj.music.member.kakao.KakaoLoginBO;
 import com.gdj.music.member.model.service.MemberService;
 import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.member.model.vo.Terms;
+import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
@@ -29,13 +37,14 @@ public class MemberController {
 	
 	  private MemberService service;
 	  private EmailSendModule module;
+	  private KakaoLoginBO kakaoLoginBO;
 	  
 	  @Autowired 
-	  public MemberController(MemberService service, EmailSendModule module) { 
+	  public MemberController(MemberService service, EmailSendModule module, KakaoLoginBO kakaoLoginBO) { 
 		  super();
 		  this.service = service; 
 		  this.module = module;
-	
+		  this.kakaoLoginBO = kakaoLoginBO;
 	  }
 
 	//로그인 화면 전환
@@ -66,17 +75,66 @@ public class MemberController {
 	
 	//회원가입 선택
 	@RequestMapping("/joinchoice.do")
-	public String joinView() {
-		return "/member/joinChoice";
+	public ModelAndView joinView(ModelAndView mav, HttpSession session) {
+		String kakaoAuthUrl = kakaoLoginBO.getAuthorizationUrl(session);
+		System.out.println("kakaoAuthUrl : " + kakaoAuthUrl);
+		mav.addObject("kakaoUrl", kakaoAuthUrl);
+		mav.setViewName("/member/joinChoice");
+		return mav;
 	}
 	
 	//ajax 개인회원가입 페이지 이동
 	@RequestMapping("/join.do")
-	public String join(Member m) {
+	public ModelAndView join(Member m, HttpSession session, ModelAndView mav) {
 		
-		System.out.println(m);
+//		//카카오에서 가져온 세션 정보
+//		String name = (String) session.getAttribute("name");
+//		String email = (String) session.getAttribute("email");		
+//		
+//		System.out.println("============================");
+//		System.out.println("name : " + name);
+//		System.out.println("email : " + email);
+//		System.out.println("============================");
+//		
+//		mav.addObject("name", name);
+//		mav.addObject("email", email);
+//		
+//		if(!ObjectUtils.isEmpty(session.getAttribute("name"))) {
+//			session.removeAttribute("name");	
+//		}
+//		if(!ObjectUtils.isEmpty(session.getAttribute("email"))) {
+//			session.removeAttribute("email");	
+//		}
 		
-		return "/member/join";
+		mav.setViewName("/member/join");
+		return mav;
+	}
+	
+	//ajax 개인회원가입 페이지 이동
+	@RequestMapping("/kakaojoin.do")
+	public ModelAndView kakaojoin(Member m, HttpSession session, ModelAndView mav) {
+		
+		//카카오에서 가져온 세션 정보
+		String name = (String) session.getAttribute("name");
+		String email = (String) session.getAttribute("email");		
+		
+		System.out.println("============================");
+		System.out.println("name : " + name);
+		System.out.println("email : " + email);
+		System.out.println("============================");
+		
+		mav.addObject("name", name);
+		mav.addObject("email", email);
+		
+		if(!ObjectUtils.isEmpty(session.getAttribute("name"))) {
+			session.removeAttribute("name");	
+		}
+		if(!ObjectUtils.isEmpty(session.getAttribute("email"))) {
+			session.removeAttribute("email");	
+		}
+		
+		mav.setViewName("/member/kakaoJoin");
+		return mav;
 	}
 	
 	//ajax 개인회원가입
@@ -199,6 +257,24 @@ public class MemberController {
 		return mv;
 	}
 	
+	
+	//카카오뢰원가입시 이용약관
+	@RequestMapping("/kakaoterms.do")
+	public ModelAndView kakaoTerms(ModelAndView mv) {
+		
+		List<Terms>listY = service.joinTermsY();
+		
+		List<Terms>listN = service.joinTermsN();
+		
+		
+		mv.addObject("listY",listY);
+		mv.addObject("listN",listN);
+		
+		mv.setViewName("/member/kakaoTerms");
+		return mv;
+	}
+	
+	
 	//약관동의 팝업
 	@RequestMapping("/term1.do")
 	public ModelAndView joinTerm1(int term_code,ModelAndView mv) {
@@ -211,9 +287,37 @@ public class MemberController {
 		return mv;
 	}
 	
-			
-	
-	
-	
+	//카카오 로그인
+	@RequestMapping("/kakaoLogin.do")
+	public String kakaoLogin(@RequestParam("code") String code, @RequestParam("state") String state, HttpSession session) throws Exception {
+		
+		OAuth2AccessToken oauthToken;
+		oauthToken = kakaoLoginBO.getAccessToken(session, code, state);
+
+		String apiResult = kakaoLoginBO.getUserProfile(oauthToken);
+		
+		System.out.println(apiResult);
+		
+		JSONParser jsonParser = new JSONParser();
+		JSONObject jsonObj;
+		
+		jsonObj = (JSONObject) jsonParser.parse(apiResult);
+		JSONObject response_obj = (JSONObject) jsonObj.get("kakao_account");	
+		JSONObject response_obj2 = (JSONObject) response_obj.get("profile");
+		// 프로필 조회
+		String email = (String) response_obj.get("email");
+		String name = (String) response_obj2.get("nickname");
+		// 세션에 사용자 정보 등록
+		// session.setAttribute("islogin_r", "Y");
+//		session.setAttribute("signIn", apiResult);
+		session.setAttribute("email", email);
+		session.setAttribute("name", name);
+		
+		System.out.println("email : " + email);
+		System.out.println("name : " + name);
+
+		return "redirect:/member/kakaoterms.do";
+		
+	}
 	
 }
