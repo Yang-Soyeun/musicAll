@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gdj.music.goods.model.vo.Goods;
+import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.mypage.model.dao.MypageDao;
+import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
@@ -25,6 +27,17 @@ public class MypageServiceImpl implements MypageService {
 		this.session = session;
 	}
 	
+	//회원정보 수정 비번 확인
+	@Override
+	public Member checkPwd(Member m) {
+		return dao.checkPwd(session,m);
+	}
+	//회원정보 수정위한 데이터 확인
+	@Override
+	public Member updateMember(int member_No) {
+		return dao.updateMember(session, member_No);
+	}
+
 	//포인트리스트출력
 	@Override
 	public List<Point> selectPointListPage(int member_No, Map<String,Integer> param) {
@@ -43,9 +56,25 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	
+	//관심공연 리스트출력
+	@Override
+	public List<Map<String, Mlike>> selectMlikeList(int member_No, Map<String, Integer> param) {
+		return dao.selectMlikeList(session,member_No,param);
+	}
+	//관심공연 페이징처리
+	@Override
+	public int selectMlikeCount(int member_No) {
+		return dao.selectMlikeCount(session,member_No);
+	}
 	
+	//관심공연 삭제
+	@Override
+	public int deleteMlike(Map<String,Mlike> ml) {
+		return dao.deleteMlike(session,ml);
+	}
 	
-	
+
+
 	//1대1문의 리스트 출력
 	@Override
 	public List<Question> selectQsListPage(int member_No, Map<String, Integer> param) {

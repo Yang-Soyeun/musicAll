@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.gdj.music.pay.model.vo.Pay;
 import com.gdj.music.reservation.model.vo.Reservation;
+import com.gdj.music.reservation.model.vo.Seat;
 
 @Repository
 public class PayDaoImpl implements PayDao{
@@ -20,6 +21,11 @@ public class PayDaoImpl implements PayDao{
 		// TODO Auto-generated method stub
 		return session.insert("pay.insertBooking",r);
 	}
- 
+
+	
+	  @Override 
+	  public int insertSeat(SqlSessionTemplate session,Seat s) { 
+		  return session.insert("pay.insertSeat",s); }
+	 
 	
 }

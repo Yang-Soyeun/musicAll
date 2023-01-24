@@ -41,28 +41,35 @@
         			data:{keyword:$(obj).val(),member_No:$("#member_No").val()},
         			success:data=>{
         				console.log(data);
-//     					$(".reviewCon #rvScore").detach();
-        				var iTagP=$("<i>").attr('class','fa fa-star')[0];
-        				var iTagM=$("<i>").attr('class','fa fa-star-o')[0];
         				
-        				
+						$(".reviewCon #rvScore").empty();//별점 초기화
+//         				$(".rvPhoto").attr('href','###');//a태그 주소 바꾸기!!!?!수정 필요!!!!!!!!!??????
+						//혹은 div post-thumbnail 아래 자식 태그 지웠다가 a 태그 생성해서 append하기
+        				$(".rvPhoto").empty();//기존 사진 지우기
+						
         				for(i=0;i<data.length;i++){
         					
-        					$(".reviewCon #rvTitle")[i].innerText=data[i].M_TITLE;
-        					$(".reviewCon #rvContent")[i].innerText=data[i].REVIEW_CONTENT;
-
-        					var score=parseInt(data[i].SCORE);
-       						console.log(iTagP);
+        					$(".reviewCon #rvTitle")[i].innerText=data[i].M_TITLE;//제목
+        					$(".reviewCon #rvContent")[i].innerText=data[i].REVIEW_CONTENT;//내용
+        					var img=$("<img src='${path }/resources/images/performance/"+data[i].I_NAME+
+        							"' alt='Blog-post Thumbnail' class='reviewImg'></img>")[0];//사진 생성
+        							
+							$(".rvPhoto")[i].append(img);//사진 넣기	
+        							
+        					var score=parseInt(data[i].SCORE);//scrore를 int로 바꾸기
+							
        						
 	       					for(j=0;j<score;j++){//색칠 된 별
-// 	       						console.log(score);
-	       						$(".reviewCon #rvScore")[i].append("별");        						
-// 	       						console.log($(".reviewCon #rvScore")[i]);
+	       						
+		        				var iTagP=$("<i>").attr('class','fa fa-star')[0];
+	       						$(".reviewCon #rvScore")[i].append(iTagP);  
+	       						
 	       					}
 	       					for(j=0;j<5-score;j++){//색칠 안된 별
-// 	       						console.log(4-score);
-	       						$(".reviewCon #rvScore")[i].append(iTagM);        						
-// 	       						console.log($(".reviewCon #rvScore")[j]);
+	       						
+		        				var iTagM=$("<i>").attr('class','fa fa-star-o')[0];
+	       						$(".reviewCon #rvScore")[i].append(iTagM);  
+	       						
 	       					}
         					
         				}
@@ -79,13 +86,14 @@
 			    <div class="col-sm-6 col-md-3 col-lg-3 reviewCon" >
 			        <div class="post">
 			          <div class="post-thumbnail">
-			          	<a href="#">
-			          		<img src="${path }/resources/images/performance/matilda.gif" alt="Blog-post Thumbnail" class="reviewImg"/>
+			          	<a href="#" class="rvPhoto">
+			          		<img src="${path }/resources/images/performance/matilda.gif" 
+			          			alt="Blog-post Thumbnail" class="reviewImg"/>
 			          	</a>
 			          </div>
 			          <div class="post-header font-alt">
-			            <h2 class="post-title">
-			            	<a href="#" id="rvTitle"><c:out value="${rv.get('M_TITLE') }"/></a>
+			            <h2 class="post-title" id="rvTitle">
+			            	<c:out value="${rv.get('M_TITLE') }"/>
 			            </h2>
 			            <div class="post-meta">My Review</div>
 			          </div>
