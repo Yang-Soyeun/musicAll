@@ -109,7 +109,7 @@ public class MypageController {
 //		System.out.println(ml.get("member_No"));
 		
 		int result=service.deleteMlike(ml);//삭제문 잠시 주석처리 
-//		System.out.println(result);
+		
 //		int result=1;
 		int member_No=Integer.parseInt(String.valueOf(ml.get("member_No")));
 		
@@ -216,7 +216,7 @@ public class MypageController {
 	public void orderReview(@RequestParam Map order,HttpServletResponse response,
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
 			@RequestParam(value="numPerpage", defaultValue="5")int numPerpage) throws IOException{
-		System.out.println(order);
+//		System.out.println(order);
 		List<Map<String,Review>> orderList=service.orderReview(order,
 				Map.of("cPage",cPage,"numPerpage",numPerpage)
 				);
