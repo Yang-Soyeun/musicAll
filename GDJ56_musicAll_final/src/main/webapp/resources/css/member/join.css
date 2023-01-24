@@ -61,7 +61,7 @@
 
 .uInputArea.emailType .uSelectBox label {
   min-width: 123px;
-  background: none;
+  /* opacity : 0; */
 }
 
 .uInputArea.emailType .uSelectBox select {
@@ -455,7 +455,7 @@
   min-width: 160px;
   height: 30px;
   vertical-align: top;
-  background: url("//openimage.interpark.com/member/common/icon/icon_arrow_down.png") 100% 50% no-repeat;
+  background: url("../../images/icon_arrow_down.png") 100% 50% no-repeat;
   background-size: 22px auto;
 }
 

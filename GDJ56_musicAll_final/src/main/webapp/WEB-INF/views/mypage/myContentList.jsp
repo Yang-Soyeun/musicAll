@@ -10,7 +10,8 @@
 <style>
 	.reviewImg{height:200px;}
 	.reviewCon{text-align:center;}
-	.post-entry{height:125px;}
+	.post-entry{height:120px;}
+	.fa-star{color:#ffd400;}
 </style>
 <div class="main">
 	<section class="module">
@@ -21,46 +22,105 @@
 	      </div>
 	    </div>
 	  
-        <!-- 검색창 -->
+        <!-- 정렬창 -->
         <form class="row" style="margin-bottom:20px;">
-          <div class="col-sm-4 mb-sm-20 " style="float: right;">
-              <div class="search-box">
-                <input class="form-control" type="text" placeholder="Search...">
-                <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
-              </div>
-      		</div>
           <div class="col-sm-2 mb-sm-20 " style="float: right;">
-            <select class="form-control">
-              <option selected="selected">전체</option>
-              <option>제목</option>
-              <option>내용</option>
+            <select onchange="fn_orderRv(this);" class="form-control">
+              <option selected value="review_date">최근 작성순</option>
+              <option value="scoreHigh">별점 높은 순</option>
+              <option value="scoreRow">별점 낮은 순</option>
             </select>
           </div>
         </form>
+        
+        <script>
+        	const fn_orderRv=(obj)=>{
+        		
+        		$.ajax({
+        			url:"${path }/mypage/orderReview.do",
+        			data:{keyword:$(obj).val(),member_No:$("#member_No").val()},
+        			success:data=>{
+        				console.log(data);
+        				
+						$(".reviewCon #rvScore").empty();//별점 초기화
+//         				$(".rvPhoto").attr('href','###');//a태그 주소 바꾸기!!!?!수정 필요!!!!!!!!!??????
+						//혹은 div post-thumbnail 아래 자식 태그 지웠다가 a 태그 생성해서 append하기
+        				$(".rvPhoto").empty();//기존 사진 지우기
+						
+        				for(i=0;i<data.length;i++){
+        					
+        					$(".reviewCon #rvTitle")[i].innerText=data[i].M_TITLE;//제목
+        					$(".reviewCon #rvContent")[i].innerText=data[i].REVIEW_CONTENT;//내용
+        					var img=$("<img src='${path }/resources/images/performance/"+data[i].I_NAME+
+        							"' alt='Blog-post Thumbnail' class='reviewImg'></img>")[0];//사진 생성
+        							
+							$(".rvPhoto")[i].append(img);//사진 넣기	
+        							
+        					var score=parseInt(data[i].SCORE);//scrore를 int로 바꾸기
+							
+       						
+	       					for(j=0;j<score;j++){//색칠 된 별
+	       						
+		        				var iTagP=$("<i>").attr('class','fa fa-star')[0];
+	       						$(".reviewCon #rvScore")[i].append(iTagP);  
+	       						
+	       					}
+	       					for(j=0;j<5-score;j++){//색칠 안된 별
+	       						
+		        				var iTagM=$("<i>").attr('class','fa fa-star-o')[0];
+	       						$(".reviewCon #rvScore")[i].append(iTagM);  
+	       						
+	       					}
+        					
+        				}
+        			}
+        			
+        		});
+        	}
+        </script>
+        
+	    <!-- 한줄평 -->
+	    <c:if test="${not empty myRv }">
+	   		<c:forEach var="rv" items="${myRv }">
+	   		
+			    <div class="col-sm-6 col-md-3 col-lg-3 reviewCon" >
+			        <div class="post">
+			          <div class="post-thumbnail">
+			          	<a href="#" class="rvPhoto">
+			          		<img src="${path }/resources/images/performance/matilda.gif" 
+			          			alt="Blog-post Thumbnail" class="reviewImg"/>
+			          	</a>
+			          </div>
+			          <div class="post-header font-alt">
+			            <h2 class="post-title" id="rvTitle">
+			            	<c:out value="${rv.get('M_TITLE') }"/>
+			            </h2>
+			            <div class="post-meta">My Review</div>
+			          </div>
+			          <div class="post-entry">
+			            <p id="rvContent"><c:out value="${rv.get('REVIEW_CONTENT') }"/></p>
+			          </div>
+		<!-- 	          <div class="post-more"><a class="more-link" href="#">Read more</a></div> -->
+			          <div class="post-more" id="rvScore">
+			          	<c:forEach var="i" begin="0" end="${rv.get('SCORE')-1 }" step="1">
+							<i class="fa fa-star"  ></i>
+						</c:forEach>
+			          	<c:forEach var="i" begin="0" end="${4-rv.get('SCORE') }" step="1">
+							<i class="fa fa-star-o" ></i>
+						</c:forEach>
+			          </div>
+			        </div>
+			      </div>
+	    	</c:forEach>
+	    </c:if>
 	    
-	    <div class="col-sm-6 col-md-3 col-lg-3 reviewCon" >
-	        <div class="post">
-	          <div class="post-thumbnail">
-	          	<a href="#">
-	          		<img src="${path }/resources/images/performance/matilda.gif" alt="Blog-post Thumbnail" class="reviewImg"/>
-	          	</a>
-	          </div>
-	          <div class="post-header font-alt">
-	            <h2 class="post-title"><a href="#">프랑켄슈타인</a></h2>
-	            <div class="post-meta">My Review</div>
-	          </div>
-	          <div class="post-entry">
-	            <p>너무 재미있게 잘 봤어요~ 추천드려요! 다음에도 꼭 보러갈게요 프랑켄슈타인 최고 재밌어요...</p>
-	          </div>
-	          <div class="post-more"><a class="more-link" href="#">Read more</a></div>
-	        </div>
-	      </div>
-	      
+	    
+	    
 	      <div class="col-sm-6 col-md-3 col-lg-3 reviewCon">
 	        <div class="post">
 	          <div class="post-thumbnail">
 	          	<a href="#">
-	          		<img src="${path }/resources/nari1/images/엘리자벳.jfif" alt="Blog-post Thumbnail" class="reviewImg"/>
+	          		<img src="${path }/resources/images/performance/42bunga.png" alt="Blog-post Thumbnail" class="reviewImg"/>
 	          	</a>
 	          </div>
 	          <div class="post-header font-alt">
@@ -70,14 +130,20 @@
 	          <div class="post-entry">
 	            <p>너무 재미있게 잘 봤어요~</p>
 	          </div>
-	          <div class="post-more"><a class="more-link" href="#">Read more</a></div>
+	          <div class="post-more">
+	          	<i class="fa fa-star" ></i>
+	          	<i class="fa fa-star" ></i>
+	          	<i class="fa fa-star-o" ></i>
+	          	<i class="fa fa-star-o" ></i>
+	          	<i class="fa fa-star-o"></i>
+	          </div>
 	        </div>
 	      </div>
 	      <div class="col-sm-6 col-md-3 col-lg-3 reviewCon">
 	        <div class="post">
 	          <div class="post-thumbnail">
 	          	<a href="#">
-	          		<img src="${path }/resources/nari1/images/캣츠.jfif" alt="Blog-post Thumbnail" class="reviewImg"/>
+	          		<img src="${path }/resources/images/performance/sweet.gif" alt="Blog-post Thumbnail" class="reviewImg"/>
 	          	</a>
 	        </div>
 	        <div class="post-header font-alt">
@@ -94,7 +160,7 @@
 	        <div class="post">
 	          <div class="post-thumbnail">
 	          	<a href="#">
-	          		<img src="${path }/resources/nari1/images/프랑켄슈타인.jfif" alt="Blog-post Thumbnail" class="reviewImg"/>
+	          		<img src="${path }/resources/images/performance/wild.png" alt="Blog-post Thumbnail" class="reviewImg"/>
 	          	</a>
 	          </div>
 	          <div class="post-header font-alt">
@@ -107,6 +173,16 @@
 	          <div class="post-more"><a class="more-link" href="#">Read more</a></div>
 	        </div>
 	      </div>
+	      <c:if test="${empty myRv }">
+	      	<div class="" style="text-align:center; margin-top:50px;">
+				<h3>작성한 리뷰가 없습니다.</h3> 
+			</div>
+	      </c:if>
+	      
+	      <!-- 페이지바 -->
+	      <center>
+	      	${pageBarRv }
+	      </center>
 	  </div>
 	  
 	  
@@ -128,7 +204,7 @@
               <div class="search-box">
                 <input class="form-control" id="keyword" name="keyword" type="text" placeholder="Search..." required>
                 <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
-                <input type="hidden" name="member_No" id="member_No" value="1">
+                <input type="hidden" name="member_No" id="member_No" value="1"> <!-- value수정 필요`!!!!!!!!!!!!!!!! -->
               </div>
       		</div>
           <div class="col-sm-2 mb-sm-20 " style="float: right;">

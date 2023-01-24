@@ -57,7 +57,7 @@
 		<div style="margin-left:10%;">
         <div style="margin-left:10%;padding:1%;"><img src="${path }/resources/images/reservation/포인트.png" width="500px"></div>
         <div id="point">
-            <div>총 포인트&nbsp;&nbsp;&nbsp;<input type="text" value="5000" readonly></div>
+            <div>총 포인트&nbsp;&nbsp;&nbsp;<input type="text" value="${point.mpPoint==null?0:point.mpPoint }" readonly></div>
             <div style="margin-left:5%;">사용할 포인트&nbsp;&nbsp;&nbsp;<input type="number" style="width:186px;" min="0" max="5000" class="point" >&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-secondary" onclick="apply();"style="background-color:lightgray;color:black;margin-top:-1%;font-size:15px;">적용</button></div>
         </div>
         <div><br><img src="${path }/resources/images/reservation/결제.png"  width="200px" style="margin-left:12.2%;padding:1%;"><br>
@@ -78,7 +78,8 @@
 	
 	const apply = () =>{	
 		const discount=(Number)($(".point").val());
-		if(discount>1000000){
+		//if(discount>${point.mpPoint }){
+		if(discount>1000000 ){
 			alert("포인트가 부족합니다.");
 			return;
 		}
@@ -100,13 +101,15 @@
 				name : "티켓예매",
 				pay_method : "card",
 				amount : ${money}-discount,
+				buyer_name:"${loginMember.name}",
+				buyer_email:"${loginMember.email}"
 			}, function(rsp){
 				
 				const discount=(Number)($(".point").val());
 				const amount = ${money}-discount;
 	
 				if(rsp.success){
-					alert("결제가 완료되었습니다.");
+					
 					let info = new Array();
 					
 					info.push(${loginMember.member_No});
@@ -115,6 +118,7 @@
 					info.push("${info[2]}");
 					info.push(amount);
 					info.push(rsp.imp_uid);
+					info.push((Number)($(".point").val()));
 					info.push("${fn:join(seatArr,",")}");
 					
 					location.assign("${path}/booking/payend.do?info="+info);

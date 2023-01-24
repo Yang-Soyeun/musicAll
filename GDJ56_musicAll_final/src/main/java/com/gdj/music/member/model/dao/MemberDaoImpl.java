@@ -1,9 +1,12 @@
 package com.gdj.music.member.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.gdj.music.member.model.vo.Member;
+import com.gdj.music.member.model.vo.Terms;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -37,6 +40,32 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return session.update("member.newPw",m);
 	}
+
+	@Override
+	public Member idDupicate(String member_id, SqlSessionTemplate session) {
+		return session.selectOne("member.idDuplicate",member_id);
+	}
+
+	@Override
+	public List<Terms> joinTermsY(SqlSessionTemplate session) {
+		return session.selectList("member.joinTermsY");
+	}
+
+	@Override
+	public List<Terms> joinTermsN(SqlSessionTemplate session) {
+		return session.selectList("member.joinTermsN");
+	}
+
+	@Override
+	public Terms joinTerms1(int term_code, SqlSessionTemplate session) {
+		return session.selectOne("member.joinTerm1",term_code);
+	}
+
+	
+	
+	
+	
+	
 	
 	
 	

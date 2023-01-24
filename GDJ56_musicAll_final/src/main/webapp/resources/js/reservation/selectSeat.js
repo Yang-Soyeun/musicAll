@@ -1,4 +1,4 @@
-let test = [];
+
 let selectedSeatsArray = new Array();
 const seatWrapper = document.querySelector('.seat-wrapper');
 let clicked = '';
@@ -7,37 +7,18 @@ let div = '';
 const selectedSeats = document.querySelector('.selected-seats');
 const selectedSeats2 = document.querySelector('.selected-seats2');
 const allSeat = document.querySelector('.all-seats');
-//const remainSeat = document.querySelector('.remain-seats');
 const reserveNumber = document.querySelector('.reserve-number');
 const selectSeatListNormal = document.querySelectorAll(
     '.select-seat-ul-normal li'
 );
-const selectSeatListTeen = document.querySelectorAll('.select-seat-ul-teen li');
-const selectSeatListOld = document.querySelectorAll('.select-seat-ul-old li');
 let selectSeatListUlActive = '';
 const allMoney = document.querySelector('.allMoney');
 let money=0;
-const selectNumberNormal = document.querySelectorAll('.select-number-normal');
-const selectNumberTeen = document.querySelectorAll('.select-number-teen');
-const selectNumberOld = document.querySelectorAll('.select-number-old');
 
-//예약 관련
-const selectedMovie = document.querySelector('.selected-movie');
-const selectedTheaterPlaceInfo = document.querySelectorAll(
-    '.selected-theater-place-info'
-);
-const theaterTime = document.querySelector('.theater-time');
-const theaterDate = document.querySelector('.theater-date');
-const ticketPrice = document.querySelector('.ticket-price');
+
 const payMoney = document.querySelector('.payMoney');
-
 const seatForm = document.querySelector('.seatForm');
 const reserveButton = document.querySelector('.reserve-button');
-const title = document.querySelector('.title');
-const selectedTheater = document.querySelector('.selectedTheater');
-const reserveDate = document.querySelector('.reserveDate');
-const runningTime = document.querySelector('.runningTime');
-const ticketNumber = document.querySelector('.ticketNumber');
 const selectedSeat = document.querySelector('.selectedSeat');
 
 toastr.options = {
@@ -68,12 +49,19 @@ for (let i = 0; i < 10; i++) {
         inputClickEvent(input);
     }
 
-  
-   
+}
+
+const seatLevel = document.querySelectorAll('.seatButtonWrapper');
+for(let i=0;i<4;i++){
+	$(seatLevel[i]).children().css("backgroundColor",'#CCA63D');
+}
+for(let i=4;i<6;i++){
+	$(seatLevel[i]).children().css("backgroundColor",'#DB3A00');
+}
+for(let i=6;i<seatLevel.length;i++){
+	$(seatLevel[i]).children().css("backgroundColor",'green');
 }
 let seat = document.querySelectorAll('.seat');
-  //remainSeat.innerHTML = seat.length;
-  //allSeat.innerHTML = seat.length;
 seat.forEach(data => {
 	//console.log(data.value);
     //console.log(data.value.substring(1, data.value.length));
@@ -91,10 +79,21 @@ seat.forEach(data => {
     ) {
         data.classList.add('top-margin');
     }
+    
+    if(data.value==='D8'){
+    	data.classList.add("selected");
+    	data.classList.remove("seat");
+    	$(".selected").css("backgroundColor","#B4B4B4");
+    	$(".selected").css("color","#B4B4B4");
+    	}
 });
 
 
+
+
+
 function inputClickEvent(input) {
+if(input.value!='D8'){
     input.addEventListener('click', function(e) {
         //console.log(e.target.value);
         const seatName = e.target.value;
@@ -189,7 +188,7 @@ function inputClickEvent(input) {
       	//console.log(money);
         allMoney.innerHTML=money.toLocaleString('ko-KR')+'원';
       
-    });
+    });}
 }
 
 function mapping(input,input2, i, j) {
@@ -215,7 +214,7 @@ function mapping(input,input2, i, j) {
         input2.classList = 'E'+j;
     } else if (i === 5) {
         input.value = 'F' + j;
-        input2.value= 79000
+        input2.value= 89000
         input2.classList = 'F'+j;
     } else if (i === 6) {
         input.value = 'G' + j;
@@ -238,15 +237,4 @@ function mapping(input,input2, i, j) {
         input2.value= 79000
         input2.classList = 'K'+j;      
     }
-}
-
-const seatLevel = document.querySelectorAll('.seatButtonWrapper');
-for(let i=0;i<4;i++){
-	$(seatLevel[i]).children().css("backgroundColor",'#CCA63D');
-}
-for(let i=4;i<6;i++){
-	$(seatLevel[i]).children().css("backgroundColor",'#DB3A00');
-}
-for(let i=6;i<seatLevel.length;i++){
-	$(seatLevel[i]).children().css("backgroundColor",'green');
 }

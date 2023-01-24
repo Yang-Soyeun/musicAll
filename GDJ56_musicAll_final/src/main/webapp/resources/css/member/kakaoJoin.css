@@ -1,0 +1,1117 @@
+@charset "UTF-8";
+
+#openIdJoinWrap {
+  width: 600px;
+  margin: 0 auto;
+  padding: 50px 0 60px;
+}
+
+#openIdJoinWrap * {
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "맑은 고딕", "Malgun Gothic", "돋움", Dotum, Helvetica, "Apple SD Gothic Neo", sans-serif;
+}
+
+.interparkLogo {
+  display: block;
+  width: 100%;
+  height: 30px;
+  margin-bottom: 40px;
+  background: url("//openimage.interpark.com/.ui/openId/pc/join/interpark_logo.png") no-repeat center 0;
+}
+
+.interparkLogo a {
+  display: block;
+  text-indent: -500em;
+}
+
+.dimLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#50000000,endColorstr=#50000000);
+  text-align: center;
+}
+
+.dimLayer .layerPop {
+  position: relative;
+  display: inline-block;
+  width: 320px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  background-color: #fff;
+  text-align: center;
+}
+
+.dimLayer .layerPop .closeBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 16px;
+  height: 16px;
+  padding: 10px;
+  background: url("//openimage.interpark.com/.ui/openId/pc/join/btn_layer_close.png") no-repeat 10px 10px;
+  text-indent: -500em;
+}
+
+.dimLayer .layerPop .contents {
+  padding: 20px;
+}
+
+.dimLayer .layerPop .contents .titleTxt {
+  margin: 15px 0 10px;
+  font-size: 17px;
+  color: #202020;
+}
+
+.dimLayer .layerPop .contents .subTxt {
+  padding: 15px 0;
+  font-size: 13px;
+  color: #666;
+}
+
+.dimLayer .layerPop .contents .subTxt span {
+  display: block;
+  line-height: 18px;
+}
+
+.dimLayer .layerPop .contents .infoList {
+  min-height: 126px;
+  max-height: 168px;
+  padding-top: 10px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.dimLayer .layerPop .contents .infoList .red {
+  display: inline-block;
+  margin-bottom: 5px;
+  font-size: 12px;
+  color: #ef3e42;
+}
+
+.dimLayer .layerPop .contents .infoList li {
+  position: relative;
+  display: block;
+  min-height: 20px;
+  padding-right: 100px;
+  word-wrap: break-word;
+  font-size: 13px;
+  color: #000;
+}
+
+.dimLayer .layerPop .contents .infoList li span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-block;
+  font-size: 12px;
+  color: #666;
+}
+
+.dimLayer .layerPop .contents .infoList li.verify {
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ddd;
+  font-weight: bold;
+}
+
+.dimLayer .layerPop .contents .infoList li.verify span {
+  font-weight: normal;
+}
+
+.dimLayer .layerPop .contents .notiTxt {
+  margin: 15px 0;
+  font-size: 12px;
+  color: #ccc;
+}
+
+.dimLayer .layerPop .lyBtnArea {
+  box-sizing: border-box;
+  font-size: 0;
+}
+
+.dimLayer .layerPop .lyBtnArea span {
+  display: inline-block;
+  width: 50%;
+}
+
+.dimLayer .layerPop .lyBtnArea button {
+  width: 100%;
+  height: 45px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: none;
+  outline: 0;
+  cursor: pointer;
+}
+
+.dimLayer .layerPop .lyBtnArea .btnRed {
+  border-top: 1px solid #ef3e42;
+  background-color: #ef3e42;
+  font-size: 16px;
+  color: #fff;
+}
+
+.dimLayer .layerPop .lyBtnArea .btnWhite {
+  border-top: 1px solid #ef3e42;
+  background-color: #fff;
+  font-size: 16px;
+  color: #ef3e42;
+}
+
+.dimLayer .blank {
+  display: inline-block;
+  width: 0;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.contentsWrap {
+  /* common */
+}
+
+.contentsWrap * {
+  font-size: 14px;
+}
+
+.contentsWrap .interSignup {
+  padding: 50px;
+  border: 1px solid #ef3e42;
+  background-color: #fff;
+  font-size: 0;
+}
+
+.contentsWrap .interSignup .leftBox {
+  display: inline-block;
+  width: 160px;
+  padding-top: 100px;
+  background: url("//openimage.interpark.com/.ui/openId/pc/join/join_img.png") no-repeat 0 top;
+  vertical-align: middle;
+}
+
+.contentsWrap .interSignup .leftBox p {
+  font-size: 22px;
+  font-weight: bold;
+  color: #202020;
+}
+
+.contentsWrap .interSignup .joinBtnBox {
+  display: inline-block;
+  width: 300px;
+  margin-left: 38px;
+  vertical-align: middle;
+}
+
+.contentsWrap .interSignup .joinBtnBox .inparkBtn {
+  margin-bottom: 25px;
+}
+
+.contentsWrap .interSignup .joinBtnBox .snsTxt {
+  font-size: 15px;
+  color: #666;
+}
+
+.contentsWrap .interSignup .joinBtnBox .notiTxt {
+  display: block;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.contentsWrap .interSignup .joinBtnBox .snsBtn ul {
+  margin-top: 10px;
+}
+
+.contentsWrap .interSignup .joinBtnBox .snsBtn li {
+  margin-bottom: 10px;
+}
+
+.contentsWrap .interSignup .joinBtnBox .snsBtn li a {
+  display: block;
+  height: 50px;
+  line-height: 48px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background: url("//openimage.interpark.com/.ui/openId/pc/join/sns_icon.png") no-repeat 0 0;
+}
+
+.contentsWrap .interSignup .joinBtnBox .snsBtn li a span {
+  display: block;
+  margin-left: 50px;
+  text-align: center;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  background-color: #fff;
+  font-size: 16px;
+  color: #202020;
+}
+
+.contentsWrap .interSignup .joinBtnBox .snsBtn li a.naver {
+  background-position: 11px 13px;
+  background-color: #2db400;
+}
+
+.contentsWrap .interSignup .joinBtnBox .snsBtn li a.kakao {
+  background-position: 12px -57px;
+  background-color: #ffeb00;
+}
+
+.contentsWrap .interSignup .joinBtnBox .snsBtn li a.payco {
+  background-position: 13px -132px;
+}
+
+.contentsWrap .interSignup .joinBtnBox .snsBtn li a.payco span {
+  border-left: 1px solid #e5e5e5;
+}
+
+.contentsWrap .interSignup .joinBtnBox .caution {
+  padding-left: 20px;
+  background: url("//openimage.interpark.com/.ui/openId/pc/join/icon_noti.png") no-repeat 0 2px;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.contentsWrap .interSignup .joinBtnBox .sellerBtn a {
+  display: block;
+  height: 50px;
+  line-height: 48px;
+  border: 1px solid #aaa;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 16px;
+  color: #202020;
+}
+
+.contentsWrap .interSignup.seller {
+  margin-top: 30px;
+  border: 0;
+}
+
+.contentsWrap .interSignup.seller .leftBox {
+  background: none;
+  padding-top: 0;
+  text-align: center;
+}
+
+.contentsWrap .interSignup.seller .btnBox:first-child {
+  margin-bottom: 25px;
+}
+
+.contentsWrap .interSignup.seller .btnBox .sellerBtn {
+  margin-top: 10px;
+}
+
+.contentsWrap .customerNoti {
+  display: block;
+  height: 144px;
+  margin-top: 50px;
+  text-indent: -500em;
+  background: url("//openimage.interpark.com/.ui/openId/pc/join/join_noti_img.png") no-repeat 0 0;
+}
+
+.contentsWrap .customerNoti span {
+  display: inline-block;
+}
+
+.contentsWrap .snsjoin {
+  padding: 20px;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #fff;
+}
+
+.contentsWrap .snsjoin .joinTab ul {
+  font-size: 0;
+}
+
+.contentsWrap .snsjoin .joinTab li {
+  display: inline-block;
+  width: 50%;
+  height: 45px;
+  border-top: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ef3e42;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  font-size: 0;
+}
+
+.contentsWrap .snsjoin .joinTab li:first-child {
+  border-right: 0;
+  border-left: 1px solid #ddd;
+}
+
+.contentsWrap .snsjoin .joinTab li a {
+  display: block;
+  line-height: 45px;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.contentsWrap .snsjoin .joinTab li.current {
+  background-color: #fff;
+  border: 1px solid #ef3e42;
+  border-bottom: 0;
+}
+
+.contentsWrap .snsjoin .joinTab li.current a {
+  color: #ef3e42;
+  font-weight: bold;
+}
+
+.contentsWrap .snsjoin .joinInfo {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.contentsWrap .snsjoin .joinInfo p {
+  display: inline-block;
+  height: 25px;
+  line-height: 25px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.contentsWrap .snsjoin .joinInfo p.red {
+  color: #ef3e42;
+}
+
+.contentsWrap .snsjoin .joinInfo p.naver {
+  padding-left: 90px;
+  background: url("//openimage.interpark.com/.ui/openId/pc/join/sns_logo.png") no-repeat 0 5px;
+}
+
+.contentsWrap .snsjoin .joinInfo p.payco {
+  padding-left: 90px;
+  background: url("//openimage.interpark.com/.ui/openId/pc/join/sns_logo.png") no-repeat 0 -61px;
+}
+
+.contentsWrap .snsjoin .joinInfo p.kakao {
+  padding-left: 90px;
+  background: url("//openimage.interpark.com/.ui/openId/pc/join/sns_logo.png") no-repeat 0 -129px;
+}
+
+.contentsWrap .snsjoin .joinInfo .mTxt {
+  display: block;
+  margin-top: 15px;
+  font-size: 16px;
+  color: #666;
+}
+
+.contentsWrap .snsjoin .joinInfo .sTxt {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #666;
+}
+
+.contentsWrap .snsjoin .haveMyid {
+  height: 50px;
+  margin: 25px 0;
+  padding: 0 10px;
+  line-height: 48px;
+  background-color: #f9f9f9;
+  font-size: 15px;
+}
+
+.contentsWrap .snsjoin .haveMyid .title {
+  float: left;
+  display: inline-block;
+  width: 85px;
+  color: #666;
+}
+
+.contentsWrap .snsjoin .haveMyid .myId {
+  position: relative;
+  padding-left: 85px;
+  color: #202020;
+}
+
+.contentsWrap .snsjoin .haveMyid .addView {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 13px;
+  color: #666;
+}
+
+.contentsWrap .snsjoin .loginInput li {
+  margin-bottom: 10px;
+}
+
+.contentsWrap .snsjoin .loginInput .joinBtnArea {
+  padding-top: 5px;
+}
+
+.contentsWrap .snsjoin .loginInput .idSearchArea {
+  margin-top: 25px;
+  text-align: center;
+  font-size: 0;
+}
+
+.contentsWrap .snsjoin .loginInput .idSearchArea span {
+  display: inline-block;
+  height: 13px;
+  padding: 0 20px;
+  line-height: 13px;
+}
+
+.contentsWrap .snsjoin .loginInput .idSearchArea span a {
+  font-size: 13px;
+  color: #666;
+}
+
+.contentsWrap .snsjoin .loginInput .idSearchArea span:first-child {
+  border-right: 1px solid #ddd;
+}
+
+.contentsWrap .snsjoin .snsJoinInput {
+  margin-top: 20px;
+}
+
+.contentsWrap .snsjoin .snsJoinInput dl{
+  margin-bottom: 5px;
+}
+
+.contentsWrap .snsjoin .snsJoinInput dt {
+  float: left;
+  display: none;
+  width: 90px;
+  min-height: 45px;
+  line-height: 45px;
+  font-size: 15px;
+  color: #666;
+}
+
+.contentsWrap .snsjoin .snsJoinInput dd {
+  min-height: 45px;
+  line-height: 45px;
+}
+
+.contentsWrap .snsjoin .snsJoinInput .req {
+  position: absolute;
+  top: 14px;
+  left: 10px;
+  line-height: 1;
+  text-indent: -500em;
+}
+
+.contentsWrap .snsjoin .snsJoinInput .req:before {
+  content: "*";
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #ef3e43;
+  font-size: 16px;
+  text-indent: 0;
+}
+
+.contentsWrap .snsjoin .snsJoinInput .iInput {
+  padding-left: 20px;
+}
+
+.contentsWrap .snsjoin .termsWrap {
+  margin-top: 13px;
+}
+
+.contentsWrap .snsjoin .termsWrap .termsBox {
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+.contentsWrap .snsjoin .termsWrap .termsBox h5 {
+  display: inline-block;
+  max-width: 70%;
+  margin-bottom: 5px;
+  padding-left: 5px;
+  font-size: 12px;
+  font-weight: normal;
+  color: #666;
+}
+
+.contentsWrap .snsjoin .termsWrap .termsBox h5 span,
+.contentsWrap .snsjoin .termsWrap .termsBox h5 i {
+  margin-left: 1px;
+  font-size: 12px;
+  font-weight: normal;
+  color: #666;
+}
+
+.contentsWrap .snsjoin .termsWrap .termsBox h5 span i,
+.contentsWrap .snsjoin .termsWrap .termsBox h5 i i {
+  margin-left: 0;
+}
+
+.contentsWrap .snsjoin .termsWrap .termsBox h5 span.point,
+.contentsWrap .snsjoin .termsWrap .termsBox h5 i.point {
+  margin-left: 1px;
+  font-size: 12px;
+  color: #ef3e43;
+}
+
+.contentsWrap .snsjoin .termsWrap .termsBox .checkStyle {
+  padding-right: 5px;
+  float: right;
+  line-height: 18px;
+  min-width: 49px;
+}
+
+.contentsWrap .snsjoin .termsWrap .termsBox .checkStyle label {
+  padding: 0 26px 0 0;
+  background-position: right 0;
+  font-size: 12px;
+}
+
+.contentsWrap .snsjoin .termsWrap .termsBox .checkStyle input[type="checkbox"] {
+  top: 0;
+  right: 0;
+  margin-left: 0;
+}
+
+.contentsWrap .snsjoin .termsWrap .termsBox .iframeBox {
+  display: block;
+  width: 100%;
+  height: 70px;
+  padding-left: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.contentsWrap .snsjoin .termsWrap .termsBox .iframeBox iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.contentsWrap .snsjoin .agreeCheck {
+  padding: 26px 5px 0;
+}
+
+.contentsWrap .snsjoin .marketingAgree {
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.contentsWrap .snsjoin .marketingAgree .allCheck {
+  padding: 0 5px;
+  font-size: 0;
+}
+
+.contentsWrap .snsjoin .marketingAgree .allCheck .yText {
+  margin-left: 8px;
+  vertical-align: -6px;
+  font-size: 12px;
+  color: #dc941b;
+}
+
+.contentsWrap .snsjoin .marketingAgree .checkViewWrap {
+  display: none;
+  margin-top: 22px;
+}
+
+.contentsWrap .snsjoin .marketingAgree .checkViewWrap .fieldBox {
+  padding: 0 5px;
+}
+
+.contentsWrap .snsjoin .marketingAgree .checkViewWrap .fieldBox .mkText {
+  display: inline-block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #999;
+}
+
+.contentsWrap .snsjoin .marketingAgree .checkViewWrap .fieldBox .fieldCheck {
+  font-size: 0;
+}
+
+.contentsWrap .snsjoin .marketingAgree .checkViewWrap .fieldBox .fieldCheck .checkStyle {
+  width: 25%;
+}
+
+.contentsWrap .snsjoin .marketingAgree .checkViewWrap .iframeBox {
+  display: block;
+  width: 100%;
+  height: 120px;
+  margin: 15px 0;
+  padding-left: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.contentsWrap .snsjoin .marketingAgree .checkViewWrap .iframeBox iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.contentsWrap .snsjoin .marketingAgree .checkViewWrap .consign .checkStyle {
+  line-height: 18px;
+}
+
+.contentsWrap .snsjoin .marketingAgree .checkViewWrap .noticeBox {
+  margin-top: 20px;
+}
+
+.contentsWrap .snsjoin .marketingAgree .checkViewWrap .noticeBox li {
+  position: relative;
+  display: block;
+  margin-bottom: 5px;
+  padding-left: 5px;
+  line-height: 16px;
+  font-size: 12px;
+  color: #999;
+}
+
+.contentsWrap .snsjoin .marketingAgree .checkViewWrap .noticeBox li:before {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 0;
+  display: inline-block;
+  width: 2px;
+  height: 2px;
+  background-color: #d8d8d8;
+}
+
+.contentsWrap .snsjoin .marketingAgree .checkViewWrap .noticeBox li .btnView {
+  display: none;
+}
+
+.contentsWrap .snsjoin .marketingAgree .checkViewWrap .noticeBox li strong {
+  font-size: 12px;
+  color: #999;
+  line-height: 16px;
+  font-weight: normal;
+}
+
+.contentsWrap .joinInduce {
+  height: 60px;
+  margin-top: 6px;
+  line-height: 60px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.contentsWrap .joinInduce p {
+  font-size: 13px;
+  color: #666;
+}
+
+.contentsWrap .joinInduce p strong {
+  color: #202020;
+}
+
+.contentsWrap .joinInduce p a {
+  display: inline-block;
+  text-decoration: underline;
+  color: #ef3e42;
+}
+
+.contentsWrap .joinOk {
+  padding: 50px;
+  background-color: #fff;
+}
+
+.contentsWrap .joinOk .joinOkTxt {
+  margin-bottom: 25px;
+  text-align: center;
+  font-size: 20px;
+  color: #202020;
+}
+
+.contentsWrap .joinOk .joinOkTxt span {
+  font-size: 20px;
+  color: #ef3e42;
+}
+
+.contentsWrap .joinOk .signupMyInfo {
+  padding: 20px;
+  margin-bottom: 25px;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.contentsWrap .joinOk .signupMyInfo dl {
+  margin-top: 10px;
+}
+
+.contentsWrap .joinOk .signupMyInfo dl:first-child {
+  margin-top: 0;
+}
+
+.contentsWrap .joinOk .signupMyInfo dt {
+  float: left;
+  display: inline-block;
+  width: 60px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 15px;
+  color: #666;
+}
+
+.contentsWrap .joinOk .signupMyInfo dd {
+  margin-left: 85px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 15px;
+  color: #202020;
+}
+
+.contentsWrap .joinOk .signupMyInfo dd .btn {
+  float: left;
+  display: inline-block;
+  width: 102px;
+}
+
+.contentsWrap .joinOk .signupMyInfo dd .btn a {
+  width: 102px;
+  font-size: 14px;
+}
+
+.contentsWrap .joinOk .signupMyInfo dd .info {
+  display: block;
+  margin-left: 122px;
+  line-height: 16px;
+  font-size: 13px;
+  color: #bbb;
+}
+
+.contentsWrap .joinBtnArea {
+  display: block;
+  text-align: center;
+}
+
+.contentsWrap .joinBtnArea button {
+  display: inline-block;
+  width: 246px;
+}
+
+.contentsWrap .bannerWrap {
+  margin-top: 50px;
+  font-size: 0;
+}
+
+.contentsWrap .bannerWrap li {
+  font-size: 0;
+}
+
+.contentsWrap .bannerWrap li:first-child {
+  margin-bottom: 10px;
+}
+
+.contentsWrap .bannerWrap li a {
+  display: inline-block;
+  width: 245px;
+  height: 100px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.contentsWrap .bannerWrap li a:first-child {
+  margin-right: 10px;
+}
+
+.contentsWrap button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+}
+
+.contentsWrap .btnRed {
+  display: block;
+  background-color: #ef3e42;
+  width: 100%;
+  height: 50px;
+  line-height: 48px;
+  border-radius: 10px;
+  border: 1px solid #ef3e42;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 16px;
+  color: #fff;
+}
+
+.contentsWrap .btnWhite {
+  display: block;
+  background-color: #fff;
+  width: 100%;
+  height: 35px;
+  line-height: 32px;
+  border-radius: 4px;
+  border: 1px solid #ef3e42;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 16px;
+  color: #ef3e42;
+}
+
+.contentsWrap .styleInput {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  line-height: 0;
+  vertical-align: middle;
+}
+
+.contentsWrap .styleInput .iInput {
+  width: 100%;
+  height: 40px;
+  padding-left: 8px;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  box-sizing: border-box;
+  vertical-align: top;
+  font-size: 15px;
+  color: #202020;
+}
+
+.contentsWrap .styleInput .iInput::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.contentsWrap .styleInput .iInput::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.contentsWrap .styleInput .delBtn {
+  position: absolute;
+  top: 9px;
+  right: 11px;
+  z-index: 2;
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
+  background: url("//openimage.interpark.com/.ui/openId/pc/join/btn_input_del.png") no-repeat center center #fff;
+  outline: 0;
+  cursor: pointer;
+}
+
+.contentsWrap .styleInput .error,
+.contentsWrap .styleInput .count {
+  padding: 10px;
+  line-height: 14px;
+  font-size: 13px;
+  color: #ef3e42;
+}
+
+.contentsWrap .styleInput.cols {
+  width: 100%;
+}
+
+.contentsWrap ::-webkit-input-placeholder {
+  font-weight: normal;
+  color: #aaa;
+}
+
+.contentsWrap ::-moz-placeholder {
+  font-weight: normal;
+  color: #aaa;
+}
+
+.contentsWrap :-ms-input-placeholder {
+  font-weight: normal;
+  color: #aaa;
+}
+
+.contentsWrap :-moz-placeholder {
+  font-weight: normal;
+  color: #aaa;
+}
+
+.contentsWrap .checkStyle {
+  position: relative;
+  display: inline-block;
+  line-height: 20px;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.contentsWrap .checkStyle input[type="checkbox"] {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  margin-top: 0;
+  margin-left: -3px;
+}
+
+.contentsWrap .checkStyle input[type="checkbox"]:checked + label {
+  background: url("//openimage.interpark.com/.ui/openId/pc/join/btn_check_on_new.png") no-repeat 0 0;
+}
+
+.contentsWrap .checkStyle input[type="checkbox"]:checked:disabled + label {
+  background: url("//openimage.interpark.com/.ui/openId/pc/join/btn_check_on_disable_new.png") no-repeat 0 0;
+}
+
+.contentsWrap .checkStyle input[type="checkbox"]:disabled + label {
+  background: url("//openimage.interpark.com/.ui/openId/pc/join/btn_check_disable_new.png") no-repeat 0 0;
+}
+
+.contentsWrap .checkStyle label {
+  display: inline-block;
+  min-height: 20px;
+  vertical-align: middle;
+  padding-left: 26px;
+  background: url("//openimage.interpark.com/.ui/openId/pc/join/btn_check_off_new.png") no-repeat 0 0;
+  -webkit-appearance: none;
+  appearance: none;
+  font-size: 14px;
+  color: #000;
+}
+
+.contentsWrap input[type="text"]:focus {
+  border: 1px #666 solid;
+}
+
+.contentsWrap input[type="password"]:focus {
+  border: 1px #666 solid;
+}
+
+.contentsWrap input[type="text"]::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.contentsWrap input[type="password"]::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.contentsWrap input[type="text"]::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.contentsWrap input[type="password"]::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.contentsWrap input:-webkit-autofill {
+  -webkit-box-shadow: inset 0 0 0 9999px #fff;
+}
+
+.contentsWrap input:-webkit-autofill:focus {
+  -webkit-box-shadow: inset 0 0 0 9999px #fff;
+}
+
+.memberInfo dt {
+  float: left;
+  display: none;
+  width: 90px;
+  min-height: 45px;
+  line-height: 45px;
+  font-size: 15px;
+  color: #666;
+}
+
+.memberInfo dd {
+  margin-top: 5px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  min-height: 45px;
+  line-height: 45px;
+}
+
+.memberInfo dd .buttonBox {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  margin-left: 10px;
+  min-width: 128px;
+  height: 40px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.memberInfo dd .buttonBox button {
+  float: left;
+  width: 100%;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 2px 0 0 2px;
+}
+
+.memberInfo dd .buttonBox button span {
+  color: #000;
+  font-size: 12px;
+  line-height: 38px;
+}
+
+.memberInfo dd .buttonBox button.on {
+  border-color: #ef3e43;
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.memberInfo dd .buttonBox button.on span {
+  color: #ef3e43;
+  font-weight: bold;
+}
+
+.memberInfo dd .buttonBox button:first-child {
+  border-radius: 2px;
+}
+
+.memberInfo dd .buttonBox button + button {
+  margin-left: 10px;
+  border-radius: 2px;
+}
+
+.memberInfo dd .buttonBox.twin button {
+  float: left;
+  width: 100%;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 2px 0 0 2px;
+}
+
+.memberInfo dd .buttonBox.twin button.on {
+  border-color: #ef3e43;
+  z-index: 1;
+}
+
+.memberInfo dd .buttonBox.twin button.on span {
+  color: #ef3e43;
+}
+
+.memberInfo dd .buttonBox.twin button:last-child {
+  margin-left: -1px;
+}
+
+.memberInfo dd .buttonBox.twin button + button {
+  border-radius: 0 2px 2px 0;
+}
+
+.memberInfo dd .buttonBox.twin button span {
+  color: #ccc;
+  font-size: 14px;
+}

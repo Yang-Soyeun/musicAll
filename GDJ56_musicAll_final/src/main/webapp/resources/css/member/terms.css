@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 .uBtn {
   display: block;
   width: 100%;
@@ -161,6 +159,13 @@
 
 .uInputArea .uInput .inputBox .inputText:-webkit-autofill, .uInputArea .uInput .inputBox .inputText:-webkit-autofill:hover, .uInputArea .uInput .inputBox .inputText:-webkit-autofill:focus, .uInputArea .uInput .inputBox .inputText:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px #fff inset !important;
+}
+
+.uInputArea .uInput .inputBox .inputText::-webkit-input-placeholder {
+  font-size: 15px;
+  line-height: 30px;
+  color: #000;
+  color: #ccc;
 }
 
 .uInputArea .uInput .inputBox .inputText::placeholder {
@@ -502,26 +507,168 @@ select::-ms-expand {
   }
 }
 
-.joinContent {
-  padding-top: 30px;
-  padding-bottom: 78px;
+.registContent {
+  padding-top: 15px;
+  padding-bottom: 40px;
 }
 
 @media screen and (min-width: 769px) {
-  .joinContent {
+  .registContent {
     padding-top: 75px;
   }
 }
 
-.joinContent .joinBlock h2.title {
-  font-size: 25px;
+.registContent .uBlock {
+  min-height: 76px;
+}
+
+.registContent .uBlock.checkBlock {
+  min-height: 0;
+  margin-top: 15px;
+}
+
+.registContent .uBlock.validPeriod {
+  padding-bottom: 20px;
+}
+
+.registContent .uBlock.validPeriod .label {
+  padding-left: 5px;
+}
+
+.registContent .uBlock .uCheckbox {
+  margin-top: 10px;
+}
+
+.registContent .uBlock .uCheckbox:first-child {
+  margin-top: 0;
+}
+
+.registContent .uBlock .uErrorText {
+  display: none;
+}
+
+.registContent .uBlock .certifyTime {
+  font-size: 13px;
+  line-height: 20px;
+  color: #dc941b;
+  margin-top: 5px;
+  padding: 0 5px;
+  font-weight: bold;
+}
+
+.registContent .uBlock .blockText {
+  padding: 20px 0;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.registContent .agreeBlock {
+  min-height: auto;
+}
+
+.registContent .agreeBlock .uInputArea {
+  border: 0;
+}
+
+.registContent .ubtnArea {
+  margin-top: 45px;
+}
+
+.registContent .infoBlock {
+  min-height: 0;
+  padding: 0 5px 30px;
+}
+
+.registContent .infoList li {
+  margin-top: 10px;
+  font-size: 17px;
+  line-height: 25px;
+}
+
+.registContent .infoList li:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.registContent .infoList li:first-child {
+  margin-top: 0;
+}
+
+.registContent .infoList li .title {
+  float: left;
+  padding-right: 10px;
+  font-weight: bold;
+}
+
+.registContent .infoList li .text {
+  overflow: hidden;
+}
+
+.registContent .accountValiBlock {
+  margin-top: 25px;
+  padding: 0 0 25px 5px;
+}
+
+.registContent .accountValiBlock .accountGuide {
+  font-size: 13px;
+  line-height: 20px;
+  color: #dc941b;
+  font-weight: bold;
+}
+
+.registContent .accountValiBlock .blockText {
+  font-size: 13px;
+  line-height: 20px;
+  color: #000;
+  padding: 10px 0;
+}
+
+.registContent .accountValiBlock .btnArrow {
+  font-size: 13px;
+  line-height: 20px;
+  color: #000;
+  display: inline-block;
+  position: relative;
+  padding-right: 8px;
+  border-bottom: 1px solid #000;
+}
+
+.registContent .accountValiBlock .btnArrow:after {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 5px;
+  height: 8px;
+  margin-top: -4px;
+  background: url("//openimage.interpark.com/member/common/icon/icon_btn_arrow.png") 0 0 no-repeat;
+  background-size: 100% auto;
+  content: "";
+}
+
+.completeContent {
+  padding-bottom: 247px;
+}
+
+@media screen and (min-width: 769px) {
+  .completeContent {
+    padding-top: 24px;
+  }
+  .completeContent .title br {
+    display: none;
+  }
+}
+
+.completeContent .title {
+  font-size: 24px;
   line-height: 37px;
   color: #000;
+  margin-top: 120px;
   font-weight: bold;
   text-align: center;
 }
 
-.joinContent .joinBlock .text {
+.completeContent .text {
   font-size: 15px;
   line-height: 22px;
   color: #666;
@@ -529,240 +676,159 @@ select::-ms-expand {
   text-align: center;
 }
 
-.joinContent .singleBlock {
-  padding-bottom: 100px;
-}
-
-@media screen and (min-width: 769px) {
-  .joinContent .singleBlock {
-    padding-bottom: 70px;
-  }
-  .joinContent .singleBlock br {
-    display: none;
-  }
-}
-
-.joinContent .btnJoin {
+.completeContent .btnArea {
+  display: table;
+  width: 100%;
   margin-top: 30px;
-  font-size: 17px;
 }
 
-.joinContent .snsJoinArea .guideText {
-  font-size: 13px;
-  line-height: 20px;
-  color: #999;
-  margin-top: 15px;
-  text-align: center;
-}
-
-.joinContent .listSns {
-  margin: 31px -4px 0;
+.completeContent .btnArea .col {
+  display: table-cell;
+  width: 50%;
   padding: 0 5px;
 }
 
-.joinContent .listSns:after {
-  content: "";
+.completeContent .btnArea .col:first-child {
+  padding-left: 0;
+}
+
+.completeContent .btnArea .col:last-child {
+  padding-right: 0;
+}
+
+.completeContent .bannerArea {
+  margin-top: 30px;
+}
+
+.completeContent .bannerArea a {
   display: block;
-  clear: both;
+}
+
+.completeContent .bannerArea img {
+  width: 100%;
+}
+
+.termsContent {
+  padding-top: 25px;
+  padding-bottom: 40px;
 }
 
 @media screen and (min-width: 769px) {
-  .joinContent .listSns {
-    padding: 13 10px;
-    display: flex;
-    justify-content: center;
+  .termsContent {
+    padding-top: 75px;
   }
 }
 
-.joinContent .listSns li {
-  float: left;
-  width: 50%;
-  margin-top: 9px;
-  padding: 0 4px;
-  box-sizing: border-box;
+.termsContent .uBlock {
+  margin-top: 10px;
 }
 
-@media screen and (min-width: 769px) {
-  .joinContent .listSns li {
-    width: 33.3%;
-  }
-  .joinContent .listSns li.snsGoogle, .joinContent .listSns li.snsApple {
-    display: none;
-  }
+.termsContent .uBlock:first-child {
+  margin-top: 0;
 }
 
-.joinContent .listSns .btnSns {
-  display: block;
-  height: 40px;
-  border-radius: 6px;
-  text-align: center;
+.termsContent .termsBlock {
+  margin-top: 10px;
+  padding-left: 5px;
+}
+
+.termsContent .termsBlock + .termsBlock {
+  margin-top: 20px;
+}
+
+.termsContent .allAgree .text {
+  font-size: 17px;
+  line-height: 25px;
   color: #000;
-  box-sizing: border-box;
-}
-
-.joinContent .listSns .btnSns > span {
-  font-size: 15px;
-  line-height: 38px;
-  color: #000;
-  position: relative;
-  display: inline-block;
-  padding-left: 25px;
-  vertical-align: top;
-  font-size: 15px;
-  line-height: 38px;
-}
-
-.joinContent .listSns .btnSns > span:after {
-  position: absolute;
-  top: 50%;
-  height: 20px;
-  margin-top: -10px;
-  content: "";
-  left: 0;
-  width: 20px;
-  background: url("//openimage.interpark.com/member/common/icon/icon_sns_logo.png") center 0 no-repeat;
-  background-size: 100% auto;
-}
-
-.joinContent .listSns .btnSns.snsNaverBtn {
-  background: #2db400;
-  border: 1px solid #2db400;
-}
-
-.joinContent .listSns .btnSns.snsNaverBtn > span {
-  color: #fff;
-}
-
-.joinContent .listSns .btnSns.snsKakaoBtn {
-  background: #fde102;
-  border: 1px solid #fde102;
-  width: 170px;
-}
-
-.joinContent .listSns .btnSns.snsKakaoBtn > span {
-  color: #391c1c;
-}
-
-.joinContent .listSns .btnSns.snsKakaoBtn > span:after {
-  background-position-y: 25%;
-}
-
-.joinContent .listSns .btnSns.snsPaycoBtn {
-  background: #fff;
-  border: 1px solid #ccc;
-}
-
-.joinContent .listSns .btnSns.snsPaycoBtn > span:after {
-  background-position-y: 50%;
-}
-
-.joinContent .listSns .btnSns.snsGoogleBtn {
-  background: #fff;
-  border: 1px solid #ccc;
-}
-
-.joinContent .listSns .btnSns.snsGoogleBtn > span:after {
-  background-position-y: 100%;
-}
-
-.joinContent .listSns .btnSns.snsAppleBtn {
-  background: #050708;
-  border: 1px solid #050708;
-}
-
-.joinContent .listSns .btnSns.snsAppleBtn > span {
-  color: #fff;
-}
-
-.joinContent .listSns .btnSns.snsAppleBtn > span:after {
-  background-position-y: 75%;
-}
-
-.joinContent .businessBlock {
-  padding-top: 40px;
-  border-top: 1px solid #ddd;
-}
-
-.joinContent .businessBlock .uBtn {
-  font-weight: bold;
-  border-color: #999;
-}
-
-@media screen and (min-width: 769px) {
-  .joinContent .businessBlock {
-    padding-top: 0;
-    border-top: 0;
-  }
-}
-
-.joinContent .sellerBlock {
-  display: none;
-  margin-top: 55px;
-  padding-top: 44px;
-  border-top: 1px solid #ddd;
-}
-
-.joinContent .sellerBlock h3.title {
-  font-size: 20px;
-  line-height: 28px;
-  font-weight: normal;
-  text-align: center;
-}
-
-.joinContent .sellerBlock .sellerJoinArea {
-  margin-top: 36px;
-}
-
-.joinContent .sellerBlock .listSeller {
-  margin: 0 -7px;
-}
-
-.joinContent .sellerBlock .listSeller:after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
-.joinContent .sellerBlock .listSeller li {
-  float: left;
-  width: 50%;
-  padding: 0 7px;
-  box-sizing: border-box;
-}
-
-.joinContent .sellerBlock .listSeller .btnSeller {
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
+  padding-top: 0;
   font-weight: bold;
 }
 
-.joinContent .sellerBlock .listSeller .guideText {
-  font-size: 15px;
+.termsContent .termsItem .uCheckbox {
+  margin-top: 15px;
+}
+
+.termsContent .termsItem .uCheckbox:first-child {
+  margin-top: 0;
+}
+
+.termsContent .ubtnArea {
+  margin-top: 45px;
+}
+
+.termsContent .termsDetailCont {
+  margin: 15px 5px 0 23px;
+  padding: 0 15px;
+  background: #f3f3f3;
+  border-radius: 10px;
+}
+
+.termsContent .termsCont {
+  padding: 15px 0;
+}
+
+.termsContent .termsCont:first-child {
+  border-top: 0;
+}
+
+.termsContent .termsCont .title {
+  font-size: 13px;
   line-height: 20px;
   color: #666;
-  margin-top: 16px;
-  text-align: center;
 }
 
-@media screen and (min-width: 769px) {
-  .joinContent .sellerBlock {
-    display: block;
-  }
+.termsContent .termsCont .checkList {
+  margin-top: 5px;
 }
 
-.joinContent .businessJoinArea {
-  margin: 15px auto 0;
+.termsContent .termsCont .checkList:after {
+  content: "";
   display: block;
-  color: #666;
-  font-size: 15px;
-  text-align: center;
-  width: 210px;
+  clear: both;
 }
 
-@media screen and (min-width: 769px) {
-  .joinContent .businessJoinArea {
-    margin: 15px auto 0;
-    width: 100%;
-  }
+.termsContent .termsCont .checkList li {
+  float: left;
+  width: 50%;
+  margin-top: 5px;
+}
+
+.termsContent .termsCont .checkList + .uCheckbox {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  padding-top: 15px;
+  border-top: 1px solid #ccc;
+}
+
+.termsContent .termsCont .uCheckbox .text {
+  color: #666;
+}
+
+.termsContent .termsCont .uCheckbox + .title {
+  margin-top: 20px;
+}
+
+.termsContent .termsCont .termsText {
+  font-size: 11px;
+  line-height: 17px;
+  color: #999;
+}
+
+.termsContent .termsCont .termsText ul {
+  margin-top: 10px;
+}
+
+.termsContent .termsCont .termsText li {
+  margin-top: 10px;
+}
+
+.termsContent .businessCertifyArea {
+  padding: 10px 0 40px;
+}
+
+.termsContent .businessCertifyArea .label {
+  font-size: 17px;
+  line-height: 25px;
+  color: #000;
+  padding-left: 5px;
 }

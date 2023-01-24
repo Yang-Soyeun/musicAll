@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.gdj.music.pay.model.dao.PayDao;
 import com.gdj.music.pay.model.vo.Pay;
 import com.gdj.music.reservation.model.vo.Reservation;
+import com.gdj.music.reservation.model.vo.Seat;
 
 import lombok.extern.slf4j.Slf4j;
 @Service
@@ -24,14 +25,22 @@ public class PayServiceImpl implements PayService {
 
 	@Override
 	public int insertPay(Pay p,Reservation r) {
-		log.debug("insert전 "+p.getPCode());
 		int result= dao.insertPay(session, p);
-		log.debug("insert후 "+p.getPCode());
 		if(result>0) {
 			result=dao.insertBooking(session, r);
 		}
 		return result;
-	
+		
 	}
+
+	@Override
+	public int insertSeat(Seat s) {
+		// TODO Auto-generated method stub
+		return dao.insertSeat(session, s);
+	}
+	
+	
+	
+	
 
 }	

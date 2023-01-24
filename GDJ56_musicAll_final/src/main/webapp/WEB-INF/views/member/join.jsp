@@ -23,12 +23,11 @@
 							<label for="inputId">아이디</label>
 							<div class="inputBox">
 								<input type="text" id="member_id" class="inputText" placeholder="6~20자 영문, 숫자" tabindex="1" value="" maxlength="20" required="required">
-								<button type="button" class="btnDel" aria-label="삭제"></button>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="uErrorText" style="display: block;"></div>
+				<div class="uErrorText" style="display: block; color:#dc941b;" id="idMsg"></div>
 			</div>
 			<div class="uBlock">
 				<div class="uInputArea">
@@ -37,12 +36,11 @@
 							<label for="inputPw">비밀번호</label>
 							<div class="inputBox">
 								<input type="password" id="password" class="inputText" placeholder="8~12자 영문, 숫자, 특수문자" tabindex="2" value="" maxlength="12" required="required">
-								<button type="button" class="btnDel" aria-label="삭제"></button>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="uErrorText" style="display: block;"></div>
+				<div class="uErrorText" style="display: block; color:#dc941b;" id="pwMsg"></div>
 			</div>
 			<div class="uBlock">
 				<div class="uInputArea">
@@ -51,12 +49,11 @@
 							<label for="inputPwConfirm">비밀번호 확인</label>
 							<div class="inputBox">
 								<input type="password" id="password_check" class="inputText" placeholder="8~12자 영문, 숫자, 특수문자" tabindex="3" value="" maxlength="12" required="required">
-								<button type="button" class="btnDel" aria-label="삭제"></button>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="uErrorText" style="display: block;"></div>
+				<div class="uErrorText" style="display: block; color:#dc941b;" id="pwMsg2"></div>
 			</div>
 			<div class="uBlock">
 				<div class="uInputArea">
@@ -65,12 +62,10 @@
 							<label for="inputName">이름</label>
 							<div class="inputBox">
 								<input type="text" id="member_name" class="inputText" tabindex="4" value="">
-								<button type="button" class="btnDel" aria-label="삭제"></button>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="uErrorText" style="display: block;"></div>
 			</div>
 			<div class="uBlock">
 				<div class="uInputArea emailType">
@@ -95,61 +90,61 @@
 								</select>
 							</label>
 						</div>
+						
 					</div>
 					<div class="col">
 						<div class="uBtnArea">
-							<button type="button" class="uBtn borderType">인증번호받기</button>
+							<input type="button" class="uBtn borderType" value="인증번호받기" onclick="bt_email()"/>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="uErrorText" style="display: block;"></div>
+			<div class="uErrorText" style="display: block; color : #dc941b;" id="emailMsg"></div>
+			
+			<div class="uBlock" style="display: none;" id="checknum">
+				<div class="uInputArea">
+				<div class="col">
+					<div class="uInput">
+						<label for="inputCertifyNum">인증번호</label>
+						<div class="inputBox">
+							<input type="text" id="inputCertifyNum" class="inputText" value="" tabindex="8" placeholder="인증번호 6자리">
+							<input type="hidden" id="hideconfirmNum">
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="uBtnArea">
+						<input type="button" class="uBtn borderType" value="재발송" id="reSend" onclick="bt_email()"/>
+						<input type="button" class="uBtn borderType" value="확인" id="checkNum2" >
+						<button type="button" class="uBtn borderType" style="display:none;" id="ok">인증완료</button>
+					</div>
+				</div>
+				</div>
+					<div class="certifyTime" style="display: block;" id="timeSecond">인증유효시간 <span class="time" id="timeline"></span>
+				</div>
+			</div>
+			
 			<div class="uBlock">
 				<div class="uInputArea">
 					<div class="col">
 						<div class="uInput">
 							<label for="inputCellphone">휴대폰</label>
 							<div class="inputBox">
-								<input type="text" id="phone" class="inputText" placeholder="010 1234 5678" tabindex="7" value="">
-								<button type="button" class="btnDel" aria-label="삭제"></button>
+								<input type="text" id="phone" class="inputText" placeholder="010 1234 5678" tabindex="7" value="" maxlength="13">
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="uErrorText" style="display: none;">점유인증을 하여 휴대폰 번호를 등록해주세요. 등록한 번호는 로그인 이후 변경 가능합니다.</div>
-				<div class="accountValiBlock" style="display: none;">
-				<div class="accountGuide"></div>
-					<p class="blockText">동일 정보로 가입된 계정으로 로그인 하시겠습니까?</p><a href="#" class="btn btnArrow">로그인하기</a>
-				</div>
+				<div id="errorPh" style="display: block; color : #dc941b;"></div>
 			</div>
-			<div class="uBlock" style="display: none;">
-				<div class="uInputArea">
-					<div class="col">
-						<div class="uInput">
-							<label for="inputCertifyNum">인증번호</label>
-							<div class="inputBox">
-								<input type="text" id="inputCertifyNum" class="inputText" tabindex="8" value="">
-								<button type="button" class="btnDel" aria-label="삭제"></button>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="uBtnArea">
-							<button type="button" class="uBtn borderType">재발송</button>
-							<button type="button" class="uBtn borderType">확인</button>
-						</div>
-					</div>
-				</div>
-				<div class="certifyTime" style="display: none;">인증유효시간 <span class="time">00:00</span></div>
-			</div>
+		</div>
+	</div>
 			<div class="ubtnArea row">
-				<div class="col text-center">
+				<div class="col text-center" style="min-height: auto;">    
 					<button type="button" class="btn btn-danger btn-circle" onclick="fn_join();">가입완료</button>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
 
 <!-- 회원가입 완료 모달 -->
 <div class="modal fade" id="joinModal" tabindex="-1" role="dialog"
@@ -174,7 +169,7 @@
 		</div>
 		
 <script>
-	
+	//회원가입 ajax통신
 	const fn_join=()=>{
 		let d = {
 				"member_Id" : $("#member_id").val(),
@@ -200,6 +195,7 @@
 		});
 	}
 	
+	//이메일 종류
 	$("#selectemail").on("change",function(){
 		const se = $("#selectemail").val();
 		if(se!="direct"){
@@ -207,7 +203,224 @@
 			$("#email").val(email + "@" + se);
 		}
 	});
-
+	
+	//아이디 정규식
+	const du_id = function(){
+		let id = $("#member_id").val();
+		let idRule = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{6,20}$/;//아이디 검사 정규식	
+	   	let result = idRule.test(id.trim());//정규식 결과
+	   	
+	   	return result;
+	}
+	
+	//아이디 유효성 이벤트
+	$("#member_id").on("keyup",function(){
+		let id2 = du_id();//반환값 담아
+		if(id2==false){
+			$("#idMsg").html("영문으로 시작하는 6~20자 영문(소문자), 숫자만 사용 가능합니다.");
+		}else{
+			$("#idMsg").html("");
+		}
+	});
+	
+	
+	//아이디 중복확인
+	$("#member_id").on("focusout",function(){
+		let id = $("#member_id").val();
+		if(du_id()){
+			$.ajax({
+				url:"${path}/member/idduplicate.do",
+				data:{"member_id" : id },
+				type:'post',
+				success:data=>{
+					console.log(data);
+					if(data=="null"){
+						$("#idMsg").html("사용 가능한 아이디입니다.");
+					}else{
+						$("#idMsg").html("이미 사용 중이거나 탈퇴한 아이디입니다.");
+					}
+				}
+			});	
+		}
+	});
+	
+	//비밀번호 정규식
+	const pwCheck = function(id){
+		let pw = $("#"+id).val();
+		let pwRule = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;//비밀번호정규식	
+	   	
+		let result = pwRule.test(pw.trim());//정규식 결과
+	   	
+	   	return result;
+	}
+	
+	//비밀번호 유효성 이벤트
+	$("#password").on("keyup",function(){
+		let pw1 = pwCheck("password");//반환값 담아
+		if(pw1==false){
+			$("#pwMsg").html("8~12자의 영문, 숫자, 특수문자 중 2가지 이상으로만 가능합니다.");
+		}else{
+			$("#pwMsg").html("");
+		}
+	});
+	
+	//비밀번호 확인 유효성 이벤트
+	$("#password_check").on("keyup",function(){
+		let pw2 = pwCheck("password_check");
+		if(pw2==false){
+			$("#pwMsg2").html("8~12자의 영문, 숫자, 특수문자 중 2가지 이상으로만 가능합니다.");
+		}else{
+			let pwcheck1 = $("#password").val();
+			let pwcheck2 = $("#password_check").val();
+			
+			if(pwcheck1==pwcheck2){
+				$("#pwMsg2").html("비밀번호가 일치합니다.");
+			}else{
+				$("#pwMsg2").html("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+			}
+		}
+	});
+	
+	//비밀번호,비밀번호 확인 일치여부
+	$("#password_check").on("focusout",function(){
+		
+		let pwcheck1 = $("#password").val();
+		let pwcheck2 = $("#password_check").val();
+		
+		if(pwcheck1==pwcheck2){
+			$("#pwMsg2").html("");
+		}else{
+			$("#pwMsg2").html("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+		}
+	});
+	
+	//이메일유효성 검사
+	//이메일 정규식
+	const emailCheck = function(){
+		let email = $("#email").val();
+		let emailRule = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;//이메일 정규식
+	   	
+		let result = emailRule.test(email.trim());//정규식 결과
+	   	
+	   	return result;
+	}
+	//타이머 변수
+	let AuthTimer;
+	
+	//이메일 인증
+	const bt_email=()=>{
+		let email = emailCheck();
+		let writeE = $("#email").val();
+		
+		if(email==false){
+			$("#emailMsg").html("이메일 주소 양식에 맞게 작성해주세요.");
+		}else{
+			$.ajax({
+				url:"${path}/member/cofirmEmail.do",
+				data:{email : $("#email").val()},
+				dataType:'json',
+				type:'post',
+				success:data=>{
+					if(data!=null){
+					//인증번호 시간타이머 사용법
+					  AuthTimer = new timer();
+					  AuthTimer.fnStop();
+					  AuthTimer.comSecond = 30;
+					  AuthTimer.fnCallback = function(){alert("다시인증을 시도해주세요.")}
+					  AuthTimer.timer =  setInterval(function(){AuthTimer.fnTimer()},1000);
+					  AuthTimer.domId = document.getElementById("timeline");
+						//인증번호 담기
+						$("#hideconfirmNum").val(data.number);
+						
+						$("#emailMsg").html("");
+						$("#checknum").show();
+						
+						alert("입력하신 이메일로 인증번호가 발송 되었습니다.");
+					}
+				}
+			}); 
+		}
+	}
+	
+	//인증번호 확인 여부
+	$("#checkNum2").on("click",function(){
+		let d = $("#hideconfirmNum").val();
+		let f = $("#inputCertifyNum").val();
+		
+		if(d==f){
+			alert("인증이 완료되었습니다.");
+			$("#ok").show();
+			$("#checkNum2").hide();
+			$("#reSend").hide();
+			AuthTimer.fnStop();
+			$("#timeSecond").hide();
+			$("#timline").hide();
+		}else{
+			alert("올바르지 않은 인증번호 입니다.");
+		}
+	});
+	
+	//휴대폰 정규식
+	
+	$("#phone").on("keyup",function(){
+		$(this).val( $(this).val().replace(/[^0-9]/g, "")
+				.replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3")
+				.replace("--", "-") );
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//인증번호 타이머
+	function timer(){
+		
+	}
+	
+	timer.prototype={
+		comSecond : ""
+		, fnCallback : function(){}
+	    , timer : ""
+	    , domId : ""
+	    , fnTimer : function(){
+	    	
+	        var m = Math.floor(this.comSecond / 60) + "분 " + (this.comSecond % 60) + "초";	// 남은 시간 계산
+	        this.comSecond--;					// 1초씩 감소
+	        console.log(m);
+	        this.domId.innerText = m;
+	        if (this.comSecond < 0) {			// 시간이 종료 되었으면..
+	            clearInterval(this.timer);		// 타이머 해제
+	            alert("인증시간이 초과하였습니다. 다시 인증해주시기 바랍니다.")
+	        }
+	    }
+	    ,fnStop : function(){
+	        clearInterval(this.timer);
+	    }
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

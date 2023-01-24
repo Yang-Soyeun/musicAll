@@ -95,7 +95,7 @@
 								</div>
 								<div id="message" style="color:red;"></div>
 								<div class="styleInput" id="confNum">
-									<input id="certSeq2" type="text" class="iInput" inputmode="numeric" placeholder="인증번호 8자리" style="display: none;"> 
+									<input id="certSeq2" type="text" class="iInput" inputmode="numeric" placeholder="인증번호 6자리" style="display: none;"> 
 									<span class="time" id="timeline"></span>
 									<input type="hidden" id="hidenum">
 								</div>
@@ -161,6 +161,7 @@
 </div>
 
 <script>
+//클릭시 탭 이동
 	$(function(){
 		init();
 	});
