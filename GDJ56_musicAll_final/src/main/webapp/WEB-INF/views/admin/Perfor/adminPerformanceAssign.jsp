@@ -47,26 +47,26 @@
             <caption class="qtit"><b style="font-size:20px; margin-left:20px;">공연등록</b></caption>
             <tr>
                 <th class="th" scope="row"><b>공연 제목</b></th>
-                    <td><input type="text" name="perTitle" class="wid53" title="이메일" placeholder="ex : 마틸다"></td>
+                    <td><input type="text" name="mTitle" class="wid53" title="이메일" placeholder="ex : 마틸다"></td>
             </tr>
             <tr>
                 <th class="th" scope="row"><b>공연 타입</b></th>
                     <td>
                         <p>
                         <label>
-                            <input type="radio" name="perType" id="original" value="오리지널">
+                            <input type="radio" name="mType" id="original" value="오리지널">
                                 오리지널 내한공연 </label>
                         <label>
-                            <input type="radio" name="perType" id="license" value="라이센스">
+                            <input type="radio" name="mType" id="license" value="라이센스">
                                 라이센스 </label>
                         <label>
-                            <input type="radio" name="perType"  id="makeMusical" value="창작뮤지컬">
+                            <input type="radio" name="mType"  id="makeMusical" value="창작뮤지컬">
                                 창작뮤지컬  </label>
                         <label>
-                            <input type="radio" name="perType"  id="nonverbal" value="넌버벌">
+                            <input type="radio" name="mType"  id="nonverbal" value="넌버벌">
                                 넌버벌 퍼포먼스 </label>
                         <label>
-                            <input type="radio" name="perType"  id="child" value="아동">
+                            <input type="radio" name="mType"  id="child" value="아동">
                                 아동 </label>
                         </p>
                     </td>
@@ -76,16 +76,16 @@
                 <td>
                     <p>
                         <label>
-                            <input type="radio" name="age" value="전체관람가" id="allCan">
+                            <input type="radio" name="mAge" value="전체관람가" id="allCan">
                                 전체관람가 </label>
                         <label>
-                            <input type="radio" name="age" value="8세이상" id="overEight">
+                            <input type="radio" name="mAge" value="8세이상" id="overEight">
                                 8세 이상 </label>
                         <label>
-                            <input type="radio" name="age" value="12세이상" id="overTwelve">
+                            <input type="radio" name="mAge" value="12세이상" id="overTwelve">
                                 12세 이상 </label>
                         <label>
-                            <input type="radio" name="age" value="15세이상" id="overFifteen">
+                            <input type="radio" name="mAge" value="15세이상" id="overFifteen">
                                 15세 이상 </label>
                     </p>
                 </td>
@@ -141,7 +141,7 @@
                 <tr>
                     <th class="th" scope="row"><b>공연 기간</b></th>
                     <td>              
-                        <input type="text" name="daterange" style="width:200px;"/>
+                        <input type="text" id="daterange" name="daterange" style="width:200px;"/>
                     </td>
                     <!-- <td><input type="text" size="10" title="우편번호" readonly style='cursor:pointer'> -&nbsp; <input type="text" size="10" title="우편번호" readonly style='cursor:pointer'>
                         <span class="button"><a href="#">우편번호찾기</a></span><br>
@@ -151,7 +151,7 @@
                  <tr>
                     <th class="th" scope="row"><b>공연 상영시간</b></th>
                     <td>              
-                        <input type="text" name="watchTime" placeholder="ex)120" style="width:200px;"/>분
+                        <input type="text" name="sTime" placeholder="ex)120" style="width:200px;"/>분
                     </td>
                 </tr>
                 <tr>
@@ -193,7 +193,12 @@
       </form>
         <script>
             //daterangepicker
-            $('input[name="daterange"]').daterangepicker();
+            //$('input[name="daterange"]').daterangepicker();
+            $("#daterange").daterangepicker({
+            	locale:{
+            		"format": 'YY/MM/DD'}
+            		
+            });
             
             //timepicker
             $(function() {
@@ -240,34 +245,34 @@
             //$("#enrollPer").click(e=>{
             const chk_form=(e)=>{	
             	
-        		let perDay=new FormData();
+        		
         		let form=new FormData();
         		
             	$('input:checked').each((i,e)=>{
-					perDay.append("perDay",
+					form.append("perDay",
 							$(e).val()+","+$(e).parent().next().val()
 							+","+$(e).parent().next().next().val())            		
 				
             	});
-            	console.log(perDay);
+            	
             
             	
-        		const sumnail=$("input[name=upFile]")[0].files;
-				const file=$("input[name=upFile2]")[0].files;
+        		const upFile=$("input[name=upFile]")[0].files;
+				const upFile2=$("input[name=upFile2]")[0].files;
         		
 				//썸네일
-				$.each(sumnail,(i,v)=>{
+				$.each(upFile,(i,v)=>{
 					form.append("upFile"+i,v);
 				});
 				
 				//일반사진 
-				$.each(file,(i,v)=>{
+				$.each(upFile2,(i,v)=>{
  					form.append("upFile2"+i,v);
  				});
 				
- 				var perTitle=$("input[name=perTitle]").val();
- 				var perType=$("input[name=perType]:checked").val();
- 				var age=$("input[name=age]:checked").val();
+ 				var mTitle=$("input[name=mTitle]").val();
+ 				var mType=$("input[name=mType]:checked").val();
+ 				var mAge=$("input[name=mAge]:checked").val();
 				
  				//var mon=$("#mon:checked").val();
  				//var tues=$("#tues:checked").val();
@@ -278,17 +283,17 @@
  				//var sun=$("#sun:checked").val();
 				
  				var daterange=$("input[name=daterange]").val(); 
- 				var watchTime=$("input[name=watchTime]").val();
+ 				var sTime=$("input[name=sTime]").val();
  				var perPlace=$("input[name=perPlace").val();
  				var vipPrice=$("input[name=vipPrice]").val();
  				var rPrice=$("input[name=rPrice]").val();
  				var sPrice=$("input[name=sPrice]").val();
 				
- 				form.append("perTitle",perTitle);
- 				console.log(perTitle);
- 				form.append("perType",perType);
- 				console.log(perType);
- 				form.append("age",age);
+ 				form.append("mTitle",mTitle);
+ 				console.log(mTitle);
+ 				form.append("mType",mType);
+ 				console.log(mType);
+ 				form.append("mAge",mAge);
  			
 				
 // 				if(mon=="월"){
@@ -329,23 +334,81 @@
 // 				form.append("sun_time2",sun_time2);
 				
  				form.append("daterange",daterange);
- 				form.append("watchTime",watchTime);
+ 				form.append("sTime",sTime);
  				form.append("perPlace",perPlace);
  				form.append("vipPrice",vipPrice);
  				form.append("rPrice",rPrice);
  				form.append("sPrice",sPrice);
  				console.log(daterange);
- 				console.log(form);
+ 				console.log(form); 
  				//if(sumnail.length<1){
- 					 //if(file.length<1){
-					   $.ajax({
+ 				//if(file.length<1){
+ 					
+ 				//var form = $('perforFrm')[0];
+ 				
+ 				
+ 				//let form = document.getElementById('perforFrm');
+ 				
+ 				
+ 				console.log("344 form : "+form);
+ 				//var formData = new FormData(form);
+ 				
+ 				/* console.log("346 formData : "+formData);
+ 				for (let key of formData.keys()) {
+ 					console.log(key, ":", formData.get(key));
+ 				}
+ 				console.log("348"); */
+ 				
+ 				
+ 				
+ 				$.ajax({
+ 					type:"post",
+ 					enctype:'multipart/form-data',
+ 				    url:'${path}/adminPerfor/insertPerformance.do',
+ 				    data:form,
+ 				    dataType:'json',
+ 				  
+ 				    processData:false,
+ 				    contentType:false,
+ 				    cache:false,
+ 				    success:function(data){
+ 				    	alert("success : ", data);
+ 				    },
+ 				    error:function(e){
+ 				        alert("error : ", e);
+ 				    }
+ 				});	
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					
+ 					/* $.ajax({
 						url :"${path}/adminPerfor/insertPerformance.do",
 						data: {perTitle:perTitle,perType:perType,age:age,daterange:daterange,watchTime:watchTime,
-							perPlace:perPlace,vipPrice:vipPrice,rPrice:rPrice,sPrice:sPrice}
+							perPlace:perPlace,vipPrice:vipPrice,rPrice:rPrice,sPrice:sPrice},
 						//type : "post",
 						//contentType:false,
 						//processData:false,
-						//traditional: true
 						success : e=>{
 							//console.log(data);
 							 //console.log(e.msg);	 
@@ -359,7 +422,7 @@
 						error:(r,m,e)=>{
 							alert("공연등록 실패!다시 등록해주세요.");
 								}
-					 	});
+					 	}); */
  					//}else{
  						//alert("사진을 첨부해주세요.");
  					//}
