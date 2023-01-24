@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.gdj.music.perfor.model.vo.Performance;
+import com.gdj.music.reservation.model.vo.Point;
 
 public interface ReservationDao {
 
@@ -13,4 +14,8 @@ public interface ReservationDao {
 	int selectHall(SqlSessionTemplate session, int mCode);
 	List<String> selectSeats(SqlSessionTemplate session,Map<String,Object> map);
 	String selectMusical(SqlSessionTemplate session,int mCode);
+	int insertPoint(SqlSessionTemplate session, Point p);
+	int addPoint(SqlSessionTemplate session, Point po);
+	int minusPoint(SqlSessionTemplate session, Point po);
+	
 }

@@ -25,7 +25,7 @@
                     <div id="detail2">
                         공연명 : ${title } <br><br>
                         좌석 : 
-                        <c:forEach var="s" begin="6" end="${fn:length(info)-1}">      
+                        <c:forEach var="s" begin="7" end="${fn:length(info)-1}">      
                         	  ${info[s]}&nbsp; 
                         </c:forEach>
                     </div>

@@ -261,7 +261,7 @@ const s = document.querySelectorAll(".seat");
 function mapping(input,input2, i, j) {
     if (i === 0) {
         input.value = 'A' + j;
-        input2.value= 99000
+        input2.value= 7600
         input2.classList = 'A'+j;
     } else if (i === 1) {
         input.value = 'B' + j;
@@ -327,6 +327,7 @@ const pay = () =>{
 		info.push("${date}");
 		info.push("${time}");
 		info.push(money);
+		info.push("${loginMember.member_No}")
 		location.assign("${path}/booking/pay.do?info="+info+"&&seat="+selectedSeatsArray);
 		
 	</c:if>

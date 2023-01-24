@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.gdj.music.perfor.model.vo.Performance;
 import com.gdj.music.reservation.model.dao.ReservationDao;
+import com.gdj.music.reservation.model.vo.Point;
 import com.gdj.music.reservation.model.vo.Seat;
 @Service
 public class ReservationServiceImpl implements ReservationService {
@@ -51,6 +52,27 @@ public class ReservationServiceImpl implements ReservationService {
 	public String selectMusical(int mCode) {
 		// TODO Auto-generated method stub
 		return dao.selectMusical(session, mCode);
+	}
+
+
+	@Override
+	public int insertPoint(Point p) {
+		// TODO Auto-generated method stub
+		return dao.insertPoint(session, p);
+	}
+
+
+	@Override
+	public int addPoint(Point po) {
+		// TODO Auto-generated method stub
+		return dao.addPoint(session, po);
+	}
+
+
+	@Override
+	public int minusPoint(Point po) {
+		// TODO Auto-generated method stub
+		return dao.minusPoint(session, po);
 	}
 
 	
