@@ -32,7 +32,7 @@
 						<span class="image">
 							<img src="${path}/resources/nari2/images/공연정보2.jpeg" alt="" />
 						</span>
-						<a href="${path }/mypage/musicalList.do">
+						<a href="${path }/mypage/musicalList.do?No=${loginMember.member_No}">
 							<h2>공연예매정보</h2>
 						</a>
 					</article>
@@ -40,7 +40,7 @@
 						<span class="image">
 							<img src="${path}/resources/nari2/images/관심공연.jpeg" alt="" />
 						</span>
-						<a href="${path }/mypage/likeMusical.do">
+						<a href="${path }/mypage/likeMusical.do?No=${loginMember.member_No}">
 							<h2>관심공연</h2>
 						</a>
 					</article>
@@ -56,7 +56,7 @@
 						<span class="image">
 							<img src="${path}/resources/nari2/images/구매내역.jpeg" alt="" />
 						</span>
-						<a href="${path }/mypage/shoppingList.do">
+						<a href="${path }/mypage/shoppingList.do?No=${loginMember.member_No}">
 							<h2>상품구매내역</h2>
 						</a>
 					</article>
