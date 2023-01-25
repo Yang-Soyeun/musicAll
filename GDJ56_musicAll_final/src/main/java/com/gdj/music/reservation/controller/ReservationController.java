@@ -61,7 +61,7 @@ public class ReservationController {
 		int hCode = service.selectHall(mCode);
 		Map<String,Object> map = Map.of("hCode",hCode,"rDate",date,"rTime",time);
 		List<String> seats = service.selectSeats(map);
-	
+		model.addAttribute("hCode",hCode);
 		model.addAttribute("mCode",mCode);
 		model.addAttribute("date",date);
 		model.addAttribute("time",time);
