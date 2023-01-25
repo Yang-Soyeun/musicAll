@@ -318,12 +318,7 @@ public class MemberController {
 		return "redirect:/member/kakaoterms.do";
 	}
 
-	@RequestMapping("/question.do")
-	public String question() {
-		
-		return "/member/question";
-		
-	}
+
 	
 	
 	
