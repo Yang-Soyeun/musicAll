@@ -33,5 +33,18 @@ public class GoodsController {
 		return "/store/goodsPay";
 	}
 	
+	@RequestMapping("/goodsCart.do")
+	public String goodsCart() {
+		return "/store/cart";
+	}
+	
+	@RequestMapping("/payEnd.do") 
+	public String payEnd() {
+		return "/store/payEnd";
+	}
 
+	@RequestMapping("/goodsRefund.do")
+	public String goodsRefund() {
+		return "/store/refund";
+	}
 }
