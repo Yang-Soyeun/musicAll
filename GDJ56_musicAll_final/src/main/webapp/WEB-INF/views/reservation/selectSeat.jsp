@@ -84,7 +84,7 @@ toastr.options = {
     timeOut: 1000,
     preventDuplicates: true,
 };
-
+if(${hCode}==1){
 for (let i = 0; i < 10; i++) {
     div = document.createElement('div');
     div.classList = 'seatButtonWrapper';
@@ -148,7 +148,104 @@ seat.forEach(data => {
 		 </c:forEach>
 	 </c:if>
     });
+}
 
+if(${hCode}==2){
+	let temp = 0; temp2=13; temp3=13;
+	for (let i = 0; i < 10; i++) {
+	    div = document.createElement('div');
+	    div.classList = 'seatButtonWrapper';
+	    seatWrapper.append(div);
+	    if(i<=3){
+			temp=0;}
+	 
+	    if(i>3){
+			temp3=temp3-2;
+			temp=temp3;
+			temp2=0;}
+
+
+	    for (let j = 0; j < i*2+temp+temp2; j++) {
+	        const input = document.createElement('input');
+	        input.type = 'button';
+	        input.name = 'seats';
+	        input.classList = 'seat';
+	        const input2 = document.createElement('input');
+	        input2.type='hidden';
+	        
+	        //3중포문을 사용하지 않기위해
+	        mapping(input,input2, i, j);
+	        div.append(input);
+	        div.append(input2);
+	    	
+	        //클릭시 이벤트
+	        //inputClickEvent(input);
+	    }
+			
+	}
+
+	const seatLevel = document.querySelectorAll('.seatButtonWrapper');
+	for(let i=0;i<4;i++){
+		$(seatLevel[i]).children().css("backgroundColor",'#CCA63D');
+	}
+	for(let i=4;i<6;i++){
+		$(seatLevel[i]).children().css("backgroundColor",'#DB3A00');
+	}
+	for(let i=6;i<seatLevel.length;i++){
+		$(seatLevel[i]).children().css("backgroundColor",'green');
+	}
+	let seat = document.querySelectorAll('.seat');
+
+	seat.forEach(data => {
+
+	    //좌석이 2나 9로 끝나는얘들은 왼쪽이나 오른쪽으로 띄워주기위한 class추가
+	  	if (data.value.substring(1, data.value.length) === '3' && data.value.substring(0, data.value.length - 1) === 'A') {
+	      data.classList.add('left-margin');
+	    }
+	  	else if (data.value.substring(1, data.value.length) === '4' && data.value.substring(0, data.value.length - 1) === 'B') {
+	        data.classList.add('left-margin');
+	    }
+	  	else if (data.value.substring(1, data.value.length) === '5' && data.value.substring(0, data.value.length - 1) === 'C') {
+	        data.classList.add('left-margin');
+	    }
+	    
+	  	else if (data.value.substring(1, data.value.length) === '6') {
+	        if(data.value.substring(0, data.value.length - 1) !== 'A'&& data.value.substring(0, data.value.length - 1) !== 'B'&& data.value.substring(0, data.value.length - 1) !== 'C')
+	  		data.classList.add('left-margin');
+	    }
+	    
+	 	else if (data.value.substring(1, data.value.length) === '12') {
+	 		if(data.value.substring(0, data.value.length - 2) !== 'A'&& data.value.substring(0, data.value.length - 2) !== 'B'&& data.value.substring(0, data.value.length - 2) !== 'C')
+	 		 data.classList.add('right-margin');
+	    }
+	 	else if (data.value.substring(1, data.value.length) === '9' && data.value.substring(0, data.value.length - 1) === 'A') {
+	 		data.classList.add('right-margin');
+	    }
+	 	else if (data.value.substring(1, data.value.length) === '10' && data.value.substring(0, data.value.length - 2) === 'B') {
+	 		data.classList.add('right-margin');
+	    }else if (data.value.substring(1, data.value.length) === '11' && data.value.substring(0, data.value.length - 2) === 'C') {
+	 		data.classList.add('right-margin');
+	    }
+	    //앞자리가 E로끝나는 좌석들에 class 추가
+	    if (
+	        data.value.substring(0, data.value.length - 1) === 'E' ||
+	        data.value.substring(0, data.value.length - 2) === 'E'
+	    ) {
+	        data.classList.add('top-margin');
+	    }
+	    <c:if test="${not empty seats}">
+		    <c:forEach var="s" begin="0" end="${fn:length(seats)-1}">
+			    if(data.value==='${seats[s]}'){
+			    	data.classList.add("selected");
+			    	data.classList.remove("seat");
+			    	$(".selected").css("backgroundColor","#B4B4B4");
+			    	$(".selected").css("color","#B4B4B4");
+			    	
+			    	}
+			 </c:forEach>
+		 </c:if>
+	    });
+	}
 
 const s = document.querySelectorAll(".seat");
 	for(let i=0;i<s.length;i++){
@@ -258,53 +355,53 @@ const s = document.querySelectorAll(".seat");
 		}
 
 
-function mapping(input,input2, i, j) {
-    if (i === 0) {
-        input.value = 'A' + j;
-        input2.value= 7600
-        input2.classList = 'A'+j;
-    } else if (i === 1) {
-        input.value = 'B' + j;
-        input2.value= 99000
-        input2.classList = 'B'+j;  
-    } else if (i === 2) {
-        input.value = 'C' + j;
-        input2.value= 99000
-        input2.classList = 'C'+j;
-    } else if (i === 3) {
-        input.value = 'D' + j;
-        input2.value= 99000
-        input2.classList = 'D'+j;
-    } else if (i === 4) {
-        input.value = 'E' + j;
-        input2.value= 89000
-        input2.classList = 'E'+j;
-    } else if (i === 5) {
-        input.value = 'F' + j;
-        input2.value= 89000
-        input2.classList = 'F'+j;
-    } else if (i === 6) {
-        input.value = 'G' + j;
-        input2.value= 79000
-        input2.classList = 'G'+j;
-    } else if (i === 7) {
-        input.value = 'H' + j;
-        input2.value= 79000
-        input2.classList = 'H'+j;  
-    } else if (i === 8) {
-        input.value = 'I' + j;
-        input2.value= 79000
-        input2.classList = 'I'+j;         
-    } else if (i === 9) {
-        input.value = 'J' + j;
-        input2.value= 79000
-        input2.classList = 'J'+j;         
-    } else if (i === 10) {
-        input.value = 'K' + j;
-        input2.value= 79000
-        input2.classList = 'K'+j;      
-    }
-}
+	function mapping(input,input2, i, j) {
+	    if (i === 0) {
+	        input.value = 'A' + j;
+	        input2.value= 1000
+	        input2.classList = 'A'+j;
+	    } else if (i === 1) {
+	        input.value = 'B' + j;
+	        input2.value= 99000
+	        input2.classList = 'B'+j;  
+	    } else if (i === 2) {
+	        input.value = 'C' + j;
+	        input2.value= 99000
+	        input2.classList = 'C'+j;
+	    } else if (i === 3) {
+	        input.value = 'D' + j;
+	        input2.value= 99000
+	        input2.classList = 'D'+j;
+	    } else if (i === 4) {
+	        input.value = 'E' + j;
+	        input2.value= 89000
+	        input2.classList = 'E'+j;
+	    } else if (i === 5) {
+	        input.value = 'F' + j;
+	        input2.value= 89000
+	        input2.classList = 'F'+j;
+	    } else if (i === 6) {
+	        input.value = 'G' + j;
+	        input2.value= 79000
+	        input2.classList = 'G'+j;
+	    } else if (i === 7) {
+	        input.value = 'H' + j;
+	        input2.value= 79000
+	        input2.classList = 'H'+j;  
+	    } else if (i === 8) {
+	        input.value = 'I' + j;
+	        input2.value= 79000
+	        input2.classList = 'I'+j;         
+	    } else if (i === 9) {
+	        input.value = 'J' + j;
+	        input2.value= 79000
+	        input2.classList = 'J'+j;         
+	    } else if (i === 10) {
+	        input.value = 'K' + j;
+	        input2.value= 79000
+	        input2.classList = 'K'+j;      
+	    }
+	}
 
 
 img = document.createElement('img');
