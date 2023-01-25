@@ -267,7 +267,7 @@
 				//인증번호 시간타이머 사용법
 				  AuthTimer = new timer();
 				  AuthTimer.fnStop();
-				  AuthTimer.comSecond = 20;
+				  AuthTimer.comSecond = 60;
 				  AuthTimer.fnCallback = function(){alert("다시인증을 시도해주세요.")}
 				  AuthTimer.timer =  setInterval(function(){AuthTimer.fnTimer()},1000);
 				  AuthTimer.domId = document.getElementById("timeline");
@@ -284,16 +284,17 @@
 	//비밀번호 정규식
 	const repwCheck = function(id){
 		let pw = $("#"+id).val();
-		let pwRule = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;//비밀번호정규식	
-	   	
+		let pwRule = /^(?=.*[a-zA-Z가-힣ㄱ-ㅎ])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;//비밀번호정규식	
+	   	console.log(pw);
 		let result = pwRule.test(pw.trim());//정규식 결과
-	   	
+	   	console.log(result);
 	   	return result;
 	}
 	
 	//비밀번호 확인 유효성
 	$("#conInput").on("keyup",function(){
 		let pw = repwCheck("conInput");
+		console.log(pw);
 		if(pw==false){
 			$("#repwdMsg").html("8~12자의 영문, 숫자, 특수문자 중 2가지 이상으로만 가능합니다.");
 		}else {
@@ -338,10 +339,13 @@
 		
 		let d = {
 				"newPw" : p1,
-				"repwid" : $("#repwid").html()
+				"repwid" : $("#repwid").html() 
 		};
 		
-		if(p1==p2){
+		let p3 = repwCheck("conInput");
+		let p4 = repwCheck("conInput2");
+		
+		if(p1==p2 && p3 && p4){
 			//새로운 비번과 확인비번이 같으면 hidden에 넣어주기->DB에 넘기기 위해서
 			$.ajax({
 				url:"${path}/member/repassword.do",
@@ -355,7 +359,7 @@
 				}
 			});
 		}else{
-			$("#errormsgRw").html("비밀번호가 일치하지 않습니다.")
+			$("#conInput2").focus();
 		}
 	}
 	
