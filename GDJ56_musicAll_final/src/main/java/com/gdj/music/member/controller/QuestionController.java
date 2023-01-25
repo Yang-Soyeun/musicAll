@@ -28,10 +28,12 @@ public class QuestionController {
 		
 	}
 	
-	@RequestMapping("/insertQ.do")
-	public ModelAndView insertq(Question q, ModelAndView mv) {
-		
-	}
+	/*
+	 * @RequestMapping("/insertQ.do") public ModelAndView insertq(Question q,
+	 * ModelAndView mv) {
+	 * 
+	 * }
+	 */
 	
 	
 	
