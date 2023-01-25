@@ -126,6 +126,34 @@ public class MypageController {
 			return null;
 		}
 	}
+//	//관심공연 삭제 ajax
+//	@RequestMapping("/deleteMlike.do")
+//	@ResponseBody
+//	public Map<String,Object> deleteMlike(ModelAndView mv,@RequestParam Map ml,
+//			@RequestParam(value="cPage", defaultValue="1")int cPage,
+//			@RequestParam(value="numPerpage", defaultValue="12")int numPerpage) {
+//		
+//		System.out.println(ml);
+////		System.out.println(ml.get("member_No"));
+//		
+//		int result=service.deleteMlike(ml);//삭제문 잠시 주석처리 
+//		
+////		int result=1;
+//		int member_No=Integer.parseInt(String.valueOf(ml.get("member_No")));
+//		int totalData=service.selectMlikeCount(member_No);
+//		
+//		if(result>0) {
+//			List<Map<String,Mlike>> list=service.selectMlikeList(member_No,
+//					Map.of("cPage",cPage,"numPerpage",numPerpage)
+//					);
+//			System.out.println(list);
+//			
+//			
+//			return Map.of("list",list,"pageBar", PageFactory.searchPage(cPage,numPerpage,totalData,"deleteMlike.do",member_No));
+//		}else {
+//			return null;
+//		}
+//	}
 	
 	
 	
