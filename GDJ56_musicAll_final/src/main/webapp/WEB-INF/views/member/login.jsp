@@ -36,10 +36,6 @@
 	          </div>
 	        </div>
 	        <div class="snsLoginWrap">
-                <a href="javascript:snsAuthPopup('naver');" class="openid naver">
-                    <span>네이버 로그인</span>
-                </a>
-                |
                 <a href="javascript:snsAuthPopup('kakao');" class="openid kakao">
                     <span>카카오 로그인</span>
                 </a>
@@ -75,6 +71,7 @@
 	 				dataType:"json",
 	 				type:'POST',
 	 				success:data=>{
+	 					console.log(data);
 	 					if(data==false){
 	 						$("#login_result").html("아이디 또는 비밀번호를 잘못 입력하셨습니다.");	
 	 					}else{

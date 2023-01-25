@@ -3,13 +3,13 @@ package com.gdj.music.member.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
@@ -38,13 +38,15 @@ public class MemberController {
 	  private MemberService service;
 	  private EmailSendModule module;
 	  private KakaoLoginBO kakaoLoginBO;
+	  private BCryptPasswordEncoder passwordEncoder;
 	  
 	  @Autowired 
-	  public MemberController(MemberService service, EmailSendModule module, KakaoLoginBO kakaoLoginBO) { 
+	  public MemberController(MemberService service, EmailSendModule module, KakaoLoginBO kakaoLoginBO,BCryptPasswordEncoder passwordEncoder) { 
 		  super();
 		  this.service = service; 
 		  this.module = module;
 		  this.kakaoLoginBO = kakaoLoginBO;
+		  this.passwordEncoder=passwordEncoder;
 	  }
 
 	//로그인 화면 전환
@@ -62,11 +64,10 @@ public class MemberController {
 		
 		System.out.println(loginMember);
 		
-		//DB에 등록된 아이디와 비밀번호가 일치하지 않으면!
-		if(!memberPw.equals(loginMember.getPassword())) {
+		//matches("원본값",암호화값)매소드를 이용
+		if(loginMember != null &&passwordEncoder.matches(m.getPassword(),loginMember.getPassword())) {
 			response.getWriter().print(false);
 		}else {
-//			session.setAttribute("loginMember", loginMember);
 			model.addAttribute("loginMember",loginMember);
 			response.getWriter().print(true);
 		}
@@ -141,6 +142,10 @@ public class MemberController {
 	@RequestMapping("/joinend.do")
 	public void joinend(Member m,HttpServletResponse response) throws IOException{
 		
+		String encodePassword=passwordEncoder.encode(m.getPassword());
+		
+		m.setPassword(encodePassword);
+		
 		int result = service.join(m);
 		
 		response.getWriter().print(result);
@@ -194,10 +199,6 @@ public class MemberController {
 		
 		Member m = service.findpwEnd(member);
 		
-		System.out.println(member);
-		System.out.println(m);
-		
-
 		
 		if(m!=null) {
 			//비밀번호 찾기시 아이디값 보여주기 위한 로직
