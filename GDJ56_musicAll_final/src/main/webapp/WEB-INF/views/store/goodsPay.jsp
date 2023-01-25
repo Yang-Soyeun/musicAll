@@ -12,6 +12,18 @@
 <style>
 
 
+	.payForm {
+			display: grid;
+			justify-content: center;
+			margin-left: 14%;
+			margin-top: 3%;
+			background: #e5e5e5;
+			height: 844px;
+			padding: 4%;
+			width: fit-content;
+			border-radius: 1%;
+	}
+
   #icon{
                     
         font-size:2.0rem;
@@ -30,10 +42,9 @@
 
     #point{
         background-color: #F2F2F2;
-        height: 60px;
-        width:800px;
-        margin-left : 15%;
-        padding:1%;
+        height: 62px;
+        width: 790px;
+        padding:2%;
         display:inline-flex;
        
 
@@ -64,13 +75,38 @@
 				<div><img src="${path }/resources/images/store/goods.jpg" id="countimg1"></div>
 			</div>
 			
-			<div class="payForm" style="display: grid; justify-content: center; margin-left: -18%;">
+			<div class="payForm">
 			
 				<h4>구매자</h4>
 				<input type="text" value="수빈" style="border: none;"/>
 				
+				<br>
+				
+				<h4>전화번호</h4>
+				<input type="text" value="010-1111-2222" style="border: none;"/>
+				
+				<br>
+				
+				<div>
+				<div style="float: left;"><h4>상품금액</h4></div>
+				<div style="margin-top: -2.1%;margin-left: 14%;"><h3><input type="text" value="15000원" style="border: none;"/></h3></div>
+				</div>
+				
+				<div style="">
+        			<div style=""><h4>포인트 사용</h4></div>
+			        <div id="point">
+			            <div>총 포인트&nbsp;&nbsp;&nbsp;<input type="text" value="${point.mpPoint==null?0:point.mpPoint }" readonly></div>
+			            <div style="">사용할 포인트&nbsp;&nbsp;&nbsp;<input type="number" style="width:186px;" min="0" max="5000" class="point" >&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-secondary" onclick="apply();"style="background-color:lightgray;color:black;margin-top:-1%;font-size:15px;">적용</button></div>
+			        </div>
+			        <div><br><h4>총 결제 금액</h4><br>
+			            <div style="">수량 : &nbsp;&nbsp;  할인 가격:&nbsp;<span class="discount">0</span></div>
+			            <div style="font-size:20px;"><p><b>총 금액</b>&nbsp;&nbsp;<b style="color:red;" class="price"><fmt:formatNumber value="" pattern="#,###" />원</b></p></div>
+			            <div style="" class="point2"></div>
+			        </div>
+        
+    			</div>
 		        
-		        <div style="margin-top:7%;">
+		        <div style="margin-top:7%; margin-left: 29%;">
 		            <button class="btn btn-danger" style="width:200px; font-size:15px;" type="button" >결제완료</button>
 		            <button class="btn btn-secondary" style="width:110px;background-color:lightgray;color:black;font-size:15px;">취소</button>
 		        </div>
