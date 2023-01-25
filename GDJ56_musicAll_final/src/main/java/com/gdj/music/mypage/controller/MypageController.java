@@ -180,7 +180,7 @@ public class MypageController {
 	@RequestMapping("/myContentList.do")
 	public ModelAndView myContentList(ModelAndView mv,int No,
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
-			@RequestParam(value="numPerpage", defaultValue="5")int numPerpage) {
+			@RequestParam(value="numPerpage", defaultValue="8")int numPerpage) {
 		
 		int member_No=No;
 		
@@ -190,6 +190,7 @@ public class MypageController {
 				);//전체 문의내역리스트
 		int totalData=service.selectQsCount(member_No);
 
+//		System.out.println(qsList);
 		mv.addObject("myQs",qsList);//전체1대1문의 내역
 		mv.addObject("pageBarQs",PageFactory.searchPage(cPage,numPerpage,totalData,"myContentList.do",member_No));//1대1문의 페이지바
 
@@ -199,7 +200,10 @@ public class MypageController {
 				Map.of("cPage",cPage,"numPerpage",numPerpage)
 				);//내 한줄평 리스트
 		totalData=service.selectRvCount(member_No);
-		
+//		System.out.println(rvList);
+//		for(Map<String, Review> m : rvList) {
+//			System.out.println(m);
+//		}
 		mv.addObject("myRv",rvList);//한줄평 리스트저장
 		mv.addObject("pageBarRv",PageFactory.searchPage(cPage,numPerpage,totalData,"myContentList.do",member_No));//한줄평 페이지바
 		
@@ -212,10 +216,10 @@ public class MypageController {
 		return mv;
 	}
 	//한줄평 정렬
-	@RequestMapping("orderReview.do")
+	@RequestMapping("/orderReview.do")
 	public void orderReview(@RequestParam Map order,HttpServletResponse response,
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
-			@RequestParam(value="numPerpage", defaultValue="5")int numPerpage) throws IOException{
+			@RequestParam(value="numPerpage", defaultValue="8")int numPerpage) throws IOException{
 //		System.out.println(order);
 		List<Map<String,Review>> orderList=service.orderReview(order,
 				Map.of("cPage",cPage,"numPerpage",numPerpage)
@@ -249,38 +253,42 @@ public class MypageController {
 	
 	
 	//1대1문의내역 검색 
+//	@RequestMapping("/searchQs.do")
+//	public ModelAndView searchQs(ModelAndView mv,@RequestParam Map search,
+//			@RequestParam(value="cPage", defaultValue="1")int cPage,
+//			@RequestParam(value="numPerpage", defaultValue="8")int numPerpage) {
+////		System.out.println(param.get("member_No"));
+////		System.out.println(search);
+//		int member_No=Integer.parseInt(String.valueOf(search.get("member_No")));
+////		System.out.println("멤버 번호 :" +member_No);
+//		
+//		List<Question> list=service.searchQs(search,
+//				Map.of("cPage",cPage,"numPerpage",numPerpage)
+//				);
+//		int totalData=service.searchQsCount(search);
+////		System.out.println(list);
+//		mv.addObject("myQs",list);
+//		mv.addObject("pageBarQs",PageFactory.searchPage(cPage,numPerpage,totalData,"myContentList.do",member_No));//1대1문의 페이지바
+//		
+//		mv.setViewName("mypage/myContentList");
+//		return mv;
+//
+//	}
+	
+	
+	//1대1문의내역 검색 :ajax
 	@RequestMapping("/searchQs.do")
-	public ModelAndView searchQs(ModelAndView mv,@RequestParam Map search,
+	@ResponseBody
+	public List<Question> searchQs(ModelAndView mv,@RequestParam Map search,
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
-			@RequestParam(value="numPerpage", defaultValue="5")int numPerpage) {
-//		System.out.println(param.get("member_No"));
+			@RequestParam(value="numPerpage", defaultValue="8")int numPerpage) throws IOException {
 //		System.out.println(search);
-		int member_No=Integer.parseInt(String.valueOf(search.get("member_No")));
-//		System.out.println("멤버 번호 :" +member_No);
-		
 		List<Question> list=service.searchQs(search,
 				Map.of("cPage",cPage,"numPerpage",numPerpage)
 				);
-		int totalData=service.searchQsCount(search);
-//		System.out.println(list);
-		mv.addObject("myQs",list);
-		mv.addObject("pageBarQs",PageFactory.searchPage(cPage,numPerpage,totalData,"myContentList.do",member_No));//1대1문의 페이지바
-		
-		mv.setViewName("mypage/myContentList");
-		return mv;
-
-	}
-	
-	
-//	//1대1문의내역 검색 :ajax
-//	@RequestMapping("/searchQs.do")
-//	public void searchQs(ModelAndView mv,@RequestParam Map param,HttpServletResponse response) throws IOException {
-//		System.out.println(param);
-//		List<Question> list=service.searchQs(param);
 //		System.out.println("출력 값: "+list);
-//		
-//		response.setContentType("application/json;charset=utf-8");//Gson
-//		new Gson().toJson(list,response.getWriter());//Gson
-//		
-//	}
+		
+		return list;
+		
+	}
 }
