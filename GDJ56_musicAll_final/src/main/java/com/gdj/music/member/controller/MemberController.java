@@ -3,13 +3,13 @@ package com.gdj.music.member.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
@@ -38,13 +38,15 @@ public class MemberController {
 	  private MemberService service;
 	  private EmailSendModule module;
 	  private KakaoLoginBO kakaoLoginBO;
+	  private BCryptPasswordEncoder passwordEncoder;
 	  
 	  @Autowired 
-	  public MemberController(MemberService service, EmailSendModule module, KakaoLoginBO kakaoLoginBO) { 
+	  public MemberController(MemberService service, EmailSendModule module, KakaoLoginBO kakaoLoginBO,BCryptPasswordEncoder passwordEncoder) { 
 		  super();
 		  this.service = service; 
 		  this.module = module;
 		  this.kakaoLoginBO = kakaoLoginBO;
+		  this.passwordEncoder=passwordEncoder;
 	  }
 
 	//로그인 화면 전환
@@ -61,12 +63,12 @@ public class MemberController {
 		Member loginMember = service.loginEnd(m);
 		
 		System.out.println(loginMember);
-		
-		//DB에 등록된 아이디와 비밀번호가 일치하지 않으면!
-		if(!memberPw.equals(loginMember.getPassword())) {
+		//String encodePassword=passwordEncoder.encode(newPw);
+
+		//matches("원본값",암호화값)매소드를 이용
+		if(loginMember != null && passwordEncoder.matches(passwordEncoder.encode(m.getPassword()),loginMember.getPassword())) {
 			response.getWriter().print(false);
 		}else {
-//			session.setAttribute("loginMember", loginMember);
 			model.addAttribute("loginMember",loginMember);
 			response.getWriter().print(true);
 		}
@@ -118,11 +120,6 @@ public class MemberController {
 		String name = (String) session.getAttribute("name");
 		String email = (String) session.getAttribute("email");		
 		
-		System.out.println("============================");
-		System.out.println("name : " + name);
-		System.out.println("email : " + email);
-		System.out.println("============================");
-		
 		mav.addObject("name", name);
 		mav.addObject("email", email);
 		
@@ -140,6 +137,10 @@ public class MemberController {
 	//ajax 개인회원가입
 	@RequestMapping("/joinend.do")
 	public void joinend(Member m,HttpServletResponse response) throws IOException{
+		
+		String encodePassword=passwordEncoder.encode(m.getPassword());
+		
+		m.setPassword(encodePassword);
 		
 		int result = service.join(m);
 		
@@ -194,10 +195,6 @@ public class MemberController {
 		
 		Member m = service.findpwEnd(member);
 		
-		System.out.println(member);
-		System.out.println(m);
-		
-
 		
 		if(m!=null) {
 			//비밀번호 찾기시 아이디값 보여주기 위한 로직
@@ -215,7 +212,11 @@ public class MemberController {
 	//비밀번호 변경구현
 	@RequestMapping("/repassword.do")
 	public void newPw(String newPw, String repwid,HttpServletResponse response) throws IOException {
-		int result = service.newPw(newPw,repwid);
+		
+		String encodePassword=passwordEncoder.encode(newPw);
+		
+		int result = service.newPw(encodePassword,repwid);
+		
 		
 		response.getWriter().print(result);
 		
@@ -225,7 +226,6 @@ public class MemberController {
 	@RequestMapping("/idduplicate.do")
 	public void idduplicate(String member_id, HttpServletResponse response) throws IOException {
 		Member m = service.idDuplicate(member_id);
-		System.out.println(m);
 		
 		
 		response.getWriter().print(m);
@@ -296,7 +296,6 @@ public class MemberController {
 
 		String apiResult = kakaoLoginBO.getUserProfile(oauthToken);
 		
-		System.out.println(apiResult);
 		
 		JSONParser jsonParser = new JSONParser();
 		JSONObject jsonObj;
@@ -317,7 +316,11 @@ public class MemberController {
 		System.out.println("name : " + name);
 
 		return "redirect:/member/kakaoterms.do";
-		
 	}
+
+
+	
+	
+	
 	
 }

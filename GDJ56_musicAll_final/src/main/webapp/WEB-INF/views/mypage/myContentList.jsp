@@ -40,11 +40,12 @@
         			url:"${path }/mypage/orderReview.do",
         			data:{keyword:$(obj).val(),member_No:$("#member_No").val()},
         			success:data=>{
-        				console.log(data);
+//         				console.log(data);
         				
 						$(".reviewCon #rvScore").empty();//별점 초기화
 //         				$(".rvPhoto").attr('href','###');//a태그 주소 바꾸기!!!?!수정 필요!!!!!!!!!??????
 						//혹은 div post-thumbnail 아래 자식 태그 지웠다가 a 태그 생성해서 append하기
+						
         				$(".rvPhoto").empty();//기존 사진 지우기
 						
         				for(i=0;i<data.length;i++){
@@ -87,7 +88,7 @@
 			        <div class="post">
 			          <div class="post-thumbnail">
 			          	<a href="#" class="rvPhoto">
-			          		<img src="${path }/resources/images/performance/matilda.gif" 
+			          		<img src="${path }/resources/images/performance/${rv.get('I_NAME') }" 
 			          			alt="Blog-post Thumbnail" class="reviewImg"/>
 			          	</a>
 			          </div>
@@ -102,10 +103,10 @@
 			          </div>
 		<!-- 	          <div class="post-more"><a class="more-link" href="#">Read more</a></div> -->
 			          <div class="post-more" id="rvScore">
-			          	<c:forEach var="i" begin="0" end="${rv.get('SCORE')-1 }" step="1">
+			          	<c:forEach var="i" begin="1" end="${rv.get('SCORE') }" step="1">
 							<i class="fa fa-star"  ></i>
 						</c:forEach>
-			          	<c:forEach var="i" begin="0" end="${4-rv.get('SCORE') }" step="1">
+			          	<c:forEach var="i" begin="1" end="${5-rv.get('SCORE') }" step="1">
 							<i class="fa fa-star-o" ></i>
 						</c:forEach>
 			          </div>
@@ -114,65 +115,6 @@
 	    	</c:forEach>
 	    </c:if>
 	    
-	    
-	    
-	      <div class="col-sm-6 col-md-3 col-lg-3 reviewCon">
-	        <div class="post">
-	          <div class="post-thumbnail">
-	          	<a href="#">
-	          		<img src="${path }/resources/images/performance/42bunga.png" alt="Blog-post Thumbnail" class="reviewImg"/>
-	          	</a>
-	          </div>
-	          <div class="post-header font-alt">
-	            <h2 class="post-title"><a href="#">프랑켄슈타인</a></h2>
-	            <div class="post-meta">My Review</div>
-	          </div>
-	          <div class="post-entry">
-	            <p>너무 재미있게 잘 봤어요~</p>
-	          </div>
-	          <div class="post-more">
-	          	<i class="fa fa-star" ></i>
-	          	<i class="fa fa-star" ></i>
-	          	<i class="fa fa-star-o" ></i>
-	          	<i class="fa fa-star-o" ></i>
-	          	<i class="fa fa-star-o"></i>
-	          </div>
-	        </div>
-	      </div>
-	      <div class="col-sm-6 col-md-3 col-lg-3 reviewCon">
-	        <div class="post">
-	          <div class="post-thumbnail">
-	          	<a href="#">
-	          		<img src="${path }/resources/images/performance/sweet.gif" alt="Blog-post Thumbnail" class="reviewImg"/>
-	          	</a>
-	        </div>
-	        <div class="post-header font-alt">
-	           	<h2 class="post-title"><a href="#">프랑켄슈타인</a></h2>
-	            <div class="post-meta">My Review</div>
-	        </div>
-	          <div class="post-entry">
-	            <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-	          </div>
-	          <div class="post-more"><a class="more-link" href="#">Read more</a></div>
-	        </div>
-	      </div>
-	      <div class="col-sm-6 col-md-3 col-lg-3 reviewCon">
-	        <div class="post">
-	          <div class="post-thumbnail">
-	          	<a href="#">
-	          		<img src="${path }/resources/images/performance/wild.png" alt="Blog-post Thumbnail" class="reviewImg"/>
-	          	</a>
-	          </div>
-	          <div class="post-header font-alt">
-	           	<h2 class="post-title"><a href="#">프랑켄슈타인</a></h2>
-	            <div class="post-meta">My Review</div>
-	          </div>
-	          <div class="post-entry">
-	            <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-	          </div>
-	          <div class="post-more"><a class="more-link" href="#">Read more</a></div>
-	        </div>
-	      </div>
 	      <c:if test="${empty myRv }">
 	      	<div class="" style="text-align:center; margin-top:50px;">
 				<h3>작성한 리뷰가 없습니다.</h3> 
@@ -199,11 +141,12 @@
 	    </div>
 	  
         <!-- 검색창 -->
-        <form action="${path }/mypage/searchQs.do" class="row" style="margin-bottom:20px;">
+        <form action="" class="row" style="margin-bottom:20px;">
           <div class="col-sm-4 mb-sm-20 " style="float: right;">
               <div class="search-box">
                 <input class="form-control" id="keyword" name="keyword" type="text" placeholder="Search..." required>
-                <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+<!--                 <button class="search-btn" type="submit"><i class="fa fa-search"></i></button> -->
+                <button class="search-btn" type="button" onclick="fn_searchQuestion(${loginMember.member_No});" ><i class="fa fa-search"></i></button>
                 <input type="hidden" name="member_No" id="member_No" value="1"> <!-- value수정 필요`!!!!!!!!!!!!!!!! -->
               </div>
       		</div>
@@ -219,7 +162,7 @@
 	    
 	    <div class="row">
 	      <div class="col-sm-12">
-	        <table class="table table-striped table-border checkout-table" style="text-align:center;">
+	        <table id="qsTable" class="table table-striped table-border checkout-table" style="text-align:center;">
 	          <tbody>
 	            <tr>
 	              <td><b>번호</b></td>
@@ -239,18 +182,18 @@
 			              <td>
 			                <h5 id="qsHeadTitle" class="product-title font-alt"><c:out value="${qs.qsHeadTitle }"/></h5>
 			              </td>
-			              <td class="">
+			              <td>
 			                <h5 class="product-title font-alt"><i id="qsTitle" class="fa fa-lock"><c:out value="${qs.qsTitle }"/></i></h5>
 			              </td>
-			              <td class="">
+			              <td >
 			                <h5 id="member_Id" class="product-title" style="letter-spacing:2px;"><c:out value="${loginMember.member_Id}"/></h5>
 			              </td>
-			              <td class="">
+			              <td >
 			                <h5 id="qsResult" class="product-title font-alt"><c:out value="${qs.qsResult }"/></h5>
 			              </td>
-			              <td class="">
+			              <td >
 			                <h5 id="qsDate" class="product-title font-alt">
-			                	<fmt:formatDate value="${qs.qsDate }" type="both" pattern="yyyy-MM-dd (E) hh:mm:ss"/>
+			                	<fmt:formatDate value="${qs.qsDate }" type="both" pattern="yyyy-MM-dd hh:mm:ss"/>
 			                </h5>
 			              </td>
 		            	</tr>
@@ -275,40 +218,61 @@
 	</section>
 </div>
 
-<!-- 	<script> -->
-<!-- 		const fn_searchQuestion=()=>{ -->
-<!-- 		console.log($("#No").val()); -->
-<!-- 			$.ajax({ -->
-<%--  				url:"${path }/mypage/searchQs.do", --%>
-<!--  				data:{type:$("#type").val(),keyword:$("#keyword").val(),No:$("#member_No").val()}, -->
-<!--  				success:data=>{ -->
-<!--  					console.log(data); -->
-<!--  					console.log($(".QsTr #qsNo")); -->
-<!--  					for(i=0;i<5;i++){ -->
-<!--  						console.log(data[i].qsDate); -->
+	<script>
+		//1대1 질문 ajax 검색
+ 		const fn_searchQuestion=(No)=>{
+ 			
+ 		console.log($("#member_No").val()); 
+ 			$.ajax({ 
+ 				url:"${path }/mypage/searchQs.do?=No",
+  				data:{type:$("#type").val(),keyword:$("#keyword").val(),member_No:$("#member_No").val()},
+  				dataType:'json',
+  				type:'post',
+  				success:data=>{ 
+//   					console.log(data); 
+  					
+					if(data!=null){
+						$(".QsTr").remove();
 						
-						
-<!--  						console.log($(".QsTr #qsNo")[i].innerText); -->
-<!--  						$(".QsTr #qsNo")[i].innerText=data[i].qsNo; -->
-<!--  						$(".QsTr #qsHeadTitle")[i].innerText=data[i].qsHeadTitle; -->
-<!--  						$(".QsTr #qsTitle")[i].innerText=data[i].qsTitle; -->
-<!--  						$(".QsTr #qsResult")[i].innerText=data[i].qsResult; -->
-<!--  						$(".QsTr #qsDate")[i].innerText=data[i].qsDate; -->
-<!-- 					} -->
-<!--  				} -->
+	  					for(i=0;i<data.length;i++){ 
+	  						
+							var tr=$("<tr class='QsTr'></tr>")[0];
+							var td1=$("<td>")[0];
+							var td2=$("<td>")[0];
+							var td3=$("<td>")[0];
+							var td4=$("<td>")[0];
+							var td5=$("<td>")[0];
+							var td6=$("<td>")[0];
+							
+							var qsNo=$("<h5 id='qsNo' class='product-title font-alt'>"+data[i].qsNo+"</h5>")[0];
+							var qsHeadTitle=$("<h5 id='qsHeadTitle' class='product-title font-alt'>"+data[i].qsHeadTitle+"</h5>")[0];
+							var qsTitle=$("<h5 class='product-title font-alt'><i id='qsTitle' class='fa fa-lock'>"+data[i].qsTitle+"</i></h5>")[0];
+							var member_Id=$("<h5 id='member_Id' class='product-title' style='letter-spacing:2px;'>"+data[i].memberNo+"</h5>")[0];
+							var qsResult=$("<h5 id='qsResult' class='product-title font-alt'>"+data[i].qsResult+"</h5>")[0];
+							var qsDate=$("<h5 id='qsDate' class='product-title font-alt'>"+data[i].qsDate+"</h5>")[0];
+							
+							td1.append(qsNo);
+							td2.append(qsHeadTitle);
+							td3.append(qsTitle);
+							td4.append(member_Id);
+							td5.append(qsResult);
+							td6.append(qsDate);
+							
+							tr.append(td1);
+							tr.append(td2);
+							tr.append(td3);
+							tr.append(td4);
+							tr.append(td5);
+							tr.append(td6);
+							
+							$("#qsTable").append(tr);
+	 					} 
+					}
+  				}
 				
-<!--  			}); -->
-<!--  		}; -->
-<!-- 	</script> -->
-
-
-
-
-
-
-
-
-
+  			}); 
+  		}; 
+ 	</script> 
 
 
 

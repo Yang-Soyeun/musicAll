@@ -124,11 +124,12 @@
 						<div class="styleInput">
 							<input id="conInput" name="pwd" tabindex="1" type="password" class="iInput" placeholder="새 비밀번호">
 						</div>
+							<div id="repwdMsg" style="display: block; color:red;" ></div>
 						<div class="styleInput">
 							<input id="conInput2" name="pwd_confirm" tabindex="2" type="password" class="iInput" placeholder="새 비밀번호 확인">
 						</div>
-							<div id="errormsgRw" style="color:red;"></div>	
-							<p class="iconInfo">비밀번호는 8~12자 이내로 영문(대,소문자), 숫자, 특수문자 3가지 조합 중 2가지 이상을 조합하셔서 만드시면 됩니다.</p>
+							<div id="errormsgRw" style="color:red;"></div>
+							<p class="iconInfo" style="display: block; color:#aaa;">비밀번호는 8~12자 이내로 영문(대,소문자), 숫자, 특수문자 3가지 조합 중 2가지 이상을 조합하셔서 만드시면 됩니다.</p>
 						</div>
 						<div class="btnArea">
 							<input type="button" onclick="javascript:updateMemPwd(); return false;" class="btnRed" value="변경">
@@ -233,6 +234,7 @@
 			});
 		}
 	}
+	
 	let AuthTimer;
 	//비밀번호 찾기 구현
 	const bt_findpw=()=>{
@@ -265,7 +267,7 @@
 				//인증번호 시간타이머 사용법
 				  AuthTimer = new timer();
 				  AuthTimer.fnStop();
-				  AuthTimer.comSecond = 20;
+				  AuthTimer.comSecond = 60;
 				  AuthTimer.fnCallback = function(){alert("다시인증을 시도해주세요.")}
 				  AuthTimer.timer =  setInterval(function(){AuthTimer.fnTimer()},1000);
 				  AuthTimer.domId = document.getElementById("timeline");
@@ -274,11 +276,50 @@
 				  //->보낸인증번호를 input hidden에 저장하기 그런다음 비교 가능
 				 $("#hidenum").val(data.number); //히든에 data값=인증번호를 넣어 줫음
 				 $("#repwid").html(data.member_id);//제이슨으로 넘긴 아이디값 넣어주기
-				 
 				}
 			}
 		});
 	}
+	
+	//비밀번호 정규식
+	const repwCheck = function(id){
+		let pw = $("#"+id).val();
+		let pwRule = /^(?=.*[a-zA-Z가-힣ㄱ-ㅎ])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;//비밀번호정규식	
+	   	console.log(pw);
+		let result = pwRule.test(pw.trim());//정규식 결과
+	   	console.log(result);
+	   	return result;
+	}
+	
+	//비밀번호 확인 유효성
+	$("#conInput").on("keyup",function(){
+		let pw = repwCheck("conInput");
+		console.log(pw);
+		if(pw==false){
+			$("#repwdMsg").html("8~12자의 영문, 숫자, 특수문자 중 2가지 이상으로만 가능합니다.");
+		}else {
+			$("#repwdMsg").html("")
+		}
+	});
+	
+	//비밀번호 확인 유효성 이벤트
+	$("#conInput2").on("keyup",function(){
+		let pw2 = repwCheck("conInput2");
+		if(pw2==false){
+			$("#errormsgRw").html("8~12자의 영문, 숫자, 특수문자 중 2가지 이상으로만 가능합니다.");
+		}else{
+			let repw1 = $("#conInput").val();
+			let repw2 = $("#conInput2").val();
+			
+			if(repw1 == repw2){
+				$("#errormsgRw").html("비밀번호가 일치합니다.");
+				
+			}else{
+				$("#errormsgRw").html("비밀번호가 일치하지 않습니다. 다시 입력해주세요");
+			}
+		}
+	});
+	
 	
 	//비밀번호 찾기 버튼을 클릭시 비번 재설정
 	const bt_findEndpw=()=>{
@@ -298,10 +339,13 @@
 		
 		let d = {
 				"newPw" : p1,
-				"repwid" : $("#repwid").html()
+				"repwid" : $("#repwid").html() 
 		};
 		
-		if(p1==p2){
+		let p3 = repwCheck("conInput");
+		let p4 = repwCheck("conInput2");
+		
+		if(p1==p2 && p3 && p4){
 			//새로운 비번과 확인비번이 같으면 hidden에 넣어주기->DB에 넘기기 위해서
 			$.ajax({
 				url:"${path}/member/repassword.do",
@@ -314,17 +358,14 @@
 					}
 				}
 			});
-			
 		}else{
-			$("#errormsgRw").html("비밀번호와 일치하지 않습니다.")
-			
+			$("#conInput2").focus();
 		}
 	}
 	
 	
 	//인증번호 타이머
 	function timer(){
-		
 	}
 	
 	timer.prototype={

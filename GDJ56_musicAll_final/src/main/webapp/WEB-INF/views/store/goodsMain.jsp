@@ -36,8 +36,8 @@
         <div class="row" style="width: 106%; margin-left: -6%;">
 
             <div class="col-lg-3">
-                <h1 class="h3 pb-4">카테고리</h1>
-                <ul class="list-unstyled templatemo-accordion">
+                <h1 class="h3 pb-4">태그 검색</h1>
+                <!-- <ul class="list-unstyled templatemo-accordion">
                     <li class="pb-3">
                         <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
                             
@@ -69,7 +69,7 @@
                             <li><a class="text-decoration-none" href="#">Sunglass</a></li>
                         </ul>
                     </li>
-                </ul>
+                </ul> -->
             </div>
 
             <div class="col-lg-9">
@@ -103,15 +103,13 @@
                 </div>
                 
                <div id="cart" class="cart" data-totalitems="0" style="float: right;">
-				  <button type="button" class="btn btn-secondary">
+				  <button type="button" class="btn btn-secondary" onclick="location.assign('${path }/goods/goodsCart.do')">
 		                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
 						  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
 						</svg>
            			</button>
 				</div>
-						<!-- <div id="cart" class="cart" data-totalitems="0">
-						  <i class="fas fa-shopping-cart"></i>
-						</div> -->
+						
                 
                 <div class="row" >
                     <div class="col-md-4" >
@@ -556,19 +554,7 @@
 
 
     <!-- Back to Top -->
-    
 
-
-    <!-- JavaScript Libraries -->
-    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script> -->
-
-    <!-- Template Javascript -->
-    <!-- <script src="js/main.js"></script> -->
 </body>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
