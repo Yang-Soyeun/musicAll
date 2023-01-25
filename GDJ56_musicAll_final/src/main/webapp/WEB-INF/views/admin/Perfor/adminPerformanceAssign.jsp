@@ -155,9 +155,18 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="th" scope="row"><b>공연 장소</b></th>
-                        <td><input type="text" name="perPlace" class="wid53" placeholder="ex :예술의 전당 CJ 토월극장"></td>
-                </tr>
+                <th class="th" scope="row"><b>공연 장소</b>
+                <td>
+                    <p>
+                        <label>
+                            <input type="radio" name="perPlace" value="예술의 전당" id="artPalace">
+                                 예술의 전당</label>
+                        <label>
+                            <input type="radio" name="perPlace" value="블루스퀘어" id="blueSquare">
+                                 블루스퀘어</label>
+                    </p>
+                </td>
+            </tr>
                 <tr>
                     <th class="th" scope="row"><b>공연 가격</b>
                     <td>
@@ -206,8 +215,8 @@
                     timeFormat: 'h:mm p',
                     interval: 60,
                     minTime: '10',
-                    maxTime: '9:00pm',
-                    defaultTime: '10',
+                    maxTime: '11:00pm',
+                    defaultTime: '00:00',
                     startTime: '12:00',
                     dynamic: false,
                     dropdown: true,
@@ -247,8 +256,8 @@
             	
         		
         		let form=new FormData();
-        		
-            	$('input:checked').each((i,e)=>{
+        		console.log($('input[type=checkbox]:checked'));
+            	$('input[type=checkbox]:checked').each((i,e)=>{
 					form.append("perDay",
 							$(e).val()+","+$(e).parent().next().val()
 							+","+$(e).parent().next().next().val())            		

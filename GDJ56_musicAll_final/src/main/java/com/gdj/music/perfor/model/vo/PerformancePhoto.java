@@ -9,10 +9,12 @@ import lombok.NoArgsConstructor;
 @Builder
 
 public class PerformancePhoto {
-	private int photoNo;
-	private String mainPhoto;//썸네일
-	private String PerPhotoOriName;
+	private int fNum;
+	private String sumImage;
+	private String iName;
 	private String PerPhotoReName;
+	private int mCode;
+	
 	
 
 }

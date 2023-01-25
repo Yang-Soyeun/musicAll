@@ -24,6 +24,7 @@ public class Performance2 {
 	private int vipPrice;
 	private int rPrice;
 	private int sPrice;
+	private int hCode;
 	//private String upFile;
 	//private String upFile2;
 }
