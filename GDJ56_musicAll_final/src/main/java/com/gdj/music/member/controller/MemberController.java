@@ -62,8 +62,6 @@ public class MemberController {
 		
 		Member loginMember = service.loginEnd(m);
 		
-		System.out.println(loginMember);
-		//String encodePassword=passwordEncoder.encode(newPw);
 
 		//matches("원본값",암호화값)매소드를 이용
 		if(loginMember != null && passwordEncoder.matches(passwordEncoder.encode(m.getPassword()),loginMember.getPassword())) {

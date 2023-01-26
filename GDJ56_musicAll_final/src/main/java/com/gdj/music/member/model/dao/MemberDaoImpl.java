@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.member.model.vo.Terms;
+import com.gdj.music.question.model.vo.Question;
 
 @Repository
 public class MemberDaoImpl implements MemberDao {
@@ -60,6 +61,13 @@ public class MemberDaoImpl implements MemberDao {
 	public Terms joinTerms1(int term_code, SqlSessionTemplate session) {
 		return session.selectOne("member.joinTerm1",term_code);
 	}
+
+	@Override
+	public int insertq(SqlSessionTemplate session, Question q) {
+		return session.insert("question.insertq",q);
+	}
+	
+	
 
 	
 	
