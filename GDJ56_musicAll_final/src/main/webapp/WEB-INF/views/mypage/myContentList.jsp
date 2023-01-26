@@ -88,7 +88,7 @@
 			        <div class="post">
 			          <div class="post-thumbnail">
 			          	<a href="#" class="rvPhoto">
-			          		<img src="${path }/resources/images/performance/${rv.get('I_NAME') }" 
+			          		<img src="${path }/resources/upload/performance/${rv.get('I_NAME') }" 
 			          			alt="Blog-post Thumbnail" class="reviewImg"/>
 			          	</a>
 			          </div>
