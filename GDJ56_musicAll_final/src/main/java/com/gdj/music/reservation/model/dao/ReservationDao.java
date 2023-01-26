@@ -3,6 +3,7 @@ package com.gdj.music.reservation.model.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.jdbc.SQL;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.gdj.music.perfor.model.vo.Performance;
@@ -17,5 +18,6 @@ public interface ReservationDao {
 	int insertPoint(SqlSessionTemplate session, Point p);
 	int addPoint(SqlSessionTemplate session, Point po);
 	int minusPoint(SqlSessionTemplate session, Point po);
+	int countDaySales(SqlSessionTemplate session);
 	
 }
