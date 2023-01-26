@@ -46,10 +46,14 @@ public class ReservationController {
 			day.add(p.get(i).get("S_DAY"));
 			
 		}
-		
+		//썸네일 조회
+		String img = service.selectImg(mCode);
+	
+		//요일 중복제거
 		model.addAttribute("day",day.stream().distinct().collect(Collectors.toList()));
 		model.addAttribute("mCode",mCode);
 		model.addAttribute("performance",p);
+		model.addAttribute("img",img);
 		
 		return "reservation/bookingView";
 	}

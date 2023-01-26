@@ -177,7 +177,7 @@ public class AdminPerforController {
 		String[] perDay = Performance.getPerDay();
 		//요일별 구분한 반복문
 		for(String pd:perDay) {
-			//요일에 지정된 회자 데이터를 파싱처리
+			//요일에 지정된 회자 데이터를 파싱처리 
 			//0 : 요일, 1 : 1회차 시작시간, 2: 2회차 시작시간
 			String[] days=pd.split(",");
 			//요일별 1회차에 대한 저장

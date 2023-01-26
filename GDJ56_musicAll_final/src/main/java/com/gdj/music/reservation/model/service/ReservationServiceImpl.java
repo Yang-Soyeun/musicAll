@@ -35,6 +35,13 @@ public class ReservationServiceImpl implements ReservationService {
 
 
 	@Override
+	public String selectImg(int mCode) {
+		// TODO Auto-generated method stub
+		return dao.selectImg(session, mCode);
+	}
+
+
+	@Override
 	public int selectHall(int mCode) {
 		// TODO Auto-generated method stub
 		return dao.selectHall(session, mCode);

@@ -17,6 +17,13 @@ public class ReservationDaoImpl implements ReservationDao {
 	public List<Map<String,Performance>> selectPerform(SqlSessionTemplate session, int mCode) {
 		return session.selectList("booking.selectPerform",mCode);
 	}
+	
+	@Override
+	public String selectImg(SqlSessionTemplate session, int mCode) {
+		// TODO Auto-generated method stub
+		return session.selectOne("booking.selectImg",mCode);
+	}
+	
 
 	@Override
 	public int selectHall(SqlSessionTemplate session, int mCode) {
@@ -77,6 +84,8 @@ public class ReservationDaoImpl implements ReservationDao {
 		// TODO Auto-generated method stub
 		return session.selectOne("booking.selectTotalSales");
 	}
+
+
 
 	
 }

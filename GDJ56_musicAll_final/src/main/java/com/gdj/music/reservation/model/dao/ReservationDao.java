@@ -12,6 +12,7 @@ import com.gdj.music.reservation.model.vo.Point;
 public interface ReservationDao {
 
 	List<Map<String,Performance>> selectPerform(SqlSessionTemplate session, int mCode);
+	String selectImg(SqlSessionTemplate session,int mCode);
 	int selectHall(SqlSessionTemplate session, int mCode);
 	List<String> selectSeats(SqlSessionTemplate session,Map<String,Object> map);
 	String selectMusical(SqlSessionTemplate session,int mCode);
@@ -22,4 +23,5 @@ public interface ReservationDao {
 	Integer selectDaySales(SqlSessionTemplate session);
 	int countTotalSales(SqlSessionTemplate session);
 	Integer selectTotalSales(SqlSessionTemplate session);
+
 }
