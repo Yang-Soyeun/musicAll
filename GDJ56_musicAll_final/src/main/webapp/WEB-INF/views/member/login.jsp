@@ -75,8 +75,7 @@
 	 					if(data==false){
 	 						$("#login_result").html("아이디 또는 비밀번호를 잘못 입력하셨습니다.");	
 	 					}else{
-	 						if(id=="admin") location.assign("${path}/admin/adminMain.do");
-	 						else location.assign("${path}/");
+	 						location.assign("${path}/");
 	 					}
 	 				}
 	 				
