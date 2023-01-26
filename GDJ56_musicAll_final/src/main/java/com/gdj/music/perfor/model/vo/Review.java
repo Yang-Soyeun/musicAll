@@ -17,6 +17,6 @@ public class Review {
 	private Date reviewDate;
 	private int score;
 	private int memberNo;
-	private int mCode;
+	private int rCode;//예매코드
 
 }

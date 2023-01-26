@@ -91,7 +91,11 @@ public class ReservationController {
 				.pUid(info[5]).build();
 		String seats = "";
 		for(int i=7;i<info.length;i++) {
-			seats+=info[i]+",";
+			if(i!=info.length-1) {
+				seats+=info[i]+",";}
+			else {
+				seats+=info[i];
+			}
 		}
 		System.out.println(seats);
 		Reservation r = Reservation.builder().rSeat(seats.split(",")).mCode(Integer.parseInt(info[1]))
