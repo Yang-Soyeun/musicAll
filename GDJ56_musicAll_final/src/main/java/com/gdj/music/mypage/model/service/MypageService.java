@@ -15,6 +15,8 @@ public interface MypageService {
 	Member checkPwd(Member m);//비번체크
 	Member updateMember(int member_No);//회원정보수정 위한 데이터확인
 	
+	List<Map<String,Object>> selectReservationList(int member_No,Map<String,Integer> param);//예매정보 확인
+	int selectReservationCount(int member_No);//예매정보 페이징처리
 	
 	List<Point> selectPointListPage(int member_No,Map<String,Integer> param);//페이징처리,포인트리스트 출력
 	Point selectPoint(int member_No);//남은포인트 출력
