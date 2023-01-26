@@ -124,12 +124,9 @@
 						<dt>이메일</dt>
 						<dd>
 							<div class="styleInput cols">
-								<input type="text" name="joinMemHp" class="iInput" value="" placeholder="이메일">
+								<input type="text" name="joinMemHp" class="iInput" value="${email }" placeholder="이메일">
 								<span class="delBtn" style="display: none;"></span>
 								<p class="error" style="display: none">오류메세지를 입력합니다.</p>
-							</div>
-							<div class="buttonBox">
-								<button onclick="javascript:certByMpNo()" style="display:block;"><span class="">인증 번호 받기</span></button>
 							</div>
 						</dd>
 					</dl>
