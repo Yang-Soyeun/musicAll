@@ -113,6 +113,14 @@
       background: lighten($card-light-danger, 5%)
     }
   }
+
+  &.card-light-yellow {
+    background: $card-light-danger;
+    color: $white;
+    &:hover {
+      background: lighten($card-light-yellow, 5%)
+    }
+  }
 }
 
 @each $color, $value in $theme-colors {

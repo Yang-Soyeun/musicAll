@@ -75,6 +75,15 @@ public class ReservationServiceImpl implements ReservationService {
 		return dao.minusPoint(session, po);
 	}
 
+
+	@Override
+	public int countDaySales() {
+		// TODO Auto-generated method stub
+		return dao.countDaySales(session);
+	}
+	
+	
+
 	
 	
 
