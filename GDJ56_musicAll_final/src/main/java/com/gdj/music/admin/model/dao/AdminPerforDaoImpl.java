@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.gdj.music.perfor.model.vo.Performance2;
+import com.gdj.music.perfor.model.vo.PerformancePhoto;
 import com.gdj.music.perfor.model.vo.Schedule;
 
 @Repository
@@ -16,12 +17,16 @@ public class AdminPerforDaoImpl implements AdminPerforDao {
 		return session.insert("musical.insertPerformance",p);
 	}
 	@Override
-	public int insertSchedule(SqlSessionTemplate session, List<Schedule> sc) {
-		return session.insert("p_schedule.insertSchedule",sc);
+	public int insertSchedule(SqlSessionTemplate session, Schedule s) {
+		return session.insert("p_schedule.insertSchedule",s);
 	}
 	@Override
 	public int insertHall(SqlSessionTemplate session,String perPlace ) {
 		return session.insert("hall.insertHall",perPlace);
 	}
-	
+
+	@Override
+	public int insertPhoto(SqlSessionTemplate session, PerformancePhoto pp) {
+		return session.insert("img.insertPhoto",pp);
+	}
 }

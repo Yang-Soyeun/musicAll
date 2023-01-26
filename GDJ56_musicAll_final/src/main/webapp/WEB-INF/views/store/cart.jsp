@@ -108,7 +108,7 @@
                       </tr>
                     </tbody>
                   </table>
-                  <button class="btn btn-lg btn-block btn-round btn-d" type="submit">구매하기</button>
+                  <button class="btn btn-lg btn-block btn-round btn-d" type="submit" onclick="location.assign('${path }/goods/goodsPay.do')">구매하기</button>
                 </div>
               </div>
             </div>

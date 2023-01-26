@@ -109,11 +109,12 @@
                      <li><a href="${path }/mypage/myContentList.do?No=${loginMember.member_No}"><i class="fa fa-pencil-square-o"></i> 내가 쓴 글</a></li>
                    </ul>
                  </li>
-                 <li class="dropdown"><a href="${path }/member/logout.do" >로그아웃</a></li>
+                 <li class="dropdown"><a href="${path }/member/logout.do" >로그아웃</a></li>  
               </c:if>
               <c:if test="${(loginMember!=null) && (loginMember.member_Id eq 'admin') }" ><!-- 관리자가 로그인하면-->
-                 <li class="dropdown"><a href="${path }/member/logout.do" >로그아웃</a></li>
-           </c:if>
+         		<li class="dropdown"><a href="${path }/admin/adminMain.do" >관리자페이지</a></li>
+         		<li class="dropdown"><a href="${path }/member/logout.do" >로그아웃</a></li>  
+   	  		</c:if>	
             
             </ul>
           </div>

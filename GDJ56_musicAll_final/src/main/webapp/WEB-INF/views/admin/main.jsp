@@ -192,7 +192,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+            <a class="nav-link" data-toggle="collapse" href="${path }/adminGoods/adgMain.do" aria-expanded="false" aria-controls="form-elements">
               <i class="icon-columns menu-icon"></i>
               <span class="menu-title">굿즈관리</span>
               <i class="menu-arrow"></i>
@@ -289,10 +289,9 @@
               <div class="row">
                 <div class="col-md-6 mb-4 stretch-card transparent" style="margin-left:0px;">
                   <div class="card card-light-blue">
-                    <div class="card-body">
-                      <p class="mb-4">Number of Meetings</p>
+                    <div class="card-body" onclick="location.assign('${path}/adminGoods/adgMain.do');">
+                      <p class="mb-4">Management of Goods</p>
                       <p class="fs-30 mb-2">굿즈관리</p>
-                      <p>2.00% (30 days)</p>
                     </div>
                   </div>
                 </div>
