@@ -62,9 +62,25 @@ public class MypageController {
 	
 	//예매내역리스트
 	@RequestMapping("/musicalList.do")
-	public String musicalList(){
+	public ModelAndView musicalList(ModelAndView mv,
+			@RequestParam(value="No", defaultValue="1") int member_No,
+			@RequestParam(value="cPage", defaultValue="1")int cPage,
+			@RequestParam(value="numPerpage", defaultValue="7")int numPerpage){
 		
-		return "mypage/musicalList";
+		List<Map<String,Object>> list=service.selectReservationList(member_No,
+				Map.of("cPage",cPage,"numPerpage",numPerpage)
+				);
+		int totalData=service.selectReservationCount(member_No);//페이징처리
+		
+		for(Map<String,Object> m : list) {
+			System.out.println(m);
+//			System.out.println(m.get("M_CODE"));
+		}
+		
+		mv.addObject("reservationList",list);
+		mv.addObject("pageBar",PageFactory.searchPage(cPage,numPerpage,totalData,"musicalList.do",member_No));
+		mv.setViewName("mypage/musicalList");
+		return mv;
 	}
 	
 	//예매세부내역

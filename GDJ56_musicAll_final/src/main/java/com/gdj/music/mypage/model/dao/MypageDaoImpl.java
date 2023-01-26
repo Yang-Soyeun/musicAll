@@ -29,6 +29,19 @@ public class MypageDaoImpl implements MypageDao {
 		return session.selectOne("mypage.updateMember",member_No);
 	}
 	
+	
+	//예매정보
+	@Override
+	public List<Map<String, Object>> selectReservationList(SqlSessionTemplate session, int member_No,
+			Map<String, Integer> param) {
+		return session.selectList("mypage.selectReservationList",member_No,
+						new RowBounds((param.get("cPage")-1)*param.get("numPerpage")
+						,param.get("numPerpage")));
+	}
+	@Override
+	public int selectReservationCount(SqlSessionTemplate session, int member_No) {
+		return session.selectOne("mypage.selectReservationCount",member_No);
+	}
 
 
 

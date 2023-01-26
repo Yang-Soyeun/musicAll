@@ -21,17 +21,6 @@
 	        <h1 class="module-title font-alt">내가 쓴 리뷰</h1>
 	      </div>
 	    </div>
-	  
-        <!-- 정렬창 -->
-        <form class="row" style="margin-bottom:20px;">
-          <div class="col-sm-2 mb-sm-20 " style="float: right;">
-            <select onchange="fn_orderRv(this);" class="form-control">
-              <option selected value="review_date">최근 작성순</option>
-              <option value="scoreHigh">별점 높은 순</option>
-              <option value="scoreRow">별점 낮은 순</option>
-            </select>
-          </div>
-        </form>
         
         <script>
         	const fn_orderRv=(obj)=>{
@@ -82,6 +71,17 @@
         
 	    <!-- 한줄평 -->
 	    <c:if test="${not empty myRv }">
+		    	<!-- 정렬창 -->
+	        <form class="row" style="margin-bottom:20px;">
+	          <div class="col-sm-2 mb-sm-20 " style="float: right;">
+	            <select onchange="fn_orderRv(this);" class="form-control">
+	              <option selected value="review_date">최근 작성순</option>
+	              <option value="scoreHigh">별점 높은 순</option>
+	              <option value="scoreRow">별점 낮은 순</option>
+	            </select>
+	          </div>
+	        </form>
+        
 	   		<c:forEach var="rv" items="${myRv }">
 	   		
 			    <div class="col-sm-6 col-md-3 col-lg-3 reviewCon" >
