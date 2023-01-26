@@ -52,8 +52,10 @@ public class AdminPerforController {
 	 
 	// 공연리스트 출력
 	@RequestMapping("/performanceList.do")
-	public String adminPerformanceList() {
-		return "/admin/Perfor/adminPerformanceList";
+	public ModelAndView adminPerformanceList(ModelAndView mv) {
+		//mv.addObject("musicals",service.selectPerforList());
+		mv.setViewName("/admin/Perfor/adminPerformanceList");
+		return mv;
 	}
 
 	// 공연등록화면 전환
