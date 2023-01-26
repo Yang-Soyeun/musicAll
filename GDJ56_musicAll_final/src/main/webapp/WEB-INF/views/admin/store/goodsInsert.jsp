@@ -19,10 +19,30 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="${path }/resources/images/favicon.png" />
 
+
+	<style>
+		.goodsForm {
+			
+			justify-content: center;
+			margin-left: 18%;
+			margin-top: 3%;
+			margin-bottom: 3%;
+			background: #e5e5e5;
+			/* height: 1000px; */
+			padding: 4%;
+			width: 50%;
+			border-radius: 1%;
+	}
+	
+		.goodsAdd{
+			display: grid;
+			background-color: transparent;
+		}
+	</style>
+
 <body>
-  <div class="container">
-    <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+ <div class="container">
+<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a class="navbar-brand brand-logo mr-5" href="index.html"></a>
 		
@@ -36,14 +56,15 @@
                 <i class="ti-power-off text-primary"></i>
                Logout
               </a>
-            </div>
-          </li>
-        </ul>
+           </li>
+        </ul> 
+      </div>
+          
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
           <span class="icon-menu"></span>
         </button>
-      </div>
-    </nav>
+      </nav>
+    </div>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_settings-panel.html -->
@@ -167,9 +188,9 @@
           <!-- chat tab ends -->
         </div>
       </div>
-      <!-- partial -->
-      <!-- partial:partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      
+      
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
             <a class="nav-link" href="index.html">
@@ -192,7 +213,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="${path }/adminGoods/adgMain.do" aria-expanded="false" aria-controls="form-elements">
+            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
               <i class="icon-columns menu-icon"></i>
               <span class="menu-title">굿즈관리</span>
               <i class="menu-arrow"></i>
@@ -241,100 +262,72 @@
           </li>
         </ul>
       </nav>
-      <!-- partial -->
-      <div class="main-panel">
-        <div class="content-wrapper">
-          <div class="row">
-            <div class="col-md-12 grid-margin" style="margin-left:320px; ">
-              <div class="row">
-                <div class="col-12 col-xl-8 mb-4 mb-xl-0" style="margin-left:10.5%">
-                  <h3 class="font-weight-bold">관리자 페이지</h3><br>
-                  
-                </div>
-                <div class="col-12 col-xl-4">
-                 <div class="justify-content-end d-flex">
-                  <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                      <a class="dropdown-item" href="#">January - March</a>
-                      <a class="dropdown-item" href="#">March - June</a>
-                      <a class="dropdown-item" href="#">June - August</a>
-                      <a class="dropdown-item" href="#">August - November</a>
-                    </div>
-                  </div>
-                 </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 grid-margin transparent" style="margin-left:200px;" >
-              <div class="row">
-                <div class="col-md-6 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body" onclick="location.assign('${path}/adminPerfor/performanceList.do');">
-                      <p class="mb-4">Today’s Bookings</p>
-                      <p class="fs-30 mb-2">공연관리</p>
-                      <p>10.00% (30 days)</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4 stretch-card transparent" style="margin-left:0px;">
-                  <div class="card card-dark-blue">
-                    <div class="card-body" onclick="location.assign('${path}/adminSale/performanceSale.do');">
-                      <p class="mb-4">Sales of performance</p>
-                      <p class="fs-30 mb-2">공연매출</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 mb-4 stretch-card transparent" style="margin-left:0px;">
-                  <div class="card card-light-blue">
-                    <div class="card-body" onclick="location.assign('${path}/adminGoods/adgMain.do');">
-                      <p class="mb-4">Number of Meetings</p>
-                      <p class="fs-30 mb-2">굿즈관리</p>
-                      <p>2.00% (30 days)</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4 stretch-card transparent" style="margin-left:0px;">
-                  <div class="card card-light-danger">
-                    <div class="card-body">
-                      <p class="mb-4">Number of Clients</p>
-                      <p class="fs-30 mb-2">회원관리</p>
-                      <p>0.22% (30 days)</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      	<!-- partial -->
+      	<div class="main-panel">
+      	
+      		<div class="goodsForm">
+			
+				<div class="goodsAdd">
+					<h4>상품명</h4>
+					<input type="text" value="" style="border: none;"/>
+					
+					<br>
+					
+					<h4>가격</h4>
+					<input type="text" value="" style="border: none;"/>
+					
+					<br>
+					
+					<h4>상세 내용</h4>
+					<textarea style="border: none;"> </textarea>
+					
+					<br>
+					
+					<h4>판매처</h4>
+					<input type="text" value="" style="border: none;"/>
+					
+					<br>
+					
+					<h4>공연/무</h4>
+					<select name="m">
+						<option value="">공연 선택</option> 
+						<option value="관련없음">관련없음</option> 
+						<option value="뮤지컬리스트">뮤지컬리스트</option> 
+					</select>
+					
+					<br>
+					
+					<h4>잔여 수량</h4>
+					<input type="text" value="" style="border: none;"/>
+					
+					<br>
+					
+					<h4>상품 태그</h4>
+					<input type="text" value="" style="border: none;"/>
+					
+					<br>
+					
+					<h4>대표 사진</h4>
+					<input type="file" value="" style="border: none;"/>
+					<img id="preview" style="width:300px; height: 400px;"/>
+					
+					<br>
+					
+					<h4>상세 사진</h4>
+					<input type="file" value="" style="border: none;"/>
+					<img id="preview" style="width:300px; height: 400px;"/>
+				
+		        </div>
+		        
+		        <div style="margin-top:7%; margin-left: 25%;">
+		            <button class="btn btn-danger" style="width:200px; font-size:15px; float:left;" type="button" >등록</button>
+		            <button class="btn btn-secondary" style="width:110px;background-color:lightgray;color:black;font-size:15px; float:left;">취소</button>
+		        </div>
+	        </div>
+        
+	</div>
 
-                <div class="row">
-                <div class="col-md-6 mb-4 stretch-card transparent" style="margin-left:0px;">
-                  <div class="card card-dark-blue">
-                    <div class="card-body" onclick="location.assign('${path}/adminSale/performanceSale.do');">
-                      <p class="mb-4">Question in person</p>
-                      <p class="fs-30 mb-2">1:1 문의</p>
-                    </div>
-                  </div>
-                </div>
-        		<div class="col-md-6 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body" onclick="location.assign('${path}/adminPerfor/performanceList.do');">
-                      <p class="mb-4">Customer Service</p>
-                      <p class="fs-30 mb-2">고객센터</p>
-                      <p>&nbsp;</p>
-                    </div>
-                  </div>
-                </div>
-                
+	</div>
 
-
-            </div>
-          </div>
-       
-            
-          
-       
-
-<!--  부트스트랩 js 사용 -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<%-- <script type="text/javascript" src="${path}/resources/js/admin/bootstrap.js"></script> --%>
+</body>
+</html>

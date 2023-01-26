@@ -54,5 +54,11 @@ public class ReservationDaoImpl implements ReservationDao {
 		return session.update("booking.minusPoint",po);
 	}
 
+	@Override
+	public int countDaySales(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("booking.countDaySales");
+	}
+
 	
 }
