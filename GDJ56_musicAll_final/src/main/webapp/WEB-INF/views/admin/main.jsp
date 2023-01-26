@@ -290,9 +290,8 @@
                 <div class="col-md-6 mb-4 stretch-card transparent" style="margin-left:0px;">
                   <div class="card card-light-blue">
                     <div class="card-body" onclick="location.assign('${path}/adminGoods/adgMain.do');">
-                      <p class="mb-4">Number of Meetings</p>
+                      <p class="mb-4">Management of Goods</p>
                       <p class="fs-30 mb-2">굿즈관리</p>
-                      <p>2.00% (30 days)</p>
                     </div>
                   </div>
                 </div>
