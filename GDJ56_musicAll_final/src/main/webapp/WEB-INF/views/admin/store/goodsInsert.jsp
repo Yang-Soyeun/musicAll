@@ -308,14 +308,14 @@
 					<br>
 					
 					<h4>대표 사진</h4>
-					<input type="file" value="" style="border: none;"/>
+					<input type="file" value="" style="border: none;" name="upFile" onchange="readURL(this);"/>
 					<img id="preview" style="width:300px; height: 400px;"/>
 					
 					<br>
 					
 					<h4>상세 사진</h4>
-					<input type="file" value="" style="border: none;"/>
-					<img id="preview" style="width:300px; height: 400px;"/>
+					<input type="file" value="" style="border: none;" name="upFile2" onchange="readURL2(this);" />
+					<img id="preview2" style="width:300px; height: 400px;"/>
 				
 		        </div>
 		        
@@ -329,5 +329,32 @@
 
 	</div>
 
+	<script>
+		//썸네일
+		function readURL(input) {
+		    if (input.files && input.files[0]) {
+		        var reader = new FileReader();
+		        reader.onload = function(e) {
+		        document.getElementById('preview').src = e.target.result;
+		        };
+		    reader.readAsDataURL(input.files[0]);
+		    } else {
+		        document.getElementById('preview').src = "";
+		    }
+		}
+		
+		//상세정보
+		function readURL2(input) {
+		    if (input.files && input.files[0]) {
+		        var reader = new FileReader();
+		        reader.onload = function(e) {
+		        document.getElementById('preview2').src = e.target.result;
+		        };
+		    reader.readAsDataURL(input.files[0]);
+		    } else {
+		        document.getElementById('preview').src = "";
+		    }
+		}
+	</script>
 </body>
 </html>
