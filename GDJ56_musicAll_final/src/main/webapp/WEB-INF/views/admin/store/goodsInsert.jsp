@@ -19,7 +19,6 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="${path }/resources/images/favicon.png" />
 
-
 	<style>
 		.goodsForm {
 			
@@ -266,68 +265,83 @@
       	<div class="main-panel">
       	
       		<div class="goodsForm">
-			
-				<div class="goodsAdd">
-					<h4>상품명</h4>
-					<input type="text" value="" style="border: none;"/>
-					
-					<br>
-					
-					<h4>가격</h4>
-					<input type="text" value="" style="border: none;"/>
-					
-					<br>
-					
-					<h4>상세 내용</h4>
-					<textarea style="border: none;"> </textarea>
-					
-					<br>
-					
-					<h4>판매처</h4>
-					<input type="text" value="" style="border: none;"/>
-					
-					<br>
-					
-					<h4>공연/무</h4>
-					<select name="m">
-						<option value="">공연 선택</option> 
-						<option value="관련없음">관련없음</option> 
-						<option value="뮤지컬리스트">뮤지컬리스트</option> 
-					</select>
-					
-					<br>
-					
-					<h4>잔여 수량</h4>
-					<input type="text" value="" style="border: none;"/>
-					
-					<br>
-					
-					<h4>상품 태그</h4>
-					<input type="text" value="" style="border: none;"/>
-					
-					<br>
-					
-					<h4>대표 사진</h4>
-					<input type="file" value="" style="border: none;" name="upFile" onchange="readURL(this);"/>
-					<img id="preview" style="width:300px; height: 400px;"/>
-					
-					<br>
-					
-					<h4>상세 사진</h4>
-					<input type="file" value="" style="border: none;" name="upFile2" onchange="readURL2(this);" />
-					<img id="preview2" style="width:300px; height: 400px;"/>
+      			<%-- <form id="goodsForm" action="${path }/adminGoods/insertGoods.do" method="post" enctype="multipart/form-data"> --%>
 				
-		        </div>
-		        
-		        <div style="margin-top:7%; margin-left: 25%;">
-		            <button class="btn btn-danger" style="width:200px; font-size:15px; float:left;" type="button" >등록</button>
-		            <button class="btn btn-secondary" style="width:110px;background-color:lightgray;color:black;font-size:15px; float:left;">취소</button>
-		        </div>
+					<div style="display: flex; justify-content: center; margin-bottom: 3%;"><h3>굿즈 등록</h3></div>
+					<hr>
+					 
+					<div class="goodsAdd">
+						<h4>상품명</h4>
+						<input type="text" value="" style="border: none;" id="gName"/>
+						 
+						<br>
+						
+						<h4>가격</h4>
+						<input type="text" value="" style="border: none; width=40%;" id="gPrice"/> 원
+						
+						<br>
+						
+						<h4>상세 내용</h4>
+						<textarea style="border: none; height: 100px;" id="gContent"> </textarea>
+						
+						<br>
+						
+						<h4>판매처</h4>
+						<input type="text" value="" style="border: none;" id="gCom"/>
+						
+						<br>
+						
+						<h4>공연/무</h4>
+						<select name="m" id="selectM">
+							<option value="">공연 선택</option> 
+							<option value="관련없음">관련없음</option> 
+							<option value="뮤지컬리스트">뮤지컬리스트</option> 
+						</select>
+						
+						<br>
+						
+						<h4>입고 수량</h4>
+						<div class="quantity_selector">
+							<input type="number" id="gCount"/>
+						</div>
+						
+						<br>
+						
+						<h4>상품 태그</h4>
+						<label><input type="radio" name="gTag" id="keyring" value="키링">&nbsp;키링</label>
+						<label><input type="radio" name="gTag" id="tumbler" value="텀블러">&nbsp;텀블러</label>
+						<label><input type="radio" name="gTag" id="bag" value="가방">&nbsp;가방</label>
+						<label><input type="radio" name="gTag" id="sticker" value="스티커">&nbsp;스티커</label>
+						<label><input type="radio" name="gTag" id="book" value="책">&nbsp;책</label> 
+						<label><input type="radio" name="gTag" id="b" value="브로치/뱃지">&nbsp;브로치/뱃지</label> 
+						<label><input type="radio" name="gTag" id="magnet" value="마그넷">&nbsp;마그넷</label> 
+						<label><input type="radio" name="gTag" id="ost" value="ost앨범">&nbsp;OST앨범</label>
+					
+						<hr> 
+						
+						<h4>대표 사진</h4>
+						<input type="file" value="" style="border: none;" name="upFile" onchange="readURL(this);"/>
+						<img id="preview" style="width:300px; height: 400px;"/>
+						
+						<br>
+						
+						<h4>상세 사진</h4>
+						<input type="file" value="" style="border: none;" name="upFile2" onchange="readURL2(this);" />
+						<img id="preview2" style="width:300px; height: 600px;"/>
+					
+			        </div>
+			        
+			        <div style="margin-top:7%; margin-left: 25%;">
+			            <button class="btn btn-danger" style="width:200px; font-size:15px; float:left;" type="button" onclick="g_insert()">등록</button>
+			            <button class="btn btn-secondary" style="width:110px;background-color:lightgray;color:black;font-size:15px; float:left;">취소</button>
+			        </div>
+		        <!-- </form> -->
 	        </div>
         
-	</div>
+		</div>
 
 	</div>
+
 
 	<script>
 		//썸네일
@@ -355,6 +369,18 @@
 		        document.getElementById('preview').src = "";
 		    }
 		}
+		
+		//굿즈 등록 데이터 보내기
+		const g_insert=()=>{
+			
+			let g = {
+
+					"gName" : $("#gName").val()
+					
+			}
+			
+		}
+		
 	</script>
 </body>
 </html>
