@@ -5,10 +5,11 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gdj.music.admin.model.dao.AdminPerforDao;
 import com.gdj.music.perfor.model.vo.Performance2;
+import com.gdj.music.perfor.model.vo.PerformancePhoto;
 import com.gdj.music.perfor.model.vo.Schedule;
 
 @Service
@@ -25,12 +26,24 @@ public class AdminPerforServiceImpl implements AdminPerforService{
 	}
 	
 	@Override
-	public int insertPerformance(Performance2 p,List<Schedule> sc) {
-		int result=dao.insertHall(session,p.getPerPlace());
+	@Transactional
+	public int insertPerformance(Performance2 p,List<Schedule> sc,List<PerformancePhoto> files) {
+		int result=dao.insertPerformance(session,p);
 		if(result>0) {
-			int result2=dao.insertPerformance(session,p);
-			if(result2>0) {
-				int result3=dao.insertSchedule(session,sc);
+			int result2=0;
+			for(Schedule s:sc) {
+				result2+=dao.insertSchedule(session,s);
+				System.out.println("insert 스케줄:"+s);	
+			}
+			if(result2==sc.size()) {
+				int result3=0;
+				for(PerformancePhoto pp:files) {
+					result3+=dao.insertPhoto(session,pp);
+					System.out.println("insert 사진:"+pp);
+				}
+				if(result3!=files.size()) throw new RuntimeException("공연등록실패");
+			}else {
+				throw new RuntimeException("공연등록실패");
 			}
 		}
 		return result;
