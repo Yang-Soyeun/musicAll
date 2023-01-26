@@ -381,10 +381,12 @@
  				    contentType:false,
  				    cache:false,
  				    success:function(data){
- 				    	alert("success : ", data);
+ 				   		alert("공연 등록 성공! 리스트로 돌아갑니다:)");
+					 	location.replace("${pageContext.request.contextPath}/adminPerfor/performanceList.do");		
  				    },
  				    error:function(e){
- 				        alert("error : ", e);
+ 				        alert("등록실패, 다시 등록해주세요! ");
+ 				       location.replace("${pageContext.request.contextPath}/adminPerfor/performanceAssign.do");
  				    }
  				});	
  					

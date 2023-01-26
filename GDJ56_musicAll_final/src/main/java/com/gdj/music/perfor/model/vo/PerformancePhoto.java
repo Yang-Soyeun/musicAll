@@ -12,7 +12,6 @@ public class PerformancePhoto {
 	private int fNum;
 	private String sumImage;
 	private String iName;
-	private String PerPhotoReName;
 	private int mCode;
 	
 	

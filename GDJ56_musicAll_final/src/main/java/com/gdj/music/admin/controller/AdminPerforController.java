@@ -10,7 +10,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -33,6 +35,7 @@ import com.gdj.music.perfor.model.vo.Performance;
 import com.gdj.music.perfor.model.vo.Performance2;
 import com.gdj.music.perfor.model.vo.PerformancePhoto;
 import com.gdj.music.perfor.model.vo.Schedule;
+import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/adminPerfor")
@@ -62,8 +65,8 @@ public class AdminPerforController {
 //	//등록할 공연 데이터 보내기 
 	@RequestMapping("/insertPerformance.do")
 	@ResponseBody
-	public void fileUpload(HttpSession session, @RequestParam(name="upFile0") MultipartFile upFile,@RequestParam(name="upFile20") MultipartFile upFile2,
-							Performance2 Performance) throws Exception {
+	public boolean fileUpload(HttpSession session, @RequestParam(name="upFile0") MultipartFile upFile,@RequestParam(name="upFile20") MultipartFile upFile2,
+							Performance2 Performance,HttpServletResponse response) throws Exception {
 
 		//파일 업로드처리하기
 		String path=session.getServletContext().getRealPath("/resources/upload/performance/");
@@ -87,8 +90,7 @@ public class AdminPerforController {
 				files.add(
 					PerformancePhoto.builder()
 					.sumImage("ok")
-					.iName(originalFileName)
-					.PerPhotoReName(renameFile)
+					.iName(renameFile)
 					.build());
 			}catch(IOException e) {
 				e.printStackTrace();
@@ -108,8 +110,7 @@ public class AdminPerforController {
 				upFile2.transferTo(new File(path+renameFile2));
 				files.add(
 						PerformancePhoto.builder()
-						.iName(originalFileName2)
-						.PerPhotoReName(renameFile2)
+						.iName(renameFile2)
 						.build());
 				}catch(IOException e) {
 						e.printStackTrace();
@@ -120,24 +121,31 @@ public class AdminPerforController {
 		System.out.println("요일,시간:" + Performance.getPerDay());
 		
 		//공연 요일+시간을 배열로 split
-		String str = Performance.getPerDay();
-		String[] PerDay = str.split(",");
-		for (int i = 0; i < PerDay.length; i++) {
-			System.out.println(PerDay[i]);
-		}
 		
-		String perDay = PerDay[0];//요일
-		String startTime = PerDay[1];//1회차시간
-		String startTimeR=startTime.substring(0,3);//시간만 분리
-		LocalTime localTime1 = LocalTime.parse(startTimeR);//String에서 time타입으로 변환 
-		LocalTime sEndTime1=localTime1.plusMinutes(Performance.getSTime());//종료시간 계산 
-		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm");
-		String sEndTime11=sEndTime1.format(dateTimeFormatter);
+		//String[] perDay = str.split(",");
+		//for (int i = 0; i < PerDay.length; i++) {
+		//	System.out.println("요일,시간 split"+PerDay[i]);
+		//}
 		
-		String startTime2 = PerDay[2];//2회차시간
-		String startTimeR2=startTime2.substring(0,3);
-		LocalTime localTime2 = LocalTime.parse(startTimeR2);
-		LocalTime sEndTime2=localTime2.plusMinutes(Performance.getSTime());
+		//요일
+//		String perDay="";
+//		for(int i=0;i<PerDay.length;i+=3) {
+//			perDay+=PerDay[i];
+//		}
+		//String perDay = PerDay[0];
+		
+		//1회차 시간들
+		//String startTime1="";
+//		for(int i=1;i<PerDay.length;i+=3) {
+//			startTime1=PerDay[i];
+//		}
+		//String startTime = PerDay[1];
+		//2회차시간들
+//		String startTime2="";
+//		for(int i=2;i<PerDay.length;i+=3) {
+//			startTime2 = PerDay[i];
+//		}
+		
 		
 		int hCode=0;//공연장코드 부여 
 		if(Performance.getPerPlace().equals("예술의 전당")) { 
@@ -164,27 +172,38 @@ public class AdminPerforController {
 				.rPrice(Performance.getRPrice())
 				.sPrice(Performance.getSPrice())
 				.build();
-		
+		//스케쥴등록하기
 		List<Schedule>sc=new ArrayList();
-		sc.add(Schedule.builder()
-				.sStartTime(startTimeR)
-				.sEndTime(sEndTime11)
-				.sDay(perDay)
-				.sTime(Performance.getSTime())
-				.sNum(1)
-				.build());
-		if(startTime2!=null) {//2회차 스케줄 추가 
+		String[] perDay = Performance.getPerDay();
+		//요일별 구분한 반복문
+		for(String pd:perDay) {
+			//요일에 지정된 회자 데이터를 파싱처리
+			//0 : 요일, 1 : 1회차 시작시간, 2: 2회차 시작시간
+			String[] days=pd.split(",");
+			//요일별 1회차에 대한 저장
 			sc.add(Schedule.builder()
-					.sStartTime(startTimeR2)
-					.sEndTime(sEndTime11)
-					.sDay(perDay)
+					.sStartTime(days[1])
+					.sDay(days[0])
 					.sTime(Performance.getSTime())
-					.sNum(2)
+					.sNum(1)
 					.build());
+//			2회차에 대한 저장
+			if(days.length>2) {
+				sc.add(Schedule.builder()
+						.sStartTime(days[2])
+						.sDay(days[0])
+						.sTime(Performance.getSTime())
+						.sNum(2)
+						.build());
+			}
 		}
 		
 		int result = service.insertPerformance(p,sc,files);
-		System.out.println(result);		
+		System.out.println("결과!!:"+result);		
+	
+		
+		
+		return result>0;
 	}
 
 		

@@ -13,7 +13,7 @@ public class Performance2 {
 	private String mTitle;
 	private String mType;
 	private String mAge;
-	private String perDay;
+	private String[] perDay;
 	private String sStartTime;
 	private String sStartTime2;
 	private String daterange;
