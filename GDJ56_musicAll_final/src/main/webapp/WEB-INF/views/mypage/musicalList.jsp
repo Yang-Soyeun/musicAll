@@ -47,18 +47,26 @@
 				             <h5 class="product-title font-alt"><c:out value="${r.get('M_TITLE') }"/></h5>
 				           </td>
 				           <td class="">
-				             <h5 class="product-title font-alt"><fmt:formatDate value="${r.get('P_DATE') }" type="both" pattern="yyyy-MM-dd hh:mm:ss"/></h5>
+				             <h5 class="product-title font-alt"><fmt:formatDate value="${r.get('P_DATE') }" type="both" pattern="yyyy-MM-dd hh:mm"/></h5>
 				           </td>
 				           <td>
-				             <h5 class="product-title font-alt"><fmt:formatDate value="${r.get('R_DATE') }" type="both" pattern="yyyy-MM-dd hh:mm"/></h5>
+				             <h5 class="product-title font-alt">
+				             	<fmt:formatDate value="${r.get('R_DATE') }" pattern="yyyy-MM-dd"/>
+				             	<c:out value="${r.get('R_TIME') }"/>PM
+				             </h5>
 				           </td>
 				           <td class="">
 				             <button class="btn btn-danger btn-circle">환불</button>
 				           </td>
 				           <td>
-				             <h5 class="product-title font-alt">
-				             	관람 후 작성 가능
-				             </h5>
+			             	<c:choose>
+			             		<c:when test="${r.containsKey('REVIEW_NO') }">
+			             			<button class="btn btn-warning btn-circle">리뷰 작성</button>				             		
+			             		</c:when>
+			             		<c:otherwise>
+					             <h5 class="product-title font-alt">관람 후 작성 가능</h5>
+			             		</c:otherwise>
+			             	</c:choose>
 				           </td>
 				         </tr>
 		         	</c:forEach>

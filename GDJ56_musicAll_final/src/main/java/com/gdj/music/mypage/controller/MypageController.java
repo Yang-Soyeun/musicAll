@@ -72,10 +72,17 @@ public class MypageController {
 				);
 		int totalData=service.selectReservationCount(member_No);//페이징처리
 		
-		for(Map<String,Object> m : list) {
-			System.out.println(m);
+//		for(Map<String,Object> m : list) {
+//			System.out.println("예매내역 : "+m);
+//			if (m.containsKey("REVIEW_NO")) {
+//				System.out.println( m.get("REVIEW_NO"));
+//				
+//			}else {
+//				System.out.println("없음");
+//			}
+			
 //			System.out.println(m.get("M_CODE"));
-		}
+//		}
 		
 		mv.addObject("reservationList",list);
 		mv.addObject("pageBar",PageFactory.searchPage(cPage,numPerpage,totalData,"musicalList.do",member_No));

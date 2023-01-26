@@ -2347,7 +2347,7 @@ Google map
 
 .checkout-table tbody tr td:first-child,
 .checkout-table tbody tr th:first-child {
-  max-width: 40px;
+  max-width: 50px;
 }
 
 /* Sidebar / Widget common*/
