@@ -16,4 +16,7 @@ public interface ReservationService {
 	int addPoint(Point po);
 	int minusPoint(Point po);
 	int countDaySales();
+	Integer selectDaySales();
+	int countTotalSales();
+	Integer selectTotalSales();
 }

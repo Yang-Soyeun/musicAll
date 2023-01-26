@@ -60,5 +60,23 @@ public class ReservationDaoImpl implements ReservationDao {
 		return session.selectOne("booking.countDaySales");
 	}
 
+	@Override
+	public Integer selectDaySales(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("booking.selectDaySales");
+	}
+
+	@Override
+	public int countTotalSales(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("booking.countTotalSales");
+	}
+
+	@Override
+	public Integer selectTotalSales(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("booking.selectTotalSales");
+	}
+
 	
 }

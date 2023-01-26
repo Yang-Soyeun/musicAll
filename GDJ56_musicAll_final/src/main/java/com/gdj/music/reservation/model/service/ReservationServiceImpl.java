@@ -81,9 +81,30 @@ public class ReservationServiceImpl implements ReservationService {
 		// TODO Auto-generated method stub
 		return dao.countDaySales(session);
 	}
-	
-	
 
+
+	@Override
+	public Integer selectDaySales() {
+		// TODO Auto-generated method stub
+		return dao.selectDaySales(session);
+	}
+
+
+	@Override
+	public int countTotalSales() {
+		// TODO Auto-generated method stub
+		return dao.countTotalSales(session);
+	}
+
+
+	@Override
+	public Integer selectTotalSales() {
+		// TODO Auto-generated method stub
+		return dao.selectTotalSales(session);
+	}
+	
+	
+	
 	
 	
 

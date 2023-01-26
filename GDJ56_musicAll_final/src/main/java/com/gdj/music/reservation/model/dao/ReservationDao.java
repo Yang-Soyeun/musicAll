@@ -19,5 +19,7 @@ public interface ReservationDao {
 	int addPoint(SqlSessionTemplate session, Point po);
 	int minusPoint(SqlSessionTemplate session, Point po);
 	int countDaySales(SqlSessionTemplate session);
-	
+	Integer selectDaySales(SqlSessionTemplate session);
+	int countTotalSales(SqlSessionTemplate session);
+	Integer selectTotalSales(SqlSessionTemplate session);
 }

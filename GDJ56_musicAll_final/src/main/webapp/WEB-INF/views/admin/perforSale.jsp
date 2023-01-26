@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
+<script src="${path}/resources/lib/jquery/dist/jquery.js"></script>
+<!-- chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
  <!-- plugins:css -->
   <link rel="stylesheet" href="${path }/resources/css/admin/vendors/feather/feather.css">
   <link rel="stylesheet" href="${path }/resources/css/admin/vendors/ti-icons/css/themify-icons.css">
@@ -125,9 +129,9 @@
 						
 						
 						<div style="margin-left:3%"><b>Ⅴ&nbsp;총 예매 건수</b></div><br>
-						<div id="count" style="text-align:right;"><b>2건</b></div><br>
+						<div id="count" style="text-align:right;"><b>${count }</b></div><br>
 						<div style="margin-left:3%"><b>Ⅴ&nbsp;공연 예매 매출</b></div><br>
-						<div id="count" style="text-align:right;"><b>210,000원</b></div>
+						<div id="count" style="text-align:right;"><b><fmt:formatNumber value="${dayPrice }" pattern="###,###"/>원</b></div>
 					</div>
 					
                   </div>
@@ -140,15 +144,15 @@
 						
 						
 						<div style="margin-left:3%"><b>Ⅴ&nbsp;총 예매 건수</b></div><br>
-						<div id="count" style="text-align:right;"><b>2건</b></div><br>
+						<div id="count" style="text-align:right;"><b>${totalCount }</b></div><br>
 						<div style="margin-left:3%"><b>Ⅴ&nbsp;공연 예매 매출</b></div><br>
-						<div id="count" style="text-align:right;"><b>210,000원</b></div>
+						<div id="count" style="text-align:right;"><b><fmt:formatNumber value="${totalPrice }" pattern="###,###"/>원</b></div>
 					</div>
 					
                   </div>
                 </div>
               </div>
-
+<canvas id="myChart"></canvas>
 	
 
 </div>
@@ -167,3 +171,22 @@
 		border:1px solid gray;
 	}
 </style>
+<script>
+
+var ctx=$("#myChart");
+var myChart = new Chart(ctx,{
+	type:'bar',
+	data:{
+		labels:["Red","Blue","Yellow"],
+		datasets:[{
+			label : '# of Votes',
+			data:[12,19,3]
+		}]
+		
+		
+		
+	}
+	
+});
+
+</script>
