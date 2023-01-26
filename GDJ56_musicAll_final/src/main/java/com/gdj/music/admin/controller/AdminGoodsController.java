@@ -18,12 +18,17 @@ public class AdminGoodsController {
 		this.service = service;
 	}
 	
-	//굿즈 등록 페이지
+	//관리자 굿즈 메인
 	@RequestMapping("/adgMain.do")
 	public String adgMain() {
 		return "/admin/store/adminGoodsList";
 	}
 	
+	//굿즈 등록 페이지
+	@RequestMapping("/goodsInsert.do")
+	public String goodsInsert() {
+		return "/admin/store/goodsInsert";
+	}
 	
 
 }

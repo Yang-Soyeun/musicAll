@@ -242,10 +242,12 @@
           </li>
         </ul>
       </nav>
-      <!-- partial -->
-      <div class="main-panel">
+      	<!-- partial -->
+      	<div class="main-panel">
+      	
+      		<button onclick="location.assign('${path}/adminGoods/goodsInsert.do');">굿즈등록</button>
         
-          </div>
+        </div>
      </div>
        
             
