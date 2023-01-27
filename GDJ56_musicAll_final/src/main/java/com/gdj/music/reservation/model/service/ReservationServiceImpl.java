@@ -109,6 +109,13 @@ public class ReservationServiceImpl implements ReservationService {
 		// TODO Auto-generated method stub
 		return dao.selectTotalSales(session);
 	}
+
+
+	@Override
+	public Integer selectWeekSales(int number) {
+		// TODO Auto-generated method stub
+		return dao.selectWeekSales(session, number);
+	}
 	
 	
 	

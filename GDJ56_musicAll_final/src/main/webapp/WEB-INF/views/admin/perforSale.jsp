@@ -172,11 +172,11 @@
 	}
 </style>
 <script>
-function getToday(){
+function getToday(e){
     var date = new Date();
     var year = date.getFullYear();
     var month = ("0" + (1 + date.getMonth())).slice(-2);
-    var day = ("0" + date.getDate()).slice(-2);
+    var day = ("0" + (date.getDate()-e)).slice(-2);
 
     return year + "-" + month + "-" + day;
 }
@@ -184,10 +184,21 @@ var ctx=$("#myChart");
 var myChart = new Chart(ctx,{
 	type:'bar',
 	data:{
-		labels:["Red","Blue",getToday()],
+		labels:[getToday(6),getToday(5),getToday(4),getToday(3),getToday(2),getToday(1),getToday(0)],
 		datasets:[{
-			label : '# of Votes',
-			data:[12,19,3]
+			label : '일일 매출액',
+			data:[${salesPerWeek[6]},${salesPerWeek[5]},${salesPerWeek[4]},${salesPerWeek[3]},${salesPerWeek[2]},${salesPerWeek[1]},${salesPerWeek[0]}],
+			backgroundColor:[
+				'rgba(255,99,132,0.2)',
+				'rgba(54,162,235,0.2)',
+				'rgba(255,206,86,0.2)',
+				'rgba(75,192,192,0.2)',
+				'rgba(153,102,255,0.2)',
+				'rgba(255,159,64,0.2)',
+				'rgba(204,204,255,0.5)',
+				
+				]
+			
 		}]
 		
 		

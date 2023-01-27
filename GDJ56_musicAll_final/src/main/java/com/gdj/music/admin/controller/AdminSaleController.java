@@ -1,5 +1,8 @@
 package com.gdj.music.admin.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +33,6 @@ public class AdminSaleController {
 		int countPerDay = service.countDaySales();
 		//일일 예매 매출
 		int dayPrice;
-		System.out.println(service.selectDaySales());
 		if(service.selectDaySales()==null) {
 			dayPrice=0;
 		}else {
@@ -44,11 +46,23 @@ public class AdminSaleController {
 		}else {
 			totalPrice= service.selectTotalSales();
 		}
+		//주간 예매 매출
+		
+		List<Integer> salesPerWeek = new ArrayList<Integer>();
+		for(int i=0;i<7;i++) {
+			if(service.selectWeekSales(i)==null) {
+				salesPerWeek.add(0);
+			}else {
+				salesPerWeek.add(service.selectWeekSales(i));
+			}
+		}
+		
 		
 		model.addAttribute("count",countPerDay);
 		model.addAttribute("dayPrice",dayPrice);
 		model.addAttribute("totalCount",countPerTotal);
 		model.addAttribute("totalPrice",totalPrice);
+		model.addAttribute("salesPerWeek",salesPerWeek);
 		
 		return "admin/perforSale";
 	}

@@ -20,4 +20,5 @@ public interface ReservationService {
 	Integer selectDaySales();
 	int countTotalSales();
 	Integer selectTotalSales();
+	Integer selectWeekSales(int number);
 }

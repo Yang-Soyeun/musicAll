@@ -23,5 +23,5 @@ public interface ReservationDao {
 	Integer selectDaySales(SqlSessionTemplate session);
 	int countTotalSales(SqlSessionTemplate session);
 	Integer selectTotalSales(SqlSessionTemplate session);
-
+	Integer selectWeekSales(SqlSessionTemplate session, int number);
 }
