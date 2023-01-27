@@ -41,15 +41,15 @@ import com.google.gson.Gson;
 @RequestMapping("/adminPerfor")
 public class AdminPerforController {
 
-   
-     private AdminPerforService service;
-     
-     @Autowired 
-     public AdminPerforController(AdminPerforService service) {
-        this.service=service; 
-     }
-     
-    
+
+	
+	  private AdminPerforService service;
+	  
+	  @Autowired 
+	  public AdminPerforController(AdminPerforService service) {
+		  this.service=service; 
+	  }
+	 
    // 공연리스트 출력
    @RequestMapping("/performanceList.do")
    public String adminPerformanceList() {
@@ -61,6 +61,7 @@ public class AdminPerforController {
    public String adminPerformanceAssign() {
       return "/admin/Perfor/adminPerformanceAssign";
    }
+
 
 //   //등록할 공연 데이터 보내기 
    @RequestMapping("/insertPerformance.do")
