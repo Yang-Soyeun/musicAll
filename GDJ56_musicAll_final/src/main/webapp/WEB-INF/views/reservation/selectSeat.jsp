@@ -358,11 +358,11 @@ const s = document.querySelectorAll(".seat");
 	function mapping(input,input2, i, j) {
 	    if (i === 0) {
 	        input.value = 'A' + j;
-	        input2.value= 1000
+	        input2.value= 10
 	        input2.classList = 'A'+j;
 	    } else if (i === 1) {
 	        input.value = 'B' + j;
-	        input2.value= 99000
+	        input2.value= 20
 	        input2.classList = 'B'+j;  
 	    } else if (i === 2) {
 	        input.value = 'C' + j;
@@ -374,7 +374,7 @@ const s = document.querySelectorAll(".seat");
 	        input2.classList = 'D'+j;
 	    } else if (i === 4) {
 	        input.value = 'E' + j;
-	        input2.value= 89000
+	        input2.value= 30
 	        input2.classList = 'E'+j;
 	    } else if (i === 5) {
 	        input.value = 'F' + j;
@@ -382,7 +382,7 @@ const s = document.querySelectorAll(".seat");
 	        input2.classList = 'F'+j;
 	    } else if (i === 6) {
 	        input.value = 'G' + j;
-	        input2.value= 79000
+	        input2.value= 50
 	        input2.classList = 'G'+j;
 	    } else if (i === 7) {
 	        input.value = 'H' + j;

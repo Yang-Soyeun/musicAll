@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
+<script src="${path}/resources/lib/jquery/dist/jquery.js"></script>
+<!-- chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
  <!-- plugins:css -->
   <link rel="stylesheet" href="${path }/resources/css/admin/vendors/feather/feather.css">
   <link rel="stylesheet" href="${path }/resources/css/admin/vendors/ti-icons/css/themify-icons.css">
@@ -72,6 +76,7 @@
             <a class="nav-link" href="index.html">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">공연관리</span>
+               <i class="menu-arrow"></i>
             </a>
           </li>
           <li class="nav-item">
@@ -112,6 +117,30 @@
               </ul>
             </div>
           </li>
+           <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+             <i class="icon-paper menu-icon"></i>
+              <span class="menu-title">1:1 문의</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="charts">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
+              </ul>
+            </div>
+          </li>
+               <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+            <i class="icon-grid-2 menu-icon"></i>
+              <span class="menu-title">고객센터</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="charts">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
+              </ul>
+            </div>
+          </li>
         </ul>
       </nav>  
 		
@@ -125,9 +154,9 @@
 						
 						
 						<div style="margin-left:3%"><b>Ⅴ&nbsp;총 예매 건수</b></div><br>
-						<div id="count" style="text-align:right;"><b>2건</b></div><br>
+						<div id="count" style="text-align:right;"><b>${count }</b></div><br>
 						<div style="margin-left:3%"><b>Ⅴ&nbsp;공연 예매 매출</b></div><br>
-						<div id="count" style="text-align:right;"><b>210,000원</b></div>
+						<div id="count" style="text-align:right;"><b><fmt:formatNumber value="${dayPrice }" pattern="###,###"/>원</b></div>
 					</div>
 					
                   </div>
@@ -140,15 +169,15 @@
 						
 						
 						<div style="margin-left:3%"><b>Ⅴ&nbsp;총 예매 건수</b></div><br>
-						<div id="count" style="text-align:right;"><b>2건</b></div><br>
+						<div id="count" style="text-align:right;"><b>${totalCount }</b></div><br>
 						<div style="margin-left:3%"><b>Ⅴ&nbsp;공연 예매 매출</b></div><br>
-						<div id="count" style="text-align:right;"><b>210,000원</b></div>
+						<div id="count" style="text-align:right;"><b><fmt:formatNumber value="${totalPrice }" pattern="###,###"/>원</b></div>
 					</div>
 					
                   </div>
                 </div>
               </div>
-
+<canvas id="myChart" style="margin-top:100px"></canvas>
 	
 
 </div>
@@ -167,3 +196,40 @@
 		border:1px solid gray;
 	}
 </style>
+<script>
+function getToday(e){
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = ("0" + (1 + date.getMonth())).slice(-2);
+    var day = ("0" + (date.getDate()-e)).slice(-2);
+
+    return year + "-" + month + "-" + day;
+}
+var ctx=$("#myChart");
+var myChart = new Chart(ctx,{
+	type:'bar',
+	data:{
+		labels:[getToday(6),getToday(5),getToday(4),getToday(3),getToday(2),getToday(1),getToday(0)],
+		datasets:[{
+			label : '일일 매출액',
+			data:[${salesPerWeek[6]},${salesPerWeek[5]},${salesPerWeek[4]},${salesPerWeek[3]},${salesPerWeek[2]},${salesPerWeek[1]},${salesPerWeek[0]}],
+			backgroundColor:[
+				'rgba(255,99,132,0.2)',
+				'rgba(54,162,235,0.2)',
+				'rgba(255,206,86,0.2)',
+				'rgba(75,192,192,0.2)',
+				'rgba(153,102,255,0.2)',
+				'rgba(255,159,64,0.2)',
+				'rgba(204,204,255,0.5)',
+				
+				]
+			
+		}]
+		
+		
+		
+	}
+	
+});
+
+</script>
