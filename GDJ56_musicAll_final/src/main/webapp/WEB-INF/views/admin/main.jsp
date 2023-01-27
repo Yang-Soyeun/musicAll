@@ -274,7 +274,7 @@
                     <div class="card-body" onclick="location.assign('${path}/adminPerfor/performanceList.do');">
                       <p class="mb-4">Today’s Bookings</p>
                       <p class="fs-30 mb-2">공연관리</p>
-                      <p>10.00% (30 days)</p>
+                      <p>&nbsp;</p>
                     </div>
                   </div>
                 </div>
@@ -301,7 +301,7 @@
                     <div class="card-body" onclick="location.assign('${path}/member/memberList.do');">
                       <p class="mb-4">Number of Clients</p>
                       <p class="fs-30 mb-2">회원관리</p>
-                      <p>0.22% (30 days)</p>
+                      <p>&nbsp;</p>
                     </div>
                   </div>
                 </div>
