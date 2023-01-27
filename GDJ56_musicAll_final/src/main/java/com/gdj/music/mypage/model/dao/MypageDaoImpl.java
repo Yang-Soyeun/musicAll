@@ -13,6 +13,7 @@ import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
+import com.gdj.music.reservation.model.vo.Reservation;
 
 @Repository
 public class MypageDaoImpl implements MypageDao {
@@ -42,7 +43,11 @@ public class MypageDaoImpl implements MypageDao {
 	public int selectReservationCount(SqlSessionTemplate session, int member_No) {
 		return session.selectOne("mypage.selectReservationCount",member_No);
 	}
-
+	//예매 세부내역
+	@Override
+	public Map<String, Reservation> selectRvView(SqlSessionTemplate session, Map<String, Integer> r) {
+		return session.selectOne("mypage.selectRvView",r);
+	}
 
 
 

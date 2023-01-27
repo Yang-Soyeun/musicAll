@@ -14,6 +14,7 @@ import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
+import com.gdj.music.reservation.model.vo.Reservation;
 
 @Service
 public class MypageServiceImpl implements MypageService {
@@ -51,9 +52,14 @@ public class MypageServiceImpl implements MypageService {
 		return dao.selectReservationCount(session, member_No);
 	}
 	
+	//예매 세부내역
+	@Override
+	public Map<String, Reservation> selectRvView(Map<String, Integer> r) {
+		return dao.selectRvView(session,r);
+	}
 	
 	
-	
+
 
 	//포인트리스트출력
 	@Override

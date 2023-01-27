@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp">
@@ -14,18 +15,18 @@
                 <h1 class="module-title font-alt">예매 내역</h1>
               </div>
             </div>
-            <hr class="divider-w pt-20"><h4 class="font-alt" style="padding-left: 20px;">뮤지컬 신나</h4>
+            <hr class="divider-w pt-20"><h4 class="font-alt" style="padding-left: 20px;"><c:out value="${rsDetail.M_TITLE }"/></h4>
             <div class="row">
               <div class="col-sm-12">
                 <table class="table table-striped table-border checkout-table">
                   <tbody>
                     <tr>
-                      <td rowspan="4" class="hidden-xs"><img src="${path}/resources/images/mypage/프랑켄슈타인.jfif" alt="공연포스터"/></td>
+                      <td rowspan="4" class="hidden-xs"><img src="${path}/resources/uploads/perfomance/${rsDetail.I_NAME }" alt="공연포스터"/></td>
                       <td>
                         <h5 class="product-title font-alt">예약번호</h5>
                       </td>
                       <td class="hidden-xs">
-                        <h5 class="product-title font-alt">122</h5>
+                        <h5 class="product-title font-alt"><c:out value="${rsDetail.R_CODE }"/></h5>
                       </td>
                     </tr>
                     <tr>
@@ -33,7 +34,7 @@
                         <h5 class="product-title font-alt">관람일  |  시간</h5>
                       </td>
                       <td class="hidden-xs">
-                        <h5 class="product-title font-alt">2022-05-20  |  17:00</h5>
+                        <h5 class="product-title font-alt"><fmt:formatDate value="${rsDetail.R_DATE }" pattern="yyyy-MM-dd"/>  |  <c:out value="${rsDetail.R_TIME }"/>PM</h5>
                       </td>
                     </tr>
                     <tr>
@@ -41,7 +42,7 @@
                         <h5 class="product-title font-alt">티켓수량  |  가격</h5>
                       </td>
                       <td class="hidden-xs">
-                        <h5 class="product-title font-alt">2  |  30,000</h5>
+                        <h5 class="product-title font-alt"><c:out value="${rsDetail.SEATCOUNT }"/>  |  <fmt:formatNumber value="${rsDetail.SEATPRICE }" pattern="###,###"/></h5>
                       </td>
                     </tr>
                     <tr>
@@ -49,7 +50,7 @@
                         <h5 class="product-title font-alt">좌석</h5>
                       </td>
                       <td class="hidden-xs">
-                        <h5 class="product-title font-alt">F19</h5>
+                        <h5 class="product-title font-alt"><c:out value="${rsDetail.R_SEAT }"/></h5>
                       </td>
                     </tr>
                   </tbody>
