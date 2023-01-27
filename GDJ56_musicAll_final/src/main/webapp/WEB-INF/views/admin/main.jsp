@@ -17,7 +17,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${path }/resources/css/admin/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${path }/resources/images/favicon.png" />
+  <link rel="icon" href="${path}/resources/images/favicons/logo.png">
 
 <body>
   <div class="container">
@@ -179,7 +179,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic" onclick="location.assign('${path}/adminSale/performanceSale.do');">
               <i class="icon-bar-graph menu-icon"></i>
               <span class="menu-title">공연매출</span>
               <i class="menu-arrow"></i>
@@ -298,7 +298,7 @@
                 </div>
                 <div class="col-md-6 mb-4 stretch-card transparent" style="margin-left:0px;">
                   <div class="card card-light-danger">
-                    <div class="card-body">
+                    <div class="card-body" onclick="location.assign('${path}/member/memberList.do');">
                       <p class="mb-4">Number of Clients</p>
                       <p class="fs-30 mb-2">회원관리</p>
                       <p>0.22% (30 days)</p>

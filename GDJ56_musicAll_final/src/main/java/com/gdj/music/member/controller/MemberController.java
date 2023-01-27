@@ -225,6 +225,7 @@ public class MemberController {
 	public void idduplicate(String member_id, HttpServletResponse response) throws IOException {
 		Member m = service.idDuplicate(member_id);
 		
+		System.out.println(m);
 		
 		response.getWriter().print(m);
 	}

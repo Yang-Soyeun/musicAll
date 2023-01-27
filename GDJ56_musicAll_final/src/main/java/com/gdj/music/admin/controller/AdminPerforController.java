@@ -78,6 +78,7 @@ public class AdminPerforController {
 	   public String adminPerformanceAssign() {
 	      return "/admin/Perfor/adminPerformanceAssign";
 	   }
+
 	
 	
 	//   //등록할 공연 데이터 보내기 
@@ -225,5 +226,4 @@ public class AdminPerforController {
 	      
 	         
 	      
-	   
-	}
+}	   

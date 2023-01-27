@@ -21,6 +21,7 @@ import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
+import com.gdj.music.reservation.model.vo.Reservation;
 import com.google.gson.Gson;
 
 @Controller
@@ -92,9 +93,19 @@ public class MypageController {
 	
 	//예매세부내역
 	@RequestMapping("/musicalListView.do")
-	public String musicalListView(){
+	public ModelAndView musicalListView(ModelAndView mv,@RequestParam Map r){
+//		System.out.println(r);
 		
-		return "mypage/musicalListView";
+		Map<String, Reservation> result=service.selectRvView(r);//예매내역 상단
+//		System.out.println(result);
+		
+		Map<String, Reservation> rsResult=service.selectRsview(r);//예매내역 하단
+//		System.out.println(rsResult);
+		
+		mv.addObject("rvDetail",result);
+		mv.addObject("rsDetail",rsResult);
+		mv.setViewName("mypage/musicalListView");
+		return mv;
 	}
 	
 	//관심공연
