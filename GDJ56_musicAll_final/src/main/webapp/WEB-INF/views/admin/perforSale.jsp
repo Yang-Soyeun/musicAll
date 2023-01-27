@@ -76,6 +76,7 @@
             <a class="nav-link" href="index.html">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">공연관리</span>
+               <i class="menu-arrow"></i>
             </a>
           </li>
           <li class="nav-item">
@@ -108,6 +109,30 @@
             <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
               <i class="icon-head menu-icon"></i>
               <span class="menu-title">회원관리</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="charts">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
+              </ul>
+            </div>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+             <i class="icon-paper menu-icon"></i>
+              <span class="menu-title">1:1 문의</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="charts">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a></li>
+              </ul>
+            </div>
+          </li>
+               <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+            <i class="icon-grid-2 menu-icon"></i>
+              <span class="menu-title">고객센터</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="charts">
@@ -152,7 +177,7 @@
                   </div>
                 </div>
               </div>
-<canvas id="myChart"></canvas>
+<canvas id="myChart" style="margin-top:100px"></canvas>
 	
 
 </div>

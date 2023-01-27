@@ -175,6 +175,7 @@
             <a class="nav-link" href="index.html">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">공연관리</span>
+               <i class="menu-arrow"></i>
             </a>
           </li>
           <li class="nav-item">
