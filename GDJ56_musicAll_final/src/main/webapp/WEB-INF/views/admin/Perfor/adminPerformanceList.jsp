@@ -2,14 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<link href="${path }/resources/css/admin/performance/performanceList.css" rel="stylesheet">
+<link href="${path }/resources/css/admin/performance/performanceList.css" rel="stylesheet"/>
 
 
 <section>
   <h1 style="text-align:center; margin-top:20px;">공연 현황</h1>
     <br>
     <div id="assignBox">
-    <button id="assignPer" style="width:100px; height:30px; font-size:15px;" onclick="location.assign('${path}/adminPerfor/performanceAssign.do')">공연등록</button>
+    	<button id="assignPer" style="width:100px; height:30px; font-size:15px;" onclick="location.assign('${path}/adminPerfor/performanceAssign.do')">공연등록</button>
     </div>
     <br>
     <br>
@@ -27,7 +27,7 @@
           
           </article>
         </section>
-      </header>
+     </header>
 
       
     
@@ -36,7 +36,6 @@
             <input type="text" id="search" placeholder="제목으로 검색하기" style="width: 600px; height: 40px;">
             <!--<input type="text" id="datepicker">  -->
             <button class="search-btn" type="submit">검색</button>
-
         </form>
     </div>
     <div class="select-box">
@@ -47,33 +46,36 @@
             <option value="">공연명순</option>
         </select>
     </div>
-    <div class="count-box">
-        <img src="${path }/resources/images/performance/first.png" id="countimg1" style="width:80px; height: 80px;">
-        <img src="${path }/resources/images/performance/second.png" id="countimg2" style="width:70px; height: 75px;">
-        <img src="${path }/resources/images/performance/third.png" id="countimg3" style="width:70px; height: 65px;">
-        <img src="${path }/resources/images/performance/fourth.png" id="countimg4" style="width:70px; height: 75px; ">
-    </div>
-    <%-- <c:choose>
-    	<c:when test="${empty musicals}">
+    <c:choose>
+    	<c:when test="${empty musicalPhoto}">
     		<tr>
     			<td>조회된 공연이 없습니다.</td>
     		</tr>
     	</c:when>
-    	<c:otherwise>
-    		<div class="photo-box">
-        		<!--<img src="${path }/resources/images/performance/42bunga.png" class="perView" style="margin-left: 105px;">  -->
-    		</div>
-    		<div class="leftOver-box">
-        	<!--<div><b style="font-size:20px;">[1/150]</b></div>  -->
-		</c:otherwise> --%>
-    <%-- 	</div>
-	</c:choose> --%>
+	    <c:otherwise>
+	    	<div class="count-box">
+	        	<img src="${path }/resources/images/performance/first.png" id="countimg1" style="width:80px; height: 80px;">
+	        	<img src="${path }/resources/images/performance/second.png" id="countimg2" style="width:70px; height: 75px;">
+	        	<img src="${path }/resources/images/performance/third.png" id="countimg3" style="width:70px; height: 65px;">
+	        	<img src="${path }/resources/images/performance/fourth.png" id="countimg4" style="width:70px; height: 75px; ">
+	    	</div>
+	    	<c:forEach var="f" items="${musicalPhoto }">
+	    		<div class="photo-box">
+					<img src="${path }/resources/upload/performance/${f.getIName()}" class="perView" style="float:left;">
+					
+				</div>
+	    			<!-- <div class="leftOver-box">
+	        			<div><b style="font-size:20px;">[1/150]</b></div>  
+	        		</div> -->
+			</c:forEach>
+		</c:otherwise>
+	</c:choose>
 </section>
-<script>
+<!--<script>
 	$(function(){
 	    $('#datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
 	})
-</script>
+</script> -->
 
 <!-- jquery 기본 js파일 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0
