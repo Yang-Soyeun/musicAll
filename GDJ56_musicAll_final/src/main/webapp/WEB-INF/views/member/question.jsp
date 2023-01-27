@@ -29,11 +29,11 @@
 </th>
 <td>
 
-	<span class="radiocheck" style="display:"><input name="qsHead" type="radio" value="예매문의"> 예매문의</span>
-	<span class="radiocheck" style="display:"><input name="qsHead" type="radio" value="공연문의"> 공연문의</span>
-	<span class="radiocheck" style="display:"><input name="qsHead" type="radio" value="취소/환불/발권"> 취소/환불/발권</span>
-	<span class="radiocheck" style="display:"><input name="qsHead" type="radio" value="포인트문의"> 포인트문의</span>
-	<span class="radiocheck" style="display:"><input name="qsHead" type="radio" value="기타"> 기타</span>
+	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="예매문의"> 예매문의</span>
+	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="공연문의"> 공연문의</span>
+	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="취소/환불/발권"> 취소/환불/발권</span>
+	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="포인트문의"> 포인트문의</span>
+	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="기타"> 기타</span>
 	
 </td>
 </tr>
@@ -55,7 +55,7 @@
 <script>
 	const CheckWriteForm = function(){
 		let a = $("#qsTitle").val();
-		let b = $('input[name=qsHead]:checked').val();
+		let b = $('input[name=qsHeadTitle]:checked').val();
 		let c = $("#qsContent").val();
 		
 		if(a!=null && b!=null && c!=null){
@@ -63,7 +63,7 @@
 			
 			let d = {
 					"qsTitle" : $("#qsTitle").val(),
-					"qsHead" : $('input[name=qsHead]:checked').val(),
+					"qsHeadTitle" : $('input[name=qsHeadTitle]:checked').val(),
 					"qsContent" : $("#qsContent").val()
 			};
 			
@@ -75,6 +75,10 @@
 					type:'post',
 					success:data=>{
 						console.log(data);
+						if(data>0){
+							alert("글 등록이 완료되었습니다.");
+							location.href ="${path}/" ; 
+						}
 					}			
 				});
 			}

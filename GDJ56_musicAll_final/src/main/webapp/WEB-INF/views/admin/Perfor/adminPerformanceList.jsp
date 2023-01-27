@@ -53,20 +53,21 @@
         <img src="${path }/resources/images/performance/third.png" id="countimg3" style="width:70px; height: 65px;">
         <img src="${path }/resources/images/performance/fourth.png" id="countimg4" style="width:70px; height: 75px; ">
     </div>
-    <div class="photo-box">
-        <img src="${path }/resources/images/performance/42bunga.png" class="perView" style="margin-left: 105px;">
-        <img src="${path }/resources/images/performance/sweet.gif" class="perView">
-        <img src="${path }/resources/images/performance/wild.png" class="perView">
-        <img src="${path }/resources/images/performance/matilda.gif" class="perView">
-    </div>
-    <div class="leftOver-box">
-        <div><b style="font-size:20px;">[1/150]</b></div>
-        <div><b style="font-size:20px;">[1/150]</b></div>
-        <div><b style="font-size:20px;">[1/150]</b></div>
-        <div><b style="font-size:20px;">[1/150]</b></div>
-        
-    </div>
-
+    <%-- <c:choose>
+    	<c:when test="${empty musicals}">
+    		<tr>
+    			<td>조회된 공연이 없습니다.</td>
+    		</tr>
+    	</c:when>
+    	<c:otherwise>
+    		<div class="photo-box">
+        		<!--<img src="${path }/resources/images/performance/42bunga.png" class="perView" style="margin-left: 105px;">  -->
+    		</div>
+    		<div class="leftOver-box">
+        	<!--<div><b style="font-size:20px;">[1/150]</b></div>  -->
+		</c:otherwise> --%>
+    <%-- 	</div>
+	</c:choose> --%>
 </section>
 <script>
 	$(function(){

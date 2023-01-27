@@ -53,7 +53,7 @@
 				</li>
 			</ul>
 		</div>
-		<div id="idsearchWrap">
+		<div id="idsearchWrap" style="margin-top: 20px;">
 			<div class="searchType">
 					<div class="typeList current">
 						<div class="inputEnter">
@@ -196,6 +196,7 @@
 			$("#idsearchWrapli").removeClass("current");
 			
 		}
+		$("#repassword").hide();
 	}
 	
 	
@@ -205,6 +206,7 @@
 				"name":$("#name").val(),
 				"email":$("#email").val()
 		};
+		
 		//아이디찾기 빈칸일경우 유효성검사
 		//변수선언
 		const mn = $("#name").val();
@@ -244,41 +246,53 @@
 				"name" : $("#name1").val(),
 				"email" : $("#email1").val()
 		};
-		//아이디찾기 빈칸일경우 유효성검사
+		//비밀번호찾기 빈칸일경우 유효성검사
 		//변수선언
-		$.ajax({
-			url:"${path}/member/findpwEnd.do",
-			data:m,
-			type:'POST',
-			dataType:'json',
-			success:data=>{
-				console.log(data);
-				if(data=="false"){
-					$("#message").html("입력하신 정보와 일치하는 회원이 없습니다.재시도해주세요.");
-				}else{
-					$("#message").html("");
-					alert("입력하신 이메일로 인증번호가 발송 되었습니다.");
-					$("#certSeq2").show();
-					$("#confNum").show();
-					$("#renumber").show();
-					$("#find").show();
-					$("#number").hide();
-					
-				//인증번호 시간타이머 사용법
-				  AuthTimer = new timer();
-				  AuthTimer.fnStop();
-				  AuthTimer.comSecond = 60;
-				  AuthTimer.fnCallback = function(){alert("다시인증을 시도해주세요.")}
-				  AuthTimer.timer =  setInterval(function(){AuthTimer.fnTimer()},1000);
-				  AuthTimer.domId = document.getElementById("timeline");
-				  
-				  //보낸 인증번호와 내가 입력한 인증번호가 일치한지여부
-				  //->보낸인증번호를 input hidden에 저장하기 그런다음 비교 가능
-				 $("#hidenum").val(data.number); //히든에 data값=인증번호를 넣어 줫음
-				 $("#repwid").html(data.member_id);//제이슨으로 넘긴 아이디값 넣어주기
+		let pwValid1 = $("#memberid").val();
+		let pwValid2 = $("#name1").val();
+		let pwValid3 = $("#email1").val();
+		
+		if(pwValid1 == false){
+			alert("아이디를 입력해주세요.");
+		} else if(pwValid2 == false){
+			alert("이름을 입력해주세요.");
+		} else if(pwValid3 == false){
+			alert("이메일을 입력해주세요.");
+		} else{
+			$.ajax({
+				url:"${path}/member/findpwEnd.do",
+				data:m,
+				type:'POST',
+				dataType:'json',
+				success:data=>{
+					console.log(data);
+					if(data=="false"){
+						$("#message").html("입력하신 정보와 일치하는 회원이 없습니다.재시도해주세요.");
+					}else{
+						$("#message").html("");
+						alert("입력하신 이메일로 인증번호가 발송 되었습니다.");
+						$("#certSeq2").show();
+						$("#confNum").show();
+						$("#renumber").show();
+						$("#find").show();
+						$("#number").hide();
+						
+					//인증번호 시간타이머 사용법
+					  AuthTimer = new timer();
+					  AuthTimer.fnStop();
+					  AuthTimer.comSecond = 60;
+					  AuthTimer.fnCallback = function(){alert("다시인증을 시도해주세요.")}
+					  AuthTimer.timer =  setInterval(function(){AuthTimer.fnTimer()},1000);
+					  AuthTimer.domId = document.getElementById("timeline");
+					  
+					  //보낸 인증번호와 내가 입력한 인증번호가 일치한지여부
+					  //->보낸인증번호를 input hidden에 저장하기 그런다음 비교 가능
+					 $("#hidenum").val(data.number); //히든에 data값=인증번호를 넣어 줫음
+					 $("#repwid").html(data.member_id);//제이슨으로 넘긴 아이디값 넣어주기
+					}
 				}
-			}
-		});
+			});
+		}
 	}
 	
 	//비밀번호 정규식
@@ -320,17 +334,18 @@
 		}
 	});
 	
-	
 	//비밀번호 찾기 버튼을 클릭시 비번 재설정
 	const bt_findEndpw=()=>{
 		let one = $("#certSeq2").val();//입력한 인증번호
 		let two = $("#hidenum").val();//보내진 인증번호
-		if(one==two){
-			AuthTimer.fnStop();//타이머가 확인 눌렀을 경우 끊어져야함!
-			$("#repassword").show();
-			$("#pwsearchWrap").hide();
-		}
+			
+			if(one==two){
+				AuthTimer.fnStop();//타이머가 확인 눌렀을 경우 끊어져야함!
+				$("#repassword").show();
+				$("#pwsearchWrap").hide();
+			}
 	}
+	
 	
 	//비밀번호 재설정 완료
 	const updateMemPwd=()=>{
@@ -362,6 +377,7 @@
 			$("#conInput2").focus();
 		}
 	}
+	
 	
 	
 	//인증번호 타이머

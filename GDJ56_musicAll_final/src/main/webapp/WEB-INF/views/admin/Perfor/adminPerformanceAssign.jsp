@@ -257,13 +257,14 @@
         		
         		let form=new FormData();
         		console.log($('input[type=checkbox]:checked'));
+        		
             	$('input[type=checkbox]:checked').each((i,e)=>{
 					form.append("perDay",
-							$(e).val()+","+$(e).parent().next().val()
-							+","+$(e).parent().next().next().val())            		
+							$(e).val()+"-"+$(e).parent().next().val()
+							+"-"+$(e).parent().next().next().val())            		
 				
             	});
-            	
+            	 
             
             	
         		const upFile=$("input[name=upFile]")[0].files;
@@ -293,7 +294,7 @@
 				
  				var daterange=$("input[name=daterange]").val(); 
  				var sTime=$("input[name=sTime]").val();
- 				var perPlace=$("input[name=perPlace").val();
+ 				var perPlace=$("input[name=perPlace]:checked").val();
  				var vipPrice=$("input[name=vipPrice]").val();
  				var rPrice=$("input[name=rPrice]").val();
  				var sPrice=$("input[name=sPrice]").val();
