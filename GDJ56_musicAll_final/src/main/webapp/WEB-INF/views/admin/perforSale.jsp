@@ -80,7 +80,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic" onclick="location.assign('${path}/adminSale/performanceSale.do');">
               <i class="icon-bar-graph menu-icon"></i>
               <span class="menu-title">공연매출</span>
               <i class="menu-arrow"></i>
@@ -106,7 +106,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts" onclick="location.assign('${path}/member/memberList.do');">
               <i class="icon-head menu-icon"></i>
               <span class="menu-title">회원관리</span>
               <i class="menu-arrow"></i>
