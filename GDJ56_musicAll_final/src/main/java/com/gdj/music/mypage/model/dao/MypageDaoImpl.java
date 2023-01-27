@@ -43,10 +43,15 @@ public class MypageDaoImpl implements MypageDao {
 	public int selectReservationCount(SqlSessionTemplate session, int member_No) {
 		return session.selectOne("mypage.selectReservationCount",member_No);
 	}
-	//예매 세부내역
+	//예매 세부내역상단
 	@Override
 	public Map<String, Reservation> selectRvView(SqlSessionTemplate session, Map<String, Integer> r) {
 		return session.selectOne("mypage.selectRvView",r);
+	}
+	//예매 세부내역하단
+	@Override
+	public Map<String, Reservation> selectRsview(SqlSessionTemplate session, Map<String, Integer> r) {
+		return session.selectOne("mypage.selectRsview",r);
 	}
 
 

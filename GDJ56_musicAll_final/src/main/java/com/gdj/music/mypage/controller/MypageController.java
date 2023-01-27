@@ -96,10 +96,14 @@ public class MypageController {
 	public ModelAndView musicalListView(ModelAndView mv,@RequestParam Map r){
 //		System.out.println(r);
 		
-		Map<String, Reservation> result=service.selectRvView(r);
-		System.out.println(result);
+		Map<String, Reservation> result=service.selectRvView(r);//예매내역 상단
+//		System.out.println(result);
 		
-		mv.addObject("rsDetail",result);
+		Map<String, Reservation> rsResult=service.selectRsview(r);//예매내역 하단
+//		System.out.println(rsResult);
+		
+		mv.addObject("rvDetail",result);
+		mv.addObject("rsDetail",rsResult);
 		mv.setViewName("mypage/musicalListView");
 		return mv;
 	}

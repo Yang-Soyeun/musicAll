@@ -52,13 +52,18 @@ public class MypageServiceImpl implements MypageService {
 		return dao.selectReservationCount(session, member_No);
 	}
 	
-	//예매 세부내역
+	//예매 세부내역상단
 	@Override
 	public Map<String, Reservation> selectRvView(Map<String, Integer> r) {
 		return dao.selectRvView(session,r);
 	}
+	//예매 세부내역하단
+	@Override
+	public Map<String, Reservation> selectRsview(Map<String, Integer> r) {
+		return dao.selectRsview(session,r);
+	}
 	
-	
+
 
 
 	//포인트리스트출력

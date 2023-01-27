@@ -19,7 +19,9 @@ public interface MypageService {
 	List<Map<String,Object>> selectReservationList(int member_No,Map<String,Integer> param);//예매정보 확인
 	int selectReservationCount(int member_No);//예매정보 페이징처리
 	
-	Map<String, Reservation> selectRvView(Map<String,Integer> r);//예매세부내역
+	Map<String, Reservation> selectRvView(Map<String,Integer> r);//예매세부내역상단
+	Map<String, Reservation> selectRsview(Map<String,Integer> r);//예매세부내역하단
+	
 	
 	
 	List<Point> selectPointListPage(int member_No,Map<String,Integer> param);//페이징처리,포인트리스트 출력
