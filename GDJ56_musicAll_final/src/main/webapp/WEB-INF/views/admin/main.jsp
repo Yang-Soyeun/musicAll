@@ -17,7 +17,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${path }/resources/css/admin/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="icon" href="${path}/resources/images/favicons/로고.png">
+  <link rel="icon" href="${path}/resources/images/favicons/logo.png">
 
 <body>
   <div class="container">
