@@ -264,7 +264,6 @@
 				data:{"member_id" : id },
 				type:'post',
 				success:data=>{
-					console.log(data);
 					if(data=="null"){
 						idValid = true;
 						$("#idMsg").html("사용 가능한 아이디입니다.");
@@ -331,7 +330,7 @@
 			pwValid = false;
 			$("#pwMsg2").html("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
 		}
-	});
+	}); 
 	
 	//이메일유효성 검사
 	//이메일 정규식
@@ -412,7 +411,7 @@
 	//휴대폰 유효성 검사
 	const phoneCheck = function(){
 		let phone = $("#phone").val();
-		let phoneRule = /(^02|^0505|^1[0-9]{3}|^0[0-9]{2})-([0-9]+)-([0-9]{4})$/;//비밀번호정규식	
+		let phoneRule = /(^02|^0505|^1[0-9]{3}|^0[0-9]{2})-([0-9]+)-([0-9]{4})$/;//휴대폰정규식	
 		let result = phoneRule.test(phone.trim());//정규식 결과
 		return result;
 		
@@ -443,13 +442,6 @@
 	        clearInterval(this.timer);
 	    }
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
