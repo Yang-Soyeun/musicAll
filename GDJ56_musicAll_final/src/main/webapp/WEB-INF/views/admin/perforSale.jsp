@@ -19,7 +19,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${path }/resources/css/admin/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${path }/resources/images/favicon.png" />
+<link rel="icon" href="${path}/resources/images/favicons/로고.png">
 
 <body>
   <div class="container">
@@ -162,7 +162,7 @@
                   </div>
                 </div>
                <div class="col-md-6 mb-4 stretch-card transparent">
-                  <div class="card card-tale5"><br><br><br><br>
+                  <div class="card card-tale5" style="margin-left:70px"><br><br><br><br>
                 	<img src="${path }/resources/images/reservation/누적.png" width="300px"/>
                 	
                 	<div id="box">
@@ -214,20 +214,50 @@ var myChart = new Chart(ctx,{
 			label : '일일 매출액',
 			data:[${salesPerWeek[6]},${salesPerWeek[5]},${salesPerWeek[4]},${salesPerWeek[3]},${salesPerWeek[2]},${salesPerWeek[1]},${salesPerWeek[0]}],
 			backgroundColor:[
-				'rgba(255,99,132,0.2)',
-				'rgba(54,162,235,0.2)',
-				'rgba(255,206,86,0.2)',
-				'rgba(75,192,192,0.2)',
-				'rgba(153,102,255,0.2)',
-				'rgba(255,159,64,0.2)',
+				'rgba(255,99,132,0.5)',
+				'rgba(54,162,235,0.5)',
+				'rgba(255,206,86,0.5)',
+				'rgba(75,192,192,0.5)',
+				'rgba(153,102,255,0.5)',
+				'rgba(255,159,64,0.5)',
 				'rgba(204,204,255,0.5)',
 				
 				]
 			
-		}]
+		}]	
+	},
+	options:{
+		title:{
+			display : true,
+			text : '주간 매출 현황',
+			fontSize:23
+			
 		
-		
-		
+		},
+		legend:{
+			labels:{
+					fontColor:"red",
+					fontSize:15
+					
+				
+			}	
+		},
+		scales:{
+			xAxes:[{
+				ticks:{
+					fontSize:16
+					
+				}
+			}],
+			yAxes:[{
+				ticks:{
+					fontSize:16
+					
+				}
+			}]
+			
+		}
+	
 	}
 	
 });
