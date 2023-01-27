@@ -49,9 +49,10 @@ public class AdminPerforServiceImpl implements AdminPerforService{
 		return result;
 	}
 	
-//	@Override
-//	public List<PerformancePhoto> selectPerforList(){
-//		return dao.selectPerforList(session);
-//		
-//	}
+	@Override
+	public List<PerformancePhoto> selectPerforList(){
+		
+		return dao.selectPerforList(session);
+		
+	}
 }

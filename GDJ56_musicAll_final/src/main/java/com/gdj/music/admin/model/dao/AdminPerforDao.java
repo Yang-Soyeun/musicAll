@@ -18,7 +18,7 @@ public interface AdminPerforDao {
 
 	int insertPhoto(SqlSessionTemplate session, PerformancePhoto pp);
 
-	//List<PerformancePhoto> selectPerforList(SqlSessionTemplate session);
+	List<PerformancePhoto> selectPerforList(SqlSessionTemplate session);
 
 	
 	
