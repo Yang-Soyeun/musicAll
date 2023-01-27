@@ -19,6 +19,18 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="${path }/resources/images/favicon.png" />
 
+<style>
+	.card-body {margin: 8%; margin-bottom: -13%;}
+	/* .col-sm-3 {width: 22%;} */
+	.col-lg-3 {width: 21%;}
+	.col-md-4 {width: 31.33333333%; padding: 3%;  border-radius: 30px; font-size: 1px; text-align: center;
+				background-color: #b5b5b51a; margin: 1%;}
+	
+	.card-body-1 {margin: 8%;}
+	.h2 {color: #d73535;}
+	.btn {padding: 8px 14px;}
+</style>
+
 <body>
   <div class="container">
     <!-- partial:partials/_navbar.html -->
@@ -243,12 +255,465 @@
         </ul>
       </nav>
       	<!-- partial -->
-      	<div class="main-panel">
+      	<!-- Start Content -->
+    <div class="container py-5" >
+        <div class="row" >
+
+            <div class="col-lg-3">
+                <h1 class="h3 pb-4">태그 검색</h1>
+                <!-- <ul class="list-unstyled templatemo-accordion">
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                            
+                            <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
+                        </a>
+                        <ul class="collapse show list-unstyled pl-3">
+                            <li><a class="text-decoration-none" href="#"></a></li>
+                            <li><a class="text-decoration-none" href="#"></a></li>
+                        </ul>
+                    </li>
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                            
+                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                        </a>
+                        <ul id="collapseTwo" class="collapse list-unstyled pl-3">
+                            <li><a class="text-decoration-none" href="#">Sport</a></li>
+                            <li><a class="text-decoration-none" href="#">Luxury</a></li>
+                        </ul>
+                    </li>
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                            
+                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                        </a>
+                        <ul id="collapseThree" class="collapse list-unstyled pl-3">
+                            <li><a class="text-decoration-none" href="#">Bag</a></li>
+                            <li><a class="text-decoration-none" href="#">Sweather</a></li>
+                            <li><a class="text-decoration-none" href="#">Sunglass</a></li>
+                        </ul>
+                    </li>
+                </ul> -->
+            </div>
+
+            <div class="col-lg-9">
+                <div class="row" >
+                    <div class="col-md-4" >
+                        <div class="card mb-4 product-wap rounded-0">
+                        	<div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                <ul class="list-unstyled">
+                                   <li><a href="${path }/goods/goodsView.do" class="h3 text-decoration-none">2021 라흐마니노프 가죽 키링</a></li>
+                                   
+                                </ul>
+                            </div>
+                            <div class="card rounded-0" >
+                               <img src="${path }/resources/images/store/goods.jpg" id="countimg1" style="width: 250px;height: 300px;">
+                            </div>
+                            
+                            <div class="card-body">
+                            
+                            	<div class="card-body-1">
+                                	<a href="shop-single.html" class="h2 text-decoration-none">15,000원</a>
+                                </div>
+                                
+                                <div class="card-body-1">
+	                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+	                                    <li class="h5 text-decoration-none">#라흐마니노프</li>
+	                                    
+	                                </ul>
+                                </div>
+                                
+                                <div class="card-body-1">
+	                                
+									<div class="page-wrapper">
+									  <a><button id="addtocart">
+										  <span class="cart-item">
+										    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+												<path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+												<path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+											</svg>
+										   </span>
+									  </button></a>
+									</div>
+		                                   
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4" >
+                        <div class="card mb-4 product-wap rounded-0">
+                        	<div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                <ul class="list-unstyled">
+                                   <li><a href="shop-single.html" class="h3 text-decoration-none">2021 라흐마니노프 가죽 키링</a></li>
+                                   
+                                </ul>
+                            </div>
+                            <div class="card rounded-0" >
+                               <img src="${path }/resources/images/store/goods.jpg" id="countimg1" style="width: 250px;height: 300px;">
+                            </div>
+                            
+                            <div class="card-body">
+                            
+                            	<div class="card-body-1">
+                                	<a href="shop-single.html" class="h2 text-decoration-none">15,000원</a>
+                                </div>
+                                
+                                <div class="card-body-1">
+	                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+	                                    <li class="h5 text-decoration-none">#라흐마니노프</li>
+	                                    
+	                                </ul>
+                                </div>
+                                
+                                <div class="card-body-1">
+	                                <div class="page-wrapper">
+									  <a><button id="addtocart">
+										  <span class="cart-item">
+										    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+												<path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+												<path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+											</svg>
+										   </span>
+									  </button></a>
+									</div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4" >
+                        <div class="card mb-4 product-wap rounded-0">
+                        	<div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                <ul class="list-unstyled">
+                                   <li><a href="shop-single.html" class="h3 text-decoration-none">2021 라흐마니노프 가죽 키링</a></li>
+                                   
+                                </ul>
+                            </div>
+                            <div class="card rounded-0" >
+                               <img src="${path }/resources/images/store/goods.jpg" id="countimg1" style="width: 250px;height: 300px;">
+                            </div>
+                            
+                            <div class="card-body">
+                            
+                            	<div class="card-body-1">
+                                	<a href="shop-single.html" class="h2 text-decoration-none">15,000원</a>
+                                </div>
+                                
+                                <div class="card-body-1">
+	                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+	                                    <li class="h5 text-decoration-none">#라흐마니노프</li>
+	                                    
+	                                </ul>
+                                </div>
+                                
+                                <div class="card-body-1">
+	                                <div class="page-wrapper">
+									  <a><button id="addtocart">
+										  <span class="cart-item">
+										    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+												<path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+												<path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+											</svg>
+										   </span>
+									  </button></a>
+									</div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4" >
+                        <div class="card mb-4 product-wap rounded-0">
+                        	<div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                <ul class="list-unstyled">
+                                   <li><a href="shop-single.html" class="h3 text-decoration-none">2021 라흐마니노프 가죽 키링</a></li>
+                                   
+                                </ul>
+                            </div>
+                            <div class="card rounded-0" >
+                               <img src="${path }/resources/images/store/goods.jpg" id="countimg1" style="width: 250px;height: 300px;">
+                            </div>
+                            
+                            <div class="card-body">
+                            
+                            	<div class="card-body-1">
+                                	<a href="shop-single.html" class="h2 text-decoration-none">15,000원</a>
+                                </div>
+                                
+                                <div class="card-body-1">
+	                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+	                                    <li class="h5 text-decoration-none">#라흐마니노프</li>
+	                                    
+	                                </ul>
+                                </div>
+                                
+                                <div class="card-body-1">
+	                                <div class="page-wrapper">
+									  <a><button id="addtocart">
+										  <span class="cart-item">
+										    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+												<path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+												<path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+											</svg>
+										   </span>
+									  </button></a>
+									</div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    
+                   <div class="col-md-4" >
+                        <div class="card mb-4 product-wap rounded-0">
+                        	<div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                <ul class="list-unstyled">
+                                   <li><a href="shop-single.html" class="h3 text-decoration-none">2021 라흐마니노프 가죽 키링</a></li>
+                                   
+                                </ul>
+                            </div>
+                            <div class="card rounded-0" >
+                               <img src="${path }/resources/images/store/goods.jpg" id="countimg1" style="width: 250px;height: 300px;">
+                            </div>
+                            
+                            <div class="card-body">
+                            
+                            	<div class="card-body-1">
+                                	<a href="shop-single.html" class="h2 text-decoration-none">15,000원</a>
+                                </div>
+                                
+                                <div class="card-body-1">
+	                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+	                                    <li class="h5 text-decoration-none">#라흐마니노프</li>
+	                                    
+	                                </ul>
+                                </div>
+                                
+                                <div class="card-body-1">
+	                                <div class="page-wrapper">
+									  <a><button id="addtocart">
+										  <span class="cart-item">
+										    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+												<path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+												<path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+											</svg>
+										   </span>
+									  </button></a>
+									</div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4" >
+                        <div class="card mb-4 product-wap rounded-0">
+                        	<div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                <ul class="list-unstyled">
+                                   <li><a href="shop-single.html" class="h3 text-decoration-none">2021 라흐마니노프 가죽 키링</a></li>
+                                   
+                                </ul>
+                            </div>
+                            <div class="card rounded-0" >
+                               <img src="${path }/resources/images/store/goods.jpg" id="countimg1" style="width: 250px;height: 300px;">
+                            </div>
+                            
+                            <div class="card-body">
+                            
+                            	<div class="card-body-1">
+                                	<a href="shop-single.html" class="h2 text-decoration-none">15,000원</a>
+                                </div>
+                                
+                                <div class="card-body-1">
+	                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+	                                    <li class="h5 text-decoration-none">#라흐마니노프</li>
+	                                    
+	                                </ul>
+                                </div>
+                                
+                                <div class="card-body-1">
+	                                <div class="page-wrapper">
+									  <a><button id="addtocart">
+										  <span class="cart-item">
+										    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+												<path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+												<path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+											</svg>
+										   </span>
+									  </button></a>
+									</div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4" >
+                        <div class="card mb-4 product-wap rounded-0">
+                        	<div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                <ul class="list-unstyled">
+                                   <li><a href="shop-single.html" class="h3 text-decoration-none">2021 라흐마니노프 가죽 키링</a></li>
+                                   
+                                </ul>
+                            </div>
+                            <div class="card rounded-0" >
+                               <img src="${path }/resources/images/store/goods.jpg" id="countimg1" style="width: 250px;height: 300px;">
+                            </div>
+                            
+                            <div class="card-body">
+                            
+                            	<div class="card-body-1">
+                                	<a href="shop-single.html" class="h2 text-decoration-none">15,000원</a>
+                                </div>
+                                
+                                <div class="card-body-1">
+	                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+	                                    <li class="h5 text-decoration-none">#라흐마니노프</li>
+	                                    
+	                                </ul>
+                                </div>
+                                
+                                <div class="card-body-1">
+	                                <div class="page-wrapper">
+									  <a><button id="addtocart">
+										  <span class="cart-item">
+										    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+												<path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+												<path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+											</svg>
+										   </span>
+									  </button></a>
+									</div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4" >
+                        <div class="card mb-4 product-wap rounded-0">
+                        	<div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                <ul class="list-unstyled">
+                                   <li><a href="shop-single.html" class="h3 text-decoration-none">2021 라흐마니노프 가죽 키링</a></li>
+                                   
+                                </ul>
+                            </div>
+                            <div class="card rounded-0" >
+                               <img src="${path }/resources/images/store/goods.jpg" id="countimg1" style="width: 250px;height: 300px;">
+                            </div>
+                            
+                            <div class="card-body">
+                            
+                            	<div class="card-body-1">
+                                	<a href="shop-single.html" class="h2 text-decoration-none">15,000원</a>
+                                </div>
+                                
+                                <div class="card-body-1">
+	                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+	                                    <li class="h5 text-decoration-none">#라흐마니노프</li>
+	                                    
+	                                </ul>
+                                </div>
+                                
+                                <div class="card-body-1">
+	                                <div class="page-wrapper">
+									  <a><button id="addtocart">
+										  <span class="cart-item">
+										    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+												<path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+												<path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+											</svg>
+										   </span>
+									  </button></a>
+									</div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                   <div class="col-md-4" >
+                        <div class="card mb-4 product-wap rounded-0">
+                        	<div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                                <ul class="list-unstyled">
+                                   <li><a href="shop-single.html" class="h3 text-decoration-none">2021 라흐마니노프 가죽 키링</a></li>
+                                   
+                                </ul>
+                            </div>
+                            <div class="card rounded-0" >
+                               <img src="${path }/resources/images/store/goods.jpg" id="countimg1" style="width: 250px;height: 300px;">
+                            </div>
+                            
+                            <div class="card-body">
+                            
+                            	<div class="card-body-1">
+                                	<a href="shop-single.html" class="h2 text-decoration-none">15,000원</a>
+                                </div>
+                                
+                                <div class="card-body-1">
+	                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+	                                    <li class="h5 text-decoration-none">#라흐마니노프</li>
+	                                    
+	                                </ul>
+                                </div>
+                                
+                                <div class="card-body-1">
+	                                <div class="page-wrapper">
+									  <a><button id="addtocart">
+										  <span class="cart-item">
+										    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+												<path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+												<path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+											</svg>
+										   </span>
+									  </button></a>
+									</div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    
+                <div div="row">
+                    <ul class="pagination pagination-lg justify-content-end">
+                        <li class="page-item disabled">
+                            <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="#" tabindex="-1">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">3</a>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn btn-sm btn-danger btn-lg-square back-to-top" style="float: right; margin-top: 2%;"><i class="bi bi-arrow-up"></i></a>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+    </div>
+    <!-- End Content -->
       	
       		<button onclick="location.assign('${path}/adminGoods/goodsInsert.do');">굿즈등록</button>
         
         </div>
-     </div>
        
             
           

@@ -37,6 +37,17 @@
 			display: grid;
 			background-color: transparent;
 		}
+		
+		.text-label {
+			color: #cdcdcd;
+			font-weight: bold;
+		}
+		
+		input[type=text] {
+			border: none; 
+			width: 40%;
+			height: 143%;
+		}
 	</style>
 
 <body>
@@ -262,22 +273,24 @@
         </ul>
       </nav>
       	<!-- partial -->
+      	
+      	<!-- 굿즈 등록 폼 -->
       	<div class="main-panel">
       	
       		<div class="goodsForm">
-      			<%-- <form id="goodsForm" action="${path }/adminGoods/insertGoods.do" method="post" enctype="multipart/form-data"> --%>
+      			<form id="goodsForm">
 				
 					<div style="display: flex; justify-content: center; margin-bottom: 3%;"><h3>굿즈 등록</h3></div>
 					<hr>
 					 
 					<div class="goodsAdd">
 						<h4>상품명</h4>
-						<input type="text" value="" style="border: none;" id="gName"/>
+						<input type="text" value="" title="상품명을 작성해 주세요" id="gName"/>
 						 
 						<br>
 						
 						<h4>가격</h4>
-						<input type="text" value="" style="border: none; width=40%;" id="gPrice"/> 원
+						<input type="text" value="" title="ex) 15,000" id="gPrice"/>
 						
 						<br>
 						
@@ -287,7 +300,7 @@
 						<br>
 						
 						<h4>판매처</h4>
-						<input type="text" value="" style="border: none;" id="gCom"/>
+						<input type="text" value="" title="ex) 에이치제이컬쳐 주식회사" id="gCom"/>
 						
 						<br>
 						
@@ -335,15 +348,41 @@
 			            <button class="btn btn-danger" style="width:200px; font-size:15px; float:left;" type="button" onclick="g_insert()">등록</button>
 			            <button class="btn btn-secondary" style="width:110px;background-color:lightgray;color:black;font-size:15px; float:left;">취소</button>
 			        </div>
-		        <!-- </form> -->
+		      	</form>
+		        
 	        </div>
         
 		</div>
 
 	</div>
+	
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
 
 	<script>
+	
+		//input value 기본값 초기화
+		$('input[type="text"]').each(function(){
+			this.value = $(this).attr('title');
+			$(this).addClass('text-label');
+			
+			$(this).focus(function(){
+				if(this.value == $(this).attr('title')) {
+					this.value = '';
+					$(this).removeClass('text-label');
+				}
+			});
+			
+			$(this).blur(function(){
+				if(this.value == '') {
+					this.value = $(this).attr('title');
+					$(this).addClass('text-label');
+				}
+			})
+			
+		})
+		
+		
 		//썸네일
 		function readURL(input) {
 		    if (input.files && input.files[0]) {
@@ -373,11 +412,76 @@
 		//굿즈 등록 데이터 보내기
 		const g_insert=()=>{
 			
-			let g = {
-
-					"gName" : $("#gName").val()
-					
+			var gTag = $("input[type=radio]").val();
+			
+			//대표 사진
+			const upFile=$("input[name=upFile]")[0].files[0];
+			//상세 사진
+			const upFile2=$("input[name=upFile2]")[0].files[0];
+			
+			if($("#selectM").val() == '관련없음') {
+				var mCode = '';
+			} else {
+				var mCode = '27';
 			}
+			
+			let form = new FormData();
+			
+			form.append("gName", $("#gName").val());
+			form.append("gPrice", $("#gPrice").val());
+			form.append("gContent", $("#gContent").val());
+			form.append("gCom", $("#gCom").val());
+			form.append("gCount", $("#gCount").val());
+			form.append("gTag", gTag);
+			form.append("upFile", upFile);
+			form.append("upFile2", upFile2);
+			form.append("mCode", mCode);
+
+			
+			console.log($("#gName").val());
+			console.log($("#gPrice").val());
+			console.log( $("#gContent").val());
+			console.log($("#gCom").val());
+			console.log($("#gCount").val());
+			console.log(gTag);
+			console.log(mCode);
+			console.log(upFile);
+			console.log(upFile2);
+			
+			for (var key of form.keys()) {
+
+				  console.log(key);
+
+				}
+
+				for (var value of form.values()) {
+
+				  console.log(value);
+
+				}
+			
+			$.ajax({
+				enctype: 'multipart/form-data',
+				url: "${path}/adminGoods/insertEnd.do",
+				data: form,
+				type: 'post',
+				dataType: 'json',
+				contentType: false,
+		        processData: false,
+		        cache:false,
+		        success:function(data){
+						alert("등록 성공");
+						location.replace("${pageContext.request.contextPath}/adminGoods/adgMain.do");
+					} ,
+			    error:function(e){
+					alert("등록 실패");
+					location.replace("${pageContext.request.contextPath}/adminGoods/goodsInsert.do");
+				}
+					
+				
+			});
+			
+			
 			
 		}
 		
