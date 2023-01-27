@@ -51,10 +51,13 @@ public class AdminPerforController {
 	  }
 	 
    // 공연리스트 출력
-   @RequestMapping("/performanceList.do")
-   public String adminPerformanceList() {
-      return "/admin/Perfor/adminPerformanceList";
-   }
+	 @RequestMapping("/performanceList.do")
+	   public ModelAndView adminPerformanceList(ModelAndView mv) {
+	      mv.addObject("musicalPhoto",service.selectPerforList());
+	      mv.setViewName("/admin/Perfor/adminPerformanceList");
+	      return mv;
+	   }
+
 
    // 공연등록화면 전환
    @RequestMapping("/performanceAssign.do")
