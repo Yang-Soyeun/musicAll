@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -155,7 +156,7 @@ public class AdminPerforController {
 		}else if(Performance.getPerPlace().equals("블루스퀘어")){
 			hCode=2;
 		}
-		
+		System.out.println("공연장코드: "+hCode);
 		//공연 기간 split
 		String str2=Performance.getDaterange();
 		String[] daterange=str2.split("-");
@@ -174,32 +175,33 @@ public class AdminPerforController {
 				.rPrice(Performance.getRPrice())
 				.sPrice(Performance.getSPrice())
 				.build();
+		
 		//스케쥴등록하기
 		List<Schedule>sc=new ArrayList();
 		String[] perDay = Performance.getPerDay();
 		//요일별 구분한 반복문
 		for(String pd:perDay) {
-			//요일에 지정된 회자 데이터를 파싱처리
+			//요일에 지정된 회차 데이터를 파싱처리
 			//0 : 요일, 1 : 1회차 시작시간, 2: 2회차 시작시간
-			String[] days=pd.split(",");
+			String[] days=pd.split("-");
 			//요일별 1회차에 대한 저장
 			sc.add(Schedule.builder()
-					.sStartTime(days[1])
 					.sDay(days[0])
+					.sStartTime(days[1])
 					.sTime(Performance.getSTime())
 					.sNum(1)
 					.build());
 //			2회차에 대한 저장
-			if(days.length>2) {
+			if(days.length>2&&!days[0].isEmpty()) {
 				sc.add(Schedule.builder()
-						.sStartTime(days[2])
 						.sDay(days[0])
+						.sStartTime(days[2])
 						.sTime(Performance.getSTime())
 						.sNum(2)
 						.build());
 			}
 		}
-		
+		System.out.println("빌더에 들어갈 데이터들 :"+sc);
 		int result = service.insertPerformance(p,sc,files);
 		System.out.println("결과!!:"+result);		
 	
