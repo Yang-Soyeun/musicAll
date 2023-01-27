@@ -21,6 +21,7 @@ import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
+import com.gdj.music.reservation.model.vo.Reservation;
 import com.google.gson.Gson;
 
 @Controller
@@ -62,16 +63,49 @@ public class MypageController {
 	
 	//예매내역리스트
 	@RequestMapping("/musicalList.do")
-	public String musicalList(){
+	public ModelAndView musicalList(ModelAndView mv,
+			@RequestParam(value="No", defaultValue="1") int member_No,
+			@RequestParam(value="cPage", defaultValue="1")int cPage,
+			@RequestParam(value="numPerpage", defaultValue="7")int numPerpage){
 		
-		return "mypage/musicalList";
+		List<Map<String,Object>> list=service.selectReservationList(member_No,
+				Map.of("cPage",cPage,"numPerpage",numPerpage)
+				);
+		int totalData=service.selectReservationCount(member_No);//페이징처리
+		
+//		for(Map<String,Object> m : list) {
+//			System.out.println("예매내역 : "+m);
+//			if (m.containsKey("REVIEW_NO")) {
+//				System.out.println( m.get("REVIEW_NO"));
+//				
+//			}else {
+//				System.out.println("없음");
+//			}
+			
+//			System.out.println(m.get("M_CODE"));
+//		}
+		
+		mv.addObject("reservationList",list);
+		mv.addObject("pageBar",PageFactory.searchPage(cPage,numPerpage,totalData,"musicalList.do",member_No));
+		mv.setViewName("mypage/musicalList");
+		return mv;
 	}
 	
 	//예매세부내역
 	@RequestMapping("/musicalListView.do")
-	public String musicalListView(){
+	public ModelAndView musicalListView(ModelAndView mv,@RequestParam Map r){
+//		System.out.println(r);
 		
-		return "mypage/musicalListView";
+		Map<String, Reservation> result=service.selectRvView(r);//예매내역 상단
+//		System.out.println(result);
+		
+		Map<String, Reservation> rsResult=service.selectRsview(r);//예매내역 하단
+//		System.out.println(rsResult);
+		
+		mv.addObject("rvDetail",result);
+		mv.addObject("rsDetail",rsResult);
+		mv.setViewName("mypage/musicalListView");
+		return mv;
 	}
 	
 	//관심공연

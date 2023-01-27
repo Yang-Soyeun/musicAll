@@ -138,12 +138,13 @@
 				<div id="errorPh" style="display: block; color : #dc941b;"></div>
 			</div>
 		</div>
-	</div>
-			<div class="ubtnArea row">
-				<div class="col text-center" style="min-height: auto;">    
-					<button type="button" class="btn btn-danger btn-circle" onclick="fn_join();">가입완료</button>
-				</div>
+		<div class="ubtnArea row">
+			<div class="col text-center" style="min-height: auto;">    
+				<button type="button" class="btn btn-danger btn-circle" onclick="fn_join();">가입완료</button>
 			</div>
+		</div>
+	</div>
+
 		</div>
 
 <!-- 회원가입 완료 모달 -->
@@ -169,8 +170,35 @@
 		</div>
 		
 <script>
+
+	let idValid = false;
+	let pwValid = false;
+	let emailValid = false;
+
 	//회원가입 ajax통신
 	const fn_join=()=>{
+		
+		if(idValid == false){
+			alert("아이디를 입력해주세요");
+			return false;
+		}
+		if(pwValid == false){
+			alert("비밀번호를 확인해주세요");
+			return false;			
+		}
+		if($("#member_name").val() == null || $("#member_name").val() == ""){
+			alert("이름을 확인해주세요");
+			return false;			
+		}
+		if(emailValid == false){
+			alert("이메일 입력 후 인증해주세요");
+			return false;			
+		}
+		if(phoneCheck() == false){
+			alert("전화번호를 확인해주세요");
+			return false;			
+		}
+		
 		let d = {
 				"member_Id" : $("#member_id").val(),
 				"password" : $("#password").val(),
@@ -197,6 +225,7 @@
 	
 	//이메일 종류
 	$("#selectemail").on("change",function(){
+		emailValid = false;
 		const se = $("#selectemail").val();
 		if(se!="direct"){
 			let email = $("#email").val().split("@")[0];
@@ -217,8 +246,10 @@
 	$("#member_id").on("keyup",function(){
 		let id2 = du_id();//반환값 담아
 		if(id2==false){
+			idValid = false;
 			$("#idMsg").html("영문으로 시작하는 6~20자 영문(소문자), 숫자만 사용 가능합니다.");
 		}else{
+			idValid = false;
 			$("#idMsg").html("");
 		}
 	});
@@ -233,10 +264,11 @@
 				data:{"member_id" : id },
 				type:'post',
 				success:data=>{
-					console.log(data);
 					if(data=="null"){
+						idValid = true;
 						$("#idMsg").html("사용 가능한 아이디입니다.");
 					}else{
+						idValid = false;
 						$("#idMsg").html("이미 사용 중이거나 탈퇴한 아이디입니다.");
 					}
 				}
@@ -256,6 +288,7 @@
 	
 	//비밀번호 유효성 이벤트
 	$("#password").on("keyup",function(){
+		pwValid = false;
 		let pw1 = pwCheck("password");//반환값 담아
 		if(pw1==false){
 			$("#pwMsg").html("8~12자의 영문, 숫자, 특수문자 중 2가지 이상으로만 가능합니다.");
@@ -268,31 +301,36 @@
 	$("#password_check").on("keyup",function(){
 		let pw2 = pwCheck("password_check");
 		if(pw2==false){
+			pwValid = false;
 			$("#pwMsg2").html("8~12자의 영문, 숫자, 특수문자 중 2가지 이상으로만 가능합니다.");
 		}else{
 			let pwcheck1 = $("#password").val();
 			let pwcheck2 = $("#password_check").val();
 			
 			if(pwcheck1==pwcheck2){
+				pwValid = true;
 				$("#pwMsg2").html("비밀번호가 일치합니다.");
 			}else{
+				pwValid = false;
 				$("#pwMsg2").html("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
 			}
 		}
 	});
 	
 	//비밀번호,비밀번호 확인 일치여부
-	$("#password_check").on("focusout",function(){
+	$("#password_check, #password").on("focusout",function(){
 		
 		let pwcheck1 = $("#password").val();
 		let pwcheck2 = $("#password_check").val();
 		
 		if(pwcheck1==pwcheck2){
+			pwValid = true;
 			$("#pwMsg2").html("");
 		}else{
+			pwValid = false;
 			$("#pwMsg2").html("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
 		}
-	});
+	}); 
 	
 	//이메일유효성 검사
 	//이메일 정규식
@@ -305,10 +343,11 @@
 	   	return result;
 	}
 	//타이머 변수
-	let AuthTimer;
+	let AuthTimer = null;
 	
 	//이메일 인증
 	const bt_email=()=>{
+		emailValid = false;
 		let email = emailCheck();
 		let writeE = $("#email").val();
 		
@@ -323,18 +362,18 @@
 				success:data=>{
 					if(data!=null){
 					//인증번호 시간타이머 사용법
-					  AuthTimer = new timer();
-					  AuthTimer.fnStop();
-					  AuthTimer.comSecond = 60;
-					  AuthTimer.fnCallback = function(){alert("다시인증을 시도해주세요.")}
-					  AuthTimer.timer =  setInterval(function(){AuthTimer.fnTimer()},1000);
-					  AuthTimer.domId = document.getElementById("timeline");
-						//인증번호 담기
+						AuthTimer = new timer();	
+						AuthTimer.fnStop();
+						AuthTimer.comSecond = 20;
+						AuthTimer.fnCallback = function(){alert("다시인증을 시도해주세요.")}
+						AuthTimer.timer =  setInterval(function(){AuthTimer.fnTimer()},1000);
+						AuthTimer.domId = document.getElementById("timeline");
+					//인증번호 담기
 						$("#hideconfirmNum").val(data.number);
-						
+					
 						$("#emailMsg").html("");
 						$("#checknum").show();
-						
+					
 						alert("입력하신 이메일로 인증번호가 발송 되었습니다.");
 					}
 				}
@@ -348,6 +387,7 @@
 		let f = $("#inputCertifyNum").val();
 		
 		if(d==f){
+			emailValid = true;
 			alert("인증이 완료되었습니다.");
 			$("#ok").show();
 			$("#checkNum2").hide();
@@ -356,35 +396,26 @@
 			$("#timeSecond").hide();
 			$("#timline").hide();
 		}else{
+			emailValid = false;
 			alert("올바르지 않은 인증번호 입니다.");
 		}
 	});
 	
 	//휴대폰 정규식
-	
 	$("#phone").on("keyup",function(){
-		$(this).val( $(this).val().replace(/[^0-9]/g, "")
+ 		$(this).val( $(this).val().replace(/[^0-9]/g, "")
 				.replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3")
 				.replace("--", "-") );
 	});
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	//휴대폰 유효성 검사
+	const phoneCheck = function(){
+		let phone = $("#phone").val();
+		let phoneRule = /(^02|^0505|^1[0-9]{3}|^0[0-9]{2})-([0-9]+)-([0-9]{4})$/;//휴대폰정규식	
+		let result = phoneRule.test(phone.trim());//정규식 결과
+		return result;
+		
+	}
 	
 	//인증번호 타이머
 	function timer(){
@@ -403,21 +434,14 @@
 	        console.log(m);
 	        this.domId.innerText = m;
 	        if (this.comSecond < 0) {			// 시간이 종료 되었으면..
-	            clearInterval(this.timer);		// 타이머 해제
-	            alert("인증시간이 초과하였습니다. 다시 인증해주시기 바랍니다.")
+	        	fnStop();		// 타이머 해제
+	            alert("인증시간이 초과하였습니다. 다시 인증해주시기 바랍니다.");
 	        }
 	    }
 	    ,fnStop : function(){
 	        clearInterval(this.timer);
 	    }
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

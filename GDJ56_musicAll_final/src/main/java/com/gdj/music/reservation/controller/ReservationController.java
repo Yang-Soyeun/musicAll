@@ -46,10 +46,14 @@ public class ReservationController {
 			day.add(p.get(i).get("S_DAY"));
 			
 		}
-		
+		//썸네일 조회
+		String img = service.selectImg(mCode);
+	
+		//요일 중복제거
 		model.addAttribute("day",day.stream().distinct().collect(Collectors.toList()));
 		model.addAttribute("mCode",mCode);
 		model.addAttribute("performance",p);
+		model.addAttribute("img",img);
 		
 		return "reservation/bookingView";
 	}
@@ -91,7 +95,11 @@ public class ReservationController {
 				.pUid(info[5]).build();
 		String seats = "";
 		for(int i=7;i<info.length;i++) {
-			seats+=info[i]+",";
+			if(i!=info.length-1) {
+				seats+=info[i]+",";}
+			else {
+				seats+=info[i];
+			}
 		}
 		System.out.println(seats);
 		Reservation r = Reservation.builder().rSeat(seats.split(",")).mCode(Integer.parseInt(info[1]))
@@ -110,7 +118,7 @@ public class ReservationController {
 		int hCode = service.selectHall(Integer.parseInt(info[1]));
 		int result2=0;
 		if(result>0) {
-			for(int i=6;i<info.length;i++) {
+			for(int i=7;i<info.length;i++) {
 				Seat s = Seat.builder().seatName(info[i]).hCode(hCode).rDate(info[2]).rTime(info[3]).build();
 				result2 = service2.insertSeat(s);
 			}

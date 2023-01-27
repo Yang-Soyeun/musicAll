@@ -36,8 +36,8 @@
 	          </div>
 	        </div>
 	        <div class="snsLoginWrap">
-                <a href="javascript:snsAuthPopup('kakao');" class="openid kakao">
-                    <span>카카오 로그인</span>
+                <a href="javascript:snsAuthPopup('kakao');" class="openid kakao" >
+                	<img src="${path }/resources/images/kakao_login_medium_narrow.png">
                 </a>
                 <p class="caution">개인정보 보호를 위해 공용 PC에서 사용 후 SNS 계정의 로그아웃 상태를 반드시 확인해주세요.</p>
             </div>
@@ -75,8 +75,7 @@
 	 					if(data==false){
 	 						$("#login_result").html("아이디 또는 비밀번호를 잘못 입력하셨습니다.");	
 	 					}else{
-	 						if(id=="admin") location.assign("${path}/admin/adminMain.do");
-	 						else location.assign("${path}/");
+	 						location.assign("${path}/");
 	 					}
 	 				}
 	 				

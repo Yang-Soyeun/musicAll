@@ -18,6 +18,7 @@
     Favicons
     =============================================
     -->
+    <link rel="icon" href="${path}/resources/images/favicons/logo.png">
     <link rel="apple-touch-icon" sizes="57x57" href="${path}/resources/images/favicons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="${path}/resources/images/favicons/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="${path}/resources/images/favicons/apple-icon-72x72.png">
@@ -87,12 +88,12 @@
           </div>
           <div class="collapse navbar-collapse" id="custom-collapse">
             <ul class="nav navbar-nav navbar-right">
-
+			
               <li class="dropdown"><a href="${path }/perfor/performanceList.do" >공연</a></li>
-              <li class="dropdown"><a href="${path }/booking/bookingview.do?mCode=3" >예매</a></li>
+              <li class="dropdown"><a href="${path }/booking/bookingview.do?mCode=1" >예매</a></li>
               <li class="dropdown"><a href="${path }/goods/goodsMain.do" >스토어</a></li>
-              <li class="dropdown"><a href="#" >1:1문의</a></li>
-
+              <li class="dropdown"><a href="${path }/member/question.do" >1:1문의</a></li>
+			
 
               <c:if test="${loginMember==null }">
                  <li class="dropdown"><a href="${path }/member/login.do" >로그인</a></li>
@@ -109,11 +110,12 @@
                      <li><a href="${path }/mypage/myContentList.do?No=${loginMember.member_No}"><i class="fa fa-pencil-square-o"></i> 내가 쓴 글</a></li>
                    </ul>
                  </li>
-                 <li class="dropdown"><a href="${path }/member/logout.do" >로그아웃</a></li>
+                 <li class="dropdown"><a href="${path }/member/logout.do" >로그아웃</a></li>  
               </c:if>
               <c:if test="${(loginMember!=null) && (loginMember.member_Id eq 'admin') }" ><!-- 관리자가 로그인하면-->
-                 <li class="dropdown"><a href="${path }/member/logout.do" >로그아웃</a></li>
-           </c:if>
+         		<li class="dropdown"><a href="${path }/admin/adminMain.do" >관리자페이지</a></li>
+         		<li class="dropdown"><a href="${path }/member/logout.do" >로그아웃</a></li>  
+   	  		</c:if>	
             
             </ul>
           </div>

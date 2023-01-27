@@ -155,9 +155,18 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="th" scope="row"><b>공연 장소</b></th>
-                        <td><input type="text" name="perPlace" class="wid53" placeholder="ex :예술의 전당 CJ 토월극장"></td>
-                </tr>
+                <th class="th" scope="row"><b>공연 장소</b>
+                <td>
+                    <p>
+                        <label>
+                            <input type="radio" name="perPlace" value="예술의 전당" id="artPalace">
+                                 예술의 전당</label>
+                        <label>
+                            <input type="radio" name="perPlace" value="블루스퀘어" id="blueSquare">
+                                 블루스퀘어</label>
+                    </p>
+                </td>
+            </tr>
                 <tr>
                     <th class="th" scope="row"><b>공연 가격</b>
                     <td>
@@ -206,8 +215,8 @@
                     timeFormat: 'h:mm p',
                     interval: 60,
                     minTime: '10',
-                    maxTime: '9:00pm',
-                    defaultTime: '10',
+                    maxTime: '11:00pm',
+                    defaultTime: '00:00',
                     startTime: '12:00',
                     dynamic: false,
                     dropdown: true,
@@ -247,14 +256,15 @@
             	
         		
         		let form=new FormData();
+        		console.log($('input[type=checkbox]:checked'));
         		
-            	$('input:checked').each((i,e)=>{
+            	$('input[type=checkbox]:checked').each((i,e)=>{
 					form.append("perDay",
-							$(e).val()+","+$(e).parent().next().val()
-							+","+$(e).parent().next().next().val())            		
+							$(e).val()+"-"+$(e).parent().next().val()
+							+"-"+$(e).parent().next().next().val())            		
 				
             	});
-            	
+            	 
             
             	
         		const upFile=$("input[name=upFile]")[0].files;
@@ -284,7 +294,7 @@
 				
  				var daterange=$("input[name=daterange]").val(); 
  				var sTime=$("input[name=sTime]").val();
- 				var perPlace=$("input[name=perPlace").val();
+ 				var perPlace=$("input[name=perPlace]:checked").val();
  				var vipPrice=$("input[name=vipPrice]").val();
  				var rPrice=$("input[name=rPrice]").val();
  				var sPrice=$("input[name=sPrice]").val();
@@ -372,10 +382,12 @@
  				    contentType:false,
  				    cache:false,
  				    success:function(data){
- 				    	alert("success : ", data);
+ 				   		alert("공연 등록 성공! 리스트로 돌아갑니다:)");
+					 	location.replace("${pageContext.request.contextPath}/adminPerfor/performanceList.do");		
  				    },
  				    error:function(e){
- 				        alert("error : ", e);
+ 				        alert("등록실패, 다시 등록해주세요! ");
+ 				       location.replace("${pageContext.request.contextPath}/adminPerfor/performanceAssign.do");
  				    }
  				});	
  					

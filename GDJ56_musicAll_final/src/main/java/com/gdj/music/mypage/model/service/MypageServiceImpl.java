@@ -14,6 +14,7 @@ import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
+import com.gdj.music.reservation.model.vo.Reservation;
 
 @Service
 public class MypageServiceImpl implements MypageService {
@@ -37,6 +38,33 @@ public class MypageServiceImpl implements MypageService {
 	public Member updateMember(int member_No) {
 		return dao.updateMember(session, member_No);
 	}
+	
+	
+	
+	//예매정보
+	@Override
+	public List<Map<String, Object>> selectReservationList(int member_No, Map<String,Integer> param) {
+		return dao.selectReservationList(session,member_No,param);
+	}
+
+	@Override
+	public int selectReservationCount(int member_No) {
+		return dao.selectReservationCount(session, member_No);
+	}
+	
+	//예매 세부내역상단
+	@Override
+	public Map<String, Reservation> selectRvView(Map<String, Integer> r) {
+		return dao.selectRvView(session,r);
+	}
+	//예매 세부내역하단
+	@Override
+	public Map<String, Reservation> selectRsview(Map<String, Integer> r) {
+		return dao.selectRsview(session,r);
+	}
+	
+
+
 
 	//포인트리스트출력
 	@Override

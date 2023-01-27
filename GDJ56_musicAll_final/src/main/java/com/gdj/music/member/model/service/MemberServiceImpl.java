@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.gdj.music.member.model.dao.MemberDao;
 import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.member.model.vo.Terms;
+import com.gdj.music.question.model.vo.Question;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -67,6 +68,12 @@ public class MemberServiceImpl implements MemberService {
 	public Terms joinTerm1(int term_code) {
 		return dao.joinTerms1(term_code,session);
 	}
+
+	@Override
+	public int insertq(Question q) {
+		return dao.insertq(session,q);
+	}
+	
 	
 	
 

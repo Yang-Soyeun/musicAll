@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.member.model.vo.Terms;
+import com.gdj.music.question.model.vo.Question;
 
 public interface MemberService {
 
@@ -24,6 +25,8 @@ public interface MemberService {
 	List<Terms> joinTermsN();
 
 	Terms joinTerm1(int term_code);
+
+	int insertq(Question q);
 
 
 }

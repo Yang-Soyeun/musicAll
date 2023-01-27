@@ -11,11 +11,18 @@ import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
+import com.gdj.music.reservation.model.vo.Reservation;
 
 public interface MypageDao {
 	
 	Member checkPwd(SqlSessionTemplate session,Member m);//비번체크
 	Member updateMember(SqlSessionTemplate session,int member_No);//회원정보수정 위한 데이터확인
+	
+	List<Map<String,Object>> selectReservationList(SqlSessionTemplate session,int member_No,Map<String,Integer> param);//예매정보 확인
+	int selectReservationCount(SqlSessionTemplate session,int member_No);//예매정보 페이징처리
+	
+	Map<String, Reservation> selectRvView(SqlSessionTemplate session,Map<String,Integer> r);//예매세부내역상단
+	Map<String, Reservation> selectRsview(SqlSessionTemplate session,Map<String,Integer> r);//예매세부내역하단
 	
 	
 	List<Point> selectPointListPage(SqlSessionTemplate session,int member_No,Map<String,Integer> param);//포인트리스트 출력

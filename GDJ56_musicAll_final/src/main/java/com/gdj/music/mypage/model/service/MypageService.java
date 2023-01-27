@@ -9,11 +9,19 @@ import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
 import com.gdj.music.reservation.model.vo.Point;
+import com.gdj.music.reservation.model.vo.Reservation;
 
 public interface MypageService {
 	
 	Member checkPwd(Member m);//비번체크
 	Member updateMember(int member_No);//회원정보수정 위한 데이터확인
+	
+	List<Map<String,Object>> selectReservationList(int member_No,Map<String,Integer> param);//예매정보 확인
+	int selectReservationCount(int member_No);//예매정보 페이징처리
+	
+	Map<String, Reservation> selectRvView(Map<String,Integer> r);//예매세부내역상단
+	Map<String, Reservation> selectRsview(Map<String,Integer> r);//예매세부내역하단
+	
 	
 	
 	List<Point> selectPointListPage(int member_No,Map<String,Integer> param);//페이징처리,포인트리스트 출력

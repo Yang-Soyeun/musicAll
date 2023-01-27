@@ -17,6 +17,13 @@ public class ReservationDaoImpl implements ReservationDao {
 	public List<Map<String,Performance>> selectPerform(SqlSessionTemplate session, int mCode) {
 		return session.selectList("booking.selectPerform",mCode);
 	}
+	
+	@Override
+	public String selectImg(SqlSessionTemplate session, int mCode) {
+		// TODO Auto-generated method stub
+		return session.selectOne("booking.selectImg",mCode);
+	}
+	
 
 	@Override
 	public int selectHall(SqlSessionTemplate session, int mCode) {
@@ -54,5 +61,37 @@ public class ReservationDaoImpl implements ReservationDao {
 		return session.update("booking.minusPoint",po);
 	}
 
+	@Override
+	public int countDaySales(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("booking.countDaySales");
+	}
+
+	@Override
+	public Integer selectDaySales(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("booking.selectDaySales");
+	}
+
+	@Override
+	public int countTotalSales(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("booking.countTotalSales");
+	}
+
+	@Override
+	public Integer selectTotalSales(SqlSessionTemplate session) {
+		// TODO Auto-generated method stub
+		return session.selectOne("booking.selectTotalSales");
+	}
+
+	@Override
+	public Integer selectWeekSales(SqlSessionTemplate session, int number) {
+		// TODO Auto-generated method stub
+		return session.selectOne("booking.selectWeekSales",number);
+	}
+
+
+	
 	
 }

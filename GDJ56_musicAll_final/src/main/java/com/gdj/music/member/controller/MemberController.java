@@ -62,10 +62,9 @@ public class MemberController {
 		
 		Member loginMember = service.loginEnd(m);
 		
-		System.out.println(loginMember);
-		
+
 		//matches("원본값",암호화값)매소드를 이용
-		if(loginMember != null &&passwordEncoder.matches(m.getPassword(),loginMember.getPassword())) {
+		if(loginMember != null && passwordEncoder.matches(passwordEncoder.encode(m.getPassword()),loginMember.getPassword())) {
 			response.getWriter().print(false);
 		}else {
 			model.addAttribute("loginMember",loginMember);
@@ -118,11 +117,6 @@ public class MemberController {
 		//카카오에서 가져온 세션 정보
 		String name = (String) session.getAttribute("name");
 		String email = (String) session.getAttribute("email");		
-		
-		System.out.println("============================");
-		System.out.println("name : " + name);
-		System.out.println("email : " + email);
-		System.out.println("============================");
 		
 		mav.addObject("name", name);
 		mav.addObject("email", email);
@@ -216,7 +210,11 @@ public class MemberController {
 	//비밀번호 변경구현
 	@RequestMapping("/repassword.do")
 	public void newPw(String newPw, String repwid,HttpServletResponse response) throws IOException {
-		int result = service.newPw(newPw,repwid);
+		
+		String encodePassword=passwordEncoder.encode(newPw);
+		
+		int result = service.newPw(encodePassword,repwid);
+		
 		
 		response.getWriter().print(result);
 		
@@ -226,8 +224,8 @@ public class MemberController {
 	@RequestMapping("/idduplicate.do")
 	public void idduplicate(String member_id, HttpServletResponse response) throws IOException {
 		Member m = service.idDuplicate(member_id);
-		System.out.println(m);
 		
+		System.out.println(m);
 		
 		response.getWriter().print(m);
 	}
@@ -297,7 +295,6 @@ public class MemberController {
 
 		String apiResult = kakaoLoginBO.getUserProfile(oauthToken);
 		
-		System.out.println(apiResult);
 		
 		JSONParser jsonParser = new JSONParser();
 		JSONObject jsonObj;
@@ -318,7 +315,11 @@ public class MemberController {
 		System.out.println("name : " + name);
 
 		return "redirect:/member/kakaoterms.do";
-		
 	}
+
+
+	
+	
+	
 	
 }

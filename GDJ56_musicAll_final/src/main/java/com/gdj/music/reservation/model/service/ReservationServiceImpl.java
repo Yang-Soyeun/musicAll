@@ -35,6 +35,13 @@ public class ReservationServiceImpl implements ReservationService {
 
 
 	@Override
+	public String selectImg(int mCode) {
+		// TODO Auto-generated method stub
+		return dao.selectImg(session, mCode);
+	}
+
+
+	@Override
 	public int selectHall(int mCode) {
 		// TODO Auto-generated method stub
 		return dao.selectHall(session, mCode);
@@ -75,6 +82,43 @@ public class ReservationServiceImpl implements ReservationService {
 		return dao.minusPoint(session, po);
 	}
 
+
+	@Override
+	public int countDaySales() {
+		// TODO Auto-generated method stub
+		return dao.countDaySales(session);
+	}
+
+
+	@Override
+	public Integer selectDaySales() {
+		// TODO Auto-generated method stub
+		return dao.selectDaySales(session);
+	}
+
+
+	@Override
+	public int countTotalSales() {
+		// TODO Auto-generated method stub
+		return dao.countTotalSales(session);
+	}
+
+
+	@Override
+	public Integer selectTotalSales() {
+		// TODO Auto-generated method stub
+		return dao.selectTotalSales(session);
+	}
+
+
+	@Override
+	public Integer selectWeekSales(int number) {
+		// TODO Auto-generated method stub
+		return dao.selectWeekSales(session, number);
+	}
+	
+	
+	
 	
 	
 
