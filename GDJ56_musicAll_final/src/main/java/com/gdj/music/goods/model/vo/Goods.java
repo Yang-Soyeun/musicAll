@@ -16,7 +16,6 @@ public class Goods {
 	private double gPrice;
 	private String gContent;
 	private String gCom;
-	private int fNum;
 	private int mCode;
 	private int gCount;
 	private String gTag;
