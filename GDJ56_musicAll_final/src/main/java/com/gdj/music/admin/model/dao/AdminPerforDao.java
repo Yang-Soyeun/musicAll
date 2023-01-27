@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.gdj.music.perfor.model.vo.Performance;
 import com.gdj.music.perfor.model.vo.Performance2;
 import com.gdj.music.perfor.model.vo.PerformancePhoto;
 import com.gdj.music.perfor.model.vo.Schedule;
@@ -19,6 +20,12 @@ public interface AdminPerforDao {
 	int insertPhoto(SqlSessionTemplate session, PerformancePhoto pp);
 
 	List<PerformancePhoto> selectPerforList(SqlSessionTemplate session);
+
+	Performance selectPerformanceView(SqlSessionTemplate session, int mCode);
+
+	List<Schedule> selectSchedule(SqlSessionTemplate session, int mCode);
+
+	List<PerformancePhoto> selectPhoto(SqlSessionTemplate session, int mCode);
 
 	
 	
