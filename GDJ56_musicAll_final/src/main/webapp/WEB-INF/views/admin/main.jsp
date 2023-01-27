@@ -17,7 +17,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${path }/resources/css/admin/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${path }/resources/images/favicon.png" />
+  <link rel="icon" href="${path}/resources/images/favicons/logo.png">
 
 <body>
   <div class="container">
@@ -175,10 +175,11 @@
             <a class="nav-link" href="index.html">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">공연관리</span>
+               <i class="menu-arrow"></i>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic" onclick="location.assign('${path}/adminSale/performanceSale.do');">
               <i class="icon-bar-graph menu-icon"></i>
               <span class="menu-title">공연매출</span>
               <i class="menu-arrow"></i>

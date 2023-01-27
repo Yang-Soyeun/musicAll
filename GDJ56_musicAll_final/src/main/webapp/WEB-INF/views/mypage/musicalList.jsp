@@ -36,7 +36,7 @@
 		         	<c:forEach var= "r" items="${reservationList}">
 				         <tr>
 				           <td>
-				             <a href="${path }/mypage/musicalListView.do" >
+				             <a href="${path }/mypage/musicalListView.do?member_No=${loginMember.member_No}&rCode=${r.get('R_CODE') }" >
 				             	<h5 style="color:#6e1515;font-weight:800;" class="product-title font-alt"><c:out value="${r.get('R_CODE') }"/></h5>
 				             </a>
 				           </td>

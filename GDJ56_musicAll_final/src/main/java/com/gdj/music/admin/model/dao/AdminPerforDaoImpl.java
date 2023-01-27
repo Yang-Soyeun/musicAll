@@ -29,4 +29,8 @@ public class AdminPerforDaoImpl implements AdminPerforDao {
 	public int insertPhoto(SqlSessionTemplate session, PerformancePhoto pp) {
 		return session.insert("img.insertPhoto",pp);
 	}
+	@Override
+	public List<PerformancePhoto> selectPerforList(SqlSessionTemplate session) {
+		return session.selectList("img.selectPerforList");
+	}
 }

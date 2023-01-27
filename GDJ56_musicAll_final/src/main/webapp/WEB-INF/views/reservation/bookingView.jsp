@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 
 
@@ -24,32 +25,33 @@
             <div class="col_5" style="margin-top:1%">
                 <br>
                 <h4 class="prdTitle"><b></b></h4><br>
-                <img class="posterBoxImage" src="${path }/resources/images/reservation/22014586_p.png" >
+                <img class="posterBoxImage" src="${path }/resources/upload/performance/${img}" >
             </div>
             <div class="col_5" style="margin-top:8%;font-size:1.1rem;">
                 <ul class="info" style="color:black;">
                     <li class="infoItem"><strong class="infoLabel">장소</strong>
-                        <div class="infoDesc"><i></i></div><br>
+                        <div class="infoDesc">${performance.get(0).get("H_NAME") }</div><br>
                     </li>
                     <li class="infoItem"><strong class="infoLabel">공연기간</strong>
                         <div class="infoDesc">
-                            <p class="infoText">2022.12.16 ~2023.03.05</p>
+                            <p class="infoText">${fn:substring(performance.get(0).get("M_PERIOD"),0,10)} ~ ${fn:substring(performance.get(0).get("M_PERIOD_END"),0,10)}</p>
                         </div>
                     </li>
                     <li class="infoItem"><strong class="infoLabel">공연시간</strong>
                         <div class="infoDesc">
-                            <p class="infoText">170분(인터미션 20분 포함)</p>
+                            <p class="infoText">${performance.get(0).get("S_TIME")}분</p>
                         </div>
                     </li>
                     <li class="infoItem"><strong class="infoLabel">관람연령</strong>
                         <div class="infoDesc">
-                            <p class="infoText">14세 이상 관람가</p>
+                            <p class="infoText">${performance.get(0).get("M_AGE")}</p>
                         </div>
                     </li>
                       <li class="infoItem"><strong class="infoLabel">가격</strong>
                         <div class="infoDesc">
-                            <p class="infoText">R석 150,000원</p>
-                            <p class="infoText">S석 120,000원</p>
+                       	    <p class="infoText">VIP석 ${performance.get(0).get("VIP_PRICE")}원</p>
+                            <p class="infoText">R석 ${performance.get(0).get("R_PRICE")}원</p>
+                            <p class="infoText">S석 ${performance.get(0).get("S_PRICE")}원</p>
                         </div>
                     </li>
                 </ul>
@@ -145,7 +147,8 @@
 		       
 		       <c:if test="${not empty performance }">
 					<c:forEach var="per" items="${performance }">
-			            if(getDayOfWeek()=="${per.get('S_DAY')}"&&day2>today&&day2<new Date("2023-03-11")){
+						//공연 기간동안만 활성화
+			            if(getDayOfWeek()=="${per.get('S_DAY')}"&&day2>new Date("${fn:substring(performance.get(0).get("M_PERIOD"),0,10)}")&&day2<new Date("${fn:substring(performance.get(0).get("M_PERIOD_END"),0,10)}")){
 			                d[i].addEventListener('click', selectDay);
 			                d[i].addEventListener('click', turn);
 			                d[i].setAttribute("style","color:black");

@@ -18,6 +18,7 @@
     Favicons
     =============================================
     -->
+    <link rel="icon" href="${path}/resources/images/favicons/logo.png">
     <link rel="apple-touch-icon" sizes="57x57" href="${path}/resources/images/favicons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="${path}/resources/images/favicons/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="${path}/resources/images/favicons/apple-icon-72x72.png">
@@ -89,7 +90,7 @@
             <ul class="nav navbar-nav navbar-right">
 			
               <li class="dropdown"><a href="${path }/perfor/performanceList.do" >공연</a></li>
-              <li class="dropdown"><a href="${path }/booking/bookingview.do?mCode=3" >예매</a></li>
+              <li class="dropdown"><a href="${path }/booking/bookingview.do?mCode=1" >예매</a></li>
               <li class="dropdown"><a href="${path }/goods/goodsMain.do" >스토어</a></li>
               <li class="dropdown"><a href="${path }/member/question.do" >1:1문의</a></li>
 			
