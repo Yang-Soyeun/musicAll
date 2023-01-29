@@ -329,6 +329,7 @@ public class MemberController {
 		//카카오 아이디로 가입한 이력이 있으면 카카오 가입 불가능하도록 하고 아이디 알려줌
 		Member kakaoM = service.selectKakaoInfo(id);
 		if(kakaoM != null) {
+			
 			model.addAttribute("msg","이미 카카오로 회원가입한 이력이 있습니다. ID : " + kakaoM.getMember_Id());
 			return "common/popupMsg";
 		}
