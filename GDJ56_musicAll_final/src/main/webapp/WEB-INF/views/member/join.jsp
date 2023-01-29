@@ -364,7 +364,7 @@
 					//인증번호 시간타이머 사용법
 						AuthTimer = new timer();	
 						AuthTimer.fnStop();
-						AuthTimer.comSecond = 5;
+						AuthTimer.comSecond = 60;
 						AuthTimer.fnCallback = function(){alert("다시인증을 시도해주세요.")}
 						AuthTimer.timer =  setInterval(function(){AuthTimer.fnTimer()},1000);
 						AuthTimer.domId = document.getElementById("timeline");
