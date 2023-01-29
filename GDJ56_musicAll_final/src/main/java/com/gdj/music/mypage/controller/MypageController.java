@@ -101,7 +101,7 @@ public class MypageController {
 				);
 		int totalData=service.selectReservationCount(member_No);//페이징처리
 		
-//		for(Map<String,Object> m : list) {
+		for(Map<String,Object> m : list) {
 //			System.out.println("예매내역 : "+m);
 //			if (m.containsKey("REVIEW_NO")) {
 //				System.out.println( m.get("REVIEW_NO"));
@@ -109,9 +109,9 @@ public class MypageController {
 //			}else {
 //				System.out.println("없음");
 //			}
-			
+//			
 //			System.out.println(m.get("M_CODE"));
-//		}
+		}
 		
 		mv.addObject("reservationList",list);
 		mv.addObject("pageBar",PageFactory.searchPage(cPage,numPerpage,totalData,"musicalList.do",member_No));
@@ -134,6 +134,19 @@ public class MypageController {
 		mv.addObject("rsDetail",rsResult);
 		mv.setViewName("mypage/musicalListView");
 		return mv;
+	}
+	
+	//환불값 가져오기
+	@RequestMapping("/refundMusical.do")
+	@ResponseBody
+	public Map<String,Object> refundMusical(@RequestParam Map r){
+		
+		Map<String, Object> result=service.selectRvView(r);//예매내역 상단
+		Map<String, Object> refund=service.selectRsview(r);//예매내역 하단
+		
+//		System.out.println(result);
+//		System.out.println(refund);
+		return Map.of("result",result,"refund",refund);
 	}
 	
 	//관심공연
