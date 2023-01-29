@@ -92,7 +92,7 @@
               <li class="dropdown"><a href="${path }/perfor/performanceList.do" >공연</a></li>
               <li class="dropdown"><a href="${path }/booking/bookingview.do?mCode=1" >예매</a></li>
               <li class="dropdown"><a href="${path }/goods/goodsMain.do" >스토어</a></li>
-              <li class="dropdown"><a href="${path }/member/question.do" >1:1문의</a></li>
+              <li class="dropdown"><a href="${path }/question/question.do" >1:1문의</a></li>
 			
 
               <c:if test="${loginMember==null }">

@@ -175,7 +175,7 @@
 	            
 	            <c:if test="${not empty myQs }">
 	            	<c:forEach var="qs" items="${myQs }">
-	            		<tr class="QsTr">
+	            		<tr class="QsTr" onclick='detail(${qs.qsNo})'>
 			              <td>
 			                <h5 id="qsNo" class="product-title font-alt"><c:out value="${qs.qsNo }"/></h5>
 			              </td>
@@ -219,6 +219,12 @@
 </div>
 
 	<script>
+		//1:1 상세화면
+		const detail=(qsNo)=>{
+			
+			location.assign("${path}/question/myqdetail.do?qsNo="+qsNo);
+		}
+	
 		//1대1 질문 ajax 검색
  		const fn_searchQuestion=(No)=>{
  			
@@ -235,8 +241,7 @@
 						$(".QsTr").remove();
 						
 	  					for(i=0;i<data.length;i++){ 
-	  						
-							var tr=$("<tr class='QsTr'></tr>")[0];
+							var tr=$("<tr class='QsTr' onclick='detail("+data[i].qsNo+")'></tr>")[0];
 							var td1=$("<td>")[0];
 							var td2=$("<td>")[0];
 							var td3=$("<td>")[0];
@@ -272,6 +277,8 @@
 				
   			}); 
   		}; 
+  		
+  		
  	</script> 
 
 

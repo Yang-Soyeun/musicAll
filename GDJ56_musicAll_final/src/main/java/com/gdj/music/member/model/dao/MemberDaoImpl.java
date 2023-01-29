@@ -66,6 +66,12 @@ public class MemberDaoImpl implements MemberDao {
 	public int insertq(SqlSessionTemplate session, Question q) {
 		return session.insert("question.insertq",q);
 	}
+
+	@Override
+	public Question myqDetail(SqlSessionTemplate session, Question q) {
+		return session.selectOne("question.myDetail",q);
+	}
+	
 	
 	
 

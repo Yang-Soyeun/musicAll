@@ -20,7 +20,7 @@
 </colgroup>
 <tbody><tr>
 <th><img src="//ticketimage.interpark.com/TicketImage/Customer/txt_ask2.gif" alt="제목"></th>
-<td><input name="Title" type="text" class="txt w565" value="" maxlength="200" id="qsTitle"></td>
+<td><input name="Title" type="text" class="txt w565" value="${qt.qsTitle }" maxlength="200" id="qsTitle" ></td>
 </tr>
 
 <tr>
@@ -28,8 +28,8 @@
 	<img src="//ticketimage.interpark.com/TicketImage/Customer/txt_ask3.gif" alt="유형">
 </th>
 <td>
-
-	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="예매문의"> 예매문의</span>
+	
+	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="예매문의" > 예매문의</span>
 	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="공연문의"> 공연문의</span>
 	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="취소/환불/발권"> 취소/환불/발권</span>
 	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="포인트문의"> 포인트문의</span>
@@ -38,7 +38,7 @@
 </td>
 </tr>
 <tr>
-	<th><img src="//ticketimage.interpark.com/TicketImage/Customer/txt_ask5.gif" alt="내용"></th>
+	<th><img src="//ticketimage.interpark.com/TicketImage/Customer/txt_ask5.gif" alt="내용" ></th>
 <td>
 	<textarea name="Contents" class="w565" style="width: 565px; height: 320px;" id="qsContent"></textarea>
 </td>

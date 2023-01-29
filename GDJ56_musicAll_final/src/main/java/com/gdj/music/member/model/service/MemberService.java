@@ -28,5 +28,7 @@ public interface MemberService {
 
 	int insertq(Question q);
 
+	Question myqDetail(Question q);
+
 
 }

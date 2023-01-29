@@ -323,7 +323,7 @@
 		let pwcheck1 = $("#password").val();
 		let pwcheck2 = $("#password_check").val();
 		
-		if(pwcheck1==pwcheck2){
+		if(pwcheck1==pwcheck2 && pwCheck("password_check") && pwCheck("password")){
 			pwValid = true;
 			$("#pwMsg2").html("");
 		}else{
@@ -364,7 +364,7 @@
 					//인증번호 시간타이머 사용법
 						AuthTimer = new timer();	
 						AuthTimer.fnStop();
-						AuthTimer.comSecond = 20;
+						AuthTimer.comSecond = 5;
 						AuthTimer.fnCallback = function(){alert("다시인증을 시도해주세요.")}
 						AuthTimer.timer =  setInterval(function(){AuthTimer.fnTimer()},1000);
 						AuthTimer.domId = document.getElementById("timeline");
@@ -434,7 +434,7 @@
 	        console.log(m);
 	        this.domId.innerText = m;
 	        if (this.comSecond < 0) {			// 시간이 종료 되었으면..
-	        	fnStop();		// 타이머 해제
+	        	clearInterval(this.timer);		// 타이머 해제
 	            alert("인증시간이 초과하였습니다. 다시 인증해주시기 바랍니다.");
 	        }
 	    }
