@@ -73,6 +73,12 @@ public class MemberServiceImpl implements MemberService {
 	public int insertq(Question q) {
 		return dao.insertq(session,q);
 	}
+
+	@Override
+	public Question myqDetail(Question q) {
+		return dao.myqDetail(session, q);
+	}
+	
 	
 	
 	

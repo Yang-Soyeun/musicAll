@@ -30,5 +30,7 @@ public interface MemberDao {
 
 	int insertq(SqlSessionTemplate session, Question q);
 
+	Question myqDetail(SqlSessionTemplate session, Question q);
+
 
 }

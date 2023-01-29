@@ -61,14 +61,13 @@ public class MemberController {
 		Member m = Member.builder().member_Id(memberId).password(memberPw).build();
 		
 		Member loginMember = service.loginEnd(m);
-		
 
 		//matches("원본값",암호화값)매소드를 이용
-		if(loginMember != null && passwordEncoder.matches(passwordEncoder.encode(m.getPassword()),loginMember.getPassword())) {
-			response.getWriter().print(false);
-		}else {
+		if(loginMember != null && passwordEncoder.matches(m.getPassword(),loginMember.getPassword())) {
 			model.addAttribute("loginMember",loginMember);
-			response.getWriter().print(true);
+			response.getWriter().print(true);//매치가 되면 트루
+		}else {
+			response.getWriter().print(false);//매치가 안되면 false.이게 맞지..
 		}
 	}
 	
@@ -317,7 +316,7 @@ public class MemberController {
 		return "redirect:/member/kakaoterms.do";
 	}
 
-
+	
 	
 	
 	
