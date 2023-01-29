@@ -34,6 +34,7 @@ public class MypageController {
 	
 	private MypageService service;
 	private BCryptPasswordEncoder passwordEncoder;
+	
 	@Autowired
 	public MypageController(MypageService service,BCryptPasswordEncoder passwordEncoder) {
 		this.service=service;
@@ -93,9 +94,12 @@ public class MypageController {
 	//예매내역리스트
 	@RequestMapping("/musicalList.do")
 	public ModelAndView musicalList(ModelAndView mv,
-			@RequestParam(value="No", defaultValue="1") int member_No,
+			HttpSession session,
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
 			@RequestParam(value="numPerpage", defaultValue="7")int numPerpage){
+
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		int member_No = loginMember.getMember_No();
 		
 		List<Map<String,Object>> list=service.selectReservationList(member_No,
 				Map.of("cPage",cPage,"numPerpage",numPerpage)
@@ -153,9 +157,13 @@ public class MypageController {
 	//관심공연
 	@RequestMapping("/likeMusical.do")
 	public ModelAndView likeMusical(ModelAndView mv,
-			@RequestParam(value="No", defaultValue="1") int member_No,
+			HttpSession session,
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
 			@RequestParam(value="numPerpage", defaultValue="12")int numPerpage) {
+		
+		
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		int member_No = loginMember.getMember_No();
 		
 		List<Map<String,Mlike>> list=service.selectMlikeList(member_No,
 				Map.of("cPage",cPage,"numPerpage",numPerpage)
@@ -235,10 +243,12 @@ public class MypageController {
 	
 	//포인트내역출력
 	@RequestMapping("/pointList.do")
-	public ModelAndView pointList(ModelAndView mv,int No,
+	public ModelAndView pointList(ModelAndView mv,HttpSession session,
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
 			@RequestParam(value="numPerpage", defaultValue="5")int numPerpage) {
-		int member_No=No;
+		
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		int member_No = loginMember.getMember_No();
 		
 		List<Point> list=service.selectPointListPage(member_No,
 				Map.of("cPage",cPage,"numPerpage",numPerpage)
@@ -257,10 +267,12 @@ public class MypageController {
 	
 	//상품구매내역	 환불처리 해야함!!!!!!!!!!!!!!!!!!!
 	@RequestMapping("/shoppingList.do")
-	public ModelAndView shoppingList(ModelAndView mv,int No,
+	public ModelAndView shoppingList(ModelAndView mv,HttpSession session,
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
 			@RequestParam(value="numPerpage", defaultValue="5")int numPerpage) {
-		int member_No=No;
+		
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		int member_No = loginMember.getMember_No();
 		
 		List<Map<String,Goods>> map=service.selectSpListPage(member_No,
 				Map.of("cPage",cPage,"numPerpage",numPerpage)

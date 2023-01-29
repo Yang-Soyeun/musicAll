@@ -32,7 +32,7 @@
 						<span class="image">
 							<img src="${path}/resources/nari2/images/공연정보2.jpeg" alt="" />
 						</span>
-						<a href="${path }/mypage/musicalList.do?No=${loginMember.member_No}">
+						<a href="${path }/mypage/musicalList.do">
 							<h2>공연예매정보</h2>
 						</a>
 					</article>
@@ -40,7 +40,7 @@
 						<span class="image">
 							<img src="${path}/resources/nari2/images/관심공연.jpeg" alt="" />
 						</span>
-						<a href="${path }/mypage/likeMusical.do?No=${loginMember.member_No}">
+						<a href="${path }/mypage/likeMusical.do">
 							<h2>관심공연</h2>
 						</a>
 					</article>
@@ -48,7 +48,7 @@
 						<span class="image">
 							<img src="${path}/resources/nari2/images/포인트.webp" alt="" />
 						</span>
-						<a href="${path }/mypage/pointList.do?No=${loginMember.member_No}">
+						<a href="${path }/mypage/pointList.do">
 							<h2>포인트</h2>
 						</a>
 					</article>
@@ -56,7 +56,7 @@
 						<span class="image">
 							<img src="${path}/resources/nari2/images/구매내역.jpeg" alt="" />
 						</span>
-						<a href="${path }/mypage/shoppingList.do?No=${loginMember.member_No}">
+						<a href="${path }/mypage/shoppingList.do">
 							<h2>상품구매내역</h2>
 						</a>
 					</article>
@@ -64,7 +64,7 @@
 						<span class="image">
 							<img src="${path}/resources/nari2/images/나의글모음.webp" alt="" />
 						</span>
-						<a href="${path }/mypage/myContentList.do?No=${loginMember.member_No}">
+						<a href="${path }/mypage/myContentList.do">
 							<h2>내가 쓴 글</h2>
 						</a>
 					</article>
