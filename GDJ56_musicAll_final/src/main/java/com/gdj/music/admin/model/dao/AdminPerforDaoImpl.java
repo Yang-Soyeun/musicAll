@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.gdj.music.perfor.model.vo.Performance;
 import com.gdj.music.perfor.model.vo.Performance2;
 import com.gdj.music.perfor.model.vo.PerformancePhoto;
 import com.gdj.music.perfor.model.vo.Schedule;
@@ -33,4 +34,17 @@ public class AdminPerforDaoImpl implements AdminPerforDao {
 	public List<PerformancePhoto> selectPerforList(SqlSessionTemplate session) {
 		return session.selectList("img.selectPerforList");
 	}
+	@Override
+	public Performance selectPerformanceView(SqlSessionTemplate session,int mCode) {
+		return session.selectOne("musical.selectPerformanceView",mCode);
+	}
+	@Override
+	public List<PerformancePhoto> selectPhoto(SqlSessionTemplate session,int mCode) {
+		return session.selectList("img.selectPhoto",mCode);
+	}
+	@Override
+	public List<Schedule> selectSchedule(SqlSessionTemplate session,int mCode) {
+		return session.selectList("p_schedule.selectSchedule",mCode);
+	}
+	
 }

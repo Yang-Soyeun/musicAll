@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gdj.music.admin.model.dao.AdminPerforDao;
+import com.gdj.music.perfor.model.vo.Performance;
 import com.gdj.music.perfor.model.vo.Performance2;
 import com.gdj.music.perfor.model.vo.PerformancePhoto;
 import com.gdj.music.perfor.model.vo.Schedule;
@@ -51,8 +52,26 @@ public class AdminPerforServiceImpl implements AdminPerforService{
 	
 	@Override
 	public List<PerformancePhoto> selectPerforList(){
-		
 		return dao.selectPerforList(session);
-		
 	}
+	
+	@Override
+	public Performance selectPerformanceView(int mCode) {
+		return dao.selectPerformanceView(session, mCode);
+	}
+	
+	@Override
+	public List<Schedule> selectSchedule(int mCode) {
+		return dao.selectSchedule(session, mCode);
+	}
+	
+	@Override
+	public List<PerformancePhoto> selectPhoto(int mCode) {
+		return dao.selectPhoto(session, mCode);
+	}
+	
+	
+	
+	
+	
 }

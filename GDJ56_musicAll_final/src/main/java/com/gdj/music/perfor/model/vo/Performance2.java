@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Performance2 {
+	private int mCode;
 	private String mTitle;
 	private String mType;
 	private String mAge;

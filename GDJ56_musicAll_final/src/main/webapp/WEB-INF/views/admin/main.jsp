@@ -298,7 +298,7 @@
                 </div>
                 <div class="col-md-6 mb-4 stretch-card transparent" style="margin-left:0px;">
                   <div class="card card-light-danger">
-                    <div class="card-body">
+                    <div class="card-body" onclick="location.assign('${path}/member/memberList.do');">
                       <p class="mb-4">Number of Clients</p>
                       <p class="fs-30 mb-2">회원관리</p>
                       <p>0.22% (30 days)</p>
