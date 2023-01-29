@@ -74,6 +74,18 @@ public class MypageController {
 		mv.setViewName("mypage/updateMember");
 		return mv;
 	}
+	//회원정보 업데이트 
+	@RequestMapping("updateMemberEnd.do")
+	@ResponseBody
+	public int updateMemberEnd (Member m,HttpServletResponse response) throws IOException {
+		
+		String encodePassword=passwordEncoder.encode(m.getPassword());//비밀번호 암호화
+		m.setPassword(encodePassword);//암호화 한 비밀번호 member에 저장
+		
+		int result=service.updateMemberEnd(m);
+		
+		return result;
+	}
 	
 	
 	

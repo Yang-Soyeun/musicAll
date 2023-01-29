@@ -29,7 +29,11 @@ public class MypageDaoImpl implements MypageDao {
 	public Member updateMember(SqlSessionTemplate session, int member_No) {
 		return session.selectOne("mypage.updateMember",member_No);
 	}
-	
+	//회원정보수정
+	@Override
+	public int updateMemberEnd(SqlSessionTemplate session, Member m) {
+		return session.update("mypage.updateMemberEnd",m);
+	}
 	
 	//예매정보
 	@Override
