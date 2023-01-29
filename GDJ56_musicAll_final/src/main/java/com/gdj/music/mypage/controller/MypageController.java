@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -240,11 +241,19 @@ public class MypageController {
 	
 	//내가 쓴 글(내 한줄평 + 1대1문의내역 리스트)
 	@RequestMapping("/myContentList.do")
-	public ModelAndView myContentList(ModelAndView mv,int No,
+	public ModelAndView myContentList(ModelAndView mv,
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
-			@RequestParam(value="numPerpage", defaultValue="8")int numPerpage) {
+			@RequestParam(value="numPerpage", defaultValue="8")int numPerpage,
+			HttpSession session) {
 		
-		int member_No=No;
+//		int member_No=No;
+		
+		//차차수정부분 
+		//int member_No=No; 이렇게 보내면 현재 url에 멤버 시퀀스 번호 다 보이며 그뒤 넘버만 바꿔도 그회원값이 다 가져오게 되어있음!
+		//그래서 세션값에서 가져오게 이것만 고쳐놓았음!! 
+		//추후 내가 고친부분에...혹싀..기분이 상하거나 맘에 안들면 꼭 말해줭~!!연락이 안되서..한부분만 고쳤어...ㅜㅜㅜ
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		int member_No = loginMember.getMember_No();
 		
 		//1대1문의
 		List<Question> qsList=service.selectQsListPage(member_No,

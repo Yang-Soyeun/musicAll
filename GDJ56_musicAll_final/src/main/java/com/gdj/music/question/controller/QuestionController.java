@@ -1,6 +1,7 @@
 package com.gdj.music.question.controller;
 
 import java.io.IOException;
+import java.net.http.HttpResponse;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -46,22 +47,40 @@ public class QuestionController {
 		response.getWriter().print(qt);
 	}
 	
+	//상세화면
 	@RequestMapping("/myqdetail.do")
 	public ModelAndView myqDetail(int qsNo, ModelAndView mv) {
-		
-		System.out.println(qsNo);
 		
 		Question q = new Question();
 		q.setQsNo(qsNo);
 		
 		Question qt = service.myqDetail(q);
 		
-		System.out.println(qt);
-		
 		mv.addObject("qt",qt);
 		mv.setViewName("/member/myquestion");
 		
 		return mv;
+	}
+	
+	//수정
+	@RequestMapping("/updateQ.do")
+	public void updateQ (Question qt, HttpServletResponse response) throws IOException {
+		
+		
+		int num = service.updateQ(qt);
+		
+		
+		response.getWriter().print(num);
+		
+	}
+	
+	//삭제
+	@RequestMapping("/deleteQ.do")
+	public void deleteQ(Question qt, HttpServletResponse response) throws IOException {
+		
+		int num = service.deleteQ(qt);
+	
+		response.getWriter().print(num);
 	}
 	 
 	

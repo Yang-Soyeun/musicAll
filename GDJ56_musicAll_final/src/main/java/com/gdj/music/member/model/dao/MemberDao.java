@@ -34,5 +34,9 @@ public interface MemberDao {
 
 	Member selectKakaoInfo(SqlSessionTemplate session, String id);
 
+	int updateQ(SqlSessionTemplate session, Question q);
+
+	int deleteQ(SqlSessionTemplate session, Question qt);
+
 
 }

@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.gdj.music.admin.model.service.AdminMemberService;
 import com.gdj.music.common.interceptor.PageFactory;
 import com.gdj.music.member.model.vo.Member;
+import com.gdj.music.question.model.vo.Question;
 
 @Controller
 @RequestMapping("/member")
@@ -54,5 +55,7 @@ public class AdminMemberController {
 	   
 	   return "common/msg";
    }
+   
+
 	
 }

@@ -107,7 +107,9 @@
                      <li><a href="${path }/mypage/likeMusical.do?No=${loginMember.member_No}"><i class="fa fa-heart"></i> 관심 공연</a></li>
                      <li><a href="${path }/mypage/pointList.do?No=${loginMember.member_No}"><i class="fa fa-database"></i> 포인트</a></li>
                      <li><a href="${path }/mypage/shoppingList.do?No=${loginMember.member_No}"><i class="fa fa-gift"></i> 상품 구매내역</a></li>
-                     <li><a href="${path }/mypage/myContentList.do?No=${loginMember.member_No}"><i class="fa fa-pencil-square-o"></i> 내가 쓴 글</a></li>
+<%--                      <li><a href="${path }/mypage/myContentList.do?No=${loginMember.member_No}"><i class="fa fa-pencil-square-o"></i> 내가 쓴 글</a></li>
+ --%>                     <li><a href="${path }/mypage/myContentList.do"><i class="fa fa-pencil-square-o"></i> 내가 쓴 글</a></li>
+                     <!-- 현재 페이지 이동시 멤버no값이 보여진다...안보여지게 수정해야한다.. 차차수정방법 예상은 mypage컨트롤러에서 //내가 쓴 글(내 한줄평 + 1대1문의내역 리스트) 이부분 int No로 넘긴것을 자바에서 session에 담긴값을 사용해야할듯! -->  
                    </ul>
                  </li>
                  <li class="dropdown"><a href="${path }/member/logout.do" >로그아웃</a></li>  

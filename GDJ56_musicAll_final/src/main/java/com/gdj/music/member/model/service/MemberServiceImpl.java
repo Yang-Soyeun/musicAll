@@ -83,6 +83,17 @@ public class MemberServiceImpl implements MemberService {
 	public Member selectKakaoInfo(String id) {
 		return dao.selectKakaoInfo(session, id);
 	}
+
+	@Override
+	public int updateQ(Question q) {
+		return dao.updateQ(session, q);
+	}
+
+	@Override
+	public int deleteQ(Question qt) {
+		return dao.deleteQ(session,qt);
+	}
+	
 	
 	
 	
