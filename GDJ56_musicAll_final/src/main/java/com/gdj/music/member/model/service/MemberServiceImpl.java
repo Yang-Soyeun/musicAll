@@ -78,6 +78,11 @@ public class MemberServiceImpl implements MemberService {
 	public Question myqDetail(Question q) {
 		return dao.myqDetail(session, q);
 	}
+
+	@Override
+	public Member selectKakaoInfo(String id) {
+		return dao.selectKakaoInfo(session, id);
+	}
 	
 	
 	
