@@ -77,6 +77,7 @@
 </head>
 
 <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
+	<input type="hidden" id="kakao_id" value="${id }"/>
 	<div class="pageWrapper" style="display: block;">
 		<div class="contentsWrap">
 			<div class="snsjoin">
@@ -236,14 +237,19 @@
 			return false;
 		} 
 		
+		let kakao_id = parseInt($("#kakao_id").val());
+		console.log(kakao_id);
+		
 		let d = {
 				"member_Id" : $("#member_id").val(),
 				"password" : $("#password1").val(),
 				"name" : $("#member_name").val(),
 				"email" : $("#email").val(),
-				"phone" : $("#phone").val()
+				"phone" : $("#phone").val(),
+				"kakao_id" : kakao_id
 		};
-		
+		console.log(d);
+
 		$.ajax({
 			url : "${path}/member/joinend.do",
 			data : d,

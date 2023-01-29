@@ -32,5 +32,7 @@ public interface MemberDao {
 
 	Question myqDetail(SqlSessionTemplate session, Question q);
 
+	Member selectKakaoInfo(SqlSessionTemplate session, String id);
+
 
 }

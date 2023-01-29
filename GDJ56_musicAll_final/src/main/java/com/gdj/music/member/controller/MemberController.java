@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.SecuredAnnotationSecurityMetadataSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,7 +52,15 @@ public class MemberController {
 
 	//로그인 화면 전환
 	@RequestMapping("/login.do")
-	public String loginView() {
+	public String loginView(Model m, HttpSession session) {
+		
+		String loginCallbackUrl = kakaoLoginBO.getLoginCallbackUrl();
+		String kakaoJoinUrl = kakaoLoginBO.getAuthorizationUrl(session, loginCallbackUrl);
+		System.out.println("kakaoJoinUrl : " + kakaoJoinUrl);
+		
+		m.addAttribute("kakaoJoinUrl", kakaoJoinUrl);
+		
+		
 		return "/member/login";
 	}
 	
@@ -75,7 +84,8 @@ public class MemberController {
 	//회원가입 선택
 	@RequestMapping("/joinchoice.do")
 	public ModelAndView joinView(ModelAndView mav, HttpSession session) {
-		String kakaoAuthUrl = kakaoLoginBO.getAuthorizationUrl(session);
+		String joinCallbackUrl = kakaoLoginBO.getJoinCallbackUrl();
+		String kakaoAuthUrl = kakaoLoginBO.getAuthorizationUrl(session, joinCallbackUrl);
 		System.out.println("kakaoAuthUrl : " + kakaoAuthUrl);
 		mav.addObject("kakaoUrl", kakaoAuthUrl);
 		mav.setViewName("/member/joinChoice");
@@ -114,12 +124,18 @@ public class MemberController {
 	public ModelAndView kakaojoin(Member m, HttpSession session, ModelAndView mav) {
 		
 		//카카오에서 가져온 세션 정보
+		String id = (String) session.getAttribute("id");
 		String name = (String) session.getAttribute("name");
 		String email = (String) session.getAttribute("email");		
 		
+		mav.addObject("id", id);
 		mav.addObject("name", name);
 		mav.addObject("email", email);
 		
+		//새로고침시 다시 인증하라고 하기 위한 세션 삭제
+		if(!ObjectUtils.isEmpty(session.getAttribute("id"))) {
+			session.removeAttribute("id");	
+		}
 		if(!ObjectUtils.isEmpty(session.getAttribute("name"))) {
 			session.removeAttribute("name");	
 		}
@@ -285,15 +301,18 @@ public class MemberController {
 		return mv;
 	}
 	
-	//카카오 로그인
-	@RequestMapping("/kakaoLogin.do")
-	public String kakaoLogin(@RequestParam("code") String code, @RequestParam("state") String state, HttpSession session) throws Exception {
+	//카카오 회원가입 종료
+	@RequestMapping("/kakaoJoinEnd.do")
+	public String kakaoJoin(@RequestParam("code") String code, @RequestParam("state") String state, HttpSession session, Model model) throws Exception {
+
+		String joinCallbackUrl = kakaoLoginBO.getJoinCallbackUrl();
 		
 		OAuth2AccessToken oauthToken;
-		oauthToken = kakaoLoginBO.getAccessToken(session, code, state);
+		oauthToken = kakaoLoginBO.getAccessToken(session, code, state, joinCallbackUrl);
 
-		String apiResult = kakaoLoginBO.getUserProfile(oauthToken);
+		String apiResult = kakaoLoginBO.getUserProfile(oauthToken, joinCallbackUrl);
 		
+		System.out.println(apiResult);
 		
 		JSONParser jsonParser = new JSONParser();
 		JSONObject jsonObj;
@@ -301,22 +320,63 @@ public class MemberController {
 		jsonObj = (JSONObject) jsonParser.parse(apiResult);
 		JSONObject response_obj = (JSONObject) jsonObj.get("kakao_account");	
 		JSONObject response_obj2 = (JSONObject) response_obj.get("profile");
+
 		// 프로필 조회
+		String id = String.valueOf(jsonObj.get("id"));		//카카오 아이디값 
 		String email = (String) response_obj.get("email");
 		String name = (String) response_obj2.get("nickname");
+		
+		//카카오 아이디로 가입한 이력이 있으면 카카오 가입 불가능하도록 하고 아이디 알려줌
+		Member kakaoM = service.selectKakaoInfo(id);
+		if(kakaoM != null) {
+			model.addAttribute("msg","이미 카카오로 회원가입한 이력이 있습니다. ID : " + kakaoM.getMember_Id());
+			return "common/popupMsg";
+		}
+		
 		// 세션에 사용자 정보 등록
 		// session.setAttribute("islogin_r", "Y");
 //		session.setAttribute("signIn", apiResult);
+		session.setAttribute("id", id);
 		session.setAttribute("email", email);
 		session.setAttribute("name", name);
 		
+		System.out.println("id : " + id);
 		System.out.println("email : " + email);
 		System.out.println("name : " + name);
 
 		return "redirect:/member/kakaoterms.do";
 	}
 
-	
+	@RequestMapping("/kakaoLoginEnd.do")
+	public String kakaoLogin(@RequestParam("code") String code, @RequestParam("state") String state, HttpSession session, Model model) throws Exception {
+
+		String loginCallbackUrl = kakaoLoginBO.getLoginCallbackUrl();
+		
+		OAuth2AccessToken oauthToken;
+		oauthToken = kakaoLoginBO.getAccessToken(session, code, state, loginCallbackUrl);
+
+		String apiResult = kakaoLoginBO.getUserProfile(oauthToken, loginCallbackUrl);
+		
+		JSONParser jsonParser = new JSONParser();
+		JSONObject jsonObj;
+		
+		jsonObj = (JSONObject) jsonParser.parse(apiResult);
+
+		// 프로필 조회
+		String id = String.valueOf(jsonObj.get("id"));		//카카오 아이디값 
+		
+		//카카오 아이디로 가입한 이력이 있으면 카카오 가입 불가능하도록 하고 아이디 알려줌
+		Member loginMember = service.selectKakaoInfo(id);
+		if(loginMember != null) {
+			model.addAttribute("loginMember",loginMember);
+			model.addAttribute("loc", "/");
+			model.addAttribute("msg","카카오로 로그인이 완료되었습니다.");
+		}else {
+			model.addAttribute("msg","카카오로 로그인에 실패하였습니다. 개인정보를 다시 확인해주세요.");
+		}
+		return "common/popupMsg";
+
+	}
 	
 	
 	

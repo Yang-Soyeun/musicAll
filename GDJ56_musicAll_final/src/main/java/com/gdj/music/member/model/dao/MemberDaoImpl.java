@@ -71,6 +71,11 @@ public class MemberDaoImpl implements MemberDao {
 	public Question myqDetail(SqlSessionTemplate session, Question q) {
 		return session.selectOne("question.myDetail",q);
 	}
+
+	@Override
+	public Member selectKakaoInfo(SqlSessionTemplate session, String id) {
+		return session.selectOne("member.selectKakaoInfo", id);
+	}
 	
 	
 	

@@ -30,5 +30,7 @@ public interface MemberService {
 
 	Question myqDetail(Question q);
 
+	Member selectKakaoInfo(String id);
+
 
 }
