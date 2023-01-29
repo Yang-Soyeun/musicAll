@@ -7,10 +7,12 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gdj.music.common.interceptor.PageFactory;
@@ -25,13 +27,16 @@ import com.gdj.music.reservation.model.vo.Reservation;
 import com.google.gson.Gson;
 
 @Controller
+@SessionAttributes({"loginMember"})//==model에 저장된 attribute 중 loginMember는 session이야
 @RequestMapping("/mypage")
 public class MypageController {
 	
 	private MypageService service;
+	private BCryptPasswordEncoder passwordEncoder;
 	@Autowired
-	public MypageController(MypageService service) {
+	public MypageController(MypageService service,BCryptPasswordEncoder passwordEncoder) {
 		this.service=service;
+		this.passwordEncoder=passwordEncoder;
 	}
 	
 	//마이페이지메인
@@ -44,9 +49,20 @@ public class MypageController {
 	@RequestMapping("/checkPwd.do")
 	@ResponseBody
 	public Member checkPwd(Member m) {
+		
 		Member result=service.checkPwd(m);
 		
-		return result;
+		
+//		System.out.println("비번맞니?:"+passwordEncoder.matches(m.getPassword(),result.getPassword()));
+		
+		if(result != null && passwordEncoder.matches(m.getPassword(),result.getPassword())) {//비밀번호 맞을 시
+//			 System.out.println("맞음");
+			return result;
+		}else {
+//			System.out.println("틀림");
+			return null;			
+		}
+		
 	}
 	//회원정보 업데이트 화면전환
 	@RequestMapping("/updateMember.do")
