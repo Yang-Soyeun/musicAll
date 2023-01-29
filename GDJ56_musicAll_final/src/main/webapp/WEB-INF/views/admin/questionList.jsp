@@ -260,34 +260,36 @@
 	          <tbody>
 	            <tr >
 	              <td><b>번호</b></td>
-	              <td><b>아이디</b></td>
-	              <td><b>이름</b></td>
-	              <td><b>이메일</b></td>
-	              <td><b>전화번호</b></td>
-	              <td><b>삭제</b></td>
+	              <td><b>유형</b></td>
+	              <td><b>제목</b></td>
+	              <td><b>작성자</b></td>
+	              <td><b>답변유무</b></td>
+	              <td><b>작성일</b></td>
+	              <td><b>답변하기</b></td>
 	            </tr>
-	            <c:if test="${not empty member }">
-	            	<c:forEach var="m" items="${member }">
+	            <c:if test="${not empty question }">
+	            	<c:forEach var="q" items="${question }">
 	              <tr>
 	                <td>
-	                  <h5 class="product-title font-alt"><c:out value="${m.member_No}"/></h5>
+	                  <h5 class="product-title font-alt"><c:out value="${q.qsNo}"/></h5>
 	                </td>
 	                <td class="">
-	                  <h5 class="product-title font-alt"><c:out value="${m.member_Id }"/></h5>
+	                  <h5 class="product-title font-alt"><c:out value="${q.qsHeadTitle }"/></h5>
 	                </td>
 	                <td class="">
-	                  <h5 class="product-title font-alt"><c:out value="${m.name }"/></h5>
+	                  <h5 class="product-title font-alt"><c:out value="${q.qsTitle }"/></h5>
 	                </td>
 	                <td class="">
-	                  <h5 class="product-title font-alt"><c:out value="${m.email }"/></h5>
-	                </td>
-	                <td>
-	                  <h5 class="product-title font-alt">
-	                  	<c:out value="${m.phone }"/>
-	                  </h5>
+	                  <h5 class="product-title font-alt"><c:out value="${q.memberId}"/></h5>
 	                </td>
 	                <td class="">
-	                  <button class="btn btn-danger btn-circle" onclick="location.replace('${path}/member/deleteMember.do?memberNo='+${m.member_No})">삭제</button>
+	                  <h5 class="product-title font-alt"><c:out value="${q.qsResult }"/></h5>
+	                </td>
+	                <td class="">
+	                  <h5 class="product-title font-alt"><c:out value="${q.qsDate }"/></h5>
+	                </td>
+	                <td class="">
+	                  <button class="btn btn-danger btn-circle" onclick="#">답변하기</button>
 	                </td>
 	              </tr>
 	      	</c:forEach>
