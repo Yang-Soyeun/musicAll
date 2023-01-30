@@ -7,22 +7,27 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gdj.music.common.PaymentCheck;
 import com.gdj.music.common.interceptor.PageFactory;
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.mypage.model.service.MypageService;
+import com.gdj.music.pay.model.vo.Pay;
 import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
+import com.gdj.music.reservation.model.service.ReservationService;
 import com.gdj.music.reservation.model.vo.Point;
 import com.gdj.music.reservation.model.vo.Reservation;
 import com.google.gson.Gson;
@@ -33,11 +38,13 @@ import com.google.gson.Gson;
 public class MypageController {
 	
 	private MypageService service;
+	private ReservationService service2;
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Autowired
-	public MypageController(MypageService service,BCryptPasswordEncoder passwordEncoder) {
+	public MypageController(MypageService service,ReservationService service2,BCryptPasswordEncoder passwordEncoder) {
 		this.service=service;
+		this.service2=service2;
 		this.passwordEncoder=passwordEncoder;
 	}
 	
@@ -131,7 +138,6 @@ public class MypageController {
 		
 		Map<String, Reservation> result=service.selectRvView(r);//예매내역 상단
 //		System.out.println(result);
-		
 		Map<String, Reservation> rsResult=service.selectRsview(r);//예매내역 하단
 //		System.out.println(rsResult);
 		
@@ -153,6 +159,75 @@ public class MypageController {
 //		System.out.println(refund);
 		return Map.of("result",result,"refund",refund);
 	}
+	
+	//환불과정
+	@RequestMapping(value ="/cancelPay", method = { RequestMethod.POST })
+	@ResponseBody
+	public int cancelPay(
+				@RequestParam(value= "memberNo") int memberNo,
+				@RequestParam(value= "merchant_uid") String merchant_uid,
+				@RequestParam(value= "imp_uid") String imp_uid,
+				@RequestParam(value= "cancel_request_amount") int pPrice,//환불금액
+				@RequestParam(value= "cancel_request_point") String requestPoint,//돌려줄 포인트
+				@RequestParam(value= "cancel_response_point") String responsePoint//돌려받을 포인트
+				) throws IOException, ParseException {
+		
+		
+		
+//		환불 처리!!
+		PaymentCheck obj = new PaymentCheck();
+		String token = obj.getImportToken();//토큰가져오기
+		
+		int result=obj.cancelPayment(token, imp_uid, pPrice);//환불 성공!
+		if(result>0) {//환불 성공
+			//1. 환불 시 포인트 처리
+			Point p=service.selectPoint(memberNo);//멤버번호의 남은포인트
+			
+			if(requestPoint!="0") {//클라이언트에게 돌려줄 포인트가 있으면
+				int rqP=Integer.parseInt(requestPoint.substring(1));
+				
+				Point point=Point.builder().mpPrice(rqP).mpType("+").memberNo(memberNo)
+						.mpHistory("결제 시 사용 포인트 반환").mpPoint(p.getMpPoint()+rqP).build();
+				service2.insertPoint(point);//포인트 적립
+			}
+			p=service.selectPoint(memberNo);//멤버번호의 남은포인트
+			
+			if(responsePoint!="0") {//클라이언트에게 돌려받을 포인트가 있으면
+				int rsP=Integer.parseInt(responsePoint.substring(1));
+				
+				Point point=Point.builder().mpPrice(rsP).mpType("-").memberNo(memberNo)
+						.mpHistory("예매 적립 포인트 반환").mpPoint(p.getMpPoint()-rsP).build();
+				service2.insertPoint(point);//포인트 반환
+			}
+			p=service.selectPoint(memberNo);//멤버번호의 최종 남은포인트
+			System.out.println("최종 포인트 현황 : "+p);
+			
+			Pay pay=service.getPcode(merchant_uid);//주문번호로 pay에서 pCode가져오기
+//		System.out.println(pay);
+			
+			//2. 좌석 취소
+			Map<String,Object> seat=service.selectSeat(pay);
+//			System.out.println(seat);
+			
+			if(seat.containsKey("S1")) {//지울 좌석의 값이 제대로 들어와있으면
+				int seatResult=service.deleteSeat(seat);
+				System.out.println("좌석 삭제 개수 : "+seatResult);
+			}
+			
+			//3. 환불 기록 넣기
+			int rfResult=service.insertRefund(pay);//환불기록
+			System.out.println("환불기록 넣기 성공여부 : "+rfResult);
+			
+			return result;
+		}
+		else {//환불 실패
+			return result;
+		}
+
+		
+	}
+	
+	
 	
 	//관심공연
 	@RequestMapping("/likeMusical.do")
@@ -245,7 +320,7 @@ public class MypageController {
 	@RequestMapping("/pointList.do")
 	public ModelAndView pointList(ModelAndView mv,HttpSession session,
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
-			@RequestParam(value="numPerpage", defaultValue="5")int numPerpage) {
+			@RequestParam(value="numPerpage", defaultValue="10")int numPerpage) {
 		
 		Member loginMember = (Member) session.getAttribute("loginMember");
 		int member_No = loginMember.getMember_No();
