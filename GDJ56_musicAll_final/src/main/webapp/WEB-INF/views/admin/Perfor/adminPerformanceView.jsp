@@ -65,9 +65,9 @@
             background-color: #E6E6E6;
         }
         #imgView{
-            width: 300px;
-            height: 450px;
-            margin-top: -600px;
+            width: 350px;
+            height: 550px;
+            margin-top: 0px;
             margin-left: 60px;
         }
         .info{
@@ -75,8 +75,8 @@
             font-size: 18px;
         }
         .info-box2{
-            margin-top: 50px;
-            margin-left: 150px;
+            margin-top: 60px;
+            margin-left: 120px;
             display: inline-block;
         }
         .info-box3{
@@ -155,10 +155,6 @@
         }
     </style>
 	<div id="title-box">
-	<p>${musical }</p>
-	<p>${schedule }</p>
-	<p>${perPhoto }</p>
-	<p>${sc }</p>
 		<p>라이센스 뮤지컬 - 1위</p>
     	<strong style="font-size:30px;">${musical.getMTitle() }</strong>
         <form name="myform" class="myform" method="post" action="./save">
@@ -178,21 +174,18 @@
     <div class="parent">
         <div id="info-box">
             <div style="display:inline-block; " >
-                <img src="${path }/resources/upload/performance/${f.getIName()}" id="imgView">
+             <img src="${path }/resources/upload/performance/${perPhoto.get(0).IName}" id="imgView">
             </div>
             <div class="info-box2" >
                 <b class="info">공연기간</b><p>${musical.getMPeriod() } ~ ${musical.getMPeriodEnd() }</p>
-                <b class="info">공연시간</b>
-                <c:forEach var="sc" items="${schedule }">${sc.getSDay() }</c:forEach><br>
-                <c:forEach var="sc" items="${schedule }"><p>1회차:${sc.getSStartTime() }</c:forEach></p>
-                
-                <p>2회차:</p>
+                <b class="info">공연요일</b>
+               	<p>${scDay}</p>
                 <b class="info">관람연령</b><p>${musical.getMAge() }</p><br>
                 <b class="info">가격</b><p>vip석:${musical.getVipPrice() }원</p>
                 <p>r석:${musical.getRPrice() }원</p>
                 <p>s석:${musical.getSPrice() }원</p>
                 
-                <b class="info">장소</b><p></p>
+                <b class="info">장소</b><p>${musical.getHName() }</p>
                 <button class="go">공연정보 수정</button><br>
                 <button class="go">공연 삭제</button>
             </div>
@@ -206,7 +199,7 @@
         </div>
 
         <div id="detailInfo"><!--상세정보-->
-            <img src="img/detail.jpg" width="800" height="2000" style="margin-left: 550px;">
+            <img src="${path }/resources/upload/performance/${perPhoto.get(1).IName}" width="800" height="2000" style="margin-left: 550px;">
         </div>
 
         <div class="oneComment"><!--한줄평-->

@@ -36,7 +36,7 @@ public class AdminPerforDaoImpl implements AdminPerforDao {
 		return session.selectList("img.selectPerforList");
 	}
 	@Override
-	public Performance selectPerformanceView(SqlSessionTemplate session,int mCode) {
+	public Performance2 selectPerformanceView(SqlSessionTemplate session,int mCode) {
 		return session.selectOne("musical.selectPerformanceView",mCode);
 	}
 	@Override

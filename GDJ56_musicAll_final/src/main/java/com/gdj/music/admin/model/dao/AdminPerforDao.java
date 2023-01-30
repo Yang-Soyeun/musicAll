@@ -22,9 +22,9 @@ public interface AdminPerforDao {
 
 	List<PerformancePhoto> selectPerforList(SqlSessionTemplate session);
 
-	Performance selectPerformanceView(SqlSessionTemplate session, int mCode);
+	Performance2 selectPerformanceView(SqlSessionTemplate session, int mCode);
 
-	List<Map<String, Schedule>> selectSchedule(SqlSessionTemplate session, int mCode);
+	List<Map<String,Schedule>> selectSchedule(SqlSessionTemplate session, int mCode);
 
 	List<PerformancePhoto> selectPhoto(SqlSessionTemplate session, int mCode);
 

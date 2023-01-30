@@ -64,15 +64,17 @@ public class AdminPerforController {
 	  public  String adminPerformanceView(Model model, int mCode) {
 		  model.addAttribute("musical",service.selectPerformanceView(mCode));
 		  model.addAttribute("perPhoto",service.selectPhoto(mCode));
-		  List <Map<String,Schedule>> s=service.selectSchedule(mCode);
+		  //model.addAttribute("schedule",service.selectSchedule(mCode));//스케줄 전체를 가지고 오는 리스트
+		  List<Map<String,Schedule>> s=service.selectSchedule(mCode);
+		  System.out.println(s);
 		  List sc=new ArrayList();
 		  for(int i=0;i<s.size();i++) {
-			  sc.add(s.get(i).get("sDay"));
+			  sc.add(s.get(i).get("S_DAY"));
 		  }
-		  model.addAttribute("schedule",service.selectSchedule(mCode));//스케줄 전체를 가지고 오는 리스트
+		  System.out.println(sc);
 		  //요일 중복제거한 리스트 
-		  model.addAttribute("sc",sc.stream().distinct().collect(Collectors.toList()));
-		  
+		  model.addAttribute("scDay",sc.stream().distinct().collect(Collectors.toList()));
+		  model.addAttribute("schedule",service.selectSchedule(mCode));
 		  return "/admin/Perfor/adminPerformanceView";
 	  }
 	  

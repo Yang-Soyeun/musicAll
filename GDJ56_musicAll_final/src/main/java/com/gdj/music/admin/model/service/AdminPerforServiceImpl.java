@@ -57,7 +57,7 @@ public class AdminPerforServiceImpl implements AdminPerforService{
 	}
 	
 	@Override
-	public Performance selectPerformanceView(int mCode) {
+	public Performance2 selectPerformanceView(int mCode) {
 		return dao.selectPerformanceView(session, mCode);
 	}
 	

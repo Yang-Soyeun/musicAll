@@ -14,7 +14,7 @@ public interface AdminPerforService {
 
 	List<PerformancePhoto> selectPerforList();
 
-	Performance selectPerformanceView(int mCode);
+	Performance2 selectPerformanceView(int mCode);
 
 	List<Map<String, Schedule>> selectSchedule(int mCode);
 
