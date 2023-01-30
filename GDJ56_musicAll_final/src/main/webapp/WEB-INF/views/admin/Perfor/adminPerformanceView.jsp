@@ -158,6 +158,7 @@
 	<p>${musical }</p>
 	<p>${schedule }</p>
 	<p>${perPhoto }</p>
+	<p>${sc }</p>
 		<p>라이센스 뮤지컬 - 1위</p>
     	<strong style="font-size:30px;">${musical.getMTitle() }</strong>
         <form name="myform" class="myform" method="post" action="./save">
@@ -177,14 +178,21 @@
     <div class="parent">
         <div id="info-box">
             <div style="display:inline-block; " >
-                <img src="img/42bunga.png" id="imgView">
+                <img src="${path }/resources/upload/performance/${f.getIName()}" id="imgView">
             </div>
             <div class="info-box2" >
-                <b class="info">공연기간</b><p>2022.11.05 ~ 2023.01.15</p><br>
-                <b class="info">공연시간</b><p>14:00 ~ 16:30 (160분)</p><br>
-                <b class="info">관람연령</b><p>8세 이상</p><br>
-                <b class="info">가격</b><p>원</p><br>
-                <b class="info">장소</b><p>예술의 전당 CJ 토월극장</p><br><br>
+                <b class="info">공연기간</b><p>${musical.getMPeriod() } ~ ${musical.getMPeriodEnd() }</p>
+                <b class="info">공연시간</b>
+                <c:forEach var="sc" items="${schedule }">${sc.getSDay() }</c:forEach><br>
+                <c:forEach var="sc" items="${schedule }"><p>1회차:${sc.getSStartTime() }</c:forEach></p>
+                
+                <p>2회차:</p>
+                <b class="info">관람연령</b><p>${musical.getMAge() }</p><br>
+                <b class="info">가격</b><p>vip석:${musical.getVipPrice() }원</p>
+                <p>r석:${musical.getRPrice() }원</p>
+                <p>s석:${musical.getSPrice() }원</p>
+                
+                <b class="info">장소</b><p></p>
                 <button class="go">공연정보 수정</button><br>
                 <button class="go">공연 삭제</button>
             </div>

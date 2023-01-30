@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -60,13 +61,19 @@ public class AdminPerforController {
 	  
 	  //공연 상세,수정화면 출력 
 	  @RequestMapping("/performanceView.do")
-	  public ModelAndView adminPerformanceView(ModelAndView mv, int mCode) {
-		  mv.addObject("musical",service.selectPerformanceView(mCode));
-		  mv.addObject("schedule",service.selectSchedule(mCode));
-		  mv.addObject("perPhoto",service.selectPhoto(mCode));
+	  public  String adminPerformanceView(Model model, int mCode) {
+		  model.addAttribute("musical",service.selectPerformanceView(mCode));
+		  model.addAttribute("perPhoto",service.selectPhoto(mCode));
+		  List <Map<String,Schedule>> s=service.selectSchedule(mCode);
+		  List sc=new ArrayList();
+		  for(int i=0;i<s.size();i++) {
+			  sc.add(s.get(i).get("sDay"));
+		  }
+		  model.addAttribute("schedule",service.selectSchedule(mCode));//스케줄 전체를 가지고 오는 리스트
+		  //요일 중복제거한 리스트 
+		  model.addAttribute("sc",sc.stream().distinct().collect(Collectors.toList()));
 		  
-		  mv.setViewName("/admin/Perfor/adminPerformanceView");
-		  return mv;
+		  return "/admin/Perfor/adminPerformanceView";
 	  }
 	  
 	  

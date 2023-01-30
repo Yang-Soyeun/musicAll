@@ -1,6 +1,7 @@
 package com.gdj.music.admin.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,7 @@ public class AdminPerforServiceImpl implements AdminPerforService{
 	}
 	
 	@Override
-	public List<Schedule> selectSchedule(int mCode) {
+	public List<Map<String, Schedule>> selectSchedule(int mCode) {
 		return dao.selectSchedule(session, mCode);
 	}
 	
@@ -70,8 +71,7 @@ public class AdminPerforServiceImpl implements AdminPerforService{
 		return dao.selectPhoto(session, mCode);
 	}
 	
-	
-	
+
 	
 	
 }

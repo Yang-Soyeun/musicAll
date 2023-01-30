@@ -1,6 +1,7 @@
 package com.gdj.music.admin.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -23,9 +24,10 @@ public interface AdminPerforDao {
 
 	Performance selectPerformanceView(SqlSessionTemplate session, int mCode);
 
-	List<Schedule> selectSchedule(SqlSessionTemplate session, int mCode);
+	List<Map<String, Schedule>> selectSchedule(SqlSessionTemplate session, int mCode);
 
 	List<PerformancePhoto> selectPhoto(SqlSessionTemplate session, int mCode);
+
 
 	
 	

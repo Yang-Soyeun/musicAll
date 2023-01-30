@@ -1,6 +1,7 @@
 package com.gdj.music.admin.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -43,7 +44,7 @@ public class AdminPerforDaoImpl implements AdminPerforDao {
 		return session.selectList("img.selectPhoto",mCode);
 	}
 	@Override
-	public List<Schedule> selectSchedule(SqlSessionTemplate session,int mCode) {
+	public List<Map<String, Schedule>> selectSchedule(SqlSessionTemplate session,int mCode) {
 		return session.selectList("p_schedule.selectSchedule",mCode);
 	}
 	

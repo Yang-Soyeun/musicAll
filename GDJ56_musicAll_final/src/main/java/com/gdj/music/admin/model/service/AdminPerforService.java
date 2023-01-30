@@ -1,6 +1,7 @@
 package com.gdj.music.admin.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.gdj.music.perfor.model.vo.Performance;
 import com.gdj.music.perfor.model.vo.Performance2;
@@ -15,7 +16,7 @@ public interface AdminPerforService {
 
 	Performance selectPerformanceView(int mCode);
 
-	List<Schedule> selectSchedule(int mCode);
+	List<Map<String, Schedule>> selectSchedule(int mCode);
 
 	List<PerformancePhoto> selectPhoto(int mCode);
 
