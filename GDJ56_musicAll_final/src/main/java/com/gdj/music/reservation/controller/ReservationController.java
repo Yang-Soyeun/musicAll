@@ -108,7 +108,7 @@ public class ReservationController {
 		//결제 적립금
 		int mpPrice = (Integer.parseInt(info[4]))/10;
 		//적용 포인트
-		int usedPoint = Integer.parseInt(info[6]);
+		int usedPoint = Integer.parseInt(info[7]);
 		int mpPoint = service3.selectPoint(Integer.parseInt(info[0]))==null?0:service3.selectPoint(Integer.parseInt(info[0])).getMpPoint();
 	
 		Point point = Point.builder().mpPrice(usedPoint).mpType("-").memberNo(Integer.parseInt(info[0])).mpHistory("결제 시 사용").mpPoint(mpPoint).build();
@@ -118,7 +118,7 @@ public class ReservationController {
 		int hCode = service.selectHall(Integer.parseInt(info[1]));
 		int result2=0;
 		if(result>0) {
-			for(int i=7;i<info.length;i++) {
+			for(int i=8;i<info.length;i++) {
 				Seat s = Seat.builder().seatName(info[i]).hCode(hCode).rDate(info[2]).rTime(info[3]).build();
 				result2 = service2.insertSeat(s);
 			}
