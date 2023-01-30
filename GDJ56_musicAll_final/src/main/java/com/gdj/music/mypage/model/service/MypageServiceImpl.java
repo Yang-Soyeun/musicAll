@@ -38,9 +38,14 @@ public class MypageServiceImpl implements MypageService {
 	public Member updateMember(int member_No) {
 		return dao.updateMember(session, member_No);
 	}
+	//회원정보수정
+	@Override
+	public int updateMemberEnd(Member m) {
+		return dao.updateMemberEnd(session, m);
+	}
 	
 	
-	
+
 	//예매정보
 	@Override
 	public List<Map<String, Object>> selectReservationList(int member_No, Map<String,Integer> param) {

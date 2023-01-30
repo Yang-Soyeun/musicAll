@@ -18,5 +18,6 @@ public class Pay {
 	private int pPrice;
 	private Date pDate;
 	private String pUid;
+	private String mUid;
 
 }

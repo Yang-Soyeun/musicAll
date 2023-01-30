@@ -23,6 +23,7 @@
 				<div class="col">
 	
 					<!-- Product Sorting -->
+					
 					<div class="product_sorting_container product_sorting_container_top">
 						<ul class="product_sorting">
 							<li>
@@ -57,7 +58,18 @@
 	
 					<!-- Product Grid -->
 					<div id="product-grid" class="product-grid">
-						
+						<c:if test="${empty mLike }">
+							<div class="product-item men" style="width:100%;cursor: initial;">
+								<div class="product_image" style="text-align:center; margin:0 auto; align-items:center;">
+									<img src="${path }/resources/images/performance/noLike2.JPG" alt="" style="height:230px;width:25%;">
+									<h5 style="color:lightslategray;font-weight: bolder;font-size:14px;">현재 상영중인 공연 중 보고싶은 공연을 "찜"해보세요</h5>
+									<button class="btn btn-danger btn-round" type="button" style="margin-top:20px;font-size:14px;"
+										onclick="location.assign('${path }/perfor/performanceList.do');">
+										<i class="fa fa-thumbs-o-up" style="font-size:16px;"></i> 관심공연 등록하러 가기 
+									</button>
+								</div>
+							</div>
+						</c:if>
 						<!-- Product 1 -->
 						<c:if test="${not empty mLike }">
 							<c:forEach var="m" items="${mLike }">

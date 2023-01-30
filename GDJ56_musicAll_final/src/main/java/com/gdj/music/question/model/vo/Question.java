@@ -22,4 +22,5 @@ public class Question {
 	private String qsHeadTitle;
 	private String qsResult;
 	private int memberNo;
+	private String memberId;
 }

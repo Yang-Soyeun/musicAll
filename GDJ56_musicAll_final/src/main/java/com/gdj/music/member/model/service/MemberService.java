@@ -28,5 +28,13 @@ public interface MemberService {
 
 	int insertq(Question q);
 
+	Question myqDetail(Question q);
+
+	Member selectKakaoInfo(String id);
+
+	int updateQ(Question q);
+
+	int deleteQ(Question qt);
+
 
 }

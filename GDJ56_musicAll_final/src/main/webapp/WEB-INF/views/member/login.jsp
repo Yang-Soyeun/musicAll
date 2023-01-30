@@ -32,11 +32,11 @@
 	          <div class="input-form-box"><span class="h6">비밀번호 </span><input type="password" id="password" class="form-control"></div>
 	          <div id="login_result" style="color:red;"></div>
 	          <div class="button-login-box" >
-	            <input type="button" class="btn btn-danger btn-circle" style="width:100%" value="로그인" onclick="fn_loginresult();">
+	            <input id="tryEnter" type="button" class="btn btn-danger btn-circle" style="width:100%" value="로그인" onclick="fn_loginresult();">
 	          </div>
 	        </div>
 	        <div class="snsLoginWrap">
-                <a href="javascript:snsAuthPopup('kakao');" class="openid kakao" >
+                <a href="javascript:bt_kakao();" class="openid kakao" >
                 	<img src="${path }/resources/images/kakao_login_medium_narrow.png">
                 </a>
                 <p class="caution">개인정보 보호를 위해 공용 PC에서 사용 후 SNS 계정의 로그아웃 상태를 반드시 확인해주세요.</p>
@@ -53,35 +53,49 @@
     </div>
  	
  	<script>
- 		const fn_loginresult=()=>{
- 			let d = {
- 					"memberId" : $("#memberId").val(),
- 					"memberPw" : $("#password").val()
- 			};
- 			let id = $("#memberId").val();
- 			let pw = $("#password").val();
- 			if(id==null || id=="" ){
- 				$("#login_result").html("아이디를 입력해주세요");
- 			}else if(pw==null || pw==""){
- 				$("#login_result").html("비밀번호를 입력해주세요");
- 			}else{
-	 			$.ajax({
-	 				url:"${path}/member/loginEnd.do",
-	 				data:d,
-	 				dataType:"json",
-	 				type:'POST',
-	 				success:data=>{
-	 					console.log(data);
-	 					if(data==false){
-	 						$("#login_result").html("아이디 또는 비밀번호를 잘못 입력하셨습니다.");	
-	 					}else{
-	 						location.assign("${path}/");
-	 					}
-	 				}
-	 				
-	 			});
- 			}
+	const bt_kakao = function(){
+		window.open('${kakaoJoinUrl}', 'kakao_window', 'width=500, height=500, location=no, status=no, scrollbars=yes');
+		// location.assign("${path}//member/terms.do");
+	}
+ 	
+ 	$("#password, #memberId").on("keyup",function(e){
+ 		if(e.keyCode == '13'){
+ 			$("#tryEnter").click();
  		}
+ 	});
+ 	
+ 	const fn_loginresult=()=>{
+			let d = {
+					"memberId" : $("#memberId").val(),
+					"memberPw" : $("#password").val()
+			};
+			let id = $("#memberId").val();
+			let pw = $("#password").val();
+			if(id==null || id=="" ){
+				$("#login_result").html("아이디를 입력해주세요");
+			}else if(pw==null || pw==""){
+				$("#login_result").html("비밀번호를 입력해주세요");
+			}else{
+ 			$.ajax({
+ 				url:"${path}/member/loginEnd.do",
+ 				data:d,
+ 				dataType:"json",
+ 				type:'POST',
+ 				success:data=>{
+ 					console.log(data);
+ 					if(data==false){
+ 						$("#login_result").html("아이디 또는 비밀번호를 잘못 입력하셨습니다.");	
+ 					}else{
+ 						location.assign("${path}/");
+ 					}
+ 				}
+ 				
+ 			});
+			}
+		}
+ 	
+ 	
+ 	
  	</script>
 
     <!-- Bootstrap Bundle with Popper -->

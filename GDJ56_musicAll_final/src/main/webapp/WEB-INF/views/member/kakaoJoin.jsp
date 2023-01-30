@@ -77,6 +77,7 @@
 </head>
 
 <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
+	<input type="hidden" id="kakao_id" value="${id }"/>
 	<div class="pageWrapper" style="display: block;">
 		<div class="contentsWrap">
 			<div class="snsjoin">
@@ -156,37 +157,66 @@
 		
 		</div>
 	</div>
+	</div>
 </body>
 
-<div class="modal fade" id="kajoinModal" tabindex="-1" role="dialog"
-		aria-labelledby="joinModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3 class="modal-title" id="joinModalLabel"><b>회원가입완료</b></h3>
-						<h5 class="modal-title" id="joinModalLabel">로그인하시면 더욱 다양한 서비스와 혜택을 제공 받으실 수 있습니다.</h5>
-						<!-- <button type="button" class="close" 
-						data-dismiss="modal" aria-label="close">
-							<span aria-hidden="true">&times;</span>
-						</button> -->
-					</div>
-					<form action="${path }/member/login.do" method="post">
-						<div class="modal-footer">
-							<button type="submit" class="btn btn-g btn-round"><i class="fa fa-cog fa-spin"></i>로그인</button>
-						</div>
-					</form>
-				</div>
+<div class="modal fade" id="kajoinModal" tabindex="-1" role="dialog" aria-labelledby="joinModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title" id="joinModalLabel"><b>회원가입완료</b></h3>
+				<h5 class="modal-title" id="joinModalLabel">로그인하시면 더욱 다양한 서비스와 혜택을 제공 받으실 수 있습니다.</h5>
+				<!-- <button type="button" class="close" 
+				data-dismiss="modal" aria-label="close">
+					<span aria-hidden="true">&times;</span>
+				</button> -->
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-g btn-round" onclick="javascript:joinFinish();"><i class="fa fa-cog fa-spin"></i>로그인</button>
 			</div>
 		</div>
+	</div>
+</div>
 
 
 
 
 
 <script>
+
 	let idValid = false;
 	let pwValid = false;
+	let nameValid = false;
 	
+	//이름 정규식
+	const du_name = function(){
+		 
+		 let name1 = $("#member_name").val();
+		 var nameRule =  /^[가-힣a-zA-Z]+$/; 
+		 
+		 let result = nameRule.test(name1.trim());//정규식 결과
+		 return result;
+	}
+
+	const fn_du_name = function(){
+		 let name2 = du_name();
+		 if(name2==false){
+			 nameValid = false;
+			 $("#nameerror").html("한글 또는 영문만 입력해주세요")
+		 }else{
+			 nameValid = true;
+			 $("#nameerror").html("");
+		 }
+	}
+
+	//이름 유효성검사
+	fn_du_name();
+
+	const joinFinish =()=>{
+		opener.location.href='${path}/member/login.do'; 
+		window.close();
+	}
+
 	//회원가입 insert
 	const join=()=>{
 		
@@ -202,19 +232,24 @@
 			alert("이름을 확인해주세요");
 			return false;
 		}
-		if(phoneCheck == false){
+		if(phoneCheck() == false){
 			alert("전화번호를 확인해주세요");
 			return false;
 		} 
 		
+		let kakao_id = parseInt($("#kakao_id").val());
+		console.log(kakao_id);
+		
 		let d = {
 				"member_Id" : $("#member_id").val(),
-				"password" : $("#password").val(),
+				"password" : $("#password1").val(),
 				"name" : $("#member_name").val(),
 				"email" : $("#email").val(),
-				"phone" : $("#phone").val()
+				"phone" : $("#phone").val(),
+				"kakao_id" : kakao_id
 		};
-		
+		console.log(d);
+
 		$.ajax({
 			url : "${path}/member/joinend.do",
 			data : d,
@@ -223,7 +258,6 @@
 			success : data =>{
 				if(data>0){
 					$("#kajoinModal").modal("show");
-					close();
 				}else {
 					alert("회원가입에 실패하였습니다. 다시 한번 확인해주세요");
 				}
@@ -245,31 +279,36 @@
 		let id2 = du_id();
 		
 		if(id2==false){
+			idValid = false;
 			$("#iderror").html("영문으로 시작하는 6~20자 영문(소문자), 숫자만 사용 가능합니다.");
 		}else{
+			idValid = true;
 			$("#iderror").html("");
 		}
 	});
 	
-/* 	//아이디 중복확인
+ 	//아이디 중복확인
 	$("#member_id").on("focusout",function(){
 		let id1 = $("#member_id").val();
 		
 		if(du_id()){
 			$.ajax({
 				url : "${path}/member/idduplicate.do",
-				data : {"member_id" : id},
-				type : 'post'
+				data : {"member_id" : id1},
+				type : 'post',
 				success : data=>{
+					console.log(data);
 					if(data == "null"){
+						idValid = true;
 						$("#iderror").html("사용 가능한 아이디입니다.");
 					}else {
+						idValid = false;
 						$("#iderror").html("이미 사용 중이거나 탈퇴한 아이디입니다.");
 					}
 				}
 			});
 		}
-	}); */
+	});
 	
 	
 	
@@ -285,7 +324,7 @@
 	
 	//비밀번호 유효성 이벤트
 	$("#password1").on("keyup",function(){
-		
+		pwValid = false;
 		
 		let pw2 = du_pw("password1");
 		
@@ -300,14 +339,17 @@
 	$("#passwordCheck").on("keyup",function(){
 		let pw3 = du_pw("passwordCheck");
 		if(pw3==false){
+			pwValid = false;
 			$("#pwcheckerror").html("8~12자의 영문, 숫자, 특수문자 중 2가지 이상으로만 가능합니다.");
 		}else{
 			let pwcheck1 = $("#password1").val();
 			let pwcheck2 = $("#passwordCheck").val();
 			
 			if(pwcheck1==pwcheck2){
+				pwValid = true;
 				$("#pwcheckerror").html("비밀번호가 일치합니다.");
 			}else{
+				pwValid = false;
 				$("#pwcheckerror").html("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
 			}
 		}
@@ -319,33 +361,18 @@
 		let pwcheck1 = $("#password1").val();
 		let pwcheck2 = $("#passwordCheck").val();
 		
-		if(pwcheck1==pwcheck2){
+		if(pwcheck1==pwcheck2 && du_pw("passwordCheck") && du_pw("password1")){
+			pwValid = true;
 			$("#pwcheckerror").html("");
 		}else{
+			pwValid = false;
 			$("#pwcheckerror").html("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
 		}
 	}); 
 	
-	 //이름 정규식
-	 const du_name = function(){
-		 
-		 let name1 = $("#member_name").val();
-		 var nameRule =  /^[가-힣a-zA-Z]+$/; 
-		 
-		 let result = nameRule.test(name1.trim());//정규식 결과
-		 return result;
-	 }
-	 
 	 //이름 유효성
 	 $("#member_name").on("keyup", function(){
-		 
-		 let name2 = du_name();
-		 
-		 if(name2==false){
-			 $("#nameerror").html("한글 또는 영문만 입력해주세요")
-		 }else{
-			 $("#nameerror").html("");
-		 }
+		 fn_du_name();
 	 });
 	 
 	 //휴대폰 정규식
@@ -363,39 +390,6 @@
 		 
 		 return result;
 	 }
-	 
-	 
-	 
-	 
-	 
-
-	
-	
-	
-	
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 
 </script>
