@@ -107,7 +107,7 @@
 				
 				const discount=(Number)($(".point").val());
 				const amount = ${money}-discount;
-	
+		
 				if(rsp.success){
 					
 					let info = new Array();
@@ -118,6 +118,7 @@
 					info.push("${info[2]}");
 					info.push(amount);
 					info.push(rsp.imp_uid);
+					info.push(rsp.merchant_uid);
 					info.push((Number)($(".point").val()));
 					info.push("${fn:join(seatArr,",")}");
 					

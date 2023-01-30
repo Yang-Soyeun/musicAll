@@ -1,7 +1,9 @@
 package com.gdj.music.admin.model.service;
 
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gdj.music.admin.model.dao.AdminGoodsDao;
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.goods.model.vo.GoodsImg;
+import com.gdj.music.perfor.model.vo.PerformancePhoto;
 
 @Service
 public class AdminGoodsServiceImpl implements AdminGoodsService {
@@ -24,6 +27,8 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 		this.dao = dao;
 	}
 	
+	
+	//굿즈 등록
 	@Override
 	@Transactional
 	public int insertGoods(Goods g, List<GoodsImg> files) {
@@ -50,6 +55,22 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 		
 		return result;
 		
+	}
+	
+	//굿즈 리스트
+	@Override
+	public List<Goods> goodsList(Map<String, Integer> param) {
+		return dao.goodsList(session, param);
+	}
+	
+	@Override
+	public List<GoodsImg> goodsImg() {
+		return dao.goodsImg(session);
+	}
+	
+	@Override
+	public int totalData() {
+		return dao.totalData(session);
 	}
 	
 	

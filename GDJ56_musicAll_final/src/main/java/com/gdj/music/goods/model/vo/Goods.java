@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Goods {
 	
-	private int gCode;
-	private String gName;
-	private double gPrice;
-	private String gContent;
-	private String gCom;
+	private int gdCode;
+	private String gdName;
+	private int gdPrice;
+	private String gdContent;
+	private String gdCom;
 	private int mCode;
-	private int gCount;
-	private String gTag;
+	private int gdCount;
+	private String gdTag;
 
 }
