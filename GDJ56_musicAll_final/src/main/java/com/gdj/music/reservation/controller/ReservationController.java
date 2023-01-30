@@ -54,7 +54,7 @@ public class ReservationController {
 		model.addAttribute("mCode",mCode);
 		model.addAttribute("performance",p);
 		model.addAttribute("img",img);
-		
+		System.out.println(p);
 		return "reservation/bookingView";
 	}
 	
