@@ -1,16 +1,20 @@
 package com.gdj.music.goods.model.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class GoodsImg {
 	
-	private int fNum;
+	private int flNum;
 	private String sumImage;
-	private String iName;
+	private String imName;
 	private int mCode;
-	private int gCode;
+	private int gdCode;
 
 }

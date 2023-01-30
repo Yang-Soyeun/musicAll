@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.gdj.music.admin.model.service.AdminGoodsService;
+import com.gdj.music.common.interceptor.PageFactory;
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.goods.model.vo.GoodsImg;
 import com.gdj.music.perfor.model.vo.Schedule;
@@ -35,9 +38,25 @@ public class AdminGoodsController {
 	
 	//관리자 굿즈 메인
 	@RequestMapping("/adgMain.do")
-	public String adgMain() {
-		return "/admin/store/adminGoodsList";
+	public ModelAndView goodsList(ModelAndView mv,
+			@RequestParam(value="cPage", defaultValue="1")int cPage,
+			@RequestParam(value="numPerpage", defaultValue="10")int numPerpage) {
+		
+		List<Goods> goods = service.goodsList(Map.of("cPage",cPage,"numPerpage",numPerpage));
+		
+		//페이징처리
+		int totalData = service.totalData();
+		mv.addObject("pageBar",PageFactory.getPage(cPage, numPerpage, totalData,"memberList.do" ));
+		
+		//굿즈 리스트
+		mv.addObject("goods", goods);
+		mv.addObject("img", service.goodsImg()); //이미지 가져오기
+		mv.setViewName("/admin/store/adminGoodsList2");
+		
+		
+		return mv;
 	}
+	
 	
 	//굿즈 등록 페이지
 	@RequestMapping("/goodsInsert.do")
@@ -78,7 +97,7 @@ public class AdminGoodsController {
 				files.add(
 					GoodsImg.builder()
 					.sumImage("ok")
-					.iName(renameFile)
+					.imName(renameFile)
 					.build());
 			}catch(IOException e) {
 				e.printStackTrace();
@@ -98,7 +117,7 @@ public class AdminGoodsController {
 				upFile2.transferTo(new File(path+renameFile2));
 				files.add(
 						GoodsImg.builder()
-						.iName(renameFile2)
+						.imName(renameFile2)
 						.build());
 				}catch(IOException e) {
 						e.printStackTrace();
@@ -106,12 +125,12 @@ public class AdminGoodsController {
 		}
 		
 		Goods g = Goods.builder()
-				.gName(goods.getGName())
-				.gPrice(goods.getGPrice())
-				.gContent(goods.getGContent())
-				.gCom(goods.getGCom())
-				.gCount(goods.getGCount())
-				.gTag(goods.getGTag())
+				.gdName(goods.getGdName())
+				.gdPrice(goods.getGdPrice())
+				.gdContent(goods.getGdContent())
+				.gdCom(goods.getGdCom())
+				.gdCount(goods.getGdCount())
+				.gdTag(goods.getGdTag())
 				.mCode(goods.getMCode())
 				.build();
 		

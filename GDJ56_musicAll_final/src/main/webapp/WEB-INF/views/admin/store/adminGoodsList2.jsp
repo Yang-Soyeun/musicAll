@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="path" value="${pageContext.request.contextPath }"/>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-  <!-- plugins:css -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath }"/>
+<script src="${path}/resources/lib/jquery/dist/jquery.js"></script>
+
+   <link href="${path}/resources/lib/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
+ <!-- plugins:css -->
   <link rel="stylesheet" href="${path }/resources/css/admin/vendors/feather/feather.css">
   <link rel="stylesheet" href="${path }/resources/css/admin/vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="${path }/resources/css/admin/vendors/css/vendor.bundle.base.css">
@@ -17,41 +20,10 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${path }/resources/css/admin/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${path }/resources/images/favicon.png" />
-
-	<style>
-		.goodsForm {
-			
-			justify-content: center;
-			margin-left: 18%;
-			margin-top: 3%;
-			margin-bottom: 3%;
-			background: #e5e5e5;
-			/* height: 1000px; */
-			padding: 4%;
-			width: 50%;
-			border-radius: 1%;
-	}
-	
-		.goodsAdd{
-			display: grid;
-			background-color: transparent;
-		}
-		
-		.text-label {
-			color: #cdcdcd;
-			font-weight: bold;
-		}
-		
-		input[type=text] {
-			border: none; 
-			width: 40%;
-			height: 143%;
-		}
-	</style>
+<link rel="icon" href="${path}/resources/images/favicons/logo.png">
 
 <body>
- <div class="container">
+   <div class="container">
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a class="navbar-brand brand-logo mr-5" href="index.html"></a>
@@ -273,227 +245,114 @@
         </ul>
       </nav>
       	<!-- partial -->
-      	
-      	<!-- 굿즈 등록 폼 -->
       	<div class="main-panel">
-      	
-      		<div class="goodsForm">
-      			<form id="goodsForm">
-				
-					<div style="display: flex; justify-content: center; margin-bottom: 3%;"><h3>굿즈 등록</h3></div>
-					<hr>
-					 
-					<div class="goodsAdd">
-						<h4>상품명</h4>
-						<input type="text" value="" title="상품명을 작성해 주세요" id="gName"/>
-						 
-						<br>
-						
-						<h4>가격</h4>
-						<input type="text" value="" title="ex) 15,000" id="gPrice"/>
-						
-						<br>
-						
-						<h4>상세 내용</h4>
-						<textarea style="border: none; height: 100px;" id="gContent"> </textarea>
-						
-						<br>
-						
-						<h4>판매처</h4>
-						<input type="text" value="" title="ex) 에이치제이컬쳐 주식회사" id="gCom"/>
-						
-						<br>
-						
-						<h4>공연/무</h4>
-						<select name="m" id="selectM">
-							<option value="">공연 선택</option> 
-							<option value="관련없음">관련없음</option> 
-							<option value="뮤지컬리스트">뮤지컬리스트</option> 
-						</select>
-						
-						<br>
-						
-						<h4>입고 수량</h4>
-						<div class="quantity_selector">
-							<input type="number" id="gCount"/>
-						</div>
-						
-						<br>
-						
-						<h4>상품 태그</h4>
-						<label><input type="radio" name="gTag" id="keyring" value="키링">&nbsp;키링</label>
-						<label><input type="radio" name="gTag" id="tumbler" value="텀블러">&nbsp;텀블러</label>
-						<label><input type="radio" name="gTag" id="bag" value="가방">&nbsp;가방</label>
-						<label><input type="radio" name="gTag" id="sticker" value="스티커">&nbsp;스티커</label>
-						<label><input type="radio" name="gTag" id="book" value="책">&nbsp;책</label> 
-						<label><input type="radio" name="gTag" id="b" value="브로치/뱃지">&nbsp;브로치/뱃지</label> 
-						<label><input type="radio" name="gTag" id="magnet" value="마그넷">&nbsp;마그넷</label> 
-						<label><input type="radio" name="gTag" id="ost" value="ost앨범">&nbsp;OST앨범</label>
-					
-						<hr> 
-						
-						<h4>대표 사진</h4>
-						<input type="file" value="" style="border: none;" name="upFile" onchange="readURL(this);"/>
-						<img id="preview" style="width:300px; height: 400px;"/>
-						
-						<br>
-						
-						<h4>상세 사진</h4>
-						<input type="file" value="" style="border: none;" name="upFile2" onchange="readURL2(this);" />
-						<img id="preview2" style="width:300px; height: 600px;"/>
-					
-			        </div>
-			        
-			        <div style="margin-top:7%; margin-left: 25%;">
-			            <button class="btn btn-danger" style="width:200px; font-size:15px; float:left;" type="button" onclick="g_insert()">등록</button>
-			            <button class="btn btn-secondary" style="width:110px;background-color:lightgray;color:black;font-size:15px; float:left;">취소</button>
-			        </div>
-		      	</form>
-		        
-	        </div>
-        
-		</div>
+      	<div class="main">
+	<section class="module">
+	  <div class="container">
+	    <div class="row">
+	      <div class="col-sm-6 col-sm-offset-3"><br><br>
+	        <h2 class="module-title font-alt">굿즈 관리</h2>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-sm-12">
+	        <table class="table table-striped table-border checkout-table" style="text-align:center;">
+	          <tbody>
+	            <tr >
+	              <td><b>상품 번호</b></td>
+	              <td><b>상품 이미지</b></td>
+	              <td><b>상품명</b></td>
+	              <td><b>가격</b></td>
+	              <td><b>잔여수량</b></td>
+	              <td><b>삭제</b></td>
+	            </tr>
+	            <c:if test="${not empty goods }">
+	            	<c:forEach var="g" items="${goods }">
+	              <tr>
+	                <td>
+	                  <h5 class="product-title font-alt"><c:out value="${g.gdCode}"/></h5>
+	                </td>
+	                <c:if test="${not empty img }">
+	                	<c:forEach var="i" items="${img }">
+	                		<c:if test="${i.gdCode == g.gdCode }">
+				                <td class="">
+				                  <img src="${path }/resources/upload/goods/${i.sumImage}" class="perView" style="float:left;" >
+				                </td>
+			                </c:if>
+		                </c:forEach>
+		            </c:if>
+	                <td class="">
+	                  <h5 class="product-title font-alt"><c:out value="${g.gdName }"/></h5>
+	                </td>
+	                <td class="">
+	                  <h5 class="product-title font-alt"><c:out value="${g.gdPrice }"/></h5>
+	                </td>
+	                <td class="">
+	                  <h5 class="product-title font-alt"><c:out value="${g.gdCount }"/></h5>
+	                </td>
+	                <td class="">
+	                  <%-- <button class="btn btn-danger btn-circle" onclick="location.replace('${path}/adminGoods/deleteGoods.do?gNo='+${g.gCode})">삭제</button> --%>
+	                </td>
+	              </tr>
+	      	</c:forEach>
+	            </c:if>
+	            <c:if test="">
+	            	<tr>
+	            		<td colspan="6">조회된 회원이 없습니다.</td>
+	            	</tr>
+	            </c:if>
+	          </tbody>
+	        </table>
+	      </div>
+			 	
+	  
+	    </div>
+	    	<div id="page">
+			  	${pageBar }
+			</div>
+			<div><button onclick="location.assign('${path}/adminGoods/goodsInsert.do');">굿즈등록</button></div>
+	  </div>
+	</section>
+      </div>
+    </div> 	
 
-	</div>
-	
-	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-
-
-	<script>
-	
-		//input value 기본값 초기화
-		$('input[type="text"]').each(function(){
-			this.value = $(this).attr('title');
-			$(this).addClass('text-label');
-			
-			$(this).focus(function(){
-				if(this.value == $(this).attr('title')) {
-					this.value = '';
-					$(this).removeClass('text-label');
-				}
-			});
-			
-			$(this).blur(function(){
-				if(this.value == '') {
-					this.value = $(this).attr('title');
-					$(this).addClass('text-label');
-				}
-			})
-			
-		})
-		
-		
-		//썸네일
-		function readURL(input) {
-		    if (input.files && input.files[0]) {
-		        var reader = new FileReader();
-		        reader.onload = function(e) {
-		        document.getElementById('preview').src = e.target.result;
-		        };
-		    reader.readAsDataURL(input.files[0]);
-		    } else {
-		        document.getElementById('preview').src = "";
-		    }
-		}
-		
-		//상세정보
-		function readURL2(input) {
-		    if (input.files && input.files[0]) {
-		        var reader = new FileReader();
-		        reader.onload = function(e) {
-		        document.getElementById('preview2').src = e.target.result;
-		        };
-		    reader.readAsDataURL(input.files[0]);
-		    } else {
-		        document.getElementById('preview').src = "";
-		    }
-		}
-		
-		//굿즈 등록 데이터 보내기
-		const g_insert=()=>{
-			
-			var gTag = $("input[type=radio]").val();
-			
-			//대표 사진
-			const upFile=$("input[name=upFile]")[0].files[0];
-			//상세 사진
-			const upFile2=$("input[name=upFile2]")[0].files[0];
-			
-			/* if($("#selectM").val() == '관련없음') {
-				var mCode = '';
-			} else {
-				var mCode = '27';
-			} */
-			
-			let form = new FormData();
-			
-			if($("#selectM").val() != '관련없음') {
-			
-				var mCode = '27';
-				form.append("mCode", mCode);
-				
-			}
-			
-			
-			
-			form.append("gName", $("#gName").val());
-			form.append("gPrice", $("#gPrice").val());
-			form.append("gContent", $("#gContent").val());
-			form.append("gCom", $("#gCom").val());
-			form.append("gCount", $("#gCount").val());
-			form.append("gTag", gTag);
-			form.append("upFile", upFile);
-			form.append("upFile2", upFile2);
-			
-
-			
-			console.log($("#gName").val());
-			console.log($("#gPrice").val());
-			console.log( $("#gContent").val());
-			console.log($("#gCom").val());
-			console.log($("#gCount").val());
-			console.log(gTag);
-			console.log(mCode);
-			console.log(upFile);
-			console.log(upFile2);
-			
-			for (var key of form.keys()) {
-
-				  console.log(key);
-
-				}
-
-				for (var value of form.values()) {
-
-				  console.log(value);
-
-				}
-			
-			$.ajax({
-				enctype: 'multipart/form-data',
-				url: "${path}/adminGoods/insertEnd.do",
-				data: form,
-				type: 'post',
-				dataType: 'json',
-				contentType: false,
-		        processData: false,
-		        cache:false,
-		        success:function(data){
-						alert("등록 성공");
-						location.replace("${pageContext.request.contextPath}/adminGoods/adgMain.do");
-					} ,
-			    error:function(e){
-					alert("등록 실패");
-					//location.replace("${pageContext.request.contextPath}/adminGoods/goodsInsert.do");
-				}
-					
-				
-			});
-			
-			
-			
-		}
-		
-	</script>
 </body>
+
+<style>
+.font-alt {
+font-family: "Nunito", sans-serif;
+    letter-spacing: 2px;
+    
+    
+}
+
+	.td{
+	font-size:16px;
+	margin:0px 0px 8px;
+	font-family: "Nunito", sans-serif;
+	}
+	
+	
+	.pagination {
+	    display: inline-block;
+	    padding-left: 0;
+	    margin: 20px 0;
+	    border-radius: 4px;
+	    margin: 0px 0px 8px;
+	}
+	
+	.pagination a {
+	    border: 1px solid #eaeaea;
+	    display: inline-block;
+	    text-transform: uppercase;
+	    text-align: center;
+	    color: #999;
+	    padding: 4px 12px;
+	}
+	
+	#page {
+	   text-align:center;
+	   
+	}
+</style>
 </html>
