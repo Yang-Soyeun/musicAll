@@ -32,6 +32,13 @@ public class AdminQuestionServiceImpl implements AdminQuestionService {
 	public List<Question> questionList(Map<String, Integer> param) {
 		return dao.questionList(session, param);
 	}
+
+	@Override
+	public Question answerQ(Question q) {
+		return dao.answerQ(session, q);
+	}
+
+	
 	
 	
 	
