@@ -92,9 +92,9 @@ public class ReservationController {
 	@RequestMapping("/payend.do")
 	public ModelAndView bookingPayEnd(String[] info,ModelAndView mv) {
 		Pay p = Pay.builder().pWay("card").pPrice(Integer.parseInt(info[4]))
-				.pUid(info[5]).build();
+				.pUid(info[5]).mUid(info[6]).build();
 		String seats = "";
-		for(int i=7;i<info.length;i++) {
+		for(int i=8;i<info.length;i++) {
 			if(i!=info.length-1) {
 				seats+=info[i]+",";}
 			else {
