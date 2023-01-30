@@ -63,7 +63,7 @@
 	    		<div class="photo-box">
 					<img src="${path }/resources/upload/performance/${f.getIName()}" class="perView" style="float:left;"
 					 onclick="location.assign('${path}/adminPerfor/performanceView.do?mCode=${f.getMCode()}')" >
-					>
+					
 					
 				</div>
 	    			<!-- <div class="leftOver-box">

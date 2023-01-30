@@ -12,7 +12,9 @@
 <div id="title-box">
         <p>라이센스 뮤지컬 - 1위</p>
         <br>
-        <strong style="font-size:30px;">브로드웨이 42번가</strong>
+
+        <p>라이센스 뮤지컬 - 1위</p>
+        <strong style="font-size:30px;">${musical.getMTitle() }</strong>
         <form name="myform" class="myform" method="post" action="./save">
             <fieldset>
                 <input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
@@ -29,14 +31,16 @@
     <div class="parent">
         <div id="info-box">
             <div style="display:inline-block; " >
-                <img src="${path }/resources/images/performance/42bunga.png" id="imgView" style="margin-top:-500px;">
+                <img src="${path }/resources/upload/performance/${perPhoto.get(0).IName}" id="imgView" style="margin-top:-500px;">
             </div>
             <div class="info-box2" >
-                <b class="info">공연기간</b><p>2022.11.05 ~ 2023.01.15</p><br>
+                <b class="info">공연기간</b><p>${musical.getMPeriod() } ~ ${musical.getMPeriodEnd() }</p><br>
                 <b class="info">공연시간</b><p>14:00 ~ 16:30 (160분)</p><br>
-                <b class="info">관람연령</b><p>8세 이상</p><br>
-                <b class="info">가격</b><p>원</p><br>
-                <b class="info">장소</b><p>예술의 전당 CJ 토월극장</p><br><br>
+                <b class="info">관람연령</b><p>${musical.getMAge() }</p><br>
+                <b class="info">가격</b><p>vip석:${musical.getVipPrice() }원</p>
+                <p>r석:${musical.getRPrice() }원</p>
+                <p>s석:${musical.getSPrice() }원</p>
+                <b class="info">장소</b><p>${musical.getHName() }</p><br><br>
                 <button class="btn btn-danger" id="go1" onclick="location.href='${path}/booking/bookingview.do'">예매하러 가기</button><br>
                 <button class="btn btn-danger" id="go2">관심공연 등록</button>
                 
@@ -51,7 +55,7 @@
         </div>
 
         <div id="detailInfo"><!--상세정보-->
-            <img src="${path }/resources/images/performance/detail.jpg" width="800" height="2000" style="margin-left: 550px;">
+            <img src="${path }/resources/upload/performance/${perPhoto.get(1).IName}" width="800" height="2000" style="margin-left: 550px;">
         </div>
 
         <div class="oneComment"><!--한줄평-->
