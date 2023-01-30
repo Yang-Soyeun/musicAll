@@ -99,6 +99,10 @@
 	
 	const DeleteForm=()=>{
 		
+		let d = {
+				"qsNo" : '${qt.qsNo}'
+		}
+		
 		let delConfirm = confirm("문의를 삭제하시겠습니까?");
 		if(delConfirm){
 			$.ajax({

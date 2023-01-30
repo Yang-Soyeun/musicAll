@@ -1,16 +1,17 @@
 package com.gdj.music.admin.controller;
 
+import java.io.IOException;
+import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gdj.music.admin.model.service.AdminQuestionService;
@@ -46,6 +47,23 @@ public class AdminQuestionController {
 			mv.setViewName("admin/questionList");
 			
 			return mv;
-			
 		}
+	   
+	   //1:1문의 답변하기
+	   @RequestMapping("/answerQ.do")
+	   public String answerQ(Question q,Model model) throws IOException {
+		   
+		   Question qt = service.answerQ(q);
+		   
+		   
+		   model.addAttribute("qt",qt);
+		
+		   
+		   return "admin/answerQuestion";
+		   
+	   }
+	   
+	   
+	   
+	   
 }

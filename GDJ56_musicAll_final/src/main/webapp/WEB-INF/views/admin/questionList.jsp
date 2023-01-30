@@ -289,7 +289,7 @@
 	                  <h5 class="product-title font-alt"><c:out value="${q.qsDate }"/></h5>
 	                </td>
 	                <td class="">
-	                  <button class="btn btn-danger btn-circle" onclick="#">답변하기</button>
+	                  <input type="button" class="btn btn-danger btn-circle" onclick="javascript:bt_answerQ('${q.qsNo}');" id="bt_answer" value="답변하기">
 	                </td>
 	              </tr>
 	      	</c:forEach>
@@ -353,3 +353,15 @@ font-family: "Nunito", sans-serif;
 	}
 </style>
 </html>
+
+<script>
+
+	const bt_answerQ=(qsNo)=>{
+		
+		location.href = "${path}/adminq/answerQ.do?qsNo=" + qsNo ;
+	}
+
+
+
+</script>
+
