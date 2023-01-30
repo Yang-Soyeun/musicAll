@@ -310,7 +310,7 @@
                 <div class="row">
                 <div class="col-md-6 mb-4 stretch-card transparent" style="margin-left:0px;">
                   <div class="card card-dark-blue">
-                    <div class="card-body" onclick="location.assign('${path}/adminSale/performanceSale.do');">
+                    <div class="card-body" onclick="location.assign('${path}/adminq/questionList.do');">
                       <p class="mb-4">Question in person</p>
                       <p class="fs-30 mb-2">1:1 문의</p>
                     </div>

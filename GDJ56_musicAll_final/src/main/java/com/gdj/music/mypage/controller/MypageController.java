@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gdj.music.common.interceptor.PageFactory;
@@ -25,13 +28,17 @@ import com.gdj.music.reservation.model.vo.Reservation;
 import com.google.gson.Gson;
 
 @Controller
+@SessionAttributes({"loginMember"})//==model에 저장된 attribute 중 loginMember는 session이야
 @RequestMapping("/mypage")
 public class MypageController {
 	
 	private MypageService service;
+	private BCryptPasswordEncoder passwordEncoder;
+	
 	@Autowired
-	public MypageController(MypageService service) {
+	public MypageController(MypageService service,BCryptPasswordEncoder passwordEncoder) {
 		this.service=service;
+		this.passwordEncoder=passwordEncoder;
 	}
 	
 	//마이페이지메인
@@ -44,9 +51,20 @@ public class MypageController {
 	@RequestMapping("/checkPwd.do")
 	@ResponseBody
 	public Member checkPwd(Member m) {
+		
 		Member result=service.checkPwd(m);
 		
-		return result;
+		
+//		System.out.println("비번맞니?:"+passwordEncoder.matches(m.getPassword(),result.getPassword()));
+		
+		if(result != null && passwordEncoder.matches(m.getPassword(),result.getPassword())) {//비밀번호 맞을 시
+//			 System.out.println("맞음");
+			return result;
+		}else {
+//			System.out.println("틀림");
+			return null;			
+		}
+		
 	}
 	//회원정보 업데이트 화면전환
 	@RequestMapping("/updateMember.do")
@@ -58,22 +76,37 @@ public class MypageController {
 		mv.setViewName("mypage/updateMember");
 		return mv;
 	}
+	//회원정보 업데이트 
+	@RequestMapping("updateMemberEnd.do")
+	@ResponseBody
+	public int updateMemberEnd (Member m,HttpServletResponse response) throws IOException {
+		
+		String encodePassword=passwordEncoder.encode(m.getPassword());//비밀번호 암호화
+		m.setPassword(encodePassword);//암호화 한 비밀번호 member에 저장
+		
+		int result=service.updateMemberEnd(m);
+		
+		return result;
+	}
 	
 	
 	
 	//예매내역리스트
 	@RequestMapping("/musicalList.do")
 	public ModelAndView musicalList(ModelAndView mv,
-			@RequestParam(value="No", defaultValue="1") int member_No,
+			HttpSession session,
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
 			@RequestParam(value="numPerpage", defaultValue="7")int numPerpage){
+
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		int member_No = loginMember.getMember_No();
 		
 		List<Map<String,Object>> list=service.selectReservationList(member_No,
 				Map.of("cPage",cPage,"numPerpage",numPerpage)
 				);
 		int totalData=service.selectReservationCount(member_No);//페이징처리
 		
-//		for(Map<String,Object> m : list) {
+		for(Map<String,Object> m : list) {
 //			System.out.println("예매내역 : "+m);
 //			if (m.containsKey("REVIEW_NO")) {
 //				System.out.println( m.get("REVIEW_NO"));
@@ -81,9 +114,9 @@ public class MypageController {
 //			}else {
 //				System.out.println("없음");
 //			}
-			
+//			
 //			System.out.println(m.get("M_CODE"));
-//		}
+		}
 		
 		mv.addObject("reservationList",list);
 		mv.addObject("pageBar",PageFactory.searchPage(cPage,numPerpage,totalData,"musicalList.do",member_No));
@@ -108,12 +141,29 @@ public class MypageController {
 		return mv;
 	}
 	
+	//환불값 가져오기
+	@RequestMapping("/refundMusical.do")
+	@ResponseBody
+	public Map<String,Object> refundMusical(@RequestParam Map r){
+		
+		Map<String, Object> result=service.selectRvView(r);//예매내역 상단
+		Map<String, Object> refund=service.selectRsview(r);//예매내역 하단
+		
+//		System.out.println(result);
+//		System.out.println(refund);
+		return Map.of("result",result,"refund",refund);
+	}
+	
 	//관심공연
 	@RequestMapping("/likeMusical.do")
 	public ModelAndView likeMusical(ModelAndView mv,
-			@RequestParam(value="No", defaultValue="1") int member_No,
+			HttpSession session,
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
 			@RequestParam(value="numPerpage", defaultValue="12")int numPerpage) {
+		
+		
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		int member_No = loginMember.getMember_No();
 		
 		List<Map<String,Mlike>> list=service.selectMlikeList(member_No,
 				Map.of("cPage",cPage,"numPerpage",numPerpage)
@@ -193,10 +243,12 @@ public class MypageController {
 	
 	//포인트내역출력
 	@RequestMapping("/pointList.do")
-	public ModelAndView pointList(ModelAndView mv,int No,
+	public ModelAndView pointList(ModelAndView mv,HttpSession session,
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
 			@RequestParam(value="numPerpage", defaultValue="5")int numPerpage) {
-		int member_No=No;
+		
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		int member_No = loginMember.getMember_No();
 		
 		List<Point> list=service.selectPointListPage(member_No,
 				Map.of("cPage",cPage,"numPerpage",numPerpage)
@@ -215,10 +267,12 @@ public class MypageController {
 	
 	//상품구매내역	 환불처리 해야함!!!!!!!!!!!!!!!!!!!
 	@RequestMapping("/shoppingList.do")
-	public ModelAndView shoppingList(ModelAndView mv,int No,
+	public ModelAndView shoppingList(ModelAndView mv,HttpSession session,
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
 			@RequestParam(value="numPerpage", defaultValue="5")int numPerpage) {
-		int member_No=No;
+		
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		int member_No = loginMember.getMember_No();
 		
 		List<Map<String,Goods>> map=service.selectSpListPage(member_No,
 				Map.of("cPage",cPage,"numPerpage",numPerpage)
@@ -240,11 +294,19 @@ public class MypageController {
 	
 	//내가 쓴 글(내 한줄평 + 1대1문의내역 리스트)
 	@RequestMapping("/myContentList.do")
-	public ModelAndView myContentList(ModelAndView mv,int No,
+	public ModelAndView myContentList(ModelAndView mv,
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
-			@RequestParam(value="numPerpage", defaultValue="8")int numPerpage) {
+			@RequestParam(value="numPerpage", defaultValue="8")int numPerpage,
+			HttpSession session) {
 		
-		int member_No=No;
+//		int member_No=No;
+		
+		//차차수정부분 
+		//int member_No=No; 이렇게 보내면 현재 url에 멤버 시퀀스 번호 다 보이며 그뒤 넘버만 바꿔도 그회원값이 다 가져오게 되어있음!
+		//그래서 세션값에서 가져오게 이것만 고쳐놓았음!! 
+		//추후 내가 고친부분에...혹싀..기분이 상하거나 맘에 안들면 꼭 말해줭~!!연락이 안되서..한부분만 고쳤어...ㅜㅜㅜ
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		int member_No = loginMember.getMember_No();
 		
 		//1대1문의
 		List<Question> qsList=service.selectQsListPage(member_No,

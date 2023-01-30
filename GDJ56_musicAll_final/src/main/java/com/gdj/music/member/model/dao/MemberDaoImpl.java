@@ -66,6 +66,28 @@ public class MemberDaoImpl implements MemberDao {
 	public int insertq(SqlSessionTemplate session, Question q) {
 		return session.insert("question.insertq",q);
 	}
+
+	@Override
+	public Question myqDetail(SqlSessionTemplate session, Question q) {
+		return session.selectOne("question.myDetail",q);
+	}
+
+	@Override
+	public Member selectKakaoInfo(SqlSessionTemplate session, String id) {
+		return session.selectOne("member.selectKakaoInfo", id);
+	}
+
+	@Override
+	public int updateQ(SqlSessionTemplate session, Question q) {
+		return session.update("question.updateQ",q);
+	}
+
+	@Override
+	public int deleteQ(SqlSessionTemplate session, Question qt) {
+		return session.delete("question.deleteQ",qt);
+	}
+	
+	
 	
 	
 

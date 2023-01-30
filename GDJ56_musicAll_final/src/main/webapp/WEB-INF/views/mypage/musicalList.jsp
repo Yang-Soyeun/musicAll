@@ -56,7 +56,14 @@
 				             </h5>
 				           </td>
 				           <td class="">
-				             <button class="btn btn-danger btn-circle">환불</button>
+				           	<c:choose>
+				           		<c:when test="${!r.containsKey('RF_CODE') }">
+				             		<button id="refundCheck" class="btn btn-danger btn-circle"
+				             		 onclick="fn_refund(${loginMember.member_No},${r.get('R_CODE') });">환불</button>
+				             	</c:when>
+				             	
+				             	
+				             </c:choose>
 				           </td>
 				           <td>
 			             	<c:choose>
@@ -135,5 +142,111 @@
 		</div>
 	</section>
 </div>
+
+<!-- 모달창 -->
+   <div id="my_modal" style="width:600px;height:auto; display: none;background-color: white;border-radius: 15px 15px;text-align: left;padding:20px;"
+      class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+     <h2 style="text-align: center;"><b id="refundNo"></b> | <b id="refundTitle"></b></h2>
+    
+     <h4 style="margin-top:30px;"><b style="margin-left:50px; margin-right:50px;">공연 가격　</b> <b id="SEATPRICE"></b></h4>
+     <hr class="divider-w">
+     <h4 style="margin-top:30px;"><b style="margin-left:50px; margin-right:50px;">결제 금액　</b> <b id="P_PRICE"></b></h4>
+     <h4 style="margin-top:30px;"><b style="margin-left:50px; margin-right:50px;">적립 포인트</b> <b id="Point"></b></h4>
+     <h4 style="margin-top:30px;"><b style="margin-left:50px; margin-right:50px;">사용 포인트</b> <b id="PAYPOINT"></b></h4>
+     <hr class="divider-w">
+     <h4 style="margin-top:30px;"><b style="margin-left:50px; margin-right:50px;">총 환급액　</b> <b id="refundTotal"></b></h4>
+      
+      <div style="margin-top:30px;margin-bottom:20px;text-align: center; ">
+        <button style="font-size:13px;" class="modal_close_btn btn btn-g btn-round btn-sm" >취소</button>
+        <button style="font-size:13px;" class="btn btn-danger btn-round btn-sm" >환불</button>
+        </div>
+	</div>
+<style>
+#adminQnATitle{
+  cursor: pointer;
+}
+
+</style>
+<script>
+function modal(id) {
+    var zIndex = 9999;
+    var modal = document.getElementById(id);
+
+    // 모달 div 뒤에 희끄무레한 레이어
+    var bg = document.createElement('div');
+    bg.setStyle({
+        position: 'fixed',
+        zIndex: zIndex,
+        left: '0px',
+        top: '0px',
+        width: '100%',
+        height: '100%',
+        overflow: 'auto',
+        // 레이어 색깔은 여기서 바꾸면 됨
+        backgroundColor: 'rgba(0,0,0,0.8)'
+    });
+    document.body.append(bg);
+
+    // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+    modal.querySelector('.modal_close_btn').addEventListener('click', function() {
+        bg.remove();
+        modal.style.display = 'none';
+    });
+
+    modal.setStyle({
+        position: 'fixed',
+        display: 'block',
+        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+		
+        // 시꺼먼 레이어 보다 한칸 위에 보이기
+        zIndex: zIndex + 1,
+
+        // div center 정렬
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        msTransform: 'translate(-50%, -50%)',
+        webkitTransform: 'translate(-50%, -50%)'
+    });
+}
+
+// Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+Element.prototype.setStyle = function(styles) {
+    for (var k in styles) this.style[k] = styles[k];
+    return this;
+};
+	
+	const fn_refund=(member_No,rCode)=>{
+		
+		$.ajax({
+			url:"${path}/mypage/refundMusical.do",
+			data: {member_No:member_No , rCode :rCode },
+			success:data=>{
+				console.log(data);
+		    	
+				$("#refundNo").text('No.'+data.result.R_CODE);
+				$("#refundTitle").text(data.result.M_TITLE);
+				
+				$("#SEATPRICE").text(data.result.SEATPRICE);//공연 가격
+				$("#P_PRICE").text(data.refund.P_PRICE);//결제 금액
+				$("#Point").text('-'+(data.refund.P_PRICE)/10);//적립 포인트
+				$("#PAYPOINT").text('+'+data.refund.PAYPOINT);//사용 포인트
+				$("#refundTotal").text(
+						(data.refund.P_PRICE)-(data.refund.P_PRICE/10)+(data.refund.PAYPOINT)
+						);//총 환급액
+				
+				// 모달창 띄우기
+			    modal('my_modal');
+			}
+			
+		});
+		
+	}
+</script>
+
+
+
+
+
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

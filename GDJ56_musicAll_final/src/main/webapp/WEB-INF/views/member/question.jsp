@@ -69,7 +69,7 @@
 			
 			if(c==true){
 				$.ajax({
-					url:"${path}/member/insertQ.do",
+					url:"${path}/question/insertQ.do",
 					data:d,
 					dataType:'json',
 					type:'post',
