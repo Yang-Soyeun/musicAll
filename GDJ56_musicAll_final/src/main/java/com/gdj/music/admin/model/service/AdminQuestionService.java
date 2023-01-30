@@ -10,6 +10,8 @@ public interface AdminQuestionService {
 	int totalData();
 
 	List<Question> questionList(Map<String, Integer> param);
+
+	Question answerQ(Question q);
 	
 	
 }

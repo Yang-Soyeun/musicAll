@@ -23,6 +23,12 @@ public class AdminQuestionDaoImpl implements AdminQuestionDao {
 				,param.get("numPerpage")));
 	}
 
+	@Override
+	public Question answerQ(SqlSessionTemplate session, Question q) {
+		return session.selectOne("adminQ.answerQuestion",q);
+	}
+
+
 	
 	
 	

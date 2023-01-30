@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="path" value="${pageContext.request.contextPath }"/>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-  <!-- plugins:css -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath }"/>
+<script src="${path}/resources/lib/jquery/dist/jquery.js"></script>
+
+   <link href="${path}/resources/lib/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
+ <!-- plugins:css -->
   <link rel="stylesheet" href="${path }/resources/css/admin/vendors/feather/feather.css">
   <link rel="stylesheet" href="${path }/resources/css/admin/vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="${path }/resources/css/admin/vendors/css/vendor.bundle.base.css">
@@ -17,12 +20,11 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${path }/resources/css/admin/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="icon" href="${path}/resources/images/favicons/logo.png">
+<link rel="icon" href="${path}/resources/images/favicons/logo.png">
 
 <body>
-  <div class="container">
-    <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+   <div class="container">
+<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a class="navbar-brand brand-logo mr-5" href="index.html"></a>
 		
@@ -36,14 +38,15 @@
                 <i class="ti-power-off text-primary"></i>
                Logout
               </a>
-            </div>
-          </li>
-        </ul>
+           </li>
+        </ul> 
+      </div>
+          
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
           <span class="icon-menu"></span>
         </button>
-      </div>
-    </nav>
+      </nav>
+    </div>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_settings-panel.html -->
@@ -167,19 +170,18 @@
           <!-- chat tab ends -->
         </div>
       </div>
-      <!-- partial -->
-      <!-- partial:partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      
+      
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
             <a class="nav-link" href="index.html">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">공연관리</span>
-               <i class="menu-arrow"></i>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic" onclick="location.assign('${path}/adminSale/performanceSale.do');">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="icon-bar-graph menu-icon"></i>
               <span class="menu-title">공연매출</span>
               <i class="menu-arrow"></i>
@@ -193,7 +195,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="${path }/adminGoods/adgMain.do" aria-expanded="false" aria-controls="form-elements">
+            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
               <i class="icon-columns menu-icon"></i>
               <span class="menu-title">굿즈관리</span>
               <i class="menu-arrow"></i>
@@ -242,99 +244,115 @@
           </li>
         </ul>
       </nav>
-      <!-- partial -->
-      <div class="main-panel">
-        <div class="content-wrapper">
-          <div class="row">
-            <div class="col-md-12 grid-margin" style="margin-left:320px; ">
-              <div class="row">
-                <div class="col-12 col-xl-8 mb-4 mb-xl-0" style="margin-left:10.5%">
-                  <h3 class="font-weight-bold">관리자 페이지</h3><br>
-                  
-                </div>
-                <div class="col-12 col-xl-4">
-                 <div class="justify-content-end d-flex">
-                  <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                      <a class="dropdown-item" href="#">January - March</a>
-                      <a class="dropdown-item" href="#">March - June</a>
-                      <a class="dropdown-item" href="#">June - August</a>
-                      <a class="dropdown-item" href="#">August - November</a>
-                    </div>
-                  </div>
-                 </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 grid-margin transparent" style="margin-left:200px;" >
-              <div class="row">
-                <div class="col-md-6 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body" onclick="location.assign('${path}/adminPerfor/performanceList.do');">
-                      <p class="mb-4">Today’s Bookings</p>
-                      <p class="fs-30 mb-2">공연관리</p>
-                      <p>&nbsp;</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4 stretch-card transparent" style="margin-left:0px;">
-                  <div class="card card-dark-blue">
-                    <div class="card-body" onclick="location.assign('${path}/adminSale/performanceSale.do');">
-                      <p class="mb-4">Sales of performance</p>
-                      <p class="fs-30 mb-2">공연매출</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 mb-4 stretch-card transparent" style="margin-left:0px;">
-                  <div class="card card-light-blue">
-                    <div class="card-body" onclick="location.assign('${path}/adminGoods/adgMain.do');">
-                      <p class="mb-4">Management of Goods</p>
-                      <p class="fs-30 mb-2">굿즈관리</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4 stretch-card transparent" style="margin-left:0px;">
-                  <div class="card card-light-danger">
-                    <div class="card-body" onclick="location.assign('${path}/member/memberList.do');">
-                      <p class="mb-4">Number of Clients</p>
-                      <p class="fs-30 mb-2">회원관리</p>
-                      <p>&nbsp;</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      	<!-- partial -->
+      	<div class="main-panel">
+      	<div class="main">
+	<section class="module">
+	  <div class="container">
+	    <div class="row">
+	      <div class="col-sm-6 col-sm-offset-3"><br><br>
+	        <h2 class="module-title font-alt">굿즈 관리</h2>
+	      </div>
+	    </div>
+	    <div class="row">
+	      <div class="col-sm-12">
+	        <table class="table table-striped table-border checkout-table" style="text-align:center;">
+	          <tbody>
+	            <tr >
+	              <td><b>상품 번호</b></td>
+	              <td><b>상품 이미지</b></td>
+	              <td><b>상품명</b></td>
+	              <td><b>가격</b></td>
+	              <td><b>잔여수량</b></td>
+	              <td><b>삭제</b></td>
+	            </tr>
+	            <c:if test="${not empty goods }">
+	            	<c:forEach var="g" items="${goods }">
+	              <tr>
+	                <td>
+	                  <h5 class="product-title font-alt"><c:out value="${g.gdCode}"/></h5>
+	                </td>
+	                <c:if test="${not empty img }">
+	                	<c:forEach var="i" items="${img }">
+	                		<c:if test="${i.gdCode == g.gdCode }">
+				                <td class="">
+				                  <img src="${path }/resources/upload/goods/${i.sumImage}" class="perView" style="float:left;" >
+				                </td>
+			                </c:if>
+		                </c:forEach>
+		            </c:if>
+	                <td class="">
+	                  <h5 class="product-title font-alt"><c:out value="${g.gdName }"/></h5>
+	                </td>
+	                <td class="">
+	                  <h5 class="product-title font-alt"><c:out value="${g.gdPrice }"/></h5>
+	                </td>
+	                <td class="">
+	                  <h5 class="product-title font-alt"><c:out value="${g.gdCount }"/></h5>
+	                </td>
+	                <td class="">
+	                  <%-- <button class="btn btn-danger btn-circle" onclick="location.replace('${path}/adminGoods/deleteGoods.do?gNo='+${g.gCode})">삭제</button> --%>
+	                </td>
+	              </tr>
+	      	</c:forEach>
+	            </c:if>
+	            <c:if test="">
+	            	<tr>
+	            		<td colspan="6">조회된 회원이 없습니다.</td>
+	            	</tr>
+	            </c:if>
+	          </tbody>
+	        </table>
+	      </div>
+			 	
+	  
+	    </div>
+	    	<div id="page">
+			  	${pageBar }
+			</div>
+			<div><button onclick="location.assign('${path}/adminGoods/goodsInsert.do');">굿즈등록</button></div>
+	  </div>
+	</section>
+      </div>
+    </div> 	
 
-                <div class="row">
-                <div class="col-md-6 mb-4 stretch-card transparent" style="margin-left:0px;">
-                  <div class="card card-dark-blue">
-                    <div class="card-body" onclick="location.assign('${path}/adminq/questionList.do');">
-                      <p class="mb-4">Question in person</p>
-                      <p class="fs-30 mb-2">1:1 문의</p>
-                    </div>
-                  </div>
-                </div>
-        		<div class="col-md-6 mb-4 stretch-card transparent">
-                  <div class="card card-tale">
-                    <div class="card-body" onclick="location.assign('${path}/adminPerfor/performanceList.do');">
-                      <p class="mb-4">Customer Service</p>
-                      <p class="fs-30 mb-2">고객센터</p>
-                      <p>&nbsp;</p>
-                    </div>
-                  </div>
-                </div>
-                
+</body>
 
+<style>
+.font-alt {
+font-family: "Nunito", sans-serif;
+    letter-spacing: 2px;
+    
+    
+}
 
-            </div>
-          </div>
-       
-            
-          
-       
-
-<!--  부트스트랩 js 사용 -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<%-- <script type="text/javascript" src="${path}/resources/js/admin/bootstrap.js"></script> --%>
+	.td{
+	font-size:16px;
+	margin:0px 0px 8px;
+	font-family: "Nunito", sans-serif;
+	}
+	
+	
+	.pagination {
+	    display: inline-block;
+	    padding-left: 0;
+	    margin: 20px 0;
+	    border-radius: 4px;
+	    margin: 0px 0px 8px;
+	}
+	
+	.pagination a {
+	    border: 1px solid #eaeaea;
+	    display: inline-block;
+	    text-transform: uppercase;
+	    text-align: center;
+	    color: #999;
+	    padding: 4px 12px;
+	}
+	
+	#page {
+	   text-align:center;
+	   
+	}
+</style>
+</html>

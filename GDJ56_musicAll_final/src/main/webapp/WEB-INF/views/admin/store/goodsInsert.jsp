@@ -419,13 +419,22 @@
 			//상세 사진
 			const upFile2=$("input[name=upFile2]")[0].files[0];
 			
-			if($("#selectM").val() == '관련없음') {
+			/* if($("#selectM").val() == '관련없음') {
 				var mCode = '';
 			} else {
 				var mCode = '27';
-			}
+			} */
 			
 			let form = new FormData();
+			
+			if($("#selectM").val() != '관련없음') {
+			
+				var mCode = '27';
+				form.append("mCode", mCode);
+				
+			}
+			
+			
 			
 			form.append("gName", $("#gName").val());
 			form.append("gPrice", $("#gPrice").val());
@@ -435,7 +444,7 @@
 			form.append("gTag", gTag);
 			form.append("upFile", upFile);
 			form.append("upFile2", upFile2);
-			form.append("mCode", mCode);
+			
 
 			
 			console.log($("#gName").val());
@@ -475,7 +484,7 @@
 					} ,
 			    error:function(e){
 					alert("등록 실패");
-					location.replace("${pageContext.request.contextPath}/adminGoods/goodsInsert.do");
+					//location.replace("${pageContext.request.contextPath}/adminGoods/goodsInsert.do");
 				}
 					
 				

@@ -10,7 +10,6 @@
 <section style="margin-top:100px;">
     <p id="nowShowing" style="font-size:25px; text-align:center;">현재 상영작</p>
     <br>
-
         <section class="hbody">
           <article class="nav2">
          
@@ -48,13 +47,34 @@
         <img src="${path }/resources/images/performance/third.png" id="countimg3" style="width:70px; height: 65px;">
         <img src="${path }/resources/images/performance/fourth.png" id="countimg4" style="width:70px; height: 75px; ">
     </div>
-    <div class="photo-box">
-        <img src="${path }/resources/images/performance/42bunga.png" class="perView" style="margin-left: 105px;" onclick="location.href='${path}/perfor/performanceView.do';">
-        <img src="${path }/resources/images/performance/sweet.gif" class="perView">
-        <img src="${path }/resources/images/performance/wild.png" class="perView">
-        <img src="${path }/resources/images/performance/matilda.gif" class="perView" >
+    <c:forEach var="p" items="${musicalPhoto}">
+    <div class="photo-box" style>
+        <img src="${path }/resources/upload/performance/${p.getIName()}" class="perView" style="float:left;"onclick="location.href='${path}/perfor/performanceView.do?mCode=${p.getMCode() }';"/>
     </div>
+    </c:forEach>
 </section>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <script>
 	$(function(){
