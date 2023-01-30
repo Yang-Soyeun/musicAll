@@ -248,9 +248,9 @@
       	<div class="main-panel">
       	<div class="main">
 	<section class="module">
-	  <div class="container">
+	  <div class="container" style="margin-left: 15%; margin-top: 1%;">
 	    <div class="row">
-	      <div class="col-sm-6 col-sm-offset-3"><br><br>
+	      <div class="col-sm-6 col-sm-offset-3" style="margin-bottom: 1.5%;"><br><br>
 	        <h2 class="module-title font-alt">굿즈 관리</h2>
 	      </div>
 	    </div>
@@ -276,7 +276,7 @@
 	                	<c:forEach var="i" items="${img }">
 	                		<c:if test="${i.gdCode == g.gdCode }">
 				                <td class="">
-				                  <img src="${path }/resources/upload/goods/${i.sumImage}" class="perView" style="float:left;" >
+				                  <img src="${path }/resources/upload/goods/${i.imName}" class="perView" style="width: 40px; height: 40%;" >
 				                </td>
 			                </c:if>
 		                </c:forEach>
@@ -285,20 +285,20 @@
 	                  <h5 class="product-title font-alt"><c:out value="${g.gdName }"/></h5>
 	                </td>
 	                <td class="">
-	                  <h5 class="product-title font-alt"><c:out value="${g.gdPrice }"/></h5>
+	                  <h5 class="product-title font-alt"><c:out value="${g.gdPrice }"/>원</h5>
 	                </td>
 	                <td class="">
-	                  <h5 class="product-title font-alt"><c:out value="${g.gdCount }"/></h5>
+	                  <h5 class="product-title font-alt"><c:out value="${g.gdCount }"/>개</h5>
 	                </td>
 	                <td class="">
-	                  <%-- <button class="btn btn-danger btn-circle" onclick="location.replace('${path}/adminGoods/deleteGoods.do?gNo='+${g.gCode})">삭제</button> --%>
+	                  <button class="btn btn-danger btn-circle btn-sm" >삭제</button>
 	                </td>
 	              </tr>
 	      	</c:forEach>
 	            </c:if>
 	            <c:if test="">
 	            	<tr>
-	            		<td colspan="6">조회된 회원이 없습니다.</td>
+	            		<td colspan="6">조회된 굿즈가 없습니다.</td>
 	            	</tr>
 	            </c:if>
 	          </tbody>
@@ -310,7 +310,7 @@
 	    	<div id="page">
 			  	${pageBar }
 			</div>
-			<div><button onclick="location.assign('${path}/adminGoods/goodsInsert.do');">굿즈등록</button></div>
+			<div><button class="btn btn-primary btn-circle btn-sm" onclick="location.assign('${path}/adminGoods/goodsInsert.do');" style="float: right; margin-top: -3.5%; margin-right: 2.1%;">굿즈등록</button></div>
 	  </div>
 	</section>
       </div>
