@@ -40,8 +40,8 @@
 		  </div>
 		  <div id="right-container" style="float:right">	  
             <br>
-            <b>일자 : </b>2023년 01월 26일(목)<br><br>
-            <b>시간 : </b> 19시 30분<br><br>
+            <b>일자 :</b> ${date }<br><br>
+            <b>시간 :</b> ${time }<br><br>
             <b>선택좌석(</b><b class="reserve-number">0</b><b>)</b><br>
             <span class="selected-seats">선택한 좌석이 없습니다.</span><br>
             <br><b>총 결제 금액</b><br><br>
