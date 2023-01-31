@@ -49,7 +49,7 @@
     </div>
     <c:forEach var="p" items="${musicalPhoto}">
     <div class="photo-box" style>
-        <img src="${path }/resources/upload/performance/${p.getIName()}" class="perView" style="float:left;"onclick="location.href='${path}/perfor/performanceView.do?mCode=${p.getMCode() }';"/>
+        <img src="${path }/resources/upload/performance/${p.getIName()}" class="perView" style="float:left;"onclick="location.href='${path}/booking/bookingview.do?mCode=${p.getMCode() }';"/>
     </div>
     </c:forEach>
 </section>
