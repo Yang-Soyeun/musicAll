@@ -116,7 +116,7 @@
 	    </c:if>
 	    
 	      <c:if test="${empty myRv }">
-	      	<div class="" style="text-align:center; margin-top:50px;">
+	      	<div class="" style="text-align:center; ">
 				<h3>작성한 리뷰가 없습니다.</h3> 
 			</div>
 	      </c:if>
@@ -271,6 +271,7 @@
 							tr.append(td6);
 							
 							$("#qsTable").append(tr);
+							$("center").remove();
 	 					} 
 					}
   				}
