@@ -70,7 +70,17 @@ public class AdminPerforServiceImpl implements AdminPerforService{
 	public List<PerformancePhoto> selectPhoto(int mCode) {
 		return dao.selectPhoto(session, mCode);
 	}
-	
+	@Override
+	public int deletePerformance(int mCode) {
+		int result=dao.deletePerformance(session,mCode);
+		return result;
+	}
+
+	@Override
+	public List<Schedule> selectSchedule2(int mCode) {
+		// TODO Auto-generated method stub
+		return dao.selectSchedule2(session, mCode);
+	}
 
 	
 	

@@ -47,5 +47,15 @@ public class AdminPerforDaoImpl implements AdminPerforDao {
 	public List<Map<String, Schedule>> selectSchedule(SqlSessionTemplate session,int mCode) {
 		return session.selectList("p_schedule.selectSchedule",mCode);
 	}
+	@Override
+	public int deletePerformance(SqlSessionTemplate session, int mCode) {
+		return session.delete("musical.deletePerformance",mCode);
+	}
+	@Override
+	public List<Schedule> selectSchedule2(SqlSessionTemplate session, int mCode) {
+		// TODO Auto-generated method stub
+		return session.selectList("p_schedule.selectSchedule2",mCode);
+	}
+	
 	
 }

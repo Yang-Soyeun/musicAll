@@ -83,13 +83,20 @@ public class AdminPerforController {
 	  @RequestMapping("/modifyView.do")
 	  public String modifyPerformance(Model model,int mCode) {
 		  model.addAttribute("musical",service.selectPerformanceView(mCode));
-		  List<Map<String,Schedule>> s=service.selectSchedule(mCode);
+		  List<Schedule> s=service.selectSchedule2(mCode);
 		  model.addAttribute("schedule",s);
-		  //model.addAttribute("photo",service.get)
-		  return"";
-	  
+		  Map<Object,List<Schedule>> ss=s.stream().collect(
+				  Collectors.groupingBy(s1->s1.getSDay() ));
+		  model.addAttribute("sdayMap",ss);
+		  model.addAttribute("photo",service.selectPhoto(mCode));
+		  return"/admin/Perfor/modifyPerformance";
 	  }
 	  
+	  //공연 삭제화면 전환하기
+	  public String deletePerformance(Model model,int mCode) {
+		  int result=service.deletePerformance(mCode);
+		  return"/admin/Perfor/adminPerformanceList";
+	  }
 	  
 	  
 
