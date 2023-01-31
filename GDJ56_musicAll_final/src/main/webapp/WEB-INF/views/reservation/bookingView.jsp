@@ -122,8 +122,8 @@
 				<c:forEach var="d" items="${day }">
 	
 					if(getDayOfWeek()=="${d}"&&"${d}"=="${per.get('S_DAY')}"){
-					$("#time").append("<input type='radio' id='select"+${per.get('S_NUM')} +"'name='reserve' value="+"${per.get('S_STARTTIME')}"+"><label for='select"+${per.get('S_NUM')}+"'>"+${per.get('S_NUM')}+"회&nbsp"+"${per.get('S_STARTTIME')}"+"</label>&nbsp")}
-				</c:forEach>
+					$("#time").append("<input type='radio' id='select"+${per.get('S_NUM')} +"'name='reserve' value='${per.get('S_STARTTIME')}'><label for='select"+${per.get('S_NUM')}+"'>"+${per.get('S_NUM')}+"회&nbsp"+"${per.get('S_STARTTIME')}"+"</label>&nbsp")}
+				</c:forEach>																											
 			</c:forEach>
 		 </c:if> } 
 
