@@ -59,8 +59,8 @@
         }
         
         .photo-box{
-            margin-top: 5px;
-            margin-left: 98px;
+            margin-top: 10px;
+            margin-left: 110px;
         }
         .perView{
             width: 300px;
@@ -80,6 +80,10 @@
             margin-top: 65px;
             margin-left: 140px;
            
+        }
+        .count-box2{
+        	margin-top: 100px;
+            margin-left: 130px;
         }
         #countimg1{
             margin-left: 300px;

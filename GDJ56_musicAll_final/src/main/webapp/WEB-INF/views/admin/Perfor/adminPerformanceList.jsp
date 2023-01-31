@@ -15,9 +15,9 @@
     <br>
     <header>
         <section class="hbody">
-          <article class="nav">
+          <article class="nav2">
          
-          <div id="menu">
+          <div id="menu" style="margin-left:380px;">
             <li><input type="checkbox" id="original">&nbsp;오리지널 내한공연</li>
             <li><input type="checkbox" id="license">&nbsp;라이센스 뮤지컬</li>
             <li><input type="checkbox" id="making">&nbsp;창작 뮤지컬</li>
@@ -35,11 +35,11 @@
         <form action="." method="post">
             <input type="text" id="search" placeholder="제목으로 검색하기" style="width: 600px; height: 40px;">
             <!--<input type="text" id="datepicker">  -->
-            <button class="search-btn" type="submit">검색</button>
+            <button class="searchBtn" type="submit" style="width:50px; height:30px; font-size:15px;">검색</button>
         </form>
     </div>
-    <div class="select-box">
-        <select>
+    <div class="select-box" >
+        <select style="width:140px; height:40px;font-size:18px; ">
             <option value="">예매랭킹순</option>
             <option value="">최신등록순</option>
             <option value="">공연마감 임박순</option>
@@ -53,15 +53,15 @@
     		</tr>
     	</c:when>
 	    <c:otherwise>
-	    	<div class="count-box">
+	    	<div class="count-box2" style="margin-top:50px; margin-left:140px;">
 	        	<img src="${path }/resources/images/performance/first.png" id="countimg1" style="width:80px; height: 80px;">
 	        	<img src="${path }/resources/images/performance/second.png" id="countimg2" style="width:70px; height: 75px;">
 	        	<img src="${path }/resources/images/performance/third.png" id="countimg3" style="width:70px; height: 65px;">
-	        	<img src="${path }/resources/images/performance/fourth.png" id="countimg4" style="width:70px; height: 75px; ">
+	        	<img src="${path }/resources/images/performance/fourth.png" id="countimg4" style="width:70px; height: 75px;">
 	    	</div>
 	    	<c:forEach var="f" items="${musicalPhoto }">
 	    		<div class="photo-box">
-					<img src="${path }/resources/upload/performance/${f.getIName()}" class="perView" style="float:left;"
+					<img src="${path }/resources/upload/performance/${f.getIName()}" class="perView" style="margin-left:110px; float:left; border-radius:10px;"
 					 onclick="location.assign('${path}/adminPerfor/performanceView.do?mCode=${f.getMCode()}')" >
 					
 					
