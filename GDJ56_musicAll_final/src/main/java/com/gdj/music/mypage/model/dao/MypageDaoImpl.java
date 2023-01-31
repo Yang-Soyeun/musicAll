@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.member.model.vo.Member;
+import com.gdj.music.pay.model.vo.Pay;
 import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
@@ -58,8 +59,30 @@ public class MypageDaoImpl implements MypageDao {
 		return session.selectOne("mypage.selectRsview",r);
 	}
 
-
-
+	//주문번호로 pay에서 pcode값 가져오기
+	@Override
+	public Pay getPcode(SqlSessionTemplate session, String merchant_uid) {
+		return session.selectOne("mypage.getPcode",merchant_uid);
+	}
+	// pCode로 r_seat,r_date,r_time 가져오기
+	@Override
+	public Map<String, Object> selectSeat(SqlSessionTemplate session, Pay pay) {
+		return session.selectOne("mypage.selectSeat",pay);
+	}
+	//좌석 삭제하기
+	@Override
+	public int deleteSeat(SqlSessionTemplate session, Map<String, Object> seat) {
+		return session.delete("mypage.deleteSeat",seat);
+	}
+	//환불기록넣기
+	@Override
+	public int insertRefund(SqlSessionTemplate session, Pay pay) {
+		return session.insert("mypage.insertRefund",pay);
+	}
+	
+	
+	
+	
 	//포인트리스트 출력
 	@Override
 	public List<Point> selectPointListPage(SqlSessionTemplate session,int member_No,Map<String,Integer> param) {

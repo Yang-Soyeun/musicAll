@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.member.model.vo.Member;
+import com.gdj.music.pay.model.vo.Pay;
 import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
@@ -25,7 +26,11 @@ public interface MypageService {
 	Map<String, Reservation> selectRvView(Map<String,Integer> r);//예매세부내역상단
 	Map<String, Reservation> selectRsview(Map<String,Integer> r);//예매세부내역하단
 	
+	Pay getPcode(String merchant_uid);//주문번호로 pay에서 pCode가져오기
 	
+	Map<String,Object> selectSeat(Pay pay);// pCode로 r_seat,r_date,r_time 가져오기
+	int deleteSeat(Map<String,Object> seat);//좌석삭제하기
+	int insertRefund(Pay pay);//pCode로 환불기록 넣기
 	
 	List<Point> selectPointListPage(int member_No,Map<String,Integer> param);//페이징처리,포인트리스트 출력
 	Point selectPoint(int member_No);//남은포인트 출력

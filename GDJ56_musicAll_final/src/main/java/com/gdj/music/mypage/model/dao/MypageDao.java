@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.member.model.vo.Member;
+import com.gdj.music.pay.model.vo.Pay;
 import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
@@ -26,6 +27,11 @@ public interface MypageDao {
 	Map<String, Reservation> selectRvView(SqlSessionTemplate session,Map<String,Integer> r);//예매세부내역상단
 	Map<String, Reservation> selectRsview(SqlSessionTemplate session,Map<String,Integer> r);//예매세부내역하단
 	
+	Pay getPcode(SqlSessionTemplate session,String merchant_uid);//주문번호로 pay에서 pCode가져오기
+	
+	Map<String,Object> selectSeat(SqlSessionTemplate session,Pay pay);// pCode로 r_seat,r_date,r_time 가져오기
+	int deleteSeat(SqlSessionTemplate session,Map<String,Object> seat);//좌석삭제하기
+	int insertRefund(SqlSessionTemplate session,Pay pay);//pCode로 환불기록 넣기
 	
 	List<Point> selectPointListPage(SqlSessionTemplate session,int member_No,Map<String,Integer> param);//포인트리스트 출력
 	Point selectPoint(SqlSessionTemplate session,int member_No);//남은포인트 출력
