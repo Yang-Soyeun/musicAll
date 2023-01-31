@@ -31,8 +31,10 @@
                   <c:if test="${not empty mypoint }">
                      <c:forEach var="mp" items="${mypoint }">
                         <tr>
-                          <td>
-                            <h5 class="product-title font-alt"><c:out value="${mp.mpDate }"/></h5>
+                          <td style="max-width:80px;">
+                            <h5 class="product-title font-alt" >
+                            	<fmt:formatDate value="${mp.mpDate }" pattern="yyyy-MM-dd (E) hh:mm"/>
+                            </h5>
                           </td>
                           <td class="">
                             <c:if test="${mp.mpType eq '+'}"><h5 class="fa  fa-plus"></h5></c:if>

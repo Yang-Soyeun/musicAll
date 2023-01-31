@@ -28,8 +28,7 @@ public class PageFactory {
 		if(pageNo>totalPage) {
 			pageBar+="<a href='#'><i class='fa fa-angle-right'></i></a>"; // > 모양 바(다음 페이지) 
 		}else {
-			pageBar+="<a class='page-link' href='javascript:fn_paging("+(pageNo)+")'>다음</a>";
-			pageBar+="<a href='javascript:fn_paging("+(pageNo)+")'><i class='fa fa-angle-right'></i></a>";
+			pageBar+="<a class='page-link' href='javascript:fn_paging("+(pageNo)+")'><i class='fa fa-angle-right'></i></a>";
 		}
 		
 		pageBar+="</div></div>";
@@ -69,8 +68,7 @@ public class PageFactory {
 		if(pageNo>totalPage) {
 			pageBar+="<a href='#'><i class='fa fa-angle-right'></i></a>"; // > 모양 바(다음 페이지) 
 		}else {
-			pageBar+="<a class='page-link' href='javascript:fn_paging("+pageNo+","+no+")'>다음</a>";
-			pageBar+="<a href='javascript:fn_paging("+pageNo+","+no+")'><i class='fa fa-angle-right'></i></a>";
+			pageBar+="<a class='page-link' href='javascript:fn_paging("+pageNo+","+no+")'><i class='fa fa-angle-right'></i></a>";
 		}
 		
 		pageBar+="</div></div>";

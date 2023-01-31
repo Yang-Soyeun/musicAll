@@ -13,4 +13,6 @@ public interface AdminQuestionDao {
 
 	List<Question> questionList(SqlSessionTemplate session, Map<String, Integer> param);
 
+	Question answerQ(SqlSessionTemplate session, Question q);
+
 }

@@ -82,7 +82,7 @@
 	          </table>
 	       		<c:if test="${rsDetail.containsKey('RF_DATE') }">
 		           <h6 class="product-title font-alt" style="color: rgb(194, 35, 35);">
-		           	취소일시 : <fmt:formatNumber value="${rsDetail.RF_DATE }" pattern="yyyy-MM-dd hh:mm:ss"/>
+		           	취소일시 : <fmt:formatDate value="${rsDetail.RF_DATE }" pattern="yyyy-MM-dd hh:mm:ss"/>
 		           </h6>
 	    		</c:if>
 	          <button class="btn btn-lg btn-block btn-round btn-d" 

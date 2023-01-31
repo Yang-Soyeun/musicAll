@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.mypage.model.dao.MypageDao;
+import com.gdj.music.pay.model.vo.Pay;
 import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.question.model.vo.Question;
@@ -67,9 +68,27 @@ public class MypageServiceImpl implements MypageService {
 	public Map<String, Reservation> selectRsview(Map<String, Integer> r) {
 		return dao.selectRsview(session,r);
 	}
+	//주문번호로 pay에서 pcode값 가져오기
+	@Override
+	public Pay getPcode(String merchant_uid) {
+		return dao.getPcode(session, merchant_uid);
+	}
+	// pCode로 r_seat,r_date,r_time 가져오기
+	@Override
+	public Map<String, Object> selectSeat(Pay pay) {
+		return dao.selectSeat(session, pay);
+	}
+	//좌석 삭제하기
+	@Override
+	public int deleteSeat(Map<String, Object> seat) {
+		return dao.deleteSeat(session, seat);
+	}
+	//환불기록넣기
+	@Override
+	public int insertRefund(Pay pay) {
+		return dao.insertRefund(session, pay);
+	}
 	
-
-
 
 	//포인트리스트출력
 	@Override
