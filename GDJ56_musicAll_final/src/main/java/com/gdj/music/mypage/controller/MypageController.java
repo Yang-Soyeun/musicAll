@@ -1,6 +1,8 @@
 package com.gdj.music.mypage.controller;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -103,7 +105,7 @@ public class MypageController {
 	public ModelAndView musicalList(ModelAndView mv,
 			HttpSession session,
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
-			@RequestParam(value="numPerpage", defaultValue="7")int numPerpage){
+			@RequestParam(value="numPerpage", defaultValue="7")int numPerpage) throws java.text.ParseException{
 
 		Member loginMember = (Member) session.getAttribute("loginMember");
 		int member_No = loginMember.getMember_No();
@@ -115,14 +117,29 @@ public class MypageController {
 		
 		for(Map<String,Object> m : list) {
 //			System.out.println("예매내역 : "+m);
+//			System.out.print("공연날짜 : "+(String)m.get("RR")+" & ");
 //			if (m.containsKey("REVIEW_NO")) {
 //				System.out.println( m.get("REVIEW_NO"));
 //				
 //			}else {
 //				System.out.println("없음");
 //			}
-//			
-//			System.out.println(m.get("M_CODE"));
+			
+			// 오늘날짜 yyyy/MM/dd로 생성
+			String todayfm = new SimpleDateFormat("yyyy/MM/dd").format(new Date(System.currentTimeMillis()));
+			// yyyy/MM/dd 포맷 설정
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+			//비교할 musical공연일과 today를 데이터 포맷으로 변경
+			Date musical = new Date(dateFormat.parse((String)m.get("RR")).getTime()); //공연날짜
+			Date today = new Date(dateFormat.parse(todayfm).getTime());//오늘날짜
+			//compareTo메서드를 통한 날짜비교
+			int compare = musical.compareTo(today);
+			 
+			//조건문
+			if(compare < 0) {//공연일이 지났으면
+				m.put("refund", "imposible");//환불 불가
+			}
+			
 		}
 		
 		mv.addObject("reservationList",list);
