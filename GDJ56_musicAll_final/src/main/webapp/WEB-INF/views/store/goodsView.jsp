@@ -116,7 +116,7 @@
 										</div>
 										
 										<div class="red_button add_to_cart_button">
-											<button id="buy" onclick="location.assign('${path }/goods/goodsPay.do')">구매</button>
+											<button id="buy" onclick="location.assign('${path }/goods/goodsPay.do?gdCode=${goods.gdCode }')">구매</button>
 										</div>
 										
 										<div class="red_button add_to_cart_button">

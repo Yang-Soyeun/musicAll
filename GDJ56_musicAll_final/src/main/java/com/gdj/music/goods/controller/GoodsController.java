@@ -56,7 +56,13 @@ public class GoodsController {
 	}
 	
 	@RequestMapping("/goodsPay.do")
-	public String goodsPay() {
+	public String goodsPay(Model m, int gdCode) {
+		
+		
+		
+		m.addAttribute("goods", service.goodsView(gdCode));
+		m.addAttribute("img", service.goodsViewImg(gdCode));
+		
 		return "/store/goodsPay";
 	}
 	
