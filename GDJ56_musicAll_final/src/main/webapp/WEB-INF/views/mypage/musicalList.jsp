@@ -60,19 +60,28 @@
 				           <td class="">
 				           	<c:choose>
 				           		<c:when test="${!r.containsKey('RF_CODE') }">
-				             		<button id="refundCheck" class="btn btn-danger btn-circle"
-				             		 onclick="fn_refund(${loginMember.member_No},${r.get('R_CODE') });">환불</button>
+				           			<c:choose>
+				           				<c:when test="${r.containsKey('refund') }"><!-- 공연일이 지났으면 환불불가 -->
+				           					<button class="btn btn-g btn-circle" disabled>불가</button>
+				           				</c:when>
+				           				<c:otherwise>
+						             		<button id="refundCheck" class="btn btn-danger btn-circle"
+						             		 onclick="fn_refund(${loginMember.member_No},${r.get('R_CODE') });">환불</button>				           				
+				           				</c:otherwise>
+				           			</c:choose>
+				           			
 				             	</c:when>
+				             	
 				             	<c:when test="${r.containsKey('RF_CODE') }">
 				             		<button id="refundCheck" class="btn btn-d btn-circle">완료</button>
 				             	</c:when>
-				             	
 				             </c:choose>
+				             
 				           </td>
 				           <td>
 			             	<c:choose>
-			             		<c:when test="${r.containsKey('REVIEW_NO') }">
-			             			<button class="btn btn-warning btn-circle">리뷰 작성</button>				             		
+			             		<c:when test="${r.containsKey('refund') && !r.containsKey('RF_CODE')}"><!-- 공연일이 지났고 환불기록이 없으면 -->
+			             			<button class="btn btn-warning btn-circle">리뷰 작성</button>
 			             		</c:when>
 			             		<c:otherwise>
 					             <h5 class="product-title font-alt">관람 후 작성 가능</h5>

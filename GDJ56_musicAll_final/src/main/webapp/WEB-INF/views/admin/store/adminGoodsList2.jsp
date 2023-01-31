@@ -256,6 +256,10 @@
 	    </div>
 	    <div class="row">
 	      <div class="col-sm-12">
+	      			<div>
+			<button class="btn btn-primary btn-circle btn-sm" onclick="alert('test');location.assign('${path}/adminGoods/goodsInsert.do');" 
+			style="float: right; margin-top: -3.5%; margin-right: 2.1%;">굿즈등록</button>
+			</div>
 	        <table class="table table-striped table-border checkout-table" style="text-align:center;">
 	          <tbody>
 	            <tr >
@@ -310,8 +314,8 @@
 	    	<div id="page">
 			  	${pageBar }
 			</div>
-			<div><button class="btn btn-primary btn-circle btn-sm" onclick="location.assign('${path}/adminGoods/goodsInsert.do');" style="float: right; margin-top: -3.5%; margin-right: 2.1%;">굿즈등록</button></div>
 	  </div>
+
 	</section>
       </div>
     </div> 	
