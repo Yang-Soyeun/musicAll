@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.gdj.music.mypage.model.service.MypageService;
 import com.gdj.music.pay.model.service.PayService;
 import com.gdj.music.pay.model.vo.Pay;
+import com.gdj.music.perfor.model.service.PerformanceService;
 import com.gdj.music.perfor.model.vo.Performance;
 import com.gdj.music.reservation.model.service.ReservationService;
 import com.gdj.music.reservation.model.vo.Point;
@@ -28,14 +29,29 @@ public class ReservationController {
 	private ReservationService service;
 	private PayService service2;
 	private MypageService service3;
+	private PerformanceService service4;
+	
 	@Autowired
-	public ReservationController(ReservationService service, PayService service2, MypageService service3) {
+	public ReservationController(ReservationService service, PayService service2, MypageService service3, PerformanceService service4) {
 		super();
 		this.service = service;
 		this.service2 = service2;
 		this.service3 = service3;
+		this.service4 = service4;
 	}
 
+	
+	//예매할 공연리스트
+	@RequestMapping("/bookinglist.do")
+		public ModelAndView bookingList(ModelAndView mv) {
+			mv.addObject("musicalPhoto",service4.selectPerforList());
+			mv.setViewName("reservation/bookingList");
+			return mv;
+		
+	}
+	
+	
+	
 	//예매하기 화면
 	@RequestMapping("/bookingview.do")
 	public String bookingView(int mCode, Model model ) {
