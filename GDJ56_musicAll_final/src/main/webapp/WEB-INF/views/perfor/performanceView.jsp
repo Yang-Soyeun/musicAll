@@ -10,9 +10,10 @@
 </jsp:include>
 <section>
 <div id="title-box">
-        <p>라이센스 뮤지컬 - 1위</p>
         <br>
-
+        <br>
+        <br>
+        <br>
         <p>라이센스 뮤지컬 - 1위</p>
         <strong style="font-size:30px;">${musical.getMTitle() }</strong>
         <form name="myform" class="myform" method="post" action="./save">
@@ -35,7 +36,7 @@
             </div>
             <div class="info-box2" >
                 <b class="info">공연기간</b><p>${musical.getMPeriod() } ~ ${musical.getMPeriodEnd() }</p><br>
-                <b class="info">공연시간</b><p>14:00 ~ 16:30 (160분)</p><br>
+                <b class="info">공연시간</b><p>${schedule.get(0).S_TIME}분</p><br>
                 <b class="info">관람연령</b><p>${musical.getMAge() }</p><br>
                 <b class="info">가격</b><p>vip석:${musical.getVipPrice() }원</p>
                 <p>r석:${musical.getRPrice() }원</p>

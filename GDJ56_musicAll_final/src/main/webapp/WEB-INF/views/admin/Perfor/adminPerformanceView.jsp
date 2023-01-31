@@ -178,15 +178,15 @@
             </div>
             <div class="info-box2" >
                 <b class="info">공연기간</b><p>${musical.getMPeriod() } ~ ${musical.getMPeriodEnd() }</p>
-                <b class="info">공연요일</b>
-               	<p>${scDay}</p>
+                <b class="info">공연시간</b>
+               	<p>${schedule.get(0).S_TIME}분</p>
                 <b class="info">관람연령</b><p>${musical.getMAge() }</p><br>
                 <b class="info">가격</b><p>vip석:${musical.getVipPrice() }원</p>
                 <p>r석:${musical.getRPrice() }원</p>
                 <p>s석:${musical.getSPrice() }원</p>
                 
                 <b class="info">장소</b><p>${musical.getHName() }</p>
-                <button class="go">공연정보 수정</button><br>
+                <button class="go" onclick="location.assign('${path}/adminPerfor/modifyView.do?=mCode=${musical.getMCode()} ')">공연정보 수정</button><br>
                 <button class="go">공연 삭제</button>
             </div>
         </div>

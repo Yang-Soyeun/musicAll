@@ -59,7 +59,7 @@ public class AdminPerforController {
 		  return mv;
 		   }
 	  
-	  //공연 상세,수정화면 출력 
+	  //공연 상세화면 출력 
 	  @RequestMapping("/performanceView.do")
 	  public  String adminPerformanceView(Model model, int mCode) {
 		  model.addAttribute("musical",service.selectPerformanceView(mCode));
@@ -77,7 +77,18 @@ public class AdminPerforController {
 		  model.addAttribute("schedule",service.selectSchedule(mCode));
 		  return "/admin/Perfor/adminPerformanceView";
 	  }
+	  	
 	  
+	  //공연 수정화면 전환하기
+	  @RequestMapping("/modifyView.do")
+	  public String modifyPerformance(Model model,int mCode) {
+		  model.addAttribute("musical",service.selectPerformanceView(mCode));
+		  List<Map<String,Schedule>> s=service.selectSchedule(mCode);
+		  model.addAttribute("schedule",s);
+		  //model.addAttribute("photo",service.get)
+		  return"";
+	  
+	  }
 	  
 	  
 	  
