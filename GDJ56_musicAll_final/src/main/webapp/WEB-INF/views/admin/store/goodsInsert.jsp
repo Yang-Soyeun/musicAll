@@ -412,7 +412,7 @@
 		//굿즈 등록 데이터 보내기
 		const g_insert=()=>{
 			
-			var gTag = $("input[type=radio]").val();
+			var gTag = $("input[type=radio]:checked").val();
 			
 			//대표 사진
 			const upFile=$("input[name=upFile]")[0].files[0];
@@ -436,12 +436,12 @@
 			
 			
 			
-			form.append("gName", $("#gName").val());
-			form.append("gPrice", $("#gPrice").val());
-			form.append("gContent", $("#gContent").val());
-			form.append("gCom", $("#gCom").val());
-			form.append("gCount", $("#gCount").val());
-			form.append("gTag", gTag);
+			form.append("gdName", $("#gName").val());
+			form.append("gdPrice", $("#gPrice").val());
+			form.append("gdContent", $("#gContent").val());
+			form.append("gdCom", $("#gCom").val());
+			form.append("gdCount", $("#gCount").val());
+			form.append("gdTag", gTag);
 			form.append("upFile", upFile);
 			form.append("upFile2", upFile2);
 			
