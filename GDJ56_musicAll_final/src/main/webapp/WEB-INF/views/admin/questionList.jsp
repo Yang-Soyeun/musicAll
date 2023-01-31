@@ -289,7 +289,7 @@
 	                  <h5 class="product-title font-alt"><c:out value="${q.qsDate }"/></h5>
 	                </td>
 	                <td class="">
-	                  <input type="button" class="btn btn-danger btn-circle" onclick="javascript:bt_answerQ('${q.qsNo}');" id="bt_answer" value="답변하기">
+	                  <input type="button" class="btn btn-danger btn-circle btn-sm" onclick="javascript:bt_answerQ('${q.qsNo}');" id="bt_answer" value="답변하기">
 	                </td>
 	              </tr>
 	      	</c:forEach>

@@ -287,7 +287,7 @@
 	                  </h5>
 	                </td>
 	                <td class="">
-	                  <button class="btn btn-danger btn-circle" onclick="location.replace('${path}/member/deleteMember.do?memberNo='+${m.member_No})">삭제</button>
+	                  <button class="btn btn-danger btn-circle btn-sm" onclick="location.replace('${path}/member/deleteMember.do?memberNo='+${m.member_No})">삭제</button>
 	                </td>
 	              </tr>
 	      	</c:forEach>
