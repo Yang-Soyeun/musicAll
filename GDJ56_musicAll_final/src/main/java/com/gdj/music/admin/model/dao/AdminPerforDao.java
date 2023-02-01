@@ -31,6 +31,16 @@ public interface AdminPerforDao {
 	int deletePerformance(SqlSessionTemplate session, int mCode);
 
 	List<Schedule> selectSchedule2(SqlSessionTemplate session, int mCode);
+
+	int updatePerformance(SqlSessionTemplate session, Performance2 p);
+
+	int updateSchedule(SqlSessionTemplate session, Schedule sch2);
+
+	int updatePhoto(SqlSessionTemplate session, PerformancePhoto photo2);
+
+	int deletePhoto(SqlSessionTemplate session, int mCode);
+
+	int deleteSchedule(SqlSessionTemplate session, int mCode);
 	
 	
 }

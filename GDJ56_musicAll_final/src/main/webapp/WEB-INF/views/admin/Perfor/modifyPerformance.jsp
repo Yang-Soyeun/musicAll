@@ -16,9 +16,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 <section>
-	<p>${sdayMap }</p>
-	<p>${sdayMap.get("월").get(0).SNum}</p>
-	<p>${sdayMap.entrySet() }</p>
+
     <style>
         /* Form */
         
@@ -49,6 +47,7 @@
         <!-- Form -->
      <form id="perforFrm" action="${path }/adminPerfor/insertPerformance.do"
         method="post" enctype="multipart/form-data">
+        <input type="hidden" name="mCode" value="${mCode }">
         <table class="question">
             <caption class="qtit"><b style="font-size:20px; margin-left:20px;">공연정보 수정</b></caption>
             <tr>
@@ -104,57 +103,71 @@
                             <input type="checkbox" name="mon" id="mon" value="월" 
                             ${sDay.contains("월")?"checked":"" }>
                                 월 
-                        </label>1회차:&nbsp;<input type="text" id="mon_time1" class="time1" name="startTime1" class="form-control" style="width:140px;">
-                        		2회차:&nbsp;<input type="text" id="mon_time2" class="time1" name="startTime2" class="form-control" style="width:140px;">
+                        </label>1회차:&nbsp;<input type="text" id="mon_time1" class="time1" name="startTime1" class="form-control" style="width:140px;" 
+                        					value="${sdayMap.get('월').size()>0?sdayMap.get('월').get(0).SStartTime:''}">
+                        		2회차:&nbsp;<input type="text" id="mon_time2" class="time1" name="startTime2" class="form-control" style="width:140px;"
+                        					value="${sdayMap.get('월').size()==2?sdayMap.get('월').get(1).SStartTime:''}">
                         <br>
                         <label>
                             <input type="checkbox" name="tues" id="tues" value="화" 
                             ${sDay.contains("화")?"checked":"" }>
                                 화 
-                        </label>1회차:&nbsp;<input type="text" id="tues_time1" class="time1" name="startTime1" class="form-control" style="width:140px;">
-                        		2회차:&nbsp;<input type="text" id="tues_time2" class="time1" name="startTime2" class="form-control" style="width:140px;">
+                        </label>1회차:&nbsp;<input type="text" id="tues_time1" class="time1" name="startTime1" class="form-control" style="width:140px;"
+                        					value="${sdayMap.get('화').size()>0?sdayMap.get('화').get(0).SStartTime:''}" >
+                        		2회차:&nbsp;<input type="text" id="tues_time2" class="time1" name="startTime2" class="form-control" style="width:140px;"
+                        					value="${sdayMap.get('화').size()==2?sdayMap.get('화').get(1).SStartTime:''}">
                         <br>
                         <label>
                             <input type="checkbox" name="wends" id="wends" value="수"
                             ${sDay.contains("수")?"checked":"" } >
                                 수  
-                        </label>1회차:&nbsp;<input type="text" id="wends_time1" class="time1" name="startTime1" class="form-control" style="width:140px;">
-                        		2회차:&nbsp;<input type="text" id="wends_time2" class="time1" name="startTime2" class="form-control" style="width:140px;">
+                        </label>1회차:&nbsp;<input type="text" id="wends_time1" class="time1" name="startTime1" class="form-control" style="width:140px;"
+                        				value="${sdayMap.get('수').size()>0?sdayMap.get('수').get(0).SStartTime:''}">
+                        		2회차:&nbsp;<input type="text" id="wends_time2" class="time1" name="startTime2" class="form-control" style="width:140px;"
+                        				value="${sdayMap.get('수').size()==2?sdayMap.get('수').get(1).SStartTime:''}">
                         <br>
                         <label>
                             <input type="checkbox" name="thurs" id="thurs" value="목" 
                             ${sDay.contains("목")?"checked":"" }>
                                 목 
-                        </label>1회차:&nbsp;<input type="text" id="thurs_time1" class="time1" name="startTime1" class="form-control" style="width:140px;">
-                        		2회차:&nbsp;<input type="text" id="thurs_time2" class="time1" name="startTime2" class="form-control" style="width:140px;">
+                        </label>1회차:&nbsp;<input type="text" id="thurs_time1" class="time1" name="startTime1" class="form-control" style="width:140px;"
+                        					value="${sdayMap.get('목').size()>0?sdayMap.get('목').get(0).SStartTime:''}">
+                        		2회차:&nbsp;<input type="text" id="thurs_time2" class="time1" name="startTime2" class="form-control" style="width:140px;"
+                        					value="${sdayMap.get('목').size()==2?sdayMap.get('목').get(1).SStartTime:''}">
                         <br>
                         <label>
                             <input type="checkbox" name="fri" id="fri" value="금" 
                             ${sDay.contains("금")?"checked":"" }>
                                 금 
-                        </label>1회차:&nbsp;<input type="text" id="time1" class="time1" name="startTime1" class="form-control" style="width:140px;">
-                        		2회차:&nbsp;<input type="text" id="time1" class="time1" name="startTime2" class="form-control" style="width:140px;">
+                        </label>1회차:&nbsp;<input type="text" id="time1" class="time1" name="startTime1" class="form-control" style="width:140px;"
+                        					value="${sdayMap.get('금').size()>0?sdayMap.get('금').get(0).SStartTime:''}">
+                        		2회차:&nbsp;<input type="text" id="time1" class="time1" name="startTime2" class="form-control" style="width:140px;"
+                        					value="${sdayMap.get('금').size()==2?sdayMap.get('금').get(1).SStartTime:''}">
                         <br>
                         <label>
                             <input type="checkbox" name="sature" id="sature" value="토" 
                             ${sDay.contains("토")?"checked":"" }>
                                 토 
-                        </label>1회차:&nbsp;<input type="text" id="sature_time1" class="time1" name="startTime1" class="form-control" style="width:140px;">
-                        		2회차:&nbsp;<input type="text" id="sature_time1" class="time1" name="startTime2" class="form-control" style="width:140px;">
+                        </label>1회차:&nbsp;<input type="text" id="sature_time1" class="time1" name="startTime1" class="form-control" style="width:140px;"
+                        					value="${sdayMap.get('토').size()>0?sdayMap.get('토').get(0).SStartTime:''}">
+                        		2회차:&nbsp;<input type="text" id="sature_time1" class="time1" name="startTime2" class="form-control" style="width:140px;"
+                        					value="${sdayMap.get('토').size()==2?sdayMap.get('토').get(1).SStartTime:''}">
                        <br>
                        <label>
                             <input type="checkbox" name="sun" id="sun" value="일" 
                             ${sDay.contains("일")?"checked":"" }>
                                 일 
-                      </label>1회차:&nbsp;<input type="text" id="sun_time1" class="time1" name="startTime1" class="form-control" style="width:140px;">
-                        		2회차:&nbsp;<input type="text" id="sun_time2" class="time1" name="startTime2" class="form-control" style="width:140px;">                         
+                      </label>1회차:&nbsp;<input type="text" id="sun_time1" class="time1" name="startTime1" class="form-control" style="width:140px;"
+                      						value="${sdayMap.get('일').size()>0?sdayMap.get('일').get(0).SStartTime:''}">
+                        		2회차:&nbsp;<input type="text" id="sun_time2" class="time1" name="startTime2" class="form-control" style="width:140px;"
+                        					value="${sdayMap.get('일').size()==2?sdayMap.get('일').get(1).SStartTime:''}">                         
                         </p>
                     </td>
                 </tr>
                 <tr>
                     <th class="th" scope="row"><b>공연 기간</b></th>
                     <td>              
-                        <input type="text" id="daterange" name="daterange" style="width:200px;" value="${musical.MPeriod }-${musical.MPeriodEnd}"/>
+                        <input type="text" id="daterange" name="daterange" style="width:200px;" value="${musical.getMPeriod()}-${musical.getMPeriodEnd()}"/>
                     </td>
                     <!-- <td><input type="text" size="10" title="우편번호" readonly style='cursor:pointer'> -&nbsp; <input type="text" size="10" title="우편번호" readonly style='cursor:pointer'>
                         <span class="button"><a href="#">우편번호찾기</a></span><br>
@@ -193,15 +206,15 @@
                     <td>
                         <input type="file" name="upFile" onchange="readURL(this);" >
                         <br /><br />
-                        <img id="preview" style="width:300px; height: 400px;"/>
+                        <img id="preview" style="width:300px; height: 400px;"  src="${path }/resources/upload/performance/${photo.get(0).IName}"/>
                     </td>
                 </tr>
                 <tr>
                     <th class="th" scope="row"><b>공연 상세정보</b>
                     <td>
-                        <input type="file" name="upFile2" onchange="readURL2(this);" >
+                        <input type="file" name="upFile2" onchange="readURL2(this);"> 
                         <br /><br />
-                        <img id="preview2" style="width:300px; height: 400px;"/>
+                        <img id="preview2" style="width:300px; height: 400px;" src="${path }/resources/upload/performance/${photo.get(1).IName}"/>
                     </td>
                 </tr>
                 
@@ -311,12 +324,14 @@
  				var vipPrice=$("input[name=vipPrice]").val();
  				var rPrice=$("input[name=rPrice]").val();
  				var sPrice=$("input[name=sPrice]").val();
-				
+				var mCode=$("input[name=mCode]").val();
+				console.log(mCode);
  				form.append("mTitle",mTitle);
  				console.log(mTitle);
  				form.append("mType",mType);
  				console.log(mType);
  				form.append("mAge",mAge);
+ 				form.append("mCode",mCode);
  			
 				
 // 				if(mon=="월"){
@@ -357,8 +372,10 @@
 // 				form.append("sun_time2",sun_time2);
 				
  				form.append("daterange",daterange);
+ 				console.log(daterange);
  				form.append("sTime",sTime);
  				form.append("perPlace",perPlace);
+ 				console.log(perPlace);
  				form.append("vipPrice",vipPrice);
  				form.append("rPrice",rPrice);
  				form.append("sPrice",sPrice);
@@ -383,11 +400,10 @@
  				console.log("348"); */
  				
  				
- 				
  				$.ajax({
  					type:"post",
  					enctype:'multipart/form-data',
- 				    url:'${path}/adminPerfor/insertPerformance.do',
+ 				    url:'${path}/adminPerfor/updatePerformance.do',
  				    data:form,
  				    dataType:'json',
  				  
@@ -395,12 +411,13 @@
  				    contentType:false,
  				    cache:false,
  				    success:function(data){
- 				   		alert("공연 등록 성공! 리스트로 돌아갑니다:)");
+ 				   		alert("공연 수정 성공! 리스트로 돌아갑니다:)");
 					 	location.replace("${pageContext.request.contextPath}/adminPerfor/performanceList.do");		
  				    },
  				    error:function(e){
- 				        alert("등록실패, 다시 등록해주세요! ");
- 				       location.replace("${pageContext.request.contextPath}/adminPerfor/performanceAssign.do");
+ 				        alert("수정실패, 다시 시도해주세요! ");
+ 				        console.log(${mCode});
+ 				       //location.replace("${pageContext.request.contextPath}/adminPerfor/performanceList.do");
  				    }
  				});	
  					

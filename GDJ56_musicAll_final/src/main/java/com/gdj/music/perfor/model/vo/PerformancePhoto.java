@@ -14,6 +14,5 @@ public class PerformancePhoto {
 	private String iName;
 	private int mCode;
 	
-	
 
 }

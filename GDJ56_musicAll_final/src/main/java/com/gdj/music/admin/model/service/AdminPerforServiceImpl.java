@@ -78,10 +78,32 @@ public class AdminPerforServiceImpl implements AdminPerforService{
 
 	@Override
 	public List<Schedule> selectSchedule2(int mCode) {
-		// TODO Auto-generated method stub
 		return dao.selectSchedule2(session, mCode);
 	}
-
+	
+	@Override
+	@Transactional
+	public int updatePerformance(Performance2 p, List<Schedule> sc, List<PerformancePhoto> files) {
+		int result=dao.updatePerformance(session,p);
+		int mCode = p.getMCode();
+		if(result>0) {
+			int result2=dao.deleteSchedule(session,mCode);
+			if(files.size()>0) {
+				int result3=dao.deletePhoto(session,mCode);
+				for(PerformancePhoto pp : files) {
+					pp.setMCode(mCode);
+					result3+=dao.updatePhoto(session, pp);
+				}
+			}
+			if(result2>0) {
+				for(Schedule s:sc) {
+					s.setMCode(mCode);
+					result2+=dao.updateSchedule(session, s);
+				}
+			}
+		}
+		return result;
+	}
 	
 	
 }
