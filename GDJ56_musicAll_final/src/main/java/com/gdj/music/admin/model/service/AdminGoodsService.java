@@ -17,5 +17,7 @@ public interface AdminGoodsService {
 	List<GoodsImg> goodsImg();
 	
 	int totalData();
+	
+	//굿즈 상세화면
 
 }

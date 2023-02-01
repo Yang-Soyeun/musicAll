@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.gdj.music.admin.model.vo.Comment;
 import com.gdj.music.question.model.vo.Question;
 
 public interface AdminQuestionDao {
@@ -14,5 +15,11 @@ public interface AdminQuestionDao {
 	List<Question> questionList(SqlSessionTemplate session, Map<String, Integer> param);
 
 	Question answerQ(SqlSessionTemplate session, Question q);
+
+	int comment(SqlSessionTemplate session, Comment c);
+
+	int commentYN(SqlSessionTemplate session, Comment c);
+
+	Comment commnetList(SqlSessionTemplate session, Question q);
 
 }

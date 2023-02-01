@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp">
@@ -28,6 +29,7 @@
 	.d-flex {display: flex!important;}
 	.justify-content-center {justify-content: center!important;}
 	.tab_container {margin-left: 10%; margin-right: -14%;}
+
 </style>
 	
 <body>
@@ -66,74 +68,71 @@
 			</div>
 		</div>
 		
+	
+			<c:if test="${not empty img }">
+       			<c:forEach var="i" items="${img }">
+       				<c:if test="${i.sumImage.equals('ok') }">
+						<div class="row">
+							<div class="col-lg-7">
+								<div class="single_product_pics">
+									<div class="row">
+										<div class="col-lg-9 image_col order-lg-2 order-1">
+											<div class="single_product_image">
+												<div class="single_product_image_background" style="background-image:url(${path }/resources/upload/goods/${i.imName})"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-5">
+								<div class="product_details">
+									<div class="product_details_title">
+										<h2><c:out value="${goods.gdName }"/></h2>
+										<p><c:out value="${goods.gdCom }"/></p>
+									</div>
+									<div class="free_delivery d-flex flex-row align-items-center justify-content-center">
+										<span class="ti-truck"></span><span>현장 수령</span>
+									</div>
+									<div class="original_price"><fmt:formatNumber value="${goods.gdPrice }" pattern="#,###" />원</div>
+									<div class="product_price"><fmt:formatNumber value="${goods.gdPrice }" pattern="#,###" />원</div>
+									<ul class="star_rating">
+										<li><i class="fa fa-star" aria-hidden="true"></i></li>
+										<li><i class="fa fa-star" aria-hidden="true"></i></li>
+										<li><i class="fa fa-star" aria-hidden="true"></i></li>
+										<li><i class="fa fa-star" aria-hidden="true"></i></li>
+										<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+									</ul>
+									<div class="product_color">
+										<span>예상 적립 포인트:</span>
+										<ul>
+											<li><fmt:parseNumber value="${goods.gdPrice*0.1 }" pattern="0" integerOnly="true" />P(10%)</li>
+										</ul>
+									</div>
+									<div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
+										<span>수량: &nbsp;&nbsp;</span>
+										<div class="quantity_selector">
+											<span class="minus"><i class="fa fa-minus" aria-hidden="true"></i></span>
+											<span id="quantity_value">1</span>
+											<span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span>
+										</div>
+										
+										<div class="red_button add_to_cart_button">
+											<button id="buy" onclick="location.assign('${path }/goods/goodsPay.do?gdCode=${goods.gdCode }')">구매</button>
+										</div>
+										
+										<div class="red_button add_to_cart_button">
+											
+											<button id="addtocart">add to cart</button>
+										</div>
+										<!-- <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:if>
+				</c:forEach>
+			</c:if>
 		
-
-		<div class="row">
-			<div class="col-lg-7">
-				<div class="single_product_pics">
-					<div class="row">
-						<div class="col-lg-3 thumbnails_col order-lg-1 order-2">
-							<div class="single_product_thumbnails">
-								<ul>
-									<li><img src="${path }/resources/images/store/goods.jpg" id="countimg1"></li>
-									<li class="active"><img src="${path }/resources/images/store/goods.jpg" id="countimg1"></li>
-									<li><img src="${path }/resources/images/store/goods.jpg" id="countimg1"></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-9 image_col order-lg-2 order-1">
-							<div class="single_product_image">
-								<div class="single_product_image_background" style="background-image:url(${path }/resources/images/store/goods.jpg)"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-5">
-				<div class="product_details">
-					<div class="product_details_title">
-						<h2>2021 라흐마니노프 가죽 키링</h2>
-						<p>에이치제이컬쳐 주식회사</p>
-					</div>
-					<div class="free_delivery d-flex flex-row align-items-center justify-content-center">
-						<span class="ti-truck"></span><span>현장 수령</span>
-					</div>
-					<div class="original_price">15,000원</div>
-					<div class="product_price">15,000원</div>
-					<ul class="star_rating">
-						<li><i class="fa fa-star" aria-hidden="true"></i></li>
-						<li><i class="fa fa-star" aria-hidden="true"></i></li>
-						<li><i class="fa fa-star" aria-hidden="true"></i></li>
-						<li><i class="fa fa-star" aria-hidden="true"></i></li>
-						<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-					</ul>
-					<div class="product_color">
-						<span>예상 적립 포인트:</span>
-						<ul>
-							<li>750P</li>
-						</ul>
-					</div>
-					<div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
-						<span>수량: &nbsp;&nbsp;</span>
-						<div class="quantity_selector">
-							<span class="minus"><i class="fa fa-minus" aria-hidden="true"></i></span>
-							<span id="quantity_value">1</span>
-							<span class="plus"><i class="fa fa-plus" aria-hidden="true"></i></span>
-						</div>
-						
-						<div class="red_button add_to_cart_button">
-							<button id="buy" onclick="location.assign('${path }/goods/goodsPay.do')">구매</button>
-						</div>
-						
-						<div class="red_button add_to_cart_button">
-							
-							<button id="addtocart">add to cart</button>
-						</div>
-						<!-- <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div> -->
-					</div>
-				</div>
-			</div>
-		</div>
 
 	</div>
 
@@ -164,30 +163,17 @@
 								<div class="tab_title">
 									<h4>Description</h4>
 								</div>
-								<div class="tab_text_block">
-									<h2>Pocket cotton sweatshirt</h2>
-									<p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut...</p>
-								</div>
-								<div class="tab_image">
-									<img src="${path }/resources/images/store/goods.jpg" alt="">
-								</div>
-								<div class="tab_text_block">
-									<h2>Pocket cotton sweatshirt</h2>
-									<p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut...</p>
-								</div>
 							</div>
-							<div class="col-lg-5 offset-lg-2 desc_col">
-								<div class="tab_image">
-									<img src="${path }/resources/images/store/goods.jpg" alt="">
-								</div>
-								<div class="tab_text_block">
-									<h2>Pocket cotton sweatshirt</h2>
-									<p>Nam tempus turpis at metus scelerisque placerat nulla deumantos solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis ut...</p>
-								</div>
-								<div class="tab_image desc_last">
-									<img src="${path }/resources/images/store/goods.jpg" alt="">
-								</div>
-							</div>
+							
+						</div>
+						<div class="col-lg-5 offset-lg-2 desc_col" style="width: 82%; display: flex; justify-content: center;">
+							<c:if test="${not empty img }">
+				       			<c:forEach var="i" items="${img }">
+				       				<c:if test="${i.sumImage == null }">
+				       					<img src="${path }/resources/upload/goods/${i.imName}">
+				       				</c:if>
+				       			</c:forEach>
+				       		</c:if>
 						</div>
 					</div>
 

@@ -1,8 +1,56 @@
 package com.gdj.music.goods.model.service;
 
+import java.util.List;
+import java.util.Map;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gdj.music.goods.model.dao.GoodsDao;
+import com.gdj.music.goods.model.vo.Goods;
+import com.gdj.music.goods.model.vo.GoodsImg;
+
 @Service
-public class GoodsServiceImpl {
+public class GoodsServiceImpl implements GoodsService {
+	
+
+	private SqlSessionTemplate session;
+	private GoodsDao dao;
+	
+	@Autowired
+	public GoodsServiceImpl(SqlSessionTemplate session, GoodsDao dao) {
+		super();
+		this.session = session;
+		this.dao = dao;
+	}
+	
+	
+	//굿즈 리스트
+	@Override
+	public List<Goods> goodsList(Map<String, Integer> param) {
+		return dao.goodsList(session, param);
+	}
+	
+	@Override
+	public List<GoodsImg> goodsImg() {
+		return dao.goodsImg(session);
+	}
+	
+	@Override
+	public int totalData() {
+		return dao.totalData(session);
+	}
+	
+	//굿즈 상세 화면
+	@Override
+	public Goods goodsView(int gdCode) {
+		return dao.goodsView(session, gdCode);
+	}
+	
+	@Override
+	public List<GoodsImg> goodsViewImg(int gdCode) {
+		return dao.goodsViewImg(session, gdCode);
+	}
 
 }
