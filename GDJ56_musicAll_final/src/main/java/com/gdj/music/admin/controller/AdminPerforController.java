@@ -160,8 +160,9 @@ public class AdminPerforController {
 	      String[] daterange=str2.split("-");
 	      String startDay=daterange[0];
 	      String endDay=daterange[1];
-	   
 	      
+	      System.out.println("시작날"+startDay);
+	      System.out.println("종료날"+endDay);
 	      Performance2 p = Performance.builder()
 	            .mTitle(Performance.getMTitle())
 	            .mType(Performance.getMType())
@@ -326,8 +327,12 @@ public class AdminPerforController {
 	      //공연 기간 split
 	      String str2=Performance.getDaterange();
 	      String[] daterange=str2.split("-");
+	      
 	      String startDay=daterange[0];
 	      String endDay=daterange[1];
+	      
+	      System.out.println("시작날"+startDay);
+	      System.out.println("종료날"+endDay);
 	      
 	      
 	      Performance2 p = Performance.builder()
