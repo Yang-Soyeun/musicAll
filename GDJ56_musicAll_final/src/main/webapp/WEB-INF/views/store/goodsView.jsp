@@ -117,7 +117,7 @@
 										</div>
 										
 										<div class="red_button add_to_cart_button">
-											<button id="buy" onclick="location.assign('${path }/goods/goodsPay.do?gdCode=${goods.gdCode }')">구매</button>
+											<button id="buy" onclick="buyPage()">구매</button>
 										</div>
 										
 										<div class="red_button add_to_cart_button">
@@ -155,7 +155,7 @@
 			<div class="row">
 				<div class="col">
 
-					<!-- Tab Description -->
+					<!-- Tab 상세정보 -->
 
 					<div id="tab_1" class="tab_container active">
 						<div class="row">
@@ -177,21 +177,8 @@
 						</div>
 					</div>
 
-					<!-- Tab Additional Info -->
-
-					<div id="tab_2" class="tab_container">
-						<div class="row">
-							<div class="col additional_info_col">
-								<div class="tab_title additional_info_title">
-									<h4>Additional Information</h4>
-								</div>
-								<p>COLOR:<span>Gold, Red</span></p>
-								<p>SIZE:<span>L,M,XL</span></p>
-							</div>
-						</div>
-					</div>
-
-					<!-- Tab Reviews -->
+					
+					<!-- Tab 리뷰 -->
 
 					<div id="tab_3" class="tab_container">
 						<div class="row">
@@ -307,6 +294,33 @@
 			    },1000)
 			  })
 			})
+		
+		//구매 페이지로 넘기기
+		const buyPage=()=>{
+			
+			var gdCount = $("#quantity_value").text();
+			
+			//console.log($("#quantity_value").text());
+			//console.log(gdCount);
+			
+			$.ajax({
+				url: "${path }/goods/goodsPay.do",
+				data: {"gdCount" : gdCount, "gdCode" : ${goods.gdCode }, "member_no" : ${loginMember.member_No }},
+				type: "post",
+				success: function(data) {
+					//alert("넘기기 성공")
+					location.assign('${path }/goods/goodsPay.do?gdCode='+${goods.gdCode }+'&member_no='+${loginMember.member_No }+'&gdCount='+gdCount);
+				},
+				error: function(){
+					alert("에러")
+				}
+			});
+			
+			//location.assign('${path }/goods/goodsPay.do?gdCode='+${goods.gdCode }+'&member_no='+${loginMember.member_No });
+			//location.assign('${path }/goods/goodsPay.do?gdCode=${goods.gdCode }&member_no=${loginMember.member_No }&gdCount=gdCount');
+			
+			
+		}
 	</script>
 
 </body>

@@ -11,19 +11,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gdj.music.common.interceptor.PageFactory;
-import com.gdj.music.goods.model.service.GoodsServiceImpl;
+import com.gdj.music.goods.model.service.GoodsService;
 import com.gdj.music.goods.model.vo.Goods;
+import com.gdj.music.mypage.model.service.MypageService;
 
 @Controller
 @RequestMapping("/goods")
 public class GoodsController {
 	
-	GoodsServiceImpl service;
+	private GoodsService service;
+	private MypageService serviceMp;
 
 	@Autowired
-	public GoodsController(GoodsServiceImpl service) {
+	public GoodsController(GoodsService service, MypageService serviceMp) {
 		super();
 		this.service = service;
+		this.serviceMp = serviceMp;
 	}
 	
 	@RequestMapping("/goodsMain.do")
@@ -56,10 +59,13 @@ public class GoodsController {
 	}
 	
 	@RequestMapping("/goodsPay.do")
-	public String goodsPay(Model m, int gdCode) {
+	public String goodsPay(Model m, int gdCode, @RequestParam("member_no") String member_no, int gdCount) {
 		
+//		System.out.println(member_no);
+//		System.out.println(gdCount);
 		
-		
+		m.addAttribute("gc", gdCount);
+		m.addAttribute("p", serviceMp.selectPoint(Integer.parseInt(member_no)));
 		m.addAttribute("goods", service.goodsView(gdCode));
 		m.addAttribute("img", service.goodsViewImg(gdCode));
 		
