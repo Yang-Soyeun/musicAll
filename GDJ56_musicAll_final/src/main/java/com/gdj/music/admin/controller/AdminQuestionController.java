@@ -1,7 +1,6 @@
 package com.gdj.music.admin.controller;
 
 import java.io.IOException;
-import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gdj.music.admin.model.service.AdminQuestionService;
+import com.gdj.music.admin.model.vo.Comment;
 import com.gdj.music.common.interceptor.PageFactory;
 import com.gdj.music.question.model.vo.Question;
 
@@ -57,10 +57,31 @@ public class AdminQuestionController {
 		   
 		   
 		   model.addAttribute("qt",qt);
-		
+		   
+		   //댓글 목록 불러와서 출력
+		   Comment cm = service.commentList(q);
+		   System.out.println(cm);
+		   
+		   model.addAttribute("cm",cm);
 		   
 		   return "admin/answerQuestion";
+	   }
+	   
+	   //댓글구현
+	   @RequestMapping("/comment.do")
+	   public void comment(Comment c, HttpServletResponse response) throws IOException {
 		   
+
+		   int num = service.comment(c);
+		   
+		   //댓글완료시 댓글결과 변형
+		   int yn = service.commentYN(c);
+		   
+		   
+		   System.out.println(num);
+		   System.out.println(c);
+		   
+		   response.getWriter().print(num);
 	   }
 	   
 	   
