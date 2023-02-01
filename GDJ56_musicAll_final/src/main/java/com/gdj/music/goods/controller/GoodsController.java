@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.gdj.music.common.interceptor.PageFactory;
 import com.gdj.music.goods.model.service.GoodsService;
 import com.gdj.music.goods.model.vo.Goods;
+import com.gdj.music.goods.model.vo.MyGoods;
 import com.gdj.music.mypage.model.service.MypageService;
 
 @Controller
@@ -49,6 +50,7 @@ public class GoodsController {
 		return mv;
 	}
 	
+	//굿즈 상세
 	@RequestMapping("/goodsView.do")
 	public String goodsView(Model m, int gdCode) {
 		
@@ -58,6 +60,7 @@ public class GoodsController {
 		return "/store/goodsView";
 	}
 	
+	//결제 페이지
 	@RequestMapping("/goodsPay.do")
 	public String goodsPay(Model m, int gdCode, @RequestParam("member_no") String member_no, int gdCount) {
 		
@@ -72,10 +75,24 @@ public class GoodsController {
 		return "/store/goodsPay";
 	}
 	
+	//장바구니 담기
+//	@RequestMapping("/addCart.do")
+//	public void addCart() {
+//		
+//		
+//		
+//	}
+//	
+//	@RequestMapping("/goodsCart.do")
+//	public ModelAndView goodsCart(ModelAndView mv) {
+//		
+//		//List<MyGoods> goods = service.myGoodsList();
+//		
+//		return mv;
+//	}
+	
 	@RequestMapping("/goodsCart.do")
 	public String goodsCart() {
-		
-		
 		
 		return "/store/cart";
 	}
