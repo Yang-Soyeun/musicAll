@@ -20,7 +20,7 @@ public interface AdminPerforService {
 
 	List<PerformancePhoto> selectPhoto(int mCode);
 
-	int deletePerformance(int mCode);
+	int deleteAll(int mCode);
 
 	List<Schedule> selectSchedule2(int mCode);
 

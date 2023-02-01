@@ -148,9 +148,6 @@ public class AdminPerforController {
 	            }               
 	      }
 	      
-	      Map<String,Object> photo=Map.of("files",files,"mCode",mCode);
-
-
 	      int hCode=0;//공연장코드 부여 
 	      if(Performance.getPerPlace().equals("예술의 전당")) { 
 	         hCode=1;
@@ -176,9 +173,6 @@ public class AdminPerforController {
 	            .rPrice(Performance.getRPrice())
 	            .sPrice(Performance.getSPrice())
 	            .build();
-	      System.out.println("공연정보"+p);
-	      
-	      Map<String,Object> per=Map.of("p",p,"mCode",mCode);
 	      
 	      //스케쥴등록하기
 	      List<Schedule>sc=new ArrayList();
@@ -206,8 +200,6 @@ public class AdminPerforController {
 	         }
 	      }
 	      
-	      Map<String,Object> sch=Map.of("sc",sc,"mCode",mCode);
-	      
 	      int result = service.updatePerformance(p,sc,files);
 	      System.out.println("결과!!:"+result);     
 	      
@@ -219,9 +211,11 @@ public class AdminPerforController {
 	  
 	  
 	  //공연 삭제화면 전환하기
-	  public String deletePerformance(Model model,int mCode) {
-		  int result=service.deletePerformance(mCode);
-		  return"/admin/Perfor/adminPerformanceList";
+	  public boolean deletePerformance(Model model,int mCode) {
+		  int result=service.deleteAll(mCode);
+		  model.addAttribute("msg","삭제완료! 메인으로 돌아갑니다");
+		  model.addAttribute("loc","/admin/Perfor/adminPerformanceList");
+		  return result>0;
 	  }
 	  
 	  

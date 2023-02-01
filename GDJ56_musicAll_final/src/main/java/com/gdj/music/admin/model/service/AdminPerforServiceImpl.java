@@ -71,8 +71,11 @@ public class AdminPerforServiceImpl implements AdminPerforService{
 		return dao.selectPhoto(session, mCode);
 	}
 	@Override
-	public int deletePerformance(int mCode) {
+	public int deleteAll(int mCode) {
 		int result=dao.deletePerformance(session,mCode);
+		if(result>0) {
+			int result2=dao.deletePhoto(session, mCode);
+		}
 		return result;
 	}
 
