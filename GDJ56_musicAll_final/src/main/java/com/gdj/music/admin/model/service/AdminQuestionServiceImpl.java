@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gdj.music.admin.model.dao.AdminQuestionDao;
+import com.gdj.music.admin.model.vo.Comment;
 import com.gdj.music.question.model.vo.Question;
 
 @Service
@@ -37,6 +38,25 @@ public class AdminQuestionServiceImpl implements AdminQuestionService {
 	public Question answerQ(Question q) {
 		return dao.answerQ(session, q);
 	}
+
+	@Override
+	public int comment(Comment c) {
+		return dao.comment(session, c);
+	}
+
+	@Override
+	public int commentYN(Comment c) {
+		return dao.commentYN(session, c);
+	}
+
+	@Override
+	public Comment commentList(Question q) {
+		return dao.commnetList(session, q);
+	}
+	
+	
+	
+	
 
 	
 	

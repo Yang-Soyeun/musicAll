@@ -50,74 +50,60 @@
 	<textarea name="Contents" class="w565" style="width: 565px; height: 320px;" id="qsContent" >${qt.qsContent }</textarea>
 </td>
 </tr>
+
+<tr>
+	<th>댓글</th>
+	<td>
+		<textarea name="Contents" class="w565" style="width : 565px; height: 100px;" id="comment">${cm.qcAnswer }</textarea>
+	</td>
+</tr>
+
+
 </tbody></table>
 
 <div class="ASKbtn" id="divWriteForm" style="display:block; margin-left: 33%;" >
-	<span><input type="button" onclick="javascript:CheckWriteForm();" value="수정" class="btn btn-danger btn-circle"></span>
-	<span><input type="button" onclick="javascript:DeleteForm();" value="삭제" class="btn btn-danger btn-circle"></span>
-	<span><input type="button" onclick="location.assign('${path}/mypage/myContentList.do');" value="목록" class="btn btn-danger btn-circle"></span>
+<c:if test="${ empty cm.qcAnswer }">
+	<span><input type="button" onclick="bt_comment();" value="확인" class="btn btn-danger btn-circle"></span>
+</c:if>
+<c:if test="${not empty cm.qcAnswer }">
+	<span><input type="button" onclick="bt_recomment();" value="수정" class="btn btn-danger btn-circle"></span>
+</c:if>
 </div>
+
 
 </body>
 
 <script>
-	const CheckWriteForm = function(){
-		let a = $("#qsTitle").val();
-		let b = $('input[name=qsHeadTitle]:checked').val();
-		let c = $("#qsContent").val();
+
+//댓글입력 구현
+	const bt_comment =()=>{
 		
-		if(a!=null && b!=null && c!=null){
-			let c = confirm("글을 수정하시겠습니까?");
-			
-			let d = {
-					"qsNo" : '${qt.qsNo}',
-					"qsTitle" : $("#qsTitle").val(),
-					"qsHeadTitle" : $('input[name=qsHeadTitle]:checked').val(),
-					"qsContent" : $("#qsContent").val()
-			};
-			
-			if(c==true){
-				$.ajax({
-					url:"${path}/question/updateQ.do",
-					data:d,
-					dataType:'json',
-					type:'post',
-					success:data=>{
-						console.log(data);
-						if(data>0){
-							alert("수정이 완료되었습니다.");
-							location.href ="${path}/mypage/myContentList.do" ; 
-						}
-					}			
-				});
-			}
-			
-		}else{
-			alert("값을 입력해주세요");
-		}
-	}
-	
-	const DeleteForm=()=>{
+		let c = window.confirm("입력하시겠습니까?");
 		
 		let d = {
-				"qsNo" : '${qt.qsNo}'
-		}
+				qsNo : "${qt.qsNo}",
+				qcAnswer : $("#comment").val()
+		};
 		
-		let delConfirm = confirm("문의를 삭제하시겠습니까?");
-		if(delConfirm){
+		if(c==true){
+			//컨펌창이 true이면..(확인시 에이작스 통신)
 			$.ajax({
-				url : '${path}/question/deleteQ.do',
-				data : {"qsNo" : '${qt.qsNo}'},
+				url : '${path}/adminq/comment.do', 
+				data : d,
+				dataType : 'json',
 				type : 'post',
-				success : data=>{
+				success : data =>{
 					if(data>0){
-						alert("글 삭제가 완료되었습니다.");
-						location.href ="${path}/mypage/myContentList.do";
+						alert("댓글입력성공");
+					}else{
+						alert("댓글입력실패");
 					}
 				}
+					
 			});
 		}
 	}
+
 		
 
 </script>

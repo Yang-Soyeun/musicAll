@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
+    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<c:set var="sDay" value="${sdayMap.keySet() }"/>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -13,6 +16,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 <section>
+
     <style>
         /* Form */
         
@@ -43,30 +47,31 @@
         <!-- Form -->
      <form id="perforFrm" action="${path }/adminPerfor/insertPerformance.do"
         method="post" enctype="multipart/form-data">
+        <input type="hidden" name="mCode" value="${mCode }">
         <table class="question">
-            <caption class="qtit"><b style="font-size:20px; margin-left:20px;">공연등록</b></caption>
+            <caption class="qtit"><b style="font-size:20px; margin-left:20px;">공연정보 수정</b></caption>
             <tr>
                 <th class="th" scope="row"><b>공연 제목</b></th>
-                    <td><input type="text" name="mTitle" class="wid53" title="이메일" placeholder="ex : 마틸다"></td>
+                    <td><input type="text" name="mTitle" class="wid53" title="이메일" value="${musical.getMTitle() }"></td>
             </tr>
             <tr>
                 <th class="th" scope="row"><b>공연 타입</b></th>
                     <td>
                         <p>
                         <label>
-                            <input type="radio" name="mType" id="original" value="오리지널">
+                            <input type="radio" name="mType" id="original" value="오리지널" ${musical.getMType().equals("오리지널")?"checked":"" }>
                                 오리지널 내한공연 </label>
                         <label>
-                            <input type="radio" name="mType" id="license" value="라이센스">
+                            <input type="radio" name="mType" id="license" value="라이센스" ${musical.getMType().equals("라이센스")?"checked":"" }>
                                 라이센스 </label>
                         <label>
-                            <input type="radio" name="mType"  id="makeMusical" value="창작뮤지컬">
+                            <input type="radio" name="mType"  id="makeMusical" value="창작뮤지컬" ${musical.getMType().equals("창작뮤지컬")?"checked":"" }>
                                 창작뮤지컬  </label>
                         <label>
-                            <input type="radio" name="mType"  id="nonverbal" value="넌버벌">
+                            <input type="radio" name="mType"  id="nonverbal" value="넌버벌" ${musical.getMType().equals("넌버벌")?"checked":"" }>
                                 넌버벌 퍼포먼스 </label>
                         <label>
-                            <input type="radio" name="mType"  id="child" value="아동">
+                            <input type="radio" name="mType"  id="child" value="아동" ${musical.getMType().equals("아동")?"checked":"" }>
                                 아동 </label>
                         </p>
                     </td>
@@ -76,16 +81,16 @@
                 <td>
                     <p>
                         <label>
-                            <input type="radio" name="mAge" value="전체관람가" id="allCan">
+                            <input type="radio" name="mAge" value="전체관람가" id="allCan" ${musical.getMAge().equals("전체관람가")?"checked":"" }>
                                 전체관람가 </label>
                         <label>
-                            <input type="radio" name="mAge" value="8세이상" id="overEight">
+                            <input type="radio" name="mAge" value="8세이상" id="overEight" ${musical.getMAge().equals("8세이상")?"checked":"" }>
                                 8세 이상 </label>
                         <label>
-                            <input type="radio" name="mAge" value="12세이상" id="overTwelve">
+                            <input type="radio" name="mAge" value="12세이상" id="overTwelve" ${musical.getMAge().equals("12세이상")?"checked":"" }>
                                 12세 이상 </label>
                         <label>
-                            <input type="radio" name="mAge" value="15세이상" id="overFifteen">
+                            <input type="radio" name="mAge" value="15세이상" id="overFifteen" ${musical.getMAge().equals("15세이상")?"checked":"" }>
                                 15세 이상 </label>
                     </p>
                 </td>
@@ -95,53 +100,74 @@
                     <td>
                         <p>
                         <label>
-                            <input type="checkbox" name="mon" id="mon" value="월">
+                            <input type="checkbox" name="mon" id="mon" value="월" 
+                            ${sDay.contains("월")?"checked":"" }>
                                 월 
-                        </label>1회차:&nbsp;<input type="text" id="mon_time1" class="time1" name="startTime1" class="form-control" style="width:140px;">
-                        		2회차:&nbsp;<input type="text" id="mon_time2" class="time1" name="startTime2" class="form-control" style="width:140px;">
+                        </label>1회차:&nbsp;<input type="text" id="mon_time1" class="time1" name="startTime1" class="form-control" style="width:140px;" 
+                        					value="${sdayMap.get('월').size()>0?sdayMap.get('월').get(0).SStartTime:''}">
+                        		2회차:&nbsp;<input type="text" id="mon_time2" class="time1" name="startTime2" class="form-control" style="width:140px;"
+                        					value="${sdayMap.get('월').size()==2?sdayMap.get('월').get(1).SStartTime:''}">
                         <br>
                         <label>
-                            <input type="checkbox" name="tues" id="tues" value="화">
+                            <input type="checkbox" name="tues" id="tues" value="화" 
+                            ${sDay.contains("화")?"checked":"" }>
                                 화 
-                        </label>1회차:&nbsp;<input type="text" id="tues_time1" class="time1" name="startTime1" class="form-control" style="width:140px;">
-                        		2회차:&nbsp;<input type="text" id="tues_time2" class="time1" name="startTime2" class="form-control" style="width:140px;">
+                        </label>1회차:&nbsp;<input type="text" id="tues_time1" class="time1" name="startTime1" class="form-control" style="width:140px;"
+                        					value="${sdayMap.get('화').size()>0?sdayMap.get('화').get(0).SStartTime:''}" >
+                        		2회차:&nbsp;<input type="text" id="tues_time2" class="time1" name="startTime2" class="form-control" style="width:140px;"
+                        					value="${sdayMap.get('화').size()==2?sdayMap.get('화').get(1).SStartTime:''}">
                         <br>
                         <label>
-                            <input type="checkbox" name="wends" id="wends" value="수">
+                            <input type="checkbox" name="wends" id="wends" value="수"
+                            ${sDay.contains("수")?"checked":"" } >
                                 수  
-                        </label>1회차:&nbsp;<input type="text" id="wends_time1" class="time1" name="startTime1" class="form-control" style="width:140px;">
-                        		2회차:&nbsp;<input type="text" id="wends_time2" class="time1" name="startTime2" class="form-control" style="width:140px;">
+                        </label>1회차:&nbsp;<input type="text" id="wends_time1" class="time1" name="startTime1" class="form-control" style="width:140px;"
+                        				value="${sdayMap.get('수').size()>0?sdayMap.get('수').get(0).SStartTime:''}">
+                        		2회차:&nbsp;<input type="text" id="wends_time2" class="time1" name="startTime2" class="form-control" style="width:140px;"
+                        				value="${sdayMap.get('수').size()==2?sdayMap.get('수').get(1).SStartTime:''}">
                         <br>
                         <label>
-                            <input type="checkbox" name="thurs" id="thurs" value="목">
+                            <input type="checkbox" name="thurs" id="thurs" value="목" 
+                            ${sDay.contains("목")?"checked":"" }>
                                 목 
-                        </label>1회차:&nbsp;<input type="text" id="thurs_time1" class="time1" name="startTime1" class="form-control" style="width:140px;">
-                        		2회차:&nbsp;<input type="text" id="thurs_time2" class="time1" name="startTime2" class="form-control" style="width:140px;">
+                        </label>1회차:&nbsp;<input type="text" id="thurs_time1" class="time1" name="startTime1" class="form-control" style="width:140px;"
+                        					value="${sdayMap.get('목').size()>0?sdayMap.get('목').get(0).SStartTime:''}">
+                        		2회차:&nbsp;<input type="text" id="thurs_time2" class="time1" name="startTime2" class="form-control" style="width:140px;"
+                        					value="${sdayMap.get('목').size()==2?sdayMap.get('목').get(1).SStartTime:''}">
                         <br>
                         <label>
-                            <input type="checkbox" name="fri" id="fri" value="금">
+                            <input type="checkbox" name="fri" id="fri" value="금" 
+                            ${sDay.contains("금")?"checked":"" }>
                                 금 
-                        </label>1회차:&nbsp;<input type="text" id="time1" class="time1" name="startTime1" class="form-control" style="width:140px;">
-                        		2회차:&nbsp;<input type="text" id="time1" class="time1" name="startTime2" class="form-control" style="width:140px;">
+                        </label>1회차:&nbsp;<input type="text" id="time1" class="time1" name="startTime1" class="form-control" style="width:140px;"
+                        					value="${sdayMap.get('금').size()>0?sdayMap.get('금').get(0).SStartTime:''}">
+                        		2회차:&nbsp;<input type="text" id="time1" class="time1" name="startTime2" class="form-control" style="width:140px;"
+                        					value="${sdayMap.get('금').size()==2?sdayMap.get('금').get(1).SStartTime:''}">
                         <br>
                         <label>
-                            <input type="checkbox" name="sature" id="sature" value="토">
+                            <input type="checkbox" name="sature" id="sature" value="토" 
+                            ${sDay.contains("토")?"checked":"" }>
                                 토 
-                        </label>1회차:&nbsp;<input type="text" id="sature_time1" class="time1" name="startTime1" class="form-control" style="width:140px;">
-                        		2회차:&nbsp;<input type="text" id="sature_time1" class="time1" name="startTime2" class="form-control" style="width:140px;">
+                        </label>1회차:&nbsp;<input type="text" id="sature_time1" class="time1" name="startTime1" class="form-control" style="width:140px;"
+                        					value="${sdayMap.get('토').size()>0?sdayMap.get('토').get(0).SStartTime:''}">
+                        		2회차:&nbsp;<input type="text" id="sature_time1" class="time1" name="startTime2" class="form-control" style="width:140px;"
+                        					value="${sdayMap.get('토').size()==2?sdayMap.get('토').get(1).SStartTime:''}">
                        <br>
                        <label>
-                            <input type="checkbox" name="sun" id="sun" value="일">
+                            <input type="checkbox" name="sun" id="sun" value="일" 
+                            ${sDay.contains("일")?"checked":"" }>
                                 일 
-                      </label>1회차:&nbsp;<input type="text" id="sun_time1" class="time1" name="startTime1" class="form-control" style="width:140px;">
-                        		2회차:&nbsp;<input type="text" id="sun_time2" class="time1" name="startTime2" class="form-control" style="width:140px;">                         
+                      </label>1회차:&nbsp;<input type="text" id="sun_time1" class="time1" name="startTime1" class="form-control" style="width:140px;"
+                      						value="${sdayMap.get('일').size()>0?sdayMap.get('일').get(0).SStartTime:''}">
+                        		2회차:&nbsp;<input type="text" id="sun_time2" class="time1" name="startTime2" class="form-control" style="width:140px;"
+                        					value="${sdayMap.get('일').size()==2?sdayMap.get('일').get(1).SStartTime:''}">                         
                         </p>
                     </td>
                 </tr>
                 <tr>
                     <th class="th" scope="row"><b>공연 기간</b></th>
                     <td>              
-                        <input type="text" id="daterange" name="daterange" style="width:200px;"/>
+                        <input type="text" id="daterange" name="daterange" style="width:200px;" value="${musical.getMPeriod()}-${musical.getMPeriodEnd()}"/>
                     </td>
                     <!-- <td><input type="text" size="10" title="우편번호" readonly style='cursor:pointer'> -&nbsp; <input type="text" size="10" title="우편번호" readonly style='cursor:pointer'>
                         <span class="button"><a href="#">우편번호찾기</a></span><br>
@@ -151,7 +177,7 @@
                  <tr>
                     <th class="th" scope="row"><b>공연 상영시간</b></th>
                     <td>              
-                        <input type="text" name="sTime" placeholder="ex)120" style="width:200px;"/>분
+                        <input type="text" name="sTime" value="${schedule.get(0).getSTime() }" style="width:200px;"/>분
                     </td>
                 </tr>
                 <tr>
@@ -159,10 +185,10 @@
                 <td>
                     <p>
                         <label>
-                            <input type="radio" name="perPlace" value="예술의 전당" id="artPalace">
+                            <input type="radio" name="perPlace" value="예술의 전당" id="artPalace" ${musical.getHName() .equals("예술의 전당")? "checked":""}>
                                  예술의 전당</label>
                         <label>
-                            <input type="radio" name="perPlace" value="블루스퀘어" id="blueSquare">
+                            <input type="radio" name="perPlace" value="블루스퀘어" id="blueSquare" ${musical.getHName() .equals("블루스퀘어")? "checked":""}>
                                  블루스퀘어</label>
                     </p>
                 </td>
@@ -170,9 +196,9 @@
                 <tr>
                     <th class="th" scope="row"><b>공연 가격</b>
                     <td>
-                        <p>VIP석:</p><input type="text" name="vipPrice" class="wid53"  placeholder="ex :150000" style="width:200px;">원
-                        <p>R석:</p><input type="text" name="rPrice" class="wid53"  placeholder="ex :150000" style="width:200px;">원
-                        <p>S석:</p><input type="text" name="sPrice" class="wid53"  placeholder="ex :150000" style="width:200px;">원
+                        <p>VIP석:</p><input type="text" name="vipPrice" class="wid53"  value="${musical.getVipPrice() }" style="width:200px;">원
+                        <p>R석:</p><input type="text" name="rPrice" class="wid53"  value="${musical.getSPrice() }" placeholder="ex :150000" style="width:200px;">원
+                        <p>S석:</p><input type="text" name="sPrice" class="wid53"  value="${musical.getRPrice() }" placeholder="ex :150000" style="width:200px;">원
                     </td>
                 </tr>
                 <tr>
@@ -180,15 +206,15 @@
                     <td>
                         <input type="file" name="upFile" onchange="readURL(this);" >
                         <br /><br />
-                        <img id="preview" style="width:300px; height: 400px;"/>
+                        <img id="preview" style="width:300px; height: 400px;"  src="${path }/resources/upload/performance/${photo.get(0).IName}"/>
                     </td>
                 </tr>
                 <tr>
                     <th class="th" scope="row"><b>공연 상세정보</b>
                     <td>
-                        <input type="file" name="upFile2" onchange="readURL2(this);" >
+                        <input type="file" name="upFile2" onchange="readURL2(this);"> 
                         <br /><br />
-                        <img id="preview2" style="width:300px; height: 400px;"/>
+                        <img id="preview2" style="width:300px; height: 400px;" src="${path }/resources/upload/performance/${photo.get(1).IName}"/>
                     </td>
                 </tr>
                 
@@ -298,12 +324,14 @@
  				var vipPrice=$("input[name=vipPrice]").val();
  				var rPrice=$("input[name=rPrice]").val();
  				var sPrice=$("input[name=sPrice]").val();
-				
+				var mCode=$("input[name=mCode]").val();
+				console.log(mCode);
  				form.append("mTitle",mTitle);
  				console.log(mTitle);
  				form.append("mType",mType);
  				console.log(mType);
  				form.append("mAge",mAge);
+ 				form.append("mCode",mCode);
  			
 				
 // 				if(mon=="월"){
@@ -344,8 +372,10 @@
 // 				form.append("sun_time2",sun_time2);
 				
  				form.append("daterange",daterange);
+ 				console.log(daterange);
  				form.append("sTime",sTime);
  				form.append("perPlace",perPlace);
+ 				console.log(perPlace);
  				form.append("vipPrice",vipPrice);
  				form.append("rPrice",rPrice);
  				form.append("sPrice",sPrice);
@@ -370,11 +400,10 @@
  				console.log("348"); */
  				
  				
- 				
  				$.ajax({
  					type:"post",
  					enctype:'multipart/form-data',
- 				    url:'${path}/adminPerfor/insertPerformance.do',
+ 				    url:'${path}/adminPerfor/updatePerformance.do',
  				    data:form,
  				    dataType:'json',
  				  
@@ -382,12 +411,13 @@
  				    contentType:false,
  				    cache:false,
  				    success:function(data){
- 				   		alert("공연 등록 성공! 리스트로 돌아갑니다:)");
+ 				   		alert("공연 수정 성공! 리스트로 돌아갑니다:)");
 					 	location.replace("${pageContext.request.contextPath}/adminPerfor/performanceList.do");		
  				    },
  				    error:function(e){
- 				        alert("등록실패, 다시 등록해주세요! ");
- 				       location.replace("${pageContext.request.contextPath}/adminPerfor/performanceAssign.do");
+ 				        alert("수정실패, 다시 시도해주세요! ");
+ 				        console.log(${mCode});
+ 				       //location.replace("${pageContext.request.contextPath}/adminPerfor/performanceList.do");
  				    }
  				});	
  					
