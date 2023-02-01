@@ -74,6 +74,9 @@ public class GoodsController {
 	
 	@RequestMapping("/goodsCart.do")
 	public String goodsCart() {
+		
+		
+		
 		return "/store/cart";
 	}
 	
