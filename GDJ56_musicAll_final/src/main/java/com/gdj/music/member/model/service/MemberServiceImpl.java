@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gdj.music.admin.model.vo.Comment;
 import com.gdj.music.member.model.dao.MemberDao;
 import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.member.model.vo.Terms;
@@ -92,6 +93,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int deleteQ(Question qt) {
 		return dao.deleteQ(session,qt);
+	}
+
+	@Override
+	public Comment adminCommnet(Question q) {
+		return dao.adminComment(session,q);
 	}
 	
 	

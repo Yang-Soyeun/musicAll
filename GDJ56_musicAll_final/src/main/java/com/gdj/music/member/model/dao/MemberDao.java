@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.gdj.music.admin.model.vo.Comment;
 import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.member.model.vo.Terms;
 import com.gdj.music.question.model.vo.Question;
@@ -37,6 +38,8 @@ public interface MemberDao {
 	int updateQ(SqlSessionTemplate session, Question q);
 
 	int deleteQ(SqlSessionTemplate session, Question qt);
+
+	Comment adminComment(SqlSessionTemplate session, Question q);
 
 
 }

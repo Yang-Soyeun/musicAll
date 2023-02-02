@@ -84,6 +84,21 @@ public class AdminQuestionController {
 		   response.getWriter().print(num);
 	   }
 	   
+	   //답변 수정구현
+	   @RequestMapping("/updateComment.do")
+	   public void updateComment(Comment cm,HttpServletResponse response) throws IOException {
+		   System.out.println(cm);
+		   
+		   int result = service.updateComment(cm);
+		   
+		   System.out.println(result);
+		   
+		   
+		   response.getWriter().print(result);
+		   
+		   
+	   }
+	   
 	   
 	   
 	   

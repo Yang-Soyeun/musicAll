@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.gdj.music.admin.model.vo.Comment;
 import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.member.model.vo.Terms;
 import com.gdj.music.question.model.vo.Question;
@@ -85,6 +86,11 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int deleteQ(SqlSessionTemplate session, Question qt) {
 		return session.delete("question.deleteQ",qt);
+	}
+
+	@Override
+	public Comment adminComment(SqlSessionTemplate session, Question q) {
+		return session.selectOne("question.adminComment",q);
 	}
 	
 	

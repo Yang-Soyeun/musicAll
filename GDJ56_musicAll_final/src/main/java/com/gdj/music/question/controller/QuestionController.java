@@ -1,7 +1,6 @@
 package com.gdj.music.question.controller;
 
 import java.io.IOException;
-import java.net.http.HttpResponse;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gdj.music.admin.model.vo.Comment;
 import com.gdj.music.member.model.service.MemberService;
 import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.question.model.vo.Question;
@@ -35,6 +35,7 @@ public class QuestionController {
 		
 	}
 	
+	//1:1문의 등록	
 	@RequestMapping("/insertQ.do") 
 	public void insertq(Question q, HttpSession session, HttpServletResponse response) throws IOException {
 		
@@ -42,7 +43,6 @@ public class QuestionController {
 		q.setMemberNo(m.getMember_No());
 		
 		int qt = service.insertq(q);
-		
 		
 		response.getWriter().print(qt);
 	}
@@ -54,8 +54,11 @@ public class QuestionController {
 		Question q = new Question();
 		q.setQsNo(qsNo);
 		
+		Comment cm = service.adminCommnet(q);
+		
 		Question qt = service.myqDetail(q);
 		
+		mv.addObject("cm",cm);
 		mv.addObject("qt",qt);
 		mv.setViewName("/member/myquestion");
 		
@@ -82,6 +85,8 @@ public class QuestionController {
 	
 		response.getWriter().print(num);
 	}
+	
+	
 	 
 	
 	

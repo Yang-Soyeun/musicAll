@@ -21,7 +21,7 @@
 </colgroup>
 <tbody><tr>
 <th><img src="//ticketimage.interpark.com/TicketImage/Customer/txt_ask2.gif" alt="제목"></th>
-<td><input name="Title" type="text" class="txt w565" value="${qt.qsTitle }" maxlength="200" id="qsTitle" ></td>
+<td><input name="Title" type="text" class="txt w565" value="${qt.qsTitle }" maxlength="200" id="qsTitle" readonly="readonly" ></td>
 </tr>
 
 <tr>
@@ -30,12 +30,12 @@
 </th>
 <td>
 	
-	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="예매문의" <c:if test="${qt.qsHeadTitle eq '예매문의'}">checked</c:if> > 예매문의</span>
-	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="공연문의" <c:if test="${qt.qsHeadTitle eq '공연문의'}">checked</c:if>> 공연문의</span>
-	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="취소/환불/발권" <c:if test="${qt.qsHeadTitle eq '취소/환불/발권'}">checked</c:if>> 취소/환불/발권</span>
-	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="포인트문의" <c:if test="${qt.qsHeadTitle eq '포인트문의'}">checked</c:if>> 포인트문의</span>
-	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="기타" <c:if test="${qt.qsHeadTitle eq '기타'}">checked</c:if>> 기타</span>
-	
+	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="예매문의" disabled="disabled" <c:if test="${qt.qsHeadTitle eq '예매문의'}">checked</c:if> > 예매문의</span>
+	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="공연문의" disabled="disabled" <c:if test="${qt.qsHeadTitle eq '공연문의'}">checked</c:if>> 공연문의</span>
+	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="취소/환불/발권" disabled="disabled" <c:if test="${qt.qsHeadTitle eq '취소/환불/발권'}">checked</c:if>> 취소/환불/발권</span>
+	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="포인트문의" disabled="disabled" <c:if test="${qt.qsHeadTitle eq '포인트문의'}">checked</c:if>> 포인트문의</span>
+	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="기타" disabled="disabled" <c:if test="${qt.qsHeadTitle eq '기타'}">checked</c:if>> 기타</span>
+강
 </td>
 </tr>
 
@@ -47,12 +47,12 @@
 <tr>
 	<th><img src="//ticketimage.interpark.com/TicketImage/Customer/txt_ask5.gif" alt="내용" ></th>
 <td>
-	<textarea name="Contents" class="w565" style="width: 565px; height: 320px;" id="qsContent" >${qt.qsContent }</textarea>
+	<textarea name="Contents" class="w565" style="width: 565px; height: 320px;" id="qsContent" readonly="readonly" >${qt.qsContent }</textarea>
 </td>
 </tr>
 
 <tr>
-	<th>댓글</th>
+	<th>답변</th>
 	<td>
 		<textarea name="Contents" class="w565" style="width : 565px; height: 100px;" id="comment">${cm.qcAnswer }</textarea>
 	</td>
@@ -94,14 +94,42 @@
 				type : 'post',
 				success : data =>{
 					if(data>0){
-						alert("댓글입력성공");
+						alert("답변입력성공");
+						location.replace("${path}/adminq/answerQ.do?qsNo=${qt.qsNo}");
 					}else{
-						alert("댓글입력실패");
+						alert("답변입력실패");
 					}
 				}
 					
 			});
 		}
+	}
+	
+	//답변 수정하기
+	const bt_recomment=()=>{
+		
+		let d = {
+				qcNo : "${cm.qcNo}",
+				qcAnswer : $("#comment").val()
+		};
+		
+		$.ajax({
+			url : '${path}/adminq/updateComment.do',
+			data : d,
+			type : 'post',
+			success : data=>{
+				
+				if(data>0){
+					alert("답변수정완료!");
+					location.replace("${path}/adminq/answerQ.do?qsNo=${qt.qsNo}");
+				}else{
+					alert("답변수정실패!");
+				}
+				
+				
+ㅋ			}
+		});
+		
 	}
 
 		
