@@ -186,8 +186,8 @@
                 <p>s석:${musical.getSPrice() }원</p>
                 
                 <b class="info">장소</b><p>${musical.getHName() }</p>
-                <button class="go" onclick="location.assign('${path}/adminPerfor/modifyView.do?=mCode=${musical.getMCode()} ')">공연정보 수정</button><br>
-                <button class="go">공연 삭제</button>
+                <button class="go" onclick="location.assign('${path}/adminPerfor/modifyView.do?mCode=${musical.getMCode()} ')">공연정보 수정</button><br>
+                <button class="go" onclick="location.assign('${path}/adminPerfor/deleteView.do?mCode=${musical.getMCode()} ')">공연 삭제</button>
             </div>
         </div>
 

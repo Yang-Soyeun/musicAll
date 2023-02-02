@@ -6,6 +6,8 @@
 
 
 <section>
+<button style="width:80px; height:30px; font-size:20px; margin-top:10px; margin-left:10px;"
+onclick="location.assign('${path}/admin/adminMain.do')">back</button>
   <h1 style="text-align:center; margin-top:20px;">공연 현황</h1>
     <br>
     <div id="assignBox">

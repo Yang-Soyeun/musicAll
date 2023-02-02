@@ -83,13 +83,144 @@ public class AdminPerforController {
 	  @RequestMapping("/modifyView.do")
 	  public String modifyPerformance(Model model,int mCode) {
 		  model.addAttribute("musical",service.selectPerformanceView(mCode));
-		  List<Map<String,Schedule>> s=service.selectSchedule(mCode);
+		  List<Schedule> s=service.selectSchedule2(mCode);
 		  model.addAttribute("schedule",s);
-		  //model.addAttribute("photo",service.get)
-		  return"";
-	  
+		  Map<Object,List<Schedule>> ss=s.stream().collect(
+				  Collectors.groupingBy(s1->s1.getSDay() ));
+		  model.addAttribute("sdayMap",ss);
+		  model.addAttribute("photo",service.selectPhoto(mCode));
+		  model.addAttribute("mCode",mCode);
+		  return"/admin/Perfor/modifyPerformance";
 	  }
 	  
+	  //공연 수정하기
+	  @RequestMapping("/updatePerformance.do")
+	  @ResponseBody
+	  public boolean updatePerformance(int mCode,HttpSession session, @RequestParam(name="upFile0",required = false) MultipartFile upFile,@RequestParam(name="upFile20", required = false) MultipartFile upFile2,
+			  Performance2 Performance,HttpServletResponse response) throws Exception{
+		  
+		  //파일 업로드처리하기
+	      String path=session.getServletContext().getRealPath("/resources/upload/performance/");
+	      
+	      File dir=new File(path);
+	      if(!dir.exists()) dir.mkdirs();
+	      List<PerformancePhoto> files=new ArrayList();
+	      
+	      //썸네일 
+	      //리네임드규칙을 생성하기
+	      if(upFile!=null&&!upFile.isEmpty()) {
+	         String originalFileName=upFile.getOriginalFilename();
+	         String ext=originalFileName.substring(originalFileName.lastIndexOf("."));
+	         //중복되지않는 이름 설정하는 값지정하기
+	         SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+	         int rnd=(int)(Math.random()*10000)+1;
+	         String renameFile=sdf.format(System.currentTimeMillis())+"_"+rnd+ext;
+	         //파일 업로드하기
+	         try {
+	            upFile.transferTo(new File(path+renameFile));
+	            files.add(
+	               PerformancePhoto.builder()
+	               .sumImage("ok")
+	               .iName(renameFile)
+	               .build());
+	         }catch(IOException e) {
+	            e.printStackTrace();
+	         }
+	      }         
+	      //일반사진
+	      //리네임드규칙을 생성하기
+	      if(upFile2!=null&&!upFile2.isEmpty()) {
+	         String originalFileName2=upFile2.getOriginalFilename();
+	         String ext2=originalFileName2.substring(originalFileName2.lastIndexOf("."));
+	         //중복되지않는 이름 설정하는 값지정하기
+	         SimpleDateFormat sdf2=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+	         int rnd2=(int)(Math.random()*10000)+1;
+	         String renameFile2=sdf2.format(System.currentTimeMillis())+"_"+rnd2+ext2;
+	         //파일 업로드하기
+	         try {
+	            upFile2.transferTo(new File(path+renameFile2));
+	            files.add(
+	                  PerformancePhoto.builder()
+	                  .iName(renameFile2)
+	                  .build());
+	            }catch(IOException e) {
+	                  e.printStackTrace();
+	            }               
+	      }
+	      
+	      int hCode=0;//공연장코드 부여 
+	      if(Performance.getPerPlace().equals("예술의 전당")) { 
+	         hCode=1;
+	      }else if(Performance.getPerPlace().equals("블루스퀘어")){
+	         hCode=2;
+	      }
+	      
+	      //공연 기간 split
+	      String str2=Performance.getDaterange();
+	      String[] daterange=str2.split("-");
+	      String startDay=daterange[0];
+	      String endDay=daterange[1];
+	      
+	      System.out.println("시작날"+startDay);
+	      System.out.println("종료날"+endDay);
+	      Performance2 p = Performance.builder()
+	            .mTitle(Performance.getMTitle())
+	            .mType(Performance.getMType())
+	            .mAge(Performance.getMAge())
+	            .mPeriod(startDay)
+	            .mPeriodEnd(endDay)
+	            .hCode(hCode)
+	            .vipPrice(Performance.getVipPrice())
+	            .rPrice(Performance.getRPrice())
+	            .sPrice(Performance.getSPrice())
+	            .build();
+	      
+	      //스케쥴등록하기
+	      List<Schedule>sc=new ArrayList();
+	      String[] perDay = Performance.getPerDay();
+	      //요일별 구분한 반복문
+	      for(String pd:perDay) {
+	         //요일에 지정된 회자 데이터를 파싱처리
+	         //0 : 요일, 1 : 1회차 시작시간, 2: 2회차 시작시간
+	         String[] days=pd.split("-");
+	         //요일별 1회차에 대한 저장
+	         sc.add(Schedule.builder()
+	               .sStartTime(days[1])
+	               .sDay(days[0])
+	               .sTime(Performance.getSTime())
+	               .sNum(1)
+	               .build());
+	//         2회차에 대한 저장
+	         if(days.length>2) {
+	            sc.add(Schedule.builder()
+	                  .sStartTime(days[2])
+	                  .sDay(days[0])
+	                  .sTime(Performance.getSTime())
+	                  .sNum(2)
+	                  .build());
+	         }
+	      }
+	      
+	      int result = service.updatePerformance(p,sc,files);
+	      System.out.println("결과!!:"+result);     
+	      
+	      return result>0;
+	  }
+	  
+	  
+	  
+	  
+	  
+	  //공연 삭제화면 전환하기
+	  @RequestMapping("/deleteView.do")
+	  public ModelAndView deletePerformance(ModelAndView mv,int mCode) {
+		  int result=service.deleteAll(mCode);
+		  mv.addObject("msg",result>0?"삭제완료!":"삭제실패");
+		  mv.addObject("loc","/adminPerfor/performanceList.do");
+		  
+		  mv.setViewName("common/msg");
+		  return mv;
+	  }
 	  
 	  
 
@@ -196,8 +327,12 @@ public class AdminPerforController {
 	      //공연 기간 split
 	      String str2=Performance.getDaterange();
 	      String[] daterange=str2.split("-");
+	      
 	      String startDay=daterange[0];
 	      String endDay=daterange[1];
+	      
+	      System.out.println("시작날"+startDay);
+	      System.out.println("종료날"+endDay);
 	      
 	      
 	      Performance2 p = Performance.builder()
@@ -218,7 +353,7 @@ public class AdminPerforController {
 	      for(String pd:perDay) {
 	         //요일에 지정된 회자 데이터를 파싱처리
 	         //0 : 요일, 1 : 1회차 시작시간, 2: 2회차 시작시간
-	         String[] days=pd.split(",");
+	         String[] days=pd.split("-");
 	         //요일별 1회차에 대한 저장
 	         sc.add(Schedule.builder()
 	               .sStartTime(days[1])

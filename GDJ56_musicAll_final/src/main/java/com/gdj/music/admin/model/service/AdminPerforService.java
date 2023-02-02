@@ -20,5 +20,9 @@ public interface AdminPerforService {
 
 	List<PerformancePhoto> selectPhoto(int mCode);
 
-	
+	int deleteAll(int mCode);
+
+	List<Schedule> selectSchedule2(int mCode);
+
+	int updatePerformance( Performance2 p, List<Schedule> sc,List<PerformancePhoto> files);
 }

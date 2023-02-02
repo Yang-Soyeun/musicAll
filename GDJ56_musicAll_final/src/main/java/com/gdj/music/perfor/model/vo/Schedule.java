@@ -20,6 +20,4 @@ public class Schedule {
 	private int sTime;
 	private int mCode;
 
-	
-
 }
