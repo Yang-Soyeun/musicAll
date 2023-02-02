@@ -13,8 +13,8 @@ public class MyGoods {
 	
 	private int sbCode;
 	private int sbCount;
-	private int gCode;
+	private int gdCode;
 	private int memberNo;
-	private int pCode;
+	private int payCode;
 
 }

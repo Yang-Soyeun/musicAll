@@ -6,9 +6,11 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gdj.music.goods.model.dao.GoodsDao;
 import com.gdj.music.goods.model.vo.Goods;
+import com.gdj.music.goods.model.vo.GoodsCart;
 import com.gdj.music.goods.model.vo.GoodsImg;
 
 @Service
@@ -51,6 +53,27 @@ public class GoodsServiceImpl implements GoodsService {
 	@Override
 	public List<GoodsImg> goodsViewImg(int gdCode) {
 		return dao.goodsViewImg(session, gdCode);
+	}
+
+
+	//장바구니 담기
+	@Override
+	@Transactional
+	public int addCart(GoodsCart ct) {
+		return dao.addCart(session, ct);
+	}
+
+	//장바구니 체크
+	@Override
+	public GoodsCart checkCart(GoodsCart gct) {
+
+		return dao.checkCart(session, gct);
+	}
+
+	//장바구니 리스트
+	@Override
+	public List<GoodsCart> goodsCart(int memberNo) {
+		return dao.goodsCart(session, memberNo);
 	}
 
 }
