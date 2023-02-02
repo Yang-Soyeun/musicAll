@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.gdj.music.perfor.model.vo.Performance;
 import com.gdj.music.reservation.model.dao.ReservationDao;
 import com.gdj.music.reservation.model.vo.Point;
+import com.gdj.music.reservation.model.vo.Reservation;
 import com.gdj.music.reservation.model.vo.Seat;
 @Service
 public class ReservationServiceImpl implements ReservationService {
@@ -116,7 +117,6 @@ public class ReservationServiceImpl implements ReservationService {
 		// TODO Auto-generated method stub
 		return dao.selectWeekSales(session, number);
 	}
-	
 	
 	
 	

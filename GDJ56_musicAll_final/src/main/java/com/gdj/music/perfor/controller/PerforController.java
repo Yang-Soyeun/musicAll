@@ -18,6 +18,7 @@ import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.perfor.model.service.PerformanceService;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.perfor.model.vo.Schedule;
+import com.gdj.music.reservation.model.service.ReservationService;
 
 @Controller
 @RequestMapping("/perfor")
@@ -29,7 +30,7 @@ public class PerforController {
 	  public PerforController(PerformanceService service) {
 		  this.service=service; 
 	  }
-	
+	  
 	//공연 리스트
 	@RequestMapping("/performanceList.do")
 	public ModelAndView performanceList(ModelAndView mv) {
@@ -37,11 +38,17 @@ public class PerforController {
 		mv.setViewName("perfor/performanceList");
 		return mv;
 	}
+	
 	//공연 상세페이지
 	@RequestMapping("/performanceView.do")
 	public String performanceView(Model model, int mCode) {
 		 model.addAttribute("musical",service.selectPerformanceView(mCode));
 		 model.addAttribute("perPhoto",service.selectPhoto(mCode));
+		 model.addAttribute("reservation",service.selectReservation(mCode));
+		 
+		 List<Map<String,Review>> r= service.selectComment(mCode);
+		 model.addAttribute("comment",r);
+		 
 		  //model.addAttribute("schedule",service.selectSchedule(mCode));//스케줄 전체를 가지고 오는 리스트
 		  List<Map<String,Schedule>> s=service.selectSchedule(mCode);
 		  //System.out.println(s);
@@ -58,29 +65,29 @@ public class PerforController {
 	
 	//한줄평 등록
 	@RequestMapping("/insertComment.do")
-	public String insertComment(HttpSession session,String content,int rating) {
+	public String insertComment(Model model,HttpSession session,String ct,int rating,int mCode) {
 		Member m=(Member)session.getAttribute("loginMember");
 		
 		int memberNo=m.getMember_No();
-		System.out.println("내용: "+content);
-		System.out.println("별점밸류값: "+rating);
+		//System.out.println("내용: "+ct);
+		//System.out.println("별점밸류값: "+rating);
+
 		
 		Review r=Review.builder()
-				.reviewContent(content)
+				.reviewContent(ct)
 				.score(rating)
 				.memberNo(memberNo)
+				.mCode(mCode)
 				.build();
 		
-		System.out.println("리뷰데이터 전체:"+r);
+		int result=service.insertComment(r);
 		
 		
-		
-		
-		
-		return null;
+		return "perfor/performanceView";
 		
 	}
 	
+
 	
 	
 	

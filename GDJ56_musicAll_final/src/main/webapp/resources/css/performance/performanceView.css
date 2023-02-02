@@ -133,9 +133,9 @@
            border: solid 1px #D8D8D8;
            border-radius: 20px;
            width: 900px;
-           /* display: none; */
+           display: none; 
            
-           s
+           
         }
         #perInfo{
             margin-left: -540px;

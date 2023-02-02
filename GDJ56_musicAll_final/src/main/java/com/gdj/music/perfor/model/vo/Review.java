@@ -18,5 +18,5 @@ public class Review {
 	private int score;
 	private int memberNo;
 	private int rCode;//예매코드
-
+	private int mCode;
 }
