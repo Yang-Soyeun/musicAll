@@ -61,14 +61,16 @@
 
         <div class="oneComment" style="height:150px;"><!--한줄평 입력하기-->
             <div id="starBox">
-                <form name="myForm2" class="myForm2" method="post" action="${path }/perfor/insertComment.do">
+                <form name="myform" class="myform" method="post" action="${path }/perfor/insertComment.do">
                     <fieldset>
+                    	<input type="radio">
+                    	
                         <legend></legend>
-                        <input type="radio" class="rate1" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
-                        <input type="radio" class="rate1" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
-                        <input type="radio" class="rate1" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
-                        <input type="radio" class="rate1" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
-                        <input type="radio" class="rate1" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
+                        <input type="radio" name="rating" value="5" id="rate6"><label for="rate6">⭐</label>
+                        <input type="radio"  name="rating" value="4" id="rate7"><label for="rate7">⭐</label>
+                        <input type="radio"  name="rating" value="3" id="rate8"><label for="rate8">⭐</label>
+                        <input type="radio"  name="rating" value="2" id="rate9"><label for="rate9">⭐</label>
+                        <input type="radio" name="rating" value="1" id="rate10"><label for="rate10">⭐</label>
                     </fieldset>
                 	<textarea id="commentContainer" name="ct" style="width: 800px; height:90px; border:none; float:left;"
                 	placeholder="별점과 후기를 남겨주세요!"></textarea>
@@ -77,22 +79,22 @@
             </div>
         </div>
         
-        <div class="oneComment" style="height:150px;"><!--한줄평-->
+<!--         <div class="oneComment" style="height:150px;">한줄평
             <div id="starBox">
-                <form name="myForm2" class="myForm2" method="post" action="./save">
+                <form name="myform" class="myform" method="post" action="./save">
                     <fieldset>
                         <legend></legend>
-                        <input type="radio" class="rate1" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
-                        <input type="radio" class="rate1" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
-                        <input type="radio" class="rate1" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
-                        <input type="radio" class="rate1" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
-                        <input type="radio" class="rate1" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
+                        <input type="radio" name="rating" value="5" id="rate11"><label for="rate10">⭐</label>
+                        <input type="radio"  name="rating" value="4" id="rate12"><label for="rate11">⭐</label>
+                        <input type="radio" name="rating" value="3" id="rate13"><label for="rate12">⭐</label>
+                        <input type="radio"  name="rating" value="2" id="rate14"><label for="rate13">⭐</label>
+                        <input type="radio"  name="rating" value="1" id="rate15"><label for="rate14">⭐</label>
                     </fieldset>
-                	<input type="text" id="commentContainer" style="width: 800px; border:none; float:left;">
+                	<input type="text" style="width: 800px; border:none; float:left;">
                  	<p style="font-size:13px;">2023.01.13&nbsp;&nbsp;&nbsp;즐거운 인생</p>
                 </form>
             </div>
-        </div>
+        </div> -->
         <br>
  
     </div>
@@ -108,8 +110,6 @@
             $("#detailInfo").hide();
             $(".oneComment").show();
         })
-        
-
     </script>
 
 

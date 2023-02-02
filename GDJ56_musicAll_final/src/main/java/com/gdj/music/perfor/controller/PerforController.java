@@ -56,10 +56,11 @@ public class PerforController {
 		return "perfor/performanceView";
 	}
 	
-	
+	//한줄평 등록
 	@RequestMapping("/insertComment.do")
 	public String insertComment(HttpSession session,String content,int rating) {
 		Member m=(Member)session.getAttribute("loginMember");
+		
 		int memberNo=m.getMember_No();
 		System.out.println("내용: "+content);
 		System.out.println("별점밸류값: "+rating);
