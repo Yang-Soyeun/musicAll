@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gdj.music.admin.model.service.AdminPerforService;
+import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.perfor.model.service.PerformanceService;
+import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.perfor.model.vo.Schedule;
 
 @Controller
@@ -51,7 +55,36 @@ public class PerforController {
 		  model.addAttribute("schedule",service.selectSchedule(mCode));
 		return "perfor/performanceView";
 	}
-
+	
+	
+	@RequestMapping("/insertComment.do")
+	public String insertComment(HttpSession session,String content,int rating) {
+		Member m=(Member)session.getAttribute("loginMember");
+		int memberNo=m.getMember_No();
+		System.out.println("내용: "+content);
+		System.out.println("별점밸류값: "+rating);
+		
+		Review r=Review.builder()
+				.reviewContent(content)
+				.score(rating)
+				.memberNo(memberNo)
+				.build();
+		
+		System.out.println("리뷰데이터 전체:"+r);
+		
+		
+		
+		
+		
+		return null;
+		
+	}
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/performance.do")
 	public String performance() {
 		return "";
