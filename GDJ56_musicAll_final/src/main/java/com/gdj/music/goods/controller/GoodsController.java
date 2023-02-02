@@ -1,7 +1,10 @@
 package com.gdj.music.goods.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,8 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.gdj.music.common.interceptor.PageFactory;
 import com.gdj.music.goods.model.service.GoodsService;
 import com.gdj.music.goods.model.vo.Goods;
+import com.gdj.music.goods.model.vo.GoodsCart;
 import com.gdj.music.goods.model.vo.MyGoods;
 import com.gdj.music.mypage.model.service.MypageService;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonObject;
 
 @Controller
 @RequestMapping("/goods")
@@ -76,13 +84,37 @@ public class GoodsController {
 	}
 	
 	//장바구니 담기
-//	@RequestMapping("/addCart.do")
-//	public void addCart() {
-//		
-//		
-//		
-//	}
-//	
+	@RequestMapping("/addCart.do")
+	public void addCart(int ctCount, int gdCode, int member_no, HttpServletResponse response) throws IOException {
+
+		int result = 0;
+		
+		//Map<String,Object> gct = Map.of("memberNo", member_no, "gdCode", gdCode);
+		
+		GoodsCart cart=GoodsCart.builder().gdCode(gdCode).memberNo(member_no).build();
+		
+		
+		//중복 확인
+		if(service.checkCart(cart) == null) {
+			
+			GoodsCart ct = GoodsCart.builder()
+				.ctCount(ctCount)
+				.gdCode(gdCode)
+				.memberNo(member_no)
+				.build();
+			
+			result = service.addCart(ct);
+			
+		} else {
+			
+			result = 2;
+			
+		}
+		
+		response.getWriter().print(result);
+		
+	}
+	
 //	@RequestMapping("/goodsCart.do")
 //	public ModelAndView goodsCart(ModelAndView mv) {
 //		
@@ -90,12 +122,6 @@ public class GoodsController {
 //		
 //		return mv;
 //	}
-	
-	@RequestMapping("/goodsCart.do")
-	public String goodsCart() {
-		
-		return "/store/cart";
-	}
 	
 	@RequestMapping("/payEnd.do") 
 	public String payEnd() {

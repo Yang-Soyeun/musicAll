@@ -7,20 +7,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class GoodsPoint {
+@Builder
+public class GoodsCart {
 	
-	private int mpCode;
-	private int mpPrice;
-	private String mpType;
+	private int ctCode;
+	private int ctCount;
+	private int gdCode;
 	private int memberNo;
-	private Date mpDate;
-	private String mpHistory;
-	private int mpPoint;
-	
+	private Date ctDate;
 
 }

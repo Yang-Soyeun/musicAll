@@ -183,7 +183,7 @@
 				    var cartTotal = cart.attr('data-totalitems');
 				    var newCartTotal = parseInt(cartTotal) + 1;
 				    
-				    button.addClass('sendtocart');
+				    /* button.addClass('sendtocart');
 				    
 				    setTimeout(function(){
 				      button.removeClass('sendtocart');
@@ -191,11 +191,11 @@
 				      setTimeout(function(){
 				        cart.removeClass('shake');
 				      },500)
-				    },1000);
+				    },1000); */
 				    
 				    
 				    //장바구니 담기 기능
-				    var sbCount = 1;
+				    var ctCount = 1;
 				    var gdCode = $(this).attr('id');
 				    
 				    console.log(gdCode);
@@ -204,7 +204,7 @@
 				    
 				    let g = {
 				    		
-				    		"sbCount" : sbCount,
+				    		"ctCount" : ctCount,
 				    		"gdCode" : gdCode,
 				    		"member_no" : member_no
 				    		
@@ -217,12 +217,29 @@
 				    	dataType: "json",
 				        success: data=>{
 				        	
-							alert("장바구니에 추가하였습니다.");
-							location.replace("${pageContext.request.contextPath}/goods/goodsMain.do");
-						} ,
-					    error:function(e){
-							alert("추가 실패");
-							
+				        	if(data=='1') {
+				        		
+				        		//장바구니에 추가 성공시 애니메이션
+				        		button.addClass('sendtocart');
+							    
+							    setTimeout(function(){
+							      button.removeClass('sendtocart');
+							      cart.addClass('shake').attr('data-totalitems', newCartTotal);
+							      setTimeout(function(){
+							        cart.removeClass('shake');
+							        setTimeout(function(){
+							        	alert("장바구니에 추가하였습니다.");
+							        },200)
+							      },500)
+							    },1000);
+							    
+								
+								
+				        	} 
+				        	
+						},
+						error: function(){
+							alert("이미 추가된 상품입니다.")
 						}
 					});
 			    
