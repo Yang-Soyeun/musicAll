@@ -59,5 +59,10 @@ public class GoodsDaoImpl implements GoodsDao {
 		return session.selectOne("goods.checkCart", gct);
 	}
 	
+	//장바구니 리스트
+	public List<GoodsCart> goodsCart(SqlSessionTemplate session, int memberNo) {
+		return session.selectList("goods.selectCart", memberNo);
+	}
+	
 
 }

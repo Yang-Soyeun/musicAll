@@ -18,5 +18,7 @@ public class GoodsCart {
 	private int gdCode;
 	private int memberNo;
 	private Date ctDate;
+	
+	private Goods goods;
 
 }

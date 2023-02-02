@@ -30,5 +30,8 @@ public interface GoodsDao {
 	
 	//장바구니 체크
 	GoodsCart checkCart(SqlSessionTemplate session, GoodsCart gct);
+	
+	//장바구니 리스트
+	List<GoodsCart> goodsCart(SqlSessionTemplate session, int memberNo);
 
 }

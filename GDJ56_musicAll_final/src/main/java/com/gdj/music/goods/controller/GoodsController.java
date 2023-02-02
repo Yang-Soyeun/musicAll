@@ -115,13 +115,22 @@ public class GoodsController {
 		
 	}
 	
-//	@RequestMapping("/goodsCart.do")
-//	public ModelAndView goodsCart(ModelAndView mv) {
-//		
-//		//List<MyGoods> goods = service.myGoodsList();
-//		
-//		return mv;
-//	}
+	//장바구니 페이지 리스트
+	@RequestMapping("/goodsCart.do")
+	public ModelAndView goodsCart(ModelAndView mv, int memberNo) {
+		
+		List<GoodsCart> goods = service.goodsCart(memberNo);
+		
+		//List<GoodsCart> goods = service.goodsL(gdCode);
+		System.out.println(goods);
+		mv.addObject("goodsCt", goods);
+		//mv.addObject("goods", goods);
+		mv.setViewName("/store/cart");
+		
+		return mv;
+	}
+	
+	
 	
 	@RequestMapping("/payEnd.do") 
 	public String payEnd() {

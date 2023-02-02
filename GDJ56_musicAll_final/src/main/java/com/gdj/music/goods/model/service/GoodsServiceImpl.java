@@ -66,16 +66,14 @@ public class GoodsServiceImpl implements GoodsService {
 	//장바구니 체크
 	@Override
 	public GoodsCart checkCart(GoodsCart gct) {
-		
-		
+
 		return dao.checkCart(session, gct);
 	}
 
 	//장바구니 리스트
 	@Override
 	public List<GoodsCart> goodsCart(int memberNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.goodsCart(session, memberNo);
 	}
 
 }

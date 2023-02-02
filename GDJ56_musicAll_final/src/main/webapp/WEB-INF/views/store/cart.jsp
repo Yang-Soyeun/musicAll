@@ -29,6 +29,8 @@
               </div>
             </div>
             <hr class="divider-w pt-20">
+            
+            <!-- 장바구니 리스트 출력 -->
             <div class="row">
               <div class="col-sm-12">
                 <table class="table table-striped table-border checkout-table">
@@ -41,16 +43,21 @@
                       <th>총 금액</th>
                       <th></th>
                     </tr>
+                    
+			        <c:if test="${not empty goodsCt }">
+						<c:forEach var="g" items="${goodsCt }">
                     <tr>
-                      <td class="hidden-xs"><a href="#"><img src="${path }/resources/images/store/goods.jpg" alt="Accessories Pack"/></a></td>
+                      <td class="hidden-xs">
+                      	<a href="#"><img src="${path }/resources/images/store/goods.jpg" alt="Accessories Pack"/></a>
+                      </td>
                       <td>
-                        <h5 class="product-title font-alt">2021 라흐마니노프 가죽 키링</h5>
+                        <h5 class="product-title font-alt"><c:out value="${g.goods.gdName }"/></h5>
                       </td>
                       <td class="hidden-xs">
-                        <h5 class="product-title font-alt">15,000원</h5>
+                        <h5 class="product-title font-alt"><c:out value="${g.goods.gdPrice }"/></h5>
                       </td>
                       <td>
-                        <input class="form-control" type="number" name="" value="1" max="50" min="1"/>
+                        <input class="form-control" type="number" name="" value="${g.ctCount }" max="50" min="1"/>
                       </td>
                       <td>
                         <h5 class="product-title font-alt">15,000원</h5>
@@ -60,10 +67,15 @@
                       	<button class="btn btn-danger btn-round btn-sm" type="submit" style="margin: 2%;">나중에 구매</button>
                       </td>
                     </tr>
+	                    </c:forEach>
+					</c:if>
+					
                   </tbody>
                 </table>
               </div>
             </div>
+            
+		 
             <div class="row" >
               <div class="col-sm-3 col-sm-offset-3" style="float:right;">
                 <div class="form-group">
