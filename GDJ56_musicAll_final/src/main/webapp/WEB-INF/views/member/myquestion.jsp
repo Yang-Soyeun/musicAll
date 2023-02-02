@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp">
@@ -50,6 +51,16 @@
 	<textarea name="Contents" class="w565" style="width: 565px; height: 320px;" id="qsContent" >${qt.qsContent }</textarea>
 </td>
 </tr>
+<c:if test="${not empty cm.qcAnswer }">
+<tr>
+	<th>답변(관리자)<br>
+	<fmt:formatDate value="${cm.qcDate }" type="both" pattern="yyyy-MM-dd hh:mm:ss"/>
+	</th>
+	<td>
+		<div id="adminComment">${cm.qcAnswer }</div>	
+	</td>
+</tr>
+</c:if>
 </tbody></table>
 
 <div class="ASKbtn" id="divWriteForm" style="display:block; margin-left: 33%;" >

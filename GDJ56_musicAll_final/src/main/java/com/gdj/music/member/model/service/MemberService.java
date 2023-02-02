@@ -2,6 +2,7 @@ package com.gdj.music.member.model.service;
 
 import java.util.List;
 
+import com.gdj.music.admin.model.vo.Comment;
 import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.member.model.vo.Terms;
 import com.gdj.music.question.model.vo.Question;
@@ -35,6 +36,8 @@ public interface MemberService {
 	int updateQ(Question q);
 
 	int deleteQ(Question qt);
+
+	Comment adminCommnet(Question q);
 
 
 }

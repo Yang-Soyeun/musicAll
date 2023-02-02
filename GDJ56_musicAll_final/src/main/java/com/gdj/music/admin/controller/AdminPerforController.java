@@ -160,8 +160,9 @@ public class AdminPerforController {
 	      String[] daterange=str2.split("-");
 	      String startDay=daterange[0];
 	      String endDay=daterange[1];
-	   
 	      
+	      System.out.println("시작날"+startDay);
+	      System.out.println("종료날"+endDay);
 	      Performance2 p = Performance.builder()
 	            .mTitle(Performance.getMTitle())
 	            .mType(Performance.getMType())
@@ -211,11 +212,14 @@ public class AdminPerforController {
 	  
 	  
 	  //공연 삭제화면 전환하기
-	  public boolean deletePerformance(Model model,int mCode) {
+	  @RequestMapping("/deleteView.do")
+	  public ModelAndView deletePerformance(ModelAndView mv,int mCode) {
 		  int result=service.deleteAll(mCode);
-		  model.addAttribute("msg","삭제완료! 메인으로 돌아갑니다");
-		  model.addAttribute("loc","/admin/Perfor/adminPerformanceList");
-		  return result>0;
+		  mv.addObject("msg",result>0?"삭제완료!":"삭제실패");
+		  mv.addObject("loc","/adminPerfor/performanceList.do");
+		  
+		  mv.setViewName("common/msg");
+		  return mv;
 	  }
 	  
 	  
@@ -323,8 +327,12 @@ public class AdminPerforController {
 	      //공연 기간 split
 	      String str2=Performance.getDaterange();
 	      String[] daterange=str2.split("-");
+	      
 	      String startDay=daterange[0];
 	      String endDay=daterange[1];
+	      
+	      System.out.println("시작날"+startDay);
+	      System.out.println("종료날"+endDay);
 	      
 	      
 	      Performance2 p = Performance.builder()

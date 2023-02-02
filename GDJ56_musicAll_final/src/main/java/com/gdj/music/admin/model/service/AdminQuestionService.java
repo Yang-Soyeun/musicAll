@@ -19,6 +19,8 @@ public interface AdminQuestionService {
 	int commentYN(Comment c);
 
 	Comment commentList(Question q);
+
+	int updateComment(Comment cm);
 	
 	
 }
