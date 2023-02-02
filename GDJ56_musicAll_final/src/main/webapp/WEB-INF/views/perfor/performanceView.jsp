@@ -42,9 +42,9 @@
                 <p>r석:${musical.getRPrice() }원</p>
                 <p>s석:${musical.getSPrice() }원</p>
                 <b class="info">장소</b><p>${musical.getHName() }</p><br><br>
-                <button class="btn btn-danger" id="go1" onclick="location.href='${path}/booking/bookingview.do'">예매하러 가기</button><br>
-                <button class="btn btn-danger" id="go2">관심공연 등록</button>
-                
+                <button class="btn btn-danger" id="go1" onclick="location.href='${path}/booking/bookingview.do?mCode=${musical.getMCode()} '">예매하러 가기</button><br>
+                <button class="btn btn-danger" id="go2">관심공연 등록</button>m
+          
             </div>
         </div>
 

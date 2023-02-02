@@ -64,13 +64,13 @@ public class ReservationController {
 		}
 		//썸네일 조회
 		String img = service.selectImg(mCode);
-	
+		
 		//요일 중복제거
 		model.addAttribute("day",day.stream().distinct().collect(Collectors.toList()));
 		model.addAttribute("mCode",mCode);
 		model.addAttribute("performance",p);
 		model.addAttribute("img",img);
-		System.out.println(p);
+		
 		return "reservation/bookingView";
 	}
 	
