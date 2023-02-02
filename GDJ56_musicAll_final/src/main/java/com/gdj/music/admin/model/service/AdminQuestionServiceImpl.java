@@ -53,6 +53,11 @@ public class AdminQuestionServiceImpl implements AdminQuestionService {
 	public Comment commentList(Question q) {
 		return dao.commnetList(session, q);
 	}
+
+	@Override
+	public int updateComment(Comment cm) {
+		return dao.updateComment(session,cm);
+	}
 	
 	
 	

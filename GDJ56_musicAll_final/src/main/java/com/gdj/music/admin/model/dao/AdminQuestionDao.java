@@ -22,4 +22,6 @@ public interface AdminQuestionDao {
 
 	Comment commnetList(SqlSessionTemplate session, Question q);
 
+	int updateComment(SqlSessionTemplate session, Comment cm);
+
 }

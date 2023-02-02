@@ -44,6 +44,12 @@ public class AdminQuestionDaoImpl implements AdminQuestionDao {
 		return session.selectOne("adminQ.commentList",q);
 	}
 
+	@Override
+	public int updateComment(SqlSessionTemplate session, Comment cm) {
+		return session.update("adminQ.updateCommnet",cm);
+	}
+
+	
 	
 	
 }

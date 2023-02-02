@@ -424,10 +424,6 @@ public class MypageController {
 		mv.addObject("pageBarRv",PageFactory.searchPage(cPage,numPerpage,totalData,"myContentList.do",member_No));//한줄평 페이지바
 		
 		
-		
-		
-		
-		
 		mv.setViewName("mypage/myContentList");
 		return mv;
 	}
