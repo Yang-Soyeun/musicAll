@@ -77,7 +77,7 @@
 						console.log(data);
 						if(data>0){
 							alert("글 등록이 완료되었습니다.");
-							location.href ="${path}/" ; 
+							location.href ="${path}/mypage/myContentList.do" ; 
 						}
 					}			
 				});
