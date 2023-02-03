@@ -8,6 +8,8 @@
  	<jsp:param name="title" value="MainPage"/>
 </jsp:include>
 
+<link rel="stylesheet" type="text/css" href="${path }/resources/css/store/single_styles.css">
+
 <style>
 		.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
 			vertical-align: inherit;
@@ -25,6 +27,20 @@
         <section class="module">
           <div class="container">
             <div class="row">
+            <div class="col">
+
+				<!-- Breadcrumbs -->
+
+				<div class="breadcrumbs d-flex flex-row align-items-center">
+					<ul>
+						<li><a href="${path }">Home</a></li>
+						<li><a href="${path }/goods/goodsMain.do"><i class="fa fa-angle-right" aria-hidden="true"></i>굿즈 스토어</a></li>
+						<li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>장바구니</a></li>
+					</ul>
+					
+				</div>
+				
+			</div>
               <div class="col-sm-6 col-sm-offset-3">
                 <h1 class="module-title font-alt">장바구니</h1>
               </div>
@@ -84,6 +100,23 @@
                     	
 	                    </c:forEach>
 					</c:if>
+					<c:if test="${empty goodsCt }" >
+						<tr>
+	            			<td colspan="6" style="text-align: center;">
+								<div class="product-item men" style="width:100%;cursor: initial; padding: 2%;">
+									<h5 style="color:lightslategray;font-weight: bolder;font-size:14px;">등록된 상품이 없습니다. 상품을 담으러 가시겠습니까?</h5>
+									<button class="btn btn-danger btn-round" type="button" style="margin-top:20px;font-size:14px;"
+										onclick="location.assign('${path }/goods/goodsMain.do');">
+									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16"
+													style="margin-bottom: -2%; margin-right: 3%;">
+										<path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+										<path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+									</svg> 굿즈 쇼핑하러 가기 
+									</button>
+								</div>
+							</td>
+	            		</tr>
+					</c:if>
 					
                   </tbody>
                 </table>
@@ -94,7 +127,7 @@
             <div class="row" >
               <div class="col-sm-3 col-sm-offset-3" style="float:right;">
                 <div class="form-group">
-                  <button class="btn btn-block btn-round btn-d pull-right" type="submit" style="margin-bottom: 6%;">변경</button>
+                  <button class="btn btn-block btn-round btn-d pull-right" type="submit" style="margin-bottom: 7%;">변경</button>
                 </div>
               </div>
             </div>
@@ -102,7 +135,7 @@
             <div class="row mt-70">
               <div class="col-sm-5 col-sm-offset-7">
                 <div class="shop-Cart-totalbox">
-                  <h4 class="font-alt">최종 현황</h4>
+                  <h4 class="font-alt">전체</h4>
                   <table class="table table-striped table-border checkout-table">
                     <tbody>
                       <tr>
