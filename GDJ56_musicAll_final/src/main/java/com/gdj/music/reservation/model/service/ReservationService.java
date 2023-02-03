@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.gdj.music.perfor.model.vo.Performance;
 import com.gdj.music.reservation.model.vo.Point;
+import com.gdj.music.reservation.model.vo.Reservation;
 
 public interface ReservationService {
 	
@@ -21,4 +22,5 @@ public interface ReservationService {
 	int countTotalSales();
 	Integer selectTotalSales();
 	Integer selectWeekSales(int number);
+	
 }

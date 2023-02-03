@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.gdj.music.perfor.model.vo.Performance;
 import com.gdj.music.reservation.model.vo.Point;
+import com.gdj.music.reservation.model.vo.Reservation;
 
 public interface ReservationDao {
 
@@ -24,4 +25,5 @@ public interface ReservationDao {
 	int countTotalSales(SqlSessionTemplate session);
 	Integer selectTotalSales(SqlSessionTemplate session);
 	Integer selectWeekSales(SqlSessionTemplate session, int number);
+
 }

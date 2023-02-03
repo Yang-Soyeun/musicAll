@@ -6,12 +6,15 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gdj.music.admin.model.dao.AdminPerforDao;
 import com.gdj.music.perfor.model.dao.PerformanceDao;
 import com.gdj.music.perfor.model.vo.Performance2;
 import com.gdj.music.perfor.model.vo.PerformancePhoto;
+import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.perfor.model.vo.Schedule;
+import com.gdj.music.reservation.model.vo.Reservation;
 
 @Service
 public class PerformanceServiceImpl implements PerformanceService{
@@ -40,6 +43,26 @@ public class PerformanceServiceImpl implements PerformanceService{
 	}
 	@Override
 	public List<Map<String, Schedule>> selectSchedule(int mCode) {
-		return session.selectList("p_schedule.selectSchedule",mCode);
+		return dao.selectSchedule(session,mCode);
+	}
+	@Override
+	public List<Reservation> selectReservation(int mCode) {
+		return dao.selectReservation(session,mCode);
+	}
+	@Override
+	@Transactional
+	public int insertComment(Review r) {
+		int rCode=dao.selectRcode(session,r);
+		System.out.println("알코드"+rCode);
+		if(rCode>0) {
+			rCode= r.getRCode();
+		}
+		int result=dao.insertComment(session, r);
+		return result;
+	}
+	
+	@Override
+	public List<Map<String,Review>> selectComment(int mCode) {
+		return dao.selectComment(session,mCode);
 	}
 }
