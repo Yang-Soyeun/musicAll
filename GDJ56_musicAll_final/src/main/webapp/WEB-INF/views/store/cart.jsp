@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp">
@@ -44,29 +45,43 @@
                       <th></th>
                     </tr>
                     
+                    <!-- 상품 개수, 가격 합산 -->
+                    <c:set var = "sumgoods" value = "0" />
+                    <c:set var = "sumprice" value = "0" />
+                    
 			        <c:if test="${not empty goodsCt }">
 						<c:forEach var="g" items="${goodsCt }">
                     <tr>
                       <td class="hidden-xs">
-                      	<a href="#"><img src="${path }/resources/images/store/goods.jpg" alt="Accessories Pack"/></a>
+                      <c:if test="${not empty img }">
+                		<c:forEach var="i" items="${img }">
+	                		<c:if test="${i.gdCode == g.gdCode }">
+                      			<a href="#"><img src="${path }/resources/upload/goods/${i.imName}" alt="Accessories Pack"/></a>
+                      		</c:if>
+                      	</c:forEach>
+                      </c:if>
                       </td>
                       <td>
                         <h5 class="product-title font-alt"><c:out value="${g.goods.gdName }"/></h5>
                       </td>
                       <td class="hidden-xs">
-                        <h5 class="product-title font-alt"><c:out value="${g.goods.gdPrice }"/></h5>
+                        <h5 class="product-title font-alt"><fmt:formatNumber value="${g.goods.gdPrice }" pattern="#,###" />원</h5>
                       </td>
                       <td>
-                        <input class="form-control" type="number" name="" value="${g.ctCount }" max="50" min="1"/>
+                        <input class="form-control" id="quantity_value" type="number" name="" value="${g.ctCount }" max="50" min="1"/>
                       </td>
                       <td>
-                        <h5 class="product-title font-alt">15,000원</h5>
+                        <h5 class="product-title font-alt"><fmt:formatNumber value="${g.goods.gdPrice }" pattern="#,###" />원</h5>
                       </td>
                       <td class="pr-remove">
-                      	<button class="btn btn-round btn-g btn-sm" type="submit" style="margin: 2%;">구매하기</button><br>
+                      	<button class="btn btn-round btn-g btn-sm" id="${g.gdCode }" type="submit" style="margin: 2%;" onclick="location.assign('${path }/goods/goodsPay.do?gdCode=${g.gdCode }&member_no=${loginMember.member_No }&gdCount=${g.ctCount }')">구매하기</button><br>
                       	<button class="btn btn-danger btn-round btn-sm" type="submit" style="margin: 2%;">나중에 구매</button>
                       </td>
                     </tr>
+                    
+                    	<c:set var= "sumgoods" value="${sumgoods + 1 }"/>
+                    	<c:set var= "sumprice" value="${sumprice + g.goods.gdPrice }"/>
+                    	
 	                    </c:forEach>
 					</c:if>
 					
@@ -87,24 +102,20 @@
             <div class="row mt-70">
               <div class="col-sm-5 col-sm-offset-7">
                 <div class="shop-Cart-totalbox">
-                  <h4 class="font-alt">장바구니</h4>
+                  <h4 class="font-alt">최종 현황</h4>
                   <table class="table table-striped table-border checkout-table">
                     <tbody>
                       <tr>
-                        <th>개별 금액 :</th>
-                        <td>15,000원</td>
-                      </tr>
-                      <tr>
-                        <th>장바구니 상품 개수 :</th>
-                        <td>0</td>
+                        <th>장바구니 상품 개수</th>
+                        <td><c:out value="${sumgoods }"/></td>
                       </tr>
                       <tr class="shop-Cart-totalprice">
-                        <th>총 금액 :</th>
-                        <td>30,000원</td>
+                        <th>총 금액</th>
+                        <td><fmt:formatNumber value="${sumprice }" pattern="#,###" />원</td>
                       </tr>
                     </tbody>
                   </table>
-                  <button class="btn btn-lg btn-block btn-round btn-d" type="submit" onclick="location.assign('${path }/goods/goodsPay.do')">구매하기</button>
+                  <button class="btn btn-lg btn-block btn-round btn-d" type="submit" onclick="location.assign('${path }/goods/goodsPay.do')">전체 구매하기</button>
                 </div>
               </div>
             </div>
@@ -116,6 +127,11 @@
       </div>
       <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
     </main>
+    
+    <script>
+		//수량 변경
+		
+    </script>
     
   </body>
   

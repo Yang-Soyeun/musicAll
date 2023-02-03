@@ -63,6 +63,11 @@ public class GoodsDaoImpl implements GoodsDao {
 	public List<GoodsCart> goodsCart(SqlSessionTemplate session, int memberNo) {
 		return session.selectList("goods.selectCart", memberNo);
 	}
+
+	@Override
+	public int countCart(SqlSessionTemplate session, int memberNo) {
+		return session.selectOne("goods.countCart", memberNo);
+	}
 	
 
 }

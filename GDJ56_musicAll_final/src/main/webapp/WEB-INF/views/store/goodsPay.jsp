@@ -75,7 +75,7 @@
 				</div>
 				<c:forEach var="i" items="${img }">
        				<c:if test="${i.sumImage.equals('ok') }">
-						<div><img src="${path }/resources/upload/goods/${i.imName }" id="countimg1"></div>
+						<div><img src="${path }/resources/upload/goods/${i.imName }" id="countimg1" style="width: 800px;"></div>
 					</c:if>
 				</c:forEach>			
 			</div>

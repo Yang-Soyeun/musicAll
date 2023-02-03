@@ -76,4 +76,10 @@ public class GoodsServiceImpl implements GoodsService {
 		return dao.goodsCart(session, memberNo);
 	}
 
+
+	@Override
+	public int countCart(int memberNo) {
+		return dao.countCart(session, memberNo);
+	}
+
 }
