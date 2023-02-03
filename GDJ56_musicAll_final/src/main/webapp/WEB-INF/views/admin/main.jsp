@@ -24,7 +24,8 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="index.html"></a>
+        <a class="navbar-brand" href="${path }">musicAll</a>
+      
 		
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -172,7 +173,7 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="${path}/adminPerfor/performanceList.do">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">공연관리</span>
                <i class="menu-arrow"></i>
@@ -205,7 +206,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts" onclick="location.assign('${path}/member/memberList.do');">
               <i class="icon-head menu-icon"></i>
               <span class="menu-title">회원관리</span>
               <i class="menu-arrow"></i>

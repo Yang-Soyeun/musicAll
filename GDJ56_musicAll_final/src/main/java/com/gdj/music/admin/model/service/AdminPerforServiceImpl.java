@@ -12,6 +12,7 @@ import com.gdj.music.admin.model.dao.AdminPerforDao;
 import com.gdj.music.perfor.model.vo.Performance;
 import com.gdj.music.perfor.model.vo.Performance2;
 import com.gdj.music.perfor.model.vo.PerformancePhoto;
+import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.perfor.model.vo.Schedule;
 
 @Service
@@ -107,6 +108,14 @@ public class AdminPerforServiceImpl implements AdminPerforService{
 		}
 		return result;
 	}
-	
+	@Override
+	public List<Map<String, Review>> selectComment(int mCode) {
+		return dao.selectComment(session,mCode);
+	}
+	@Override
+	public int selectAverage(int mCode) {
+		// TODO Auto-generated method stub
+		return dao.selectAverage(session,mCode);
+	}
 	
 }

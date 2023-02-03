@@ -60,20 +60,10 @@
                             </li>
                         </ul>
                     </div>
-                    <!-- <div class="col-md-6 pb-4" style="float: left;">
-                        <div class="d-flex">
-                            <select class="form-control">
-                                <option>바로 가기</option>
-                                <option>장바구니</option>
-                                <option>구매내역</option>
-                            </select>
-                        </div>
-                        
-                    </div> -->
                 </div>
                 
                <div id="cart" class="cart" data-totalitems="0" style="float: right;">
-				  <button type="button" class="btn btn-secondary" onclick="location.assign('${path }/goods/goodsCart.do')">
+				  <button type="button" class="btn btn-secondary" onclick="location.assign('${path }/goods/goodsCart.do?memberNo=${loginMember.member_No }')">
 		                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
 						  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
 						</svg>
@@ -89,7 +79,7 @@
 	                        	<div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center"
 	                        			style="height: 73px;">
 	                                <ul class="list-unstyled">
-	                                   <li><a href="${path }/goods/goodsView.do?gdCode=${g.gdCode }" class="h3 text-decoration-none"><c:out value="${g.gdName }"/></a></li>
+	                                   <li><a href="${path }/goods/goodsView.do?gdCode=${g.gdCode }&memberNo=${loginMember.member_No }" class="h3 text-decoration-none"><c:out value="${g.gdName }"/></a></li>
 	                                   
 	                                </ul>
 	                            </div>
@@ -119,7 +109,7 @@
 	                                <div class="card-body-1">
 		                                
 										<div class="page-wrapper">
-										  <a><button class="addtocart">
+										  <a><button class="addtocart" id="${g.gdCode }">
 											  <span class="cart-item">
 											    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
 													<path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
@@ -167,25 +157,77 @@
 		var $js = jQuery.noConflict();
 		
 		$(document).ready(function(){
+			
+			//장바구니 개수 출력
+			var cart = $('#cart');
+			var cartTotal = cart.attr('data-totalitems', '${total}');
+	
+			//장바구니 클릭 이벤트
 			  $('.addtocart').on('click',function(){
+				 
+				//로그인 x  
+				<c:if test="${loginMember==null }">
+					alert("로그인 후 이용해주세요.");
+				</c:if>
 			    
-			    var button = $(this);
-			    var cart = $('#cart');
-			    var cartTotal = cart.attr('data-totalitems');
-			    var newCartTotal = parseInt(cartTotal) + 1;
+				//로그인 o
+				<c:if test="${loginMember!=null }">
+				    var button = $(this);
+				    /* var cart = $('#cart');
+				    var cartTotal = cart.attr('data-totalitems'); */
+				    var newCartTotal = ${total} + 1;
+
+				    //장바구니 담기 기능
+				    var ctCount = 1;
+				    var gdCode = $(this).attr('id');
+				    
+				    console.log(gdCode);
+				    
+				    var member_no = ${loginMember.member_No };
+				    
+				    let g = {
+				    		
+				    		"ctCount" : ctCount,
+				    		"gdCode" : gdCode,
+				    		"member_no" : member_no
+				    		
+				    };
+				    
+				    $.ajax({
+				    	url: "${path}/goods/addCart.do",
+				    	data: g,
+				    	type: "post",
+				    	dataType: "json",
+				        success: data=>{
+				        	
+				        	if(data=='1') {
+				        		
+				        		//장바구니에 추가 성공시 애니메이션
+				        		button.addClass('sendtocart');
+							    
+							    setTimeout(function(){
+							      button.removeClass('sendtocart');
+							      //장바구니 개수 변경
+							      cart.addClass('shake').attr('data-totalitems', newCartTotal);
+							      setTimeout(function(){
+							        cart.removeClass('shake');
+							        setTimeout(function(){
+							        	//성공시
+							        	alert("장바구니에 추가하였습니다.");
+							        },200)
+							      },500)
+							    },1000);
+				        	} 
+						},
+						error: function(){
+							alert("이미 추가된 상품입니다.")
+						}
+					});
 			    
-			    button.addClass('sendtocart');
-			    setTimeout(function(){
-			      button.removeClass('sendtocart');
-			      cart.addClass('shake').attr('data-totalitems', newCartTotal);
-			      setTimeout(function(){
-			        cart.removeClass('shake');
-			      },500)
-			    },1000)
+			    </c:if>
 			    
-			    
-			    
-			  })
+			  });
+			
 			})
 	</script>
 

@@ -7,7 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.gdj.music.goods.model.vo.Goods;
+import com.gdj.music.goods.model.vo.GoodsCart;
 import com.gdj.music.goods.model.vo.GoodsImg;
+import com.gdj.music.goods.model.vo.MyGoods;
 
 public interface GoodsDao {
 	
@@ -22,5 +24,17 @@ public interface GoodsDao {
 	Goods goodsView(SqlSessionTemplate session, int gdCode);
 	
 	List<GoodsImg> goodsViewImg(SqlSessionTemplate session, int gdCode);
+	
+	//장바구니 담기
+	int addCart(SqlSessionTemplate session, GoodsCart ct);
+	
+	//장바구니 체크
+	GoodsCart checkCart(SqlSessionTemplate session, GoodsCart gct);
+	
+	//장바구니 리스트
+	List<GoodsCart> goodsCart(SqlSessionTemplate session, int memberNo);
+	
+	//장바구니 개수
+	int countCart(SqlSessionTemplate session, int memberNo);
 
 }

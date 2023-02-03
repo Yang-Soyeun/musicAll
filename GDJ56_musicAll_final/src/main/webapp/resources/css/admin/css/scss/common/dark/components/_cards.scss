@@ -114,11 +114,11 @@
     }
   }
 
-  &.card-light-yellow {
+    &.card-light-danger {
     background: $card-light-danger;
     color: $white;
     &:hover {
-      background: lighten($card-light-yellow, 5%)
+      background: lighten($card-light-danger, 5%)
     }
   }
 }

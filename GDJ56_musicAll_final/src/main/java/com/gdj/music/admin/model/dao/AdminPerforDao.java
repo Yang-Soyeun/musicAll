@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.gdj.music.perfor.model.vo.Performance;
 import com.gdj.music.perfor.model.vo.Performance2;
 import com.gdj.music.perfor.model.vo.PerformancePhoto;
+import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.perfor.model.vo.Schedule;
 
 public interface AdminPerforDao {
@@ -41,6 +42,10 @@ public interface AdminPerforDao {
 	int deletePhoto(SqlSessionTemplate session, int mCode);
 
 	int deleteSchedule(SqlSessionTemplate session, int mCode);
+
+	List<Map<String, Review>> selectComment(SqlSessionTemplate session, int mCode);
+
+	int selectAverage(SqlSessionTemplate session, int mCode);
 	
 	
 }

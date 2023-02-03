@@ -26,6 +26,7 @@
 <style>
 	#addtocart, #buy {border: none; background-color: transparent; color: white;}
 	.btn {padding: 8px 14px;}
+	.addtocart{background-color: transparent; border: none; color: white;}
 	.d-flex {display: flex!important;}
 	.justify-content-center {justify-content: center!important;}
 	.tab_container {margin-left: 10%; margin-right: -14%;}
@@ -57,7 +58,7 @@
 					</ul>
 					
 					<div id="cart" class="cart" data-totalitems="0" style="float: right; margin-top: -1%; margin-left: 70%;">
-					  	<button type="button" class="btn btn-secondary" onclick="location.assign('${path }/goods/goodsCart.do')">
+					  	<button type="button" class="btn btn-secondary" onclick="location.assign('${path }/goods/goodsCart.do?memberNo=${loginMember.member_No }')">
 			                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
 							  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
 							</svg>
@@ -122,7 +123,7 @@
 										
 										<div class="red_button add_to_cart_button">
 											
-											<button id="addtocart">add to cart</button>
+											<button class="addtocart">add to cart</button>
 										</div>
 										<!-- <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div> -->
 									</div>
@@ -275,25 +276,64 @@
    	<!-- script -->
    	<script>
 		var $js = jQuery.noConflict();
-		
-		$(document).ready(function(){
-			  $('#addtocart').on('click',function(){
-			    
-			    var button = $(this);
-			    var cart = $('#cart');
-			    var cartTotal = cart.attr('data-totalitems');
-			    var newCartTotal = parseInt(cartTotal) + 1;
-			    
-			    button.addClass('sendtocart');
-			    setTimeout(function(){
-			      button.removeClass('sendtocart');
-			      cart.addClass('shake').attr('data-totalitems', newCartTotal);
-			      setTimeout(function(){
-			        cart.removeClass('shake');
-			      },500)
-			    },1000)
-			  })
-			})
+			
+		//장바구니 개수 출력
+		var cart = $('#cart');
+		var cartTotal = cart.attr('data-totalitems', '${total}');
+
+		//장바구니 클릭 이벤트
+	  $('.addtocart').on('click',function(){
+		 
+		//로그인 x  
+		<c:if test="${loginMember==null }">
+			alert("로그인 후 이용해주세요.");
+		</c:if>
+	    
+		//로그인 o
+		<c:if test="${loginMember!=null }">
+		    //var button = $(this);
+		    var newCartTotal = ${total} + 1;
+
+		    //장바구니 담기 기능
+		    var ctCount = $('#quantity_value').text();
+		 
+		    $.ajax({
+		    	url: "${path}/goods/addCart.do",
+		    	data: {"ctCount" : ctCount, "gdCode" : ${goods.gdCode }, "member_no" : ${loginMember.member_No }},
+		    	type: "post",
+		    	dataType: "json",
+		        success: data=>{
+		        	
+		        	console.log(data);
+		        	
+		        	if(data=='1') {
+		        		
+		        		//장바구니에 추가 성공시 애니메이션
+		        		//button.addClass('sendtocart');
+					    
+					    setTimeout(function(){
+					      //button.removeClass('sendtocart');
+					      //장바구니 개수 변경
+					      cart.addClass('shake').attr('data-totalitems', newCartTotal);
+					      setTimeout(function(){
+					        cart.removeClass('shake');
+					        setTimeout(function(){
+					        	//성공시
+					        	alert("장바구니에 추가하였습니다.");
+					        },200)
+					      },500)
+					    },1000);
+		        	} 
+				},
+				error: function(){
+					alert("이미 추가된 상품입니다.");
+				}
+			});
+	    
+	    </c:if>
+	    
+	  });
+			
 		
 		//구매 페이지로 넘기기
 		const buyPage=()=>{
@@ -301,7 +341,7 @@
 			var gdCount = $("#quantity_value").text();
 			
 			//console.log($("#quantity_value").text());
-			//console.log(gdCount);
+			console.log(gdCount);
 			
 			$.ajax({
 				url: "${path }/goods/goodsPay.do",
@@ -315,12 +355,11 @@
 					alert("에러")
 				}
 			});
-			
-			//location.assign('${path }/goods/goodsPay.do?gdCode='+${goods.gdCode }+'&member_no='+${loginMember.member_No });
-			//location.assign('${path }/goods/goodsPay.do?gdCode=${goods.gdCode }&member_no=${loginMember.member_No }&gdCount=gdCount');
-			
+
 			
 		}
+		
+		
 	</script>
 
 </body>

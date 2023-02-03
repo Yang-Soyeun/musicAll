@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.gdj.music.perfor.model.vo.Performance;
 import com.gdj.music.reservation.model.vo.Point;
+import com.gdj.music.reservation.model.vo.Reservation;
 @Repository
 public class ReservationDaoImpl implements ReservationDao {
 

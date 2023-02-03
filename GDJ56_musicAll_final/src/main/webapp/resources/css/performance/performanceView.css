@@ -11,7 +11,7 @@
             text-align: left;
         }
         .myform input[type=radio]{
-            display: none; /* 라디오박스 감춤 */
+            display: none;  /*라디오박스 감춤 */
         }
         .myform label{
             font-size: 1.5em; /* 이모지 크기 */
@@ -133,7 +133,8 @@
            border: solid 1px #D8D8D8;
            border-radius: 20px;
            width: 900px;
-           display: none;
+           display: none; 
+           
            
         }
         #perInfo{
@@ -147,4 +148,10 @@
         }
         #starBox{
         margin-left: 30px;
+        }
+        
+        #commentContainer{
+        	font-size: 16px;
+        	
+        	
         }

@@ -136,12 +136,10 @@ public class AdminGoodsController {
 		
 	
 	
-		int result = service.insertGoods(g, files);
-		System.out.println("결과:"+result);		
-	
+		int result = service.insertGoods(g, files);		
 		
 		
-		return result>0;
+		return result > 0;
 	}
 	
 
