@@ -76,10 +76,16 @@ public class GoodsServiceImpl implements GoodsService {
 		return dao.goodsCart(session, memberNo);
 	}
 
-
+	//장바구니 개수
 	@Override
 	public int countCart(int memberNo) {
 		return dao.countCart(session, memberNo);
+	}
+
+	//장바구니 삭제
+	@Override
+	public int deleteCart(GoodsCart gct) {
+		return dao.deleteCart(session, gct);
 	}
 
 }
