@@ -29,4 +29,8 @@ public interface PerformanceDao {
 
 	List<Map<String,Review>> selectComment(SqlSessionTemplate session,int mCode);
 
+	int selectAverage(SqlSessionTemplate session, int mCode);
+	
+	
+
 }

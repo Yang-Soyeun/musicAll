@@ -6,6 +6,7 @@ import java.util.Map;
 import com.gdj.music.perfor.model.vo.Performance;
 import com.gdj.music.perfor.model.vo.Performance2;
 import com.gdj.music.perfor.model.vo.PerformancePhoto;
+import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.perfor.model.vo.Schedule;
 
 public interface AdminPerforService {
@@ -25,4 +26,8 @@ public interface AdminPerforService {
 	List<Schedule> selectSchedule2(int mCode);
 
 	int updatePerformance( Performance2 p, List<Schedule> sc,List<PerformancePhoto> files);
+
+	List<Map<String, Review>> selectComment(int mCode);
+
+	int selectAverage(int mCode);
 }

@@ -15,7 +15,6 @@
         <br>
         <br>
         <p>라이센스 뮤지컬 - 1위</p>
-        <p>${comment }</p>
         <c:forEach var="r" items="${reservation }">
         <input type="hidden" name="reserNo" value="${r.memberNo }">
         </c:forEach>
@@ -23,13 +22,54 @@
        
         <strong style="font-size:30px;">${musical.getMTitle() }</strong>
         <form name="myform" class="myform" method="post" action="./save">
-            <fieldset>
-                <input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
-                <input type="radio" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
-                <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
-                <input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
-                <input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
-            </fieldset>
+		<br>
+        	<c:choose>
+            	<c:when test="${scoreAverage eq '1'}">
+                	<fieldset>
+                       <input type="radio" name="rating" value="5" id="rate11"><label for="rate10">⭐</label>
+	                   <input type="radio"  name="rating" value="4" id="rate12"><label for="rate11">⭐</label>
+	                   <input type="radio" name="rating" value="3" id="rate13"><label for="rate12">⭐</label>
+	                   <input type="radio"  name="rating" value="2" id="rate14"><label for="rate13">⭐</label>
+	                   <input type="radio"  name="rating" value="1" id="rate15" checked><label for="rate14">⭐</label> 
+                    </fieldset>
+                </c:when>
+                <c:when test="${scoreAverage eq '2'}">
+                     <fieldset>
+                      	<input type="radio" name="rating" value="5" id="rate11"><label for="rate10">⭐</label>
+	                  	<input type="radio"  name="rating" value="4" id="rate12"><label for="rate11">⭐</label>
+	                  	<input type="radio" name="rating" value="3" id="rate13"><label for="rate12">⭐</label>
+	                    <input type="radio"  name="rating" value="2" id="rate14"checked><label for="rate13">⭐</label>
+	                    <input type="radio"  name="rating" value="1" id="rate15"><label for="rate14">⭐</label> 
+                      </fieldset>    
+                </c:when>
+                <c:when test="${scoreAverage eq '3'}">
+                      <fieldset>
+                       	<input type="radio" name="rating" value="5" id="rate11"><label for="rate10">⭐</label>
+	                    <input type="radio"  name="rating" value="4" id="rate12"><label for="rate11">⭐</label>
+	                    <input type="radio" name="rating" value="3" id="rate13" checked><label for="rate12">⭐</label>
+	                    <input type="radio"  name="rating" value="2" id="rate14"><label for="rate13">⭐</label>
+	                    <input type="radio"  name="rating" value="1" id="rate15" ><label for="rate14">⭐</label> 
+                      </fieldset>    
+                </c:when>
+                <c:when test="${scoreAverage eq '4'}">
+                      <fieldset>
+                       	<input type="radio" name="rating" value="5" id="rate11"><label for="rate10">⭐</label>
+	                    <input type="radio"  name="rating" value="4" id="rate12"checked><label for="rate11">⭐</label>
+	                    <input type="radio" name="rating" value="3" id="rate13"><label for="rate12">⭐</label>
+	                    <input type="radio"  name="rating" value="2" id="rate14"><label for="rate13">⭐</label>
+	                    <input type="radio"  name="rating" value="1" id="rate15" ><label for="rate14">⭐</label> 
+                       </fieldset>    
+                </c:when>
+                <c:when test="${scoreAverage eq '5'}">
+                       <fieldset>
+                       		<input type="radio" name="rating" value="5" id="rate11" checked><label for="rate10">⭐</label>
+	                        <input type="radio"  name="rating" value="4" id="rate12"><label for="rate11">⭐</label>
+	                        <input type="radio" name="rating" value="3" id="rate13"><label for="rate12">⭐</label>
+	                        <input type="radio"  name="rating" value="2" id="rate14"><label for="rate13">⭐</label>
+	                        <input type="radio"  name="rating" value="1" id="rate15" ><label for="rate14">⭐</label> 
+                      	</fieldset>                     		
+                </c:when>
+            </c:choose>           
         </form>
     </div>
     <br>

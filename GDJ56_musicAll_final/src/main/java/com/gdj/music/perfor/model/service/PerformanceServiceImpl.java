@@ -65,4 +65,8 @@ public class PerformanceServiceImpl implements PerformanceService{
 	public List<Map<String,Review>> selectComment(int mCode) {
 		return dao.selectComment(session,mCode);
 	}
+	@Override
+	public int selectAverage(int mCode) {
+		return dao.selectAverage(session,mCode);
+	}
 }

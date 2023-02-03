@@ -48,4 +48,8 @@ public class PerformanceDaoImpl implements PerformanceDao{
 	public List<Map<String,Review>> selectComment(SqlSessionTemplate session,int mCode) {
 		return session.selectList("review.selectComment",mCode);
 	}
+	@Override
+	public int selectAverage(SqlSessionTemplate session, int mCode) {
+		return session.selectOne("review.selectAverage",mCode);
+	}
 }
