@@ -197,19 +197,34 @@
 	}
 </style>
 <script>
-function getToday(e){
-    var date = new Date();
-    var year = date.getFullYear();
-    var month = ("0" + (1 + date.getMonth())).slice(-2);
-    var day = ("0" + (date.getDate()-e)).slice(-2);
 
-    return year + "-" + month + "-" + day;
+var currentDay = new Date();  
+var theYear = currentDay.getFullYear();
+var theMonth = currentDay.getMonth();
+var theDate  = currentDay.getDate();
+var theDayOfWeek = currentDay.getDay();
+ 
+var thisWeek = [];
+ 
+for(var i=0; i<7; i++) {
+  var resultDay = new Date(theYear, theMonth, theDate - i);
+  var yyyy = resultDay.getFullYear();
+  var mm = Number(resultDay.getMonth()) + 1;
+  var dd = resultDay.getDate();
+
+  mm = String(mm).length === 1 ? '0' + mm : mm;
+  dd = String(dd).length === 1 ? '0' + dd : dd;
+ 
+  thisWeek[i] = yyyy + '-' + mm + '-' + dd;
 }
+
+
+
 var ctx=$("#myChart");
 var myChart = new Chart(ctx,{
 	type:'bar',
 	data:{
-		labels:[getToday(6),getToday(5),getToday(4),getToday(3),getToday(2),getToday(1),getToday(0)],
+		labels:[thisWeek[6],thisWeek[5],thisWeek[4],thisWeek[3],thisWeek[2],thisWeek[1],thisWeek[0]],
 		datasets:[{
 			label : '일일 매출액',
 			data:[${salesPerWeek[6]},${salesPerWeek[5]},${salesPerWeek[4]},${salesPerWeek[3]},${salesPerWeek[2]},${salesPerWeek[1]},${salesPerWeek[0]}],

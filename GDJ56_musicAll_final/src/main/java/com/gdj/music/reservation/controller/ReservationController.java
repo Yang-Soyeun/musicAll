@@ -79,6 +79,7 @@ public class ReservationController {
 	@RequestMapping("/selectSeat.do")
 	public String selectSeat(int mCode,String date, String time,Model model) {
 		int hCode = service.selectHall(mCode);
+		List<Map<String,Performance>> p= service.selectPerform(mCode);
 		Map<String,Object> map = Map.of("hCode",hCode,"rDate",date,"rTime",time);
 		List<String> seats = service.selectSeats(map);
 		model.addAttribute("hCode",hCode);
@@ -86,6 +87,7 @@ public class ReservationController {
 		model.addAttribute("date",date);
 		model.addAttribute("time",time);
 		model.addAttribute("seats",seats);
+		model.addAttribute("performance",p);
 		return "/reservation/selectSeat";
 	
 	}

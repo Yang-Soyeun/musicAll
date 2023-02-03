@@ -358,49 +358,45 @@ const s = document.querySelectorAll(".seat");
 	function mapping(input,input2, i, j) {
 	    if (i === 0) {
 	        input.value = 'A' + j;
-	        input2.value= 10
+	        input2.value= 1000//${performance.get(0).get("VIP_PRICE")}
 	        input2.classList = 'A'+j;
 	    } else if (i === 1) {
 	        input.value = 'B' + j;
-	        input2.value= 20
+	        input2.value= ${performance.get(0).get("VIP_PRICE")}
 	        input2.classList = 'B'+j;  
 	    } else if (i === 2) {
 	        input.value = 'C' + j;
-	        input2.value= 99000
+	        input2.value= ${performance.get(0).get("VIP_PRICE")}
 	        input2.classList = 'C'+j;
 	    } else if (i === 3) {
 	        input.value = 'D' + j;
-	        input2.value= 99000
+	        input2.value= ${performance.get(0).get("VIP_PRICE")}
 	        input2.classList = 'D'+j;
 	    } else if (i === 4) {
 	        input.value = 'E' + j;
-	        input2.value= 30
+	        input2.value= ${performance.get(0).get("R_PRICE")}
 	        input2.classList = 'E'+j;
 	    } else if (i === 5) {
 	        input.value = 'F' + j;
-	        input2.value= 89000
+	        input2.value= ${performance.get(0).get("R_PRICE")}
 	        input2.classList = 'F'+j;
 	    } else if (i === 6) {
 	        input.value = 'G' + j;
-	        input2.value= 50
+	        input2.value= ${performance.get(0).get("S_PRICE")}
 	        input2.classList = 'G'+j;
 	    } else if (i === 7) {
 	        input.value = 'H' + j;
-	        input2.value= 79000
+	        input2.value= ${performance.get(0).get("S_PRICE")}
 	        input2.classList = 'H'+j;  
 	    } else if (i === 8) {
 	        input.value = 'I' + j;
-	        input2.value= 79000
+	        input2.value= ${performance.get(0).get("S_PRICE")}
 	        input2.classList = 'I'+j;         
 	    } else if (i === 9) {
 	        input.value = 'J' + j;
-	        input2.value= 79000
+	        input2.value= ${performance.get(0).get("S_PRICE")}
 	        input2.classList = 'J'+j;         
-	    } else if (i === 10) {
-	        input.value = 'K' + j;
-	        input2.value= 79000
-	        input2.classList = 'K'+j;      
-	    }
+	    } 
 	}
 
 

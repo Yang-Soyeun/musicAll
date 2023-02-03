@@ -26,5 +26,7 @@ public interface PerformanceService {
 
 	List<Map<String,Review>> selectComment(int mCode);
 
+	int selectAverage(int mCode);
+
 
 }

@@ -147,12 +147,12 @@
 				let mPeriod='',mPeriodEnd='';
 		       <c:if test="${not empty performance }">
 					<c:forEach var="per" items="${performance }">
-					mPeriod="20"+"${performance.get(0).get("M_PERIOD")}".replaceAll(" ","").replaceAll("/",'-');
+					//mPeriod="20"+"${performance.get(0).get("M_PERIOD")}".replaceAll(" ","").replaceAll("/",'-');
 					mPeriodEnd="20"+'${performance.get(0).get("M_PERIOD_END")}'.replaceAll(" ","").replaceAll("/",'-');
 					console.log(mPeriod);
 					console.log(new Date(mPeriod));
 						//공연 기간동안만 활성화 
-			            if(getDayOfWeek()=="${per.get('S_DAY')}"&&day2>new Date(mPeriod)&&day2<new Date(mPeriodEnd)){
+			            if(getDayOfWeek()=="${per.get('S_DAY')}"&&day2>new Date()&&day2<new Date(mPeriodEnd)){
 			                d[i].addEventListener('click', selectDay);
 			                d[i].addEventListener('click', turn);
 			                d[i].setAttribute("style","color:black");

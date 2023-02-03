@@ -45,6 +45,7 @@ public class PerforController {
 		 model.addAttribute("musical",service.selectPerformanceView(mCode));
 		 model.addAttribute("perPhoto",service.selectPhoto(mCode));
 		 model.addAttribute("reservation",service.selectReservation(mCode));
+		 model.addAttribute("scoreAverage",service.selectAverage(mCode));
 		 
 		 List<Map<String,Review>> r= service.selectComment(mCode);
 		 model.addAttribute("comment",r);

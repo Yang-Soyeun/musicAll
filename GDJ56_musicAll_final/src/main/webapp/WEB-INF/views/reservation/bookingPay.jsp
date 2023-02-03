@@ -78,9 +78,10 @@
 	
 	const apply = () =>{	
 		const discount=(Number)($(".point").val());
-		//if(discount>${point.mpPoint }){
-		if(discount>1000000 ){
+		const userPoint = ${point.mpPoint==null?0:point.mpPoint }
+		if(discount>userPoint){
 			alert("포인트가 부족합니다.");
+			$(".point").val('');
 			return;
 		}
 		$(".discount").html(discount);

@@ -35,6 +35,7 @@ import com.gdj.music.perfor.model.vo.Hall;
 import com.gdj.music.perfor.model.vo.Performance;
 import com.gdj.music.perfor.model.vo.Performance2;
 import com.gdj.music.perfor.model.vo.PerformancePhoto;
+import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.perfor.model.vo.Schedule;
 import com.google.gson.Gson;
 
@@ -64,6 +65,9 @@ public class AdminPerforController {
 	  public  String adminPerformanceView(Model model, int mCode) {
 		  model.addAttribute("musical",service.selectPerformanceView(mCode));
 		  model.addAttribute("perPhoto",service.selectPhoto(mCode));
+		  model.addAttribute("scoreAverage",service.selectAverage(mCode));
+		  List<Map<String,Review>> r= service.selectComment(mCode);
+		  model.addAttribute("comment",r);
 		  //model.addAttribute("schedule",service.selectSchedule(mCode));//스케줄 전체를 가지고 오는 리스트
 		  List<Map<String,Schedule>> s=service.selectSchedule(mCode);
 		  System.out.println(s);
