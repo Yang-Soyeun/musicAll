@@ -206,25 +206,25 @@ var theDayOfWeek = currentDay.getDay();
  
 var thisWeek = [];
  
-for(var i=-2; i<5; i++) {
-  var resultDay = new Date(theYear, theMonth, theDate + (i - theDayOfWeek));
+for(var i=0; i<7; i++) {
+  var resultDay = new Date(theYear, theMonth, theDate - i);
   var yyyy = resultDay.getFullYear();
   var mm = Number(resultDay.getMonth()) + 1;
   var dd = resultDay.getDate();
- 
+
   mm = String(mm).length === 1 ? '0' + mm : mm;
   dd = String(dd).length === 1 ? '0' + dd : dd;
  
   thisWeek[i] = yyyy + '-' + mm + '-' + dd;
 }
- 
-console.log(thisWeek[4]);
+
+
 
 var ctx=$("#myChart");
 var myChart = new Chart(ctx,{
 	type:'bar',
 	data:{
-		labels:[thisWeek[-2],thisWeek[-1],thisWeek[0],thisWeek[1],thisWeek[2],thisWeek[3],thisWeek[4]],
+		labels:[thisWeek[6],thisWeek[5],thisWeek[4],thisWeek[3],thisWeek[2],thisWeek[1],thisWeek[0]],
 		datasets:[{
 			label : '일일 매출액',
 			data:[${salesPerWeek[6]},${salesPerWeek[5]},${salesPerWeek[4]},${salesPerWeek[3]},${salesPerWeek[2]},${salesPerWeek[1]},${salesPerWeek[0]}],
