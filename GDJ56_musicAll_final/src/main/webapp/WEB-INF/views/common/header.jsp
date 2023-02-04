@@ -123,7 +123,12 @@
           </div>
         </div>
       </nav>
-
+      <!-- 하단 메세지 이미지 (로그인시에만 이미지가 보여야함) -->
+		<c:if test="${ (loginMember!=null) && (loginMember.member_Id ne 'admin') }">
+			<a class="cs-btn" onclick="click_msg_btn();" id="cs_btn">
+				<img src="${path}/resources/images/chatting-icon.png" id="cs_btn_img" width="50" height="50">
+			</a>
+		</c:if>
       </main>
 
 
@@ -154,6 +159,7 @@
          </div>
       </div>
       
+
       
       <script>
       	const fn_updateMember=()=>{
@@ -166,4 +172,9 @@
 						}
 					});
       	}
+      	
+      	const click_msg_btn=()=>{
+      		alert("클릭!");
+      	}
+      	
       </script>

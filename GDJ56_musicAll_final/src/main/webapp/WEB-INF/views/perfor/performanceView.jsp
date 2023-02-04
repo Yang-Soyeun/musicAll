@@ -233,7 +233,9 @@
 
         //채팅함수->방번호 넘김!
         const bt_chat =  function(){
-        	location.href="${path}/chatting/chattingpage.do?roomNo="+${param.mCode}; 
+        	let url = "${path}/chatting/chattingpage.do?roomNo=" +${param.mCode}; 
+        	window.open(url, 'chat_window', 'width=500, height=500, location=no, status=no, scrollbars=yes');
+        	/* location.href="${path}/chatting/chattingpage.do?roomNo="+${param.mCode}; */ 
         }
     </script>
 
