@@ -91,7 +91,7 @@
                       </td>
                       <td class="pr-remove">
                       	<button class="btn btn-round btn-g btn-sm" id="${g.gdCode }" type="submit" style="margin: 2%;" onclick="location.assign('${path }/goods/goodsPay.do?gdCode=${g.gdCode }&member_no=${loginMember.member_No }&gdCount=${g.ctCount }')">구매하기</button><br>
-                      	<button class="btn btn-danger btn-round btn-sm" type="submit" style="margin: 2%;">나중에 구매</button>
+                      	<button class="btn btn-danger btn-round btn-sm" type="submit" style="margin: 2%;" onclick="location.assign('${path }/goods/deleteCart.do?gdCode=${g.gdCode }&memberNo=${loginMember.member_No }')">나중에 구매</button>
                       </td>
                     </tr>
                     

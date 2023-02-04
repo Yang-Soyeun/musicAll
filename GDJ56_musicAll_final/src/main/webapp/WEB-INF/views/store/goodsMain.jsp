@@ -161,7 +161,7 @@
 			//장바구니 개수 출력
 			var cart = $('#cart');
 			var cartTotal = cart.attr('data-totalitems', '${total}');
-	
+			
 			//장바구니 클릭 이벤트
 			  $('.addtocart').on('click',function(){
 				 
@@ -173,10 +173,12 @@
 				//로그인 o
 				<c:if test="${loginMember!=null }">
 				    var button = $(this);
-				    /* var cart = $('#cart');
-				    var cartTotal = cart.attr('data-totalitems'); */
-				    var newCartTotal = ${total} + 1;
-
+				  	
+					//var newCartTotal = ${total};
+					
+				    var newCartTotal = parseInt(cart.attr('data-totalitems'));
+				    
+	
 				    //장바구니 담기 기능
 				    var ctCount = 1;
 				    var gdCode = $(this).attr('id');
@@ -204,11 +206,13 @@
 				        		
 				        		//장바구니에 추가 성공시 애니메이션
 				        		button.addClass('sendtocart');
+				        
 							    
 							    setTimeout(function(){
 							      button.removeClass('sendtocart');
 							      //장바구니 개수 변경
-							      cart.addClass('shake').attr('data-totalitems', newCartTotal);
+							      //newCartTotal = ${total}+1;
+							      cart.addClass('shake').attr('data-totalitems', newCartTotal+1);
 							      setTimeout(function(){
 							        cart.removeClass('shake');
 							        setTimeout(function(){
