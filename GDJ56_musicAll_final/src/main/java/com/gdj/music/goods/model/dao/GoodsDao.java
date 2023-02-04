@@ -3,7 +3,6 @@ package com.gdj.music.goods.model.dao;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.gdj.music.goods.model.vo.Goods;
