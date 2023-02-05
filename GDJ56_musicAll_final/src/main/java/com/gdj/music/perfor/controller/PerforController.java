@@ -66,7 +66,7 @@ public class PerforController {
 	
 	//한줄평 등록
 	@RequestMapping("/insertComment.do")
-	public String insertComment(Model model,HttpSession session,String ct,int rating,int mCode) {
+	public ModelAndView insertComment(ModelAndView mv,HttpSession session,String ct,int rating,int mCode) {
 		Member m=(Member)session.getAttribute("loginMember");
 		
 		int memberNo=m.getMember_No();
@@ -83,8 +83,10 @@ public class PerforController {
 		
 		int result=service.insertComment(r);
 		
+		mv.addObject("loc","/perfor/performanceView.do?mCode="+mCode);
+		mv.setViewName("common/msg");		
 		
-		return "perfor/performanceView";
+		return mv;
 		
 	}
 	
@@ -96,7 +98,7 @@ public class PerforController {
 	
 	@RequestMapping("/performance.do")
 	public String performance() {
-		return "";
+		return "/performanceView.do";
 	}
 	
 }
