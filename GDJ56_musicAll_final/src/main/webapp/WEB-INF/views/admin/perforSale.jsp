@@ -202,7 +202,6 @@ var currentDay = new Date();
 var theYear = currentDay.getFullYear();
 var theMonth = currentDay.getMonth();
 var theDate  = currentDay.getDate();
-var theDayOfWeek = currentDay.getDay();
  
 var thisWeek = [];
  

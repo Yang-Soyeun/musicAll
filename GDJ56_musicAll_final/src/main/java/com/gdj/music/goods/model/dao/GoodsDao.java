@@ -33,5 +33,11 @@ public interface GoodsDao {
 	
 	//장바구니 리스트
 	List<GoodsCart> goodsCart(SqlSessionTemplate session, int memberNo);
+	
+	//장바구니 개수
+	int countCart(SqlSessionTemplate session, int memberNo);
+	
+	//장바구니 삭제
+	int deleteCart(SqlSessionTemplate session, GoodsCart gct);
 
 }

@@ -30,5 +30,11 @@ public interface GoodsService {
 	
 	//장바구니 리스트
 	List<GoodsCart> goodsCart(int memberNo);
+	
+	//장바구니 개수
+	int countCart(int member_no);
+	
+	//장바구니 삭제
+	int deleteCart(GoodsCart gct);
 
 }

@@ -75,7 +75,7 @@
 				</div>
 				<c:forEach var="i" items="${img }">
        				<c:if test="${i.sumImage.equals('ok') }">
-						<div><img src="${path }/resources/upload/goods/${i.imName }" id="countimg1"></div>
+						<div><img src="${path }/resources/upload/goods/${i.imName }" id="countimg1" style="width: 800px;"></div>
 					</c:if>
 				</c:forEach>			
 			</div>
@@ -114,12 +114,23 @@
 			            <div style="" class="point2"></div>
 			        </div>
 			        
+			        <div style="margin-bottom: 3%;"><h4 style="font-weight: revert; margin-bottom: 2%;">결제 수단</h4>
+			        <div>
+	    				<select id="payway" name="payway">
+						  <option value="신용카드">신용카드</option>
+						  <option value="계좌이체">계좌이체</option>
+						  <option value="네이버페이">네이버페이</option>
+						  <option value="카카오페이">카카오페이</option>
+						</select>
+	    			</div>
 			        
     			</div>
     			
     			<div>
     				<h4>※이 제품은 현장수령 제품입니다.</h4>
     			</div>
+    			
+    	
 		        
 		        <div style="margin-top:7%; margin-left: 29%;">
 		            <button class="btn btn-danger" style="width:200px; font-size:15px;" type="button" >결제하기</button>
@@ -136,8 +147,9 @@
 	const apply=()=>{	
 		
 		const discount=(Number)($(".point").val());
+		const userPoint = ${point.mpPoint==null?0:point.mpPoint }
 		
-		if(discount>${p.mpPoint }){
+		if(discount>userPoint){
 			alert("포인트가 부족합니다.");
 			return;
 		}

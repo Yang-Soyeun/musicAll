@@ -63,6 +63,18 @@ public class GoodsDaoImpl implements GoodsDao {
 	public List<GoodsCart> goodsCart(SqlSessionTemplate session, int memberNo) {
 		return session.selectList("goods.selectCart", memberNo);
 	}
+
+	//장바구니 개수
+	@Override
+	public int countCart(SqlSessionTemplate session, int memberNo) {
+		return session.selectOne("goods.countCart", memberNo);
+	}
+
+	//장바구니 삭제
+	@Override
+	public int deleteCart(SqlSessionTemplate session, GoodsCart gct) {
+		return session.delete("goods.deleteCart", gct);
+	}
 	
 
 }
