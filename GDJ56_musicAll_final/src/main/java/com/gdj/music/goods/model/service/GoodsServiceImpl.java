@@ -84,8 +84,8 @@ public class GoodsServiceImpl implements GoodsService {
 
 	//장바구니 삭제
 	@Override
-	public int deleteCart(GoodsCart gct) {
-		return dao.deleteCart(session, gct);
+	public int deleteCart(int gdCode) {
+		return dao.deleteCart(session, gdCode);
 	}
 
 }

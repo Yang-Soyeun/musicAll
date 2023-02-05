@@ -35,6 +35,6 @@ public interface GoodsService {
 	int countCart(int member_no);
 	
 	//장바구니 삭제
-	int deleteCart(GoodsCart gct);
+	int deleteCart(int gdCode);
 
 }

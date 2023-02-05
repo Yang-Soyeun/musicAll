@@ -37,6 +37,6 @@ public interface GoodsDao {
 	int countCart(SqlSessionTemplate session, int memberNo);
 	
 	//장바구니 삭제
-	int deleteCart(SqlSessionTemplate session, GoodsCart gct);
+	int deleteCart(SqlSessionTemplate session, int gdCode);
 
 }
