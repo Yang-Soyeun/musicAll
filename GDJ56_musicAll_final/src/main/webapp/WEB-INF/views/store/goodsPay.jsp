@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
-
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
  	<jsp:param name="title" value="MainPage"/>
 </jsp:include>
@@ -57,7 +57,11 @@
 
     }
 </style>
-<div id="ticketing">
+
+<body onload="noBack();" 
+    onpageshow="if(event.persisted) noBack();" 
+    onunload="">
+
         <div id="icon">
             <img src="${path }/resources/images/reservation/아이콘3.png" width="50px" height="50px" style="margin-top:-1%;margin-left:33%;"/><b style="color:gray">상품 구매</b><img src="${path }/resources/images/reservation/아이콘2.jpg" width="30px" style="margin-top:-5px;margin-left:100px;">
             <img src="${path }/resources/images/reservation/아이콘.png" width="50px" height="50px" style="margin-top:-1%;margin-left:6%;"><b style="color:black">결제하기</b>
@@ -133,7 +137,7 @@
     	
 		        
 		        <div style="margin-top:7%; margin-left: 29%;">
-		            <button class="btn btn-danger" style="width:200px; font-size:15px;" type="button" >결제하기</button>
+		            <button class="btn btn-danger" style="width:200px; font-size:15px;" type="button" onclick="requestPay();" >결제하기</button>
 		            <button class="btn btn-secondary" style="width:110px;background-color:lightgray;color:black;font-size:15px;">취소</button>
 		        </div>
 	        </div>
@@ -164,6 +168,46 @@
 		$(".point2").html('※ 적립 예정 포인트 : '+((${goods.gdPrice*gc }-discount)/10).toLocaleString('ko-KR')); 
 		
 	}
+	
+	const requestPay = () =>{
+		<c:if test="${loginMember==null }">
+			alert("로그인 후 이용해주세요.");
+		</c:if>
+		<c:if test="${loginMember!=null }">
+			const discount=(Number)($(".point").val());
+			IMP.init("imp28146203");
+			IMP.request_pay({
+				pg : "html5_inicis",
+				name : "티켓예매",
+				pay_method : "card",
+				amount : ${goods.gdPrice*gc}-discount,
+				buyer_name:"${loginMember.name}",
+				buyer_email:"${loginMember.email}"
+			}, function(rsp){
+				
+				const discount=(Number)($(".point").val());
+				const amount = ${goods.gdPrice*gc}-discount;
+		
+				if(rsp.success){
+					
+					let info = new Array();
+					
+					
+					
+					//location.assign("${path}/goods/payend.do?info="+info);
+				}
+			else{
+				 
+				alert(rsp.error_msg);
+			}
+		});
+		</c:if>
+}	
+
+	function noBack(){window.history.forward();}
+
 </script>
+
+</body>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
