@@ -3,7 +3,6 @@ package com.gdj.music.goods.model.dao;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.gdj.music.goods.model.vo.Goods;
@@ -36,5 +35,8 @@ public interface GoodsDao {
 	
 	//장바구니 개수
 	int countCart(SqlSessionTemplate session, int memberNo);
+	
+	//장바구니 삭제
+	int deleteCart(SqlSessionTemplate session, int gdCode);
 
 }

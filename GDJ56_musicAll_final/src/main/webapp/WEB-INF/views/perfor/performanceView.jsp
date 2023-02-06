@@ -79,6 +79,7 @@
         <div id="info-box">
             <div style="display:inline-block; " >
                 <img src="${path }/resources/upload/performance/${perPhoto.get(0).IName}" id="imgView" style="margin-top:-500px;">
+                <input type="button" onclick="bt_chat();" value="채팅">
             </div>
             <div class="info-box2" >
                 <b class="info">공연기간</b><p>${musical.getMPeriod() } ~ ${musical.getMPeriodEnd() }</p><br>
@@ -230,6 +231,12 @@
         	}
         } */
 
+        //채팅함수->방번호 넘김!
+        const bt_chat =  function(){
+        	let url = "${path}/chatting/chattingpage.do?roomNo=" +${param.mCode}; 
+        	window.open(url, 'chat_window', 'width=500, height=500, location=no, status=no, scrollbars=yes');
+        	/* location.href="${path}/chatting/chattingpage.do?roomNo="+${param.mCode}; */ 
+        }
     </script>
 
 

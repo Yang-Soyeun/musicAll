@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gdj.music.common.interceptor.PageFactory;
@@ -116,10 +117,6 @@ public class GoodsController {
 			
 			result = service.addCart(ct);
 			
-		} else {
-			
-			result = 2;
-			
 		}
 		
 		response.getWriter().print(result);
@@ -132,6 +129,7 @@ public class GoodsController {
 		
 		List<GoodsCart> goods = service.goodsCart(memberNo);
 		
+		
 		mv.addObject("goodsCt", goods);
 		mv.addObject("img", service.goodsImg());
 	
@@ -140,6 +138,21 @@ public class GoodsController {
 		return mv;
 	}
 	
+	//장바구니 삭제
+	@RequestMapping("/deleteCart.do")
+	@ResponseBody
+	public ModelAndView deleteCart(ModelAndView mv, int gdCode, int memberNo) {
+		
+		int result = service.deleteCart(gdCode);
+		
+		mv.addObject("msg",result>0?"삭제 완료":"삭제 실패");
+		mv.addObject("loc","/goods/goodsCart.do?memberNo="+memberNo);
+
+	  
+		mv.setViewName("common/msg");
+		return mv;
+		
+	}
 	
 	
 	@RequestMapping("/payEnd.do") 
