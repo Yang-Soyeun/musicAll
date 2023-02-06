@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gdj.music.admin.model.dao.AdminPerforDao;
 import com.gdj.music.perfor.model.dao.PerformanceDao;
+import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Performance2;
 import com.gdj.music.perfor.model.vo.PerformancePhoto;
 import com.gdj.music.perfor.model.vo.Review;
@@ -68,5 +69,17 @@ public class PerformanceServiceImpl implements PerformanceService{
 	@Override
 	public int selectAverage(int mCode) {
 		return dao.selectAverage(session,mCode);
+	}
+	@Override
+	public int insertMyMusical(Mlike like) {
+		return dao.insertMyMusical(session,like);
+	}
+	@Override
+	public List<Mlike> selectMlike(Mlike like) {
+		return dao.selectMlike(session,like);
+	}
+	@Override
+	public int deleteMyMusical(Mlike like) {
+		return dao.deleteMyMusical(session,like);
 	}
 }

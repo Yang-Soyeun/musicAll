@@ -281,7 +281,7 @@ public class MypageController {
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
 			@RequestParam(value="numPerpage", defaultValue="12")int numPerpage) {
 		
-		System.out.println(ml);
+//		System.out.println(ml);
 //		System.out.println(ml.get("member_No"));
 		
 		int result=service.deleteMlike(ml);//삭제문 잠시 주석처리 
@@ -438,16 +438,8 @@ public class MypageController {
 				);
 		
 		int totalData=service.orderReviewCount(order);
-		
-//		System.out.println(orderList);
-		
-		
 		response.setContentType("application/json;charset=utf-8");//Gson
 		
-//		Gson g = new Gson();
-//		g.toJson(orderList);
-//		g.toJson(totalData);
-//		response.getWriter().print(g);
 		
 		new Gson().toJson(orderList,response.getWriter());//Gson
 		

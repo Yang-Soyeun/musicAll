@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Performance2;
 import com.gdj.music.perfor.model.vo.PerformancePhoto;
 import com.gdj.music.perfor.model.vo.Review;
@@ -51,5 +52,17 @@ public class PerformanceDaoImpl implements PerformanceDao{
 	@Override
 	public int selectAverage(SqlSessionTemplate session, int mCode) {
 		return session.selectOne("review.selectAverage",mCode);
+	}
+	@Override
+	public int insertMyMusical(SqlSessionTemplate session, Mlike like) {
+		return session.insert("mLike.insertMyMusical",like);
+	}
+	@Override
+	public List<Mlike> selectMlike(SqlSessionTemplate session, Mlike like) {
+		return session.selectList("mLike.selectMlike",like);
+	}
+	@Override
+	public int deleteMyMusical(SqlSessionTemplate session, Mlike like) {
+		return session.delete("mLike.deleteMyMusical",like);
 	}
 }

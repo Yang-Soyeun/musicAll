@@ -161,6 +161,24 @@
           <form name="myform" class="myform" method="post" action="./save">
 		<br>
         	<c:choose>
+        		<c:when test="${scoreAverage eq '0'}">
+                	<fieldset>
+                       <input type="radio" name="rating" value="5" id="rate11"><label for="rate10">⭐</label>
+	                   <input type="radio"  name="rating" value="4" id="rate12"><label for="rate11">⭐</label>
+	                   <input type="radio" name="rating" value="3" id="rate13"><label for="rate12">⭐</label>
+	                   <input type="radio"  name="rating" value="2" id="rate14"><label for="rate13">⭐</label>
+	                   <input type="radio"  name="rating" value="1" id="rate15"><label for="rate14">⭐</label> 
+                    </fieldset>
+                </c:when>
+        		<c:when test="${scoreAverage eq '1'}">
+                	<fieldset>
+                       <input type="radio" name="rating" value="5" id="rate11"><label for="rate10">⭐</label>
+	                   <input type="radio"  name="rating" value="4" id="rate12"><label for="rate11">⭐</label>
+	                   <input type="radio" name="rating" value="3" id="rate13"><label for="rate12">⭐</label>
+	                   <input type="radio"  name="rating" value="2" id="rate14"><label for="rate13">⭐</label>
+	                   <input type="radio"  name="rating" value="1" id="rate15" checked><label for="rate14">⭐</label> 
+                    </fieldset>
+                </c:when>
             	<c:when test="${scoreAverage eq '1'}">
                 	<fieldset>
                        <input type="radio" name="rating" value="5" id="rate11"><label for="rate10">⭐</label>
@@ -206,7 +224,8 @@
 	                        <input type="radio"  name="rating" value="1" id="rate15" ><label for="rate14">⭐</label> 
                       	</fieldset>                     		
                 </c:when>
-            </c:choose>           
+            </c:choose>   
+          </form>        
     </div>
 	<br>
    
@@ -243,9 +262,9 @@
         </div>
 
        <c:forEach var="ct" items="${comment }">
-         <div class="oneComment" style="height:150px;  display: none; margin-top:10px;">
+         <div class="oneComment" style="height:170px;  display: none; margin-top:10px;">
             <div id="starBox">
-                <form name="myform" class="myform" method="post" action="./save">
+                <form name="myform" class="myform" method="post" >
  				<br>
                        <c:choose>
                        		<c:when test="${ct.SCORE eq '1'}">
@@ -297,7 +316,9 @@
                        </c:choose>
 
                 	<p style="font-size:18px;">${ct.REVIEW_CONTENT }</p>
-                 	<p style="font-size:13px;">${ct.REVIEW_DATE }&nbsp;&nbsp;&nbsp;${ct.MEMBER_ID }님</p>
+                 	<p style="font-size:13px; float:left;">${ct.REVIEW_DATE }&nbsp;&nbsp;&nbsp;${ct.MEMBER_ID }님</p>
+                 	<button name="delete" style="float:left; margin-left:600px; width:50px; height:30px; font-size:15px;"
+                 	onclick="location.assign('${path}/adminPerfor/deleteComment.do?reviewNo=${ct.REVIEW_NO}')">삭제</button>
                 </form>
             </div>
         </div>
