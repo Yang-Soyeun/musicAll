@@ -70,7 +70,9 @@ public class ChattingController {
 	@RequestMapping("/chatting/chatContent.do")
 	public void chatContent(int chatNo, HttpServletResponse response) throws IOException {
 		List<ChatHistory> list = service.chatHistory(chatNo);
+		
 		response.setContentType("application/json;charset=utf-8");//Gson
+		
 		new Gson().toJson(list,response.getWriter());//Gson
 	}
 	
