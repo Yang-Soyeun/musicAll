@@ -39,7 +39,7 @@
         					
         					
 	        				$($(".rvPhoto")[i]).attr("href","${path}/perfor/performanceView1.do?mCode="+data[i].M_CODE);//a태그 주소 바꾸기
-	        				
+	        				0
 	        				
         					$(".reviewCon #rvTitle")[i].innerText=data[i].M_TITLE;//제목
         					$(".reviewCon #rvContent")[i].innerText=data[i].REVIEW_CONTENT;//내용
