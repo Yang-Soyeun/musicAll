@@ -23,9 +23,7 @@
         <br>
         <br>
         <br>
-
         <p>라이센스 뮤지컬 - 1위</p>
-       
         <strong style="font-size:30px;">${musical.getMTitle() }</strong>
         <form name="myform" class="myform" method="post" >
 		<br>
@@ -93,27 +91,30 @@
     <div class="parent">
         <div id="info-box">
             <div style="display:inline-block; " >
-                <img src="${path }/resources/upload/performance/${perPhoto.get(0).IName}" id="imgView" style="margin-top:-500px;">
+                <img src="${path }/resources/upload/performance/${perPhoto.get(0).IName}" id="imgView"/><br>
+                  <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
+  					id="kakaotalk-sharing-btn" href="javascript:;" style="margin-left:310px;margin-top:-80px;"alt="카카오톡 공유 보내기 버튼" />
             </div>
-            <div class="info-box2" style=" height: 800px;">         
-                <b class="info">공연기간</b><p>${musical.getMPeriod() } ~ ${musical.getMPeriodEnd() }</p><br>
-                <b class="info">공연시간</b><p>${schedule.get(0).S_TIME}분</p><br>
-                <b class="info">관람연령</b><p>${musical.getMAge() }</p><br>
-                <b class="info">가격</b><p>vip석:${musical.getVipPrice() }원</p>
-                <p>r석:${musical.getRPrice() }원</p>
-                <p>s석:${musical.getSPrice() }원</p>
-                <b class="info">장소</b><p>${musical.getHName() }</p><br><br>
-                <button class="btn btn-danger" id="go1" onclick="location.href='${path}/booking/bookingview.do?mCode=${musical.getMCode()} '">예매하러 가기</button><br>
-                <button class="btn btn-danger" id="go2">관심공연 등록</button>
-            </div>
-        </div>
-	               <button class="btn btn-danger" style="margin-left:1150px;" >공유하기</button>
+        <div class="info-box2">         
+             <b class="info">공연기간</b><p>${musical.getMPeriod() } ~ ${musical.getMPeriodEnd() }</p><br>
+             <b class="info">공연시간</b><p>${schedule.get(0).S_TIME}분</p><br>
+             <b class="info">관람연령</b><p>${musical.getMAge() }</p><br>
+             <b class="info">가격</b><p>vip석:${musical.getVipPrice() }원</p>
+               <p>r석:${musical.getRPrice() }원</p>
+               <p>s석:${musical.getSPrice() }원</p>
+               <b class="info">장소</b><p>${musical.getHName() }</p><br><br>
+             <button class="btn btn-danger" id="go1" onclick="location.href='${path}/booking/bookingview.do?mCode=${musical.getMCode()} '">예매하러 가기</button><br>
+			<c:if test="${empty mLike}">	
+             	<button class="btn btn-danger" id="go2" onclick="fn_addMyMusical();">관심공연 등록</button><br><br>
+			</c:if>
+			<c:if test="${not empty mLike}">
+             	<button class="btn btn-danger" id="go2" onclick="fn_deleteMyMusical();">관심공연 해제</button><br><br> 
+			</c:if>
+         </div>
+       </div>
+
 	               
-	               <a >
-  <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
-  id="kakaotalk-sharing-btn" href="javascript:;" 
-    alt="카카오톡 공유 보내기 버튼" />
-</a>
+
 
         <div id="downContainer">
             <ul>
@@ -207,9 +208,7 @@
         </div>
         </c:forEach>
         <br>
-
-       	
-    </div>
+</div>
 </section>
     <script>
     Kakao.Share.createDefaultButton({
@@ -260,6 +259,7 @@
             $(".oneComment").show();
         })
 		
+        //한줄평 등록
         const fn_submit=()=>{
         	var memberNo='${loginMember.member_No}';
         	var mCode=$("input[name=mCode]").val();
@@ -269,28 +269,44 @@
         		reservations.push('${e.memberNo}');
         	</c:forEach>
         	console.log(reservations);
-        	if(reservations.indexOf(memberNo) !=-1){
-        		console.log("일치");
-        		console.log(mCode);
-        		alert("한줄평 등록이 완료되었습니다! 감사합니다.");
-        		$(".commentWrite").submit();
-        		
+        	if(memberNo=null){
+        		alert("로그인한 회원만 작성가능합니다.");
+        		location.assign("${path}/member/login.do");
         	}else{
-        		console.log("불일치");
-        		alert("공연을 예매한 회원만 작성가능합니다.");
-        		return false;
+        		if(reservations.indexOf(memberNo) !=-1){
+        			console.log("일치");
+        			console.log(mCode);
+        			alert("한줄평 등록이 완료되었습니다! 감사합니다.");
+        			$(".commentWrite").submit();
+        		}else{
+        			console.log("불일치");
+        			alert("공연을 예매한 회원만 작성가능합니다.");
+        			return false;
+        		}
         	}
         }
-	/* 
-        		const str = 'Hello, World, Javascript';
-
-        	if (str.indexOf('Hello') != -1) {
-        	  console.log("exist Hello");
-        	} else {
-        	  console.log("not exist Hello");
-        	}
-        } */
-
+        
+        //관심공연 등록하기 
+        const fn_addMyMusical=()=>{
+           var memberNo='${loginMember.member_No}';
+           var mCode=$("input[name=mCode]").val();
+           if(memberNo=null){
+              alert("로그인한 회원만 작성가능합니다.");
+              location.assign("${path}/member/login.do");
+           }
+           else{
+              location.assign("${path}/perfor/addMyMusical.do?mCode=${musical.getMCode()}&&memberNo=${loginMember.member_No}");
+              alert("관심공연으로 등록 되었습니다.");
+           }
+        }
+        
+        //관심공연 해제하기 
+        const fn_deleteMyMusical=()=>{
+        	var memberNo='${loginMember.member_No}';
+            var mCode=$("input[name=mCode]").val();
+        	location.assign("${path}/perfor/deleteMyMusical.do?mCode=${musical.getMCode()}&&memberNo=${loginMember.member_No}");
+        	
+        }
     </script>
 
 

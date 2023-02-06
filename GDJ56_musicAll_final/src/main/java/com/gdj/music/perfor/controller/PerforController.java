@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.gdj.music.admin.model.service.AdminPerforService;
 import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.perfor.model.service.PerformanceService;
+import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.perfor.model.vo.Schedule;
 import com.gdj.music.reservation.model.service.ReservationService;
@@ -41,11 +42,21 @@ public class PerforController {
 	
 	//공연 상세페이지
 	@RequestMapping("/performanceView.do")
-	public String performanceView(Model model, int mCode) {
+	public String performanceView(Model model, int mCode,HttpSession session) {
 		 model.addAttribute("musical",service.selectPerformanceView(mCode));
 		 model.addAttribute("perPhoto",service.selectPhoto(mCode));
 		 model.addAttribute("reservation",service.selectReservation(mCode));
 		 model.addAttribute("scoreAverage",service.selectAverage(mCode));
+		 
+		 Member m=(Member)session.getAttribute("loginMember");
+		 int memberNo=m.getMember_No();
+		 
+		 Mlike like=Mlike.builder()
+					.mCode(mCode)
+					.member_No(memberNo)
+					.build();
+		 
+		 model.addAttribute("mLike",service.selectMlike(like));//관심 공연 등록 여부 가져오기 
 		 
 		 List<Map<String,Review>> r= service.selectComment(mCode);
 		 model.addAttribute("comment",r);
@@ -90,7 +101,39 @@ public class PerforController {
 		
 	}
 	
+	//관심공연 등록하기
+	@RequestMapping("/addMyMusical.do")
+	public ModelAndView addMyMusical(ModelAndView mv,int mCode,int memberNo) {
+		Mlike like=Mlike.builder()
+				.mCode(mCode)
+				.member_No(memberNo)
+				.build();
+		
+		int result=service.insertMyMusical(like);
+		
+		mv.addObject("loc","/perfor/performanceView.do?mCode="+mCode);
+		mv.addObject("msg","관심공연으로 등록되었습니다");
+		mv.setViewName("common/msg");
+		return mv;
+	}
+	
+	//관심공연 해제하기 
+	@RequestMapping("/deleteMyMusical.do")
+	public ModelAndView deleteMyMusical(ModelAndView mv,int mCode,int memberNo) {
+		Mlike like=Mlike.builder()
+				.mCode(mCode)
+				.member_No(memberNo)
+				.build();
 
+		int result=service.deleteMyMusical(like);
+		
+		mv.addObject("loc","/perfor/performanceView.do?mCode="+mCode);
+		mv.addObject("msg","관심공연이 해제되었습니다");
+		mv.setViewName("common/msg");
+		
+		return mv;
+		
+	}
 	
 	
 	
