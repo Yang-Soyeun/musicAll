@@ -35,12 +35,38 @@ public class PerforController {
 	//공연 리스트
 	@RequestMapping("/performanceList.do")
 	public ModelAndView performanceList(ModelAndView mv) {
+
 		mv.addObject("musicalPhoto",service.selectPerforList());
 		mv.setViewName("perfor/performanceList");
 		return mv;
 	}
+	//공연 상세페이지(비회원일 경우)
+	@RequestMapping("/performanceView1.do")
+	public String performanceView1(Model model, int mCode) {
+		 model.addAttribute("musical",service.selectPerformanceView(mCode));
+		 model.addAttribute("perPhoto",service.selectPhoto(mCode));
+		 model.addAttribute("reservation",service.selectReservation(mCode));
+		 model.addAttribute("scoreAverage",service.selectAverage(mCode));
+		 
+		 List<Map<String,Review>> r= service.selectComment(mCode);
+		 model.addAttribute("comment",r);
+		 
+		  //model.addAttribute("schedule",service.selectSchedule(mCode));//스케줄 전체를 가지고 오는 리스트
+		  List<Map<String,Schedule>> s=service.selectSchedule(mCode);
+		  //System.out.println(s);
+		  List sc=new ArrayList();
+		  for(int i=0;i<s.size();i++) {
+			  sc.add(s.get(i).get("S_DAY"));
+		  }
+		  //System.out.println(sc);
+		  //요일 중복제거한 리스트 
+		  model.addAttribute("scDay",sc.stream().distinct().collect(Collectors.toList()));
+		  model.addAttribute("schedule",service.selectSchedule(mCode));
+		return "perfor/performanceView";
+	}
 	
-	//공연 상세페이지
+
+	//공연 상세페이지(회원일 경우)
 	@RequestMapping("/performanceView.do")
 	public String performanceView(Model model, int mCode,HttpSession session) {
 		 model.addAttribute("musical",service.selectPerformanceView(mCode));
@@ -57,6 +83,7 @@ public class PerforController {
 					.build();
 		 
 		 model.addAttribute("mLike",service.selectMlike(like));//관심 공연 등록 여부 가져오기 
+
 		 
 		 List<Map<String,Review>> r= service.selectComment(mCode);
 		 model.addAttribute("comment",r);

@@ -94,6 +94,7 @@
                 <img src="${path }/resources/upload/performance/${perPhoto.get(0).IName}" id="imgView"/><br>
                   <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
   					id="kakaotalk-sharing-btn" href="javascript:;" style="margin-left:310px;margin-top:-80px;"alt="카카오톡 공유 보내기 버튼" />
+                <input type="button" onclick="bt_chat();" value="채팅">
             </div>
         <div class="info-box2">         
              <b class="info">공연기간</b><p>${musical.getMPeriod() } ~ ${musical.getMPeriodEnd() }</p><br>
@@ -221,8 +222,8 @@
             'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
           link: {
             // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com',
+            mobileWebUrl: 'http://localhost:9090/GDJ56_musicAll_final/perfor/performanceView1.do?mCode=${musical.getMCode()}',
+            webUrl: 'http://localhost:9090/GDJ56_musicAll_final/perfor/performanceView1.do?mCode=${musical.getMCode()}',
           },
         },
         social: {
@@ -234,8 +235,8 @@
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl: 'https://developers.kakao.com',
-              webUrl: 'https://developers.kakao.com',
+              mobileWebUrl: 'http://localhost:9090/GDJ56_musicAll_final/perfor/performanceView1.do?mCode=${musical.getMCode()}',
+              webUrl: 'http://localhost:9090/GDJ56_musicAll_final/perfor/performanceView1.do?mCode=${musical.getMCode()}',
             },
           },
           {
@@ -285,18 +286,19 @@
         		}
         	}
         }
-        
         //관심공연 등록하기 
         const fn_addMyMusical=()=>{
            var memberNo='${loginMember.member_No}';
            var mCode=$("input[name=mCode]").val();
+           console.log(memberNo);
+           console.log(mCode);
            if(memberNo=null){
               alert("로그인한 회원만 작성가능합니다.");
               location.assign("${path}/member/login.do");
            }
            else{
               location.assign("${path}/perfor/addMyMusical.do?mCode=${musical.getMCode()}&&memberNo=${loginMember.member_No}");
-              alert("관심공연으로 등록 되었습니다.");
+
            }
         }
         
@@ -305,7 +307,14 @@
         	var memberNo='${loginMember.member_No}';
             var mCode=$("input[name=mCode]").val();
         	location.assign("${path}/perfor/deleteMyMusical.do?mCode=${musical.getMCode()}&&memberNo=${loginMember.member_No}");
-        	
+
+        }
+        //채팅함수->방번호 넘김!
+        const bt_chat =  function(){
+        	let url = "${path}/chatting/chattingpage.do?roomNo=" +${param.mCode}; 
+        	window.open(url, 'chat_window', 'width=500, height=500, location=no, status=no, scrollbars=yes');
+        	/* location.href="${path}/chatting/chattingpage.do?roomNo="+${param.mCode}; */ 
+
         }
     </script>
 
