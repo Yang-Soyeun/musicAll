@@ -3,6 +3,7 @@ package com.gdj.music.perfor.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Performance2;
 import com.gdj.music.perfor.model.vo.PerformancePhoto;
 import com.gdj.music.perfor.model.vo.Review;
@@ -27,6 +28,12 @@ public interface PerformanceService {
 	List<Map<String,Review>> selectComment(int mCode);
 
 	int selectAverage(int mCode);
+
+	int insertMyMusical(Mlike like);
+
+	List<Mlike> selectMlike(Mlike like);
+
+	int deleteMyMusical(Mlike like);
 
 
 }

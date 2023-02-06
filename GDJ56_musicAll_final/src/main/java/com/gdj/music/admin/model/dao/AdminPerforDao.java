@@ -46,6 +46,8 @@ public interface AdminPerforDao {
 	List<Map<String, Review>> selectComment(SqlSessionTemplate session, int mCode);
 
 	int selectAverage(SqlSessionTemplate session, int mCode);
+
+	int deleteComment(SqlSessionTemplate session, int reviewNo);
 	
 	
 }

@@ -380,7 +380,15 @@ public class AdminPerforController {
 	      
 	      return result>0;
 	   }
-	
+	   
+	@RequestMapping("/deleteComment.do")
+	public ModelAndView deleteComment(ModelAndView mv,int reviewNo) {
+		  int result=service.deleteComment(reviewNo);
+		  mv.addObject("msg",result>0?"댓글이 삭제되었습니다.":"댓글 삭제 실패");
+		  mv.addObject("loc","/admin/Perfor/adminPerformanceView");
+		  mv.setViewName("common/msg");
+		  return mv;
+	  }
 	      
 	      
 	         
