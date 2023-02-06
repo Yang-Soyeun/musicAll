@@ -25,7 +25,7 @@
 		     <table class="table table-striped table-border checkout-table" style="text-align:center;">
 		       <tbody>
 		         <tr >
-		           <td><b>예매번호</b></td>
+		           <td style="max-width:75px;"><b>예매번호</b></td>
 		           <td><b>공연번호</b></td>
 		           <td><b>공연명</b></td>
 		           <td><b>예매일</b></td>
@@ -54,7 +54,7 @@
 				           <td>
 				             <h5 class="product-title font-alt">
 				             	<fmt:formatDate value="${r.get('R_DATE') }" pattern="yyyy-MM-dd"/>
-				             	<c:out value="${r.get('R_TIME') }"/>PM
+				             	<c:out value="${r.get('R_TIME') }"/>
 				             </h5>
 				           </td>
 				           <td class="">
