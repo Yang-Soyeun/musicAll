@@ -129,6 +129,7 @@ public class GoodsController {
 		
 		List<GoodsCart> goods = service.goodsCart(memberNo);
 		
+		
 		mv.addObject("goodsCt", goods);
 		mv.addObject("img", service.goodsImg());
 	
@@ -142,19 +143,11 @@ public class GoodsController {
 	@ResponseBody
 	public ModelAndView deleteCart(ModelAndView mv, int gdCode, int memberNo) {
 		
-		System.out.println(memberNo);
-		
-		GoodsCart g = GoodsCart.builder()
-				.gdCode(gdCode)
-				.memberNo(memberNo)
-				.build();
-		
-		GoodsCart gct = service.checkCart(g);
-		
-		int result = service.deleteCart(gct);
+		int result = service.deleteCart(gdCode);
 		
 		mv.addObject("msg",result>0?"삭제 완료":"삭제 실패");
-		mv.addObject("loc","/goods/goodsCart.do");
+		mv.addObject("loc","/goods/goodsCart.do?memberNo="+memberNo);
+
 	  
 		mv.setViewName("common/msg");
 		return mv;

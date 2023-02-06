@@ -72,8 +72,8 @@ public class GoodsDaoImpl implements GoodsDao {
 
 	//장바구니 삭제
 	@Override
-	public int deleteCart(SqlSessionTemplate session, GoodsCart gct) {
-		return session.delete("goods.deleteCart", gct);
+	public int deleteCart(SqlSessionTemplate session, int gdCode) {
+		return session.delete("goods.deleteCart", gdCode);
 	}
 	
 
