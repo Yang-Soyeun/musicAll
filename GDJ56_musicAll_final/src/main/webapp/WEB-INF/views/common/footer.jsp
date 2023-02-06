@@ -19,9 +19,9 @@
                <h5 class="widget-title font-alt">Quicks Links</h5>
                <ul class="icon-list">
                   <li><a href="${path }/perfor/performanceList.do">공연</a></li>
-                  <li><a href="#">예매</a></li>
-                  <li><a href="#">스토어 </a></li>
-                  <li><a href="#">1:1 문의 </a></li>
+                  <li><a href="${path }/booking/bookinglist.do">예매</a></li>
+                  <li><a href="${path }/goods/goodsMain.do">스토어</a></li>
+                  <li><a href="${path }/question/question.do">1:1 문의 </a></li>
                </ul>
             </div>
          </div>
