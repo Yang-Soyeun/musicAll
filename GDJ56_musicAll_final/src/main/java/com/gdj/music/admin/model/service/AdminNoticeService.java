@@ -13,8 +13,9 @@ public interface AdminNoticeService {
 	List<Notice> noticeList(Map<String, Integer> param);
 	Notice noticeView(int noticeNo);
 	NoticeImg selectImg(int noticeNo);
-	
 	int totalData();
+	int deleteNotice(int noticeNo);
+	int updateNotice(Notice n, List<NoticeImg> files);
 	
 	
 	

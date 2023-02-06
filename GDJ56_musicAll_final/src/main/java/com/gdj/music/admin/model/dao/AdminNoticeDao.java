@@ -16,8 +16,10 @@ public interface AdminNoticeDao {
 	NoticeImg selectImg(SqlSessionTemplate session, int noticeNo);
 	int totalData(SqlSessionTemplate session);
 	Notice noticeView(SqlSessionTemplate session, int noticeNo);
-	
-	
+	int deleteNotice(SqlSessionTemplate session, int noticeNo);
+	int updateNotice(SqlSessionTemplate session, Notice n);
+	int deletePhoto(SqlSessionTemplate session, int noticeNo);
+	int updatePhoto(SqlSessionTemplate session, NoticeImg ni);
 	
 	
 }

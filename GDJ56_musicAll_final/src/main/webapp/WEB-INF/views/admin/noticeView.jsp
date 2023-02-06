@@ -20,12 +20,13 @@
 	      <div class="col-sm-12">
 	        <table class="table table-striped table-border checkout-table">
 	          <tbody>
-	            <tr>
+	         
+	            <tr>        
 	              <td>
 	                <h5 class="product-title font-alt">제목</h5>
 	              </td>
 	              <td class="hidden-xs">
-	                <h5 class="product-title font-alt"><c:out value=""/></h5>
+	                <h5 class="product-title font-alt"><c:out value="${notices.noticeTitle }"/></h5>
 	              </td>
 	            </tr>
 	            <tr>
@@ -33,7 +34,7 @@
 	                <h5 class="product-title font-alt">카테고리</h5>
 	              </td>
 	              <td class="hidden-xs">
-	                <h5 class="product-title font-alt"><fmt:formatDate value="${rvDetail.R_DATE }" pattern="yyyy-MM-dd"/>  |  <c:out value="${rvDetail.R_TIME }"/>PM</h5>
+	                <h5 class="product-title font-alt"><c:out value="${notices.noticeCategory }"/> </h5>
 	              </td>
 	            </tr>
 	            <tr>
@@ -41,7 +42,7 @@
 	                <h5 class="product-title font-alt">작성일</h5>
 	              </td>
 	              <td class="hidden-xs">
-	                <h5 class="product-title font-alt"><c:out value="${rvDetail.SEATCOUNT }"/>  |  <fmt:formatNumber value="${rvDetail.SEATPRICE }" pattern="###,###"/></h5>
+	                <h5 class="product-title font-alt"><c:out value="${notices.noticeDate }"/></h5>
 	              </td>
 	            </tr>
 	            <tr>
@@ -49,27 +50,35 @@
 	                <h5 class="product-title font-alt">내용</h5>
 	              </td>
 	              <td class="hidden-xs">
-	               	<textarea width="500px" height="500px">ㅎㅇ</textarea>
-	              </td>
+	               	<div style="width: 999px;height: 700px;resize: none;">${notices.noticeContent }<br><br><br><br><br>
+	               	<c:if test="${not empty img }">
+	               		<img width="500px;" height="500px;" src="${path }/resources/upload/notice/${img.imName }" >
+	               	</c:if>
+	               	</div>
+	              </td> 
 	            </tr>
+	
 	          </tbody>
+	               
 	        </table>
 	      </div>
 	    </div>
-	    <hr class="divider-w">
+	 
 
 	  </div>
+	  <c:if test="${loginMember!=null&&loginMember.member_Id.equals('admin') }">
+	  <div class="ASKbtn" id="divWriteForm" style="display:block; margin-left: 43%;" >
+			<span><input type="button"  value="수정" onclick="location.assign('${path}/notice/updatenotice.do?noticeNo=${notices.noticeNo }')" class="btn btn-danger btn-circle"></span>
+			<span><input type="button"  value="삭제" class="btn btn-danger btn-circle" onclick="location.assign('${path}/notice/deletenotice.do?noticeNo=${notices.noticeNo }')"></span>	
+			<span><input type="button" onclick="location.assign('${path}/notice/noticeList.do');" value="목록" class="btn btn-danger btn-circle"></span>
+	 </c:if>
+	</div>
+	<c:if test="${loginMember!=null&&loginMember.member_Id ne 'admin' }">
+	  <div class="ASKbtn" id="divWriteForm" style="display:block; margin-left: 48%;" >	
+			<span><input type="button" onclick="location.assign('${path}/noticeList.do');" value="목록" class="btn btn-danger btn-circle"></span>
+	 </c:if>
+	</div>
 	</section>
 </div>
-
-<script>
-	$(()=>{
-		if($("h6").text().includes("취소")){//환불 한 내역이 있으면
-			$("#totalPrice").attr('style','color:rgb(194, 35, 35); text-decoration:line-through;');//결제금액 색 변경
-		}else{//없으면
-			
-		}
-	});
-</script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

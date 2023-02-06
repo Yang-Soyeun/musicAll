@@ -48,4 +48,28 @@ public class AdminNoticeDaoImpl implements AdminNoticeDao {
 		return session.selectOne("notice.noticeView", noticeNo);
 	}
 
+	@Override
+	public int deleteNotice(SqlSessionTemplate session, int noticeNo) {
+		// TODO Auto-generated method stub
+		return session.delete("notice.deleteNotice",noticeNo);
+	}
+
+	@Override
+	public int updateNotice(SqlSessionTemplate session, Notice n) {
+		// TODO Auto-generated method stub
+		return session.insert("notice.updateNotice",n);
+	}
+
+	@Override
+	public int deletePhoto(SqlSessionTemplate session, int noticeNo) {
+		// TODO Auto-generated method stub
+		return session.delete("noticeImg.deletePhoto",noticeNo);
+	}
+
+	@Override
+	public int updatePhoto(SqlSessionTemplate session, NoticeImg ni) {
+		// TODO Auto-generated method stub
+		return session.update("noticeImg.updatePhoto",ni);
+	}
+	
 }

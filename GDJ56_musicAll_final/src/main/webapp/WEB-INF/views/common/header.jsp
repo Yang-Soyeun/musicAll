@@ -92,7 +92,12 @@
               <li class="dropdown"><a href="${path }/perfor/performanceList.do" >공연</a></li>
               <li class="dropdown"><a href="${path }/booking/bookinglist.do" >예매</a></li>
               <li class="dropdown"><a href="${path }/goods/goodsMain.do" >스토어</a></li>
-              <li class="dropdown"><a href="${path }/question/question.do" >1:1문의</a></li>
+              <li class="dropdown"><a class="dropdown-toggle" href="${path }/noticeList.do" data-toggle="dropdown">고객센터</a>
+              <ul class="dropdown-menu" role="menu">
+                     <li><a href="${path }/noticeList.do"><i class="fa fa-list-ul fa-sm"></i>공지사항</a></li>
+                     <li><a href="${path }/question/question.do"><i class="fa fa-pencil-square-o"></i> 1:1문의</a></li>
+             </ul>
+              </li>
          
 
               <c:if test="${loginMember==null }">

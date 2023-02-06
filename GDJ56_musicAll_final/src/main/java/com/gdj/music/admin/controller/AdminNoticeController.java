@@ -118,4 +118,73 @@ public class AdminNoticeController {
 				return result > 0;
 			}
 	
+	//게시글 삭제
+	@RequestMapping("deletenotice.do")
+	public ModelAndView deleteNotice(ModelAndView mv, int noticeNo) {
+		
+		int result = service.deleteNotice(noticeNo);
+		mv.addObject("msg",result>0?"삭제완료!":"삭제실패");
+		 mv.addObject("loc","/notice/noticeList.do");
+		 mv.setViewName("common/msg");
+		  return mv;
+		
+	}
+	
+	//게시글 수정
+	@RequestMapping("updatenotice.do")
+	public ModelAndView updateNotice(ModelAndView mv, int noticeNo) {
+		mv.addObject("notices", service.noticeView(noticeNo));
+		mv.addObject("img", service.selectImg(noticeNo));
+		mv.setViewName("admin/updateNotice");
+		return mv;
+	}
+	
+	@RequestMapping("updateEnd.do")
+	@ResponseBody
+	public boolean updateNoticeEnd(HttpSession session, MultipartFile upFile,Notice notice, HttpServletResponse response) throws Exception{
+		
+		//파일 업로드처리
+		String path=session.getServletContext().getRealPath("/resources/upload/notice/");
+		
+		File dir=new File(path);
+		if(!dir.exists()) dir.mkdirs();
+		List<NoticeImg> files=new ArrayList();
+
+		
+		//리네임드규칙을 생성하기
+				if(upFile!=null&&!upFile.isEmpty()) {
+					String originalFileName=upFile.getOriginalFilename();
+					String ext=originalFileName.substring(originalFileName.lastIndexOf("."));
+					//중복되지않는 이름 설정하는 값지정하기
+					SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+					int rnd=(int)(Math.random()*10000)+1;
+					String renameFile=sdf.format(System.currentTimeMillis())+"_"+rnd+ext;
+					//파일 업로드하기
+					try {
+						upFile.transferTo(new File(path+renameFile));
+						files.add(
+								NoticeImg.builder()
+								.imName(renameFile)
+								.noticeNo(notice.getNoticeNo())
+								.build());
+						}catch(IOException e) {
+								e.printStackTrace();
+						}					
+				}
+				
+				Notice n = Notice.builder()
+						.noticeNo(notice.getNoticeNo())
+						.noticeTitle(notice.getNoticeTitle())
+						.noticeContent(notice.getNoticeContent())
+						.noticeCategory(notice.getNoticeCategory())
+						.build();
+				
+			
+			
+				int result = service.updateNotice(n, files);		
+				
+				
+				return result>0;
+			}
+	
 }

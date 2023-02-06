@@ -285,12 +285,12 @@
 					 
 					<div class="noticeAdd">
 						<h4>제목</h4>
-						<input type="text" value="" placeholder="제목을 작성해 주세요" id="noticeTitle"/>
+						<input type="text" value="${notices.noticeTitle }" placeholder="제목을 작성해 주세요" id="noticeTitle"/>
 										
 						<br>
 						
 						<h4>내용</h4>
-						<textarea style="border: none; height: 100px;" id="noticeContent"> </textarea>
+						<textarea style="border: none; height: 100px;" id="noticeContent">${notices.noticeContent }</textarea>
 						
 						<br>
 						
@@ -309,12 +309,16 @@
 			
 						<h4>사진</h4>
 						<input type="file" value="" style="border: none;" name="upFile" onchange="readURL2(this);" />
+						<c:if test="${not empty img }">
+						<img id="preview2" style="width:300px; height: 400px;" src="${path }/resources/upload/notice/${img.imName }"/>
+						</c:if>
+						<c:if test="${empty img }">
 						<img id="preview2" style="width:300px; height: 400px;"/>
-					
+						</c:if>
 			        </div>
 			        
 			        <div style="margin-top:7%; margin-left: 25%;">
-			            <button class="btn btn-danger" style="width:200px; font-size:15px; float:left;" type="button" onclick="n_insert()">등록</button>
+			            <button class="btn btn-danger" style="width:200px; font-size:15px; float:left;" type="button" onclick="n_insert()">수정</button>
 			            <button class="btn btn-secondary" style="width:110px;background-color:lightgray;color:black;font-size:15px; float:left;">취소</button>
 			        </div>
 		      	</form>
@@ -328,7 +332,7 @@
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
 	<script>
-	
+	$("#noticeCategory").val("${notices.noticeCategory}").prop("selected", true);
 	
 		//상세정보
 		function readURL2(input) {
@@ -338,7 +342,9 @@
 		        document.getElementById('preview2').src = e.target.result;
 		        };
 		    reader.readAsDataURL(input.files[0]);
-		    } 
+		    } else {
+	            document.getElementById('preview2').src = "";
+            }
 		}
 		
 		//굿즈 등록 데이터 보내기
@@ -375,7 +381,7 @@
 			
 	 		 $.ajax({
 				enctype: 'multipart/form-data',
-				url: "${path}/notice/noticeEnd.do",
+				url: "${path}/notice/updateEnd.do?noticeNo=${notices.noticeNo}",
 				data: form,
 				type: 'post',
 				dataType: 'json',
@@ -383,12 +389,12 @@
 		        processData: false,
 		        cache:false,
 		        success:function(data){
-						alert("등록 성공");
+						alert("수정 성공");
 						location.replace("${pageContext.request.contextPath}/notice/noticeList.do");
 					} ,
 			    error:function(e){
-					alert("등록 실패");
-					location.replace("${pageContext.request.contextPath}/notice/noticeInsert.do");
+					alert("수정 실패");
+					location.replace("${pageContext.request.contextPath}/notice/updatenotice.do");
 				}
 					
 				
