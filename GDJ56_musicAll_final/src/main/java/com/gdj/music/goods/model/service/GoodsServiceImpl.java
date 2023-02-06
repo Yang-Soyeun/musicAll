@@ -12,6 +12,7 @@ import com.gdj.music.goods.model.dao.GoodsDao;
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.goods.model.vo.GoodsCart;
 import com.gdj.music.goods.model.vo.GoodsImg;
+import com.gdj.music.goods.model.vo.MyGoods;
 
 @Service
 public class GoodsServiceImpl implements GoodsService {
@@ -86,6 +87,13 @@ public class GoodsServiceImpl implements GoodsService {
 	@Override
 	public int deleteCart(int gdCode) {
 		return dao.deleteCart(session, gdCode);
+	}
+
+
+	//구매 내역
+	@Override
+	public MyGoods selectMygoods(Goods g) {
+		return dao.selectMygoods(session, g);
 	}
 
 }

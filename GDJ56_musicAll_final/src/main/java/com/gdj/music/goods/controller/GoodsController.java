@@ -22,7 +22,9 @@ import com.gdj.music.goods.model.vo.GoodsCart;
 import com.gdj.music.goods.model.vo.MyGoods;
 import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.mypage.model.service.MypageService;
-
+import com.gdj.music.pay.model.service.PayService;
+import com.gdj.music.pay.model.vo.Pay;
+import com.gdj.music.reservation.model.vo.Point;
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
@@ -33,12 +35,14 @@ public class GoodsController {
 	
 	private GoodsService service;
 	private MypageService serviceMp;
+	private PayService servicePay;
 
 	@Autowired
-	public GoodsController(GoodsService service, MypageService serviceMp) {
+	public GoodsController(GoodsService service, MypageService serviceMp, PayService servicePay) {
 		super();
 		this.service = service;
 		this.serviceMp = serviceMp;
+		this.servicePay = servicePay;
 	}
 	
 	@RequestMapping("/goodsMain.do")
@@ -156,8 +160,85 @@ public class GoodsController {
 	
 	
 	@RequestMapping("/payEnd.do") 
-	public String payEnd() {
-		return "/store/payEnd";
+	public ModelAndView payEnd(String[] info, ModelAndView mv) {
+		
+		Pay p = Pay.builder().pWay(info[1]).pPrice(Integer.parseInt(info[4]))
+				.pUid(info[6]).mUid(info[7]).build();
+		
+		System.out.println(p);
+		
+		MyGoods g = MyGoods.builder().memberNo(Integer.parseInt(info[0])).gdCode(Integer.parseInt(info[2]))
+				.sbCount(Integer.parseInt(info[3])).sbHall(info[5]).build();
+		
+		
+		//사용 포인트
+		int usedPoint = Integer.parseInt(info[8]);
+		//결제 적립금
+		int payPoint = (Integer.parseInt(info[9]))/10;
+		//사용자 보유 포인트
+		int mpPoint = serviceMp.selectPoint(Integer.parseInt(info[0]))==null?0:serviceMp.selectPoint(Integer.parseInt(info[0])).getMpPoint();
+	
+		Point point = Point.builder().mpPrice(usedPoint).mpType("-").memberNo(Integer.parseInt(info[0])).mpHistory("결제 시 사용").mpPoint(mpPoint).build();
+		
+		//결제 정보 저장
+		int result = servicePay.goodsPay(p);
+		
+		int result2 = 0;
+		
+		if(result > 0) {
+			
+			//내 구매 리스트 저장
+			result2 = servicePay.insertMygoods(g);
+			
+			if(result2 > 0) {
+				
+				if(usedPoint > 0) {
+					
+					//포인트 사용 내역 저장
+					servicePay.insertPoint(point);
+					
+					Point p1 = serviceMp.selectPoint(Integer.parseInt(info[0]));
+					
+					//포인트 사용 차감
+					servicePay.minusPoint(p1);
+					
+				}
+				
+				//총 포인트 다시 조회
+				mpPoint = serviceMp.selectPoint(Integer.parseInt(info[0]))==null?0:serviceMp.selectPoint(Integer.parseInt(info[0])).getMpPoint();
+				
+				//적립 포인트 내역 저장
+				Point point2 = Point.builder().mpPrice(payPoint).mpType("+").memberNo(Integer.parseInt(info[0])).mpHistory("굿즈 구매 적립").mpPoint(mpPoint).build();
+				servicePay.insertPoint(point2);
+				
+				//적립 포인트 합산
+				Point p2 =  serviceMp.selectPoint(Integer.parseInt(info[0]));
+				servicePay.addPoint(p2);
+				
+				mv.addObject("msg","상품 구매가 완료되었습니다.");
+				mv.addObject("info", info);
+				mv.addObject("img", service.goodsImg());
+				
+				Goods goods = service.goodsView(Integer.parseInt(info[2]));
+				
+				mv.addObject("goods", goods);
+				
+				service.deleteCart(Integer.parseInt(info[2]));
+				
+				mv.setViewName("/store/payEnd");
+		
+				
+			}
+			return mv;
+		}
+		
+		else {
+			mv.addObject("msg","구매가 정상적이지 못했습니다. 다시 시도해주세요.");
+			mv.addObject("loc","/");
+			mv.setViewName("common/msg");
+			return mv;
+		}
+		
 	}
 
 	@RequestMapping("/goodsRefund.do")
