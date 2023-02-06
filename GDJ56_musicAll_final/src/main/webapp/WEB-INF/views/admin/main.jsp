@@ -230,7 +230,7 @@
             </div>
           </li>
                <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts" onclick="location.assign('${path}/notice/noticeList.do');">
             <i class="icon-grid-2 menu-icon"></i>
               <span class="menu-title">고객센터</span>
               <i class="menu-arrow"></i>
