@@ -174,7 +174,7 @@
       	}
       	
       	const click_msg_btn=()=>{
-      		alert("클릭!");
+      		window.open('${path}/chatting/chatList.do', 'chatList_window', 'width=500, height=500, location=no, status=no, scrollbars=yes');
       	}
       	
       </script>

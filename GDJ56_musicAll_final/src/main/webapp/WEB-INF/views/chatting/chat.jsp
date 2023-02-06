@@ -1,16 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>채팅창</title>
- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet"> 
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.6.1.min.js"></script>
 <style>
 body {
 	background-color: #a1c0d6;
+	font-family: Hi Melody;
+	font-weight: border;
+	
 }
 .body-chat{
   padding-bottom: 0;
@@ -56,7 +62,7 @@ display: flex;
   align-items: flex-start;
 }
 .chat__message-time {
-  font-size: 10px;
+  font-size: 16px;
   color : rgba(0, 0, 0, 0.5);
 }
 
@@ -66,7 +72,7 @@ display: flex;
   border-radius: 2px;
   margin-right: 10px;
   margin-left: 10px;
-  font-size: 15px;
+  font-size: 20px;
 }
 
 .chat__message-to-me img{
@@ -76,7 +82,7 @@ display: flex;
 }
 
 .chat__message-username{
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 600;
   margin-bottom: 5px;
 }
@@ -211,8 +217,13 @@ display: flex;
 				const msg = JSON.parse(response.data);
 				console.log(msg);
 				switch(msg.type){
-					case "system" : addMsgSystem(msg);break;
+					case "connection" :
+						addMsgSystem(msg);
+						getHistory();
+						break;
 					case "msg" : printMsg('${sessionScope.loginMember.member_Id}',msg);break;//나는 오른쪽? 너는 왼쪽? 이거 구현하기 위해서!
+					case "disconnection" : addMsgSystem(msg);break;		
+							
 				}
 			}
 			
@@ -233,7 +244,7 @@ display: flex;
 					this.room=room;
 					this.sendMemberId = sendMemberId;
 				}
-				/**********우린 특정대상이x 모든 회원이 참여가능! 그래서 reciever을 뺄지 고민중.......************/
+				//**********우린 특정대상이x 모든 회원이 참여가능! 그래서 reciever을 뺄지 고민중..그럼 다시 다바꿔야하므로..패스//
 			}
 		
 			function addMsgSystem(msg){
@@ -248,13 +259,35 @@ display: flex;
 				let currT = new Date().getHours() + ":" + new Date().getMinutes(); 
 				let html = '<div class="'+divCls+'"><div class="chat__message-center"><h3 class="chat__message-username">' + msg.sender 
 							+ '</h3><span class="chat__message-body">' + msg.msg + '</span></div><span class="chat__message-time">' 
-							+ currT + '</span></div>';
+							+ currT + '</span></div>';//인터넷...ㅎㅎ
 				
 				$("#chattingcontainer").append(html);
 				
 				//스크롤 최하단으로 내리기
-				window.scrollTo(0, document.body.scrollHeight);
+				window.scrollTo(0, document.body.scrollHeight);//인터넷
 			}
+			//접속했을때
+			const getHistory=()=>{
+				console.log("잉?");
+				let roomNo = $("#roomNo").val();
+				$.ajax({
+					url : '${path}/chatting/chatContent.do', 
+					data : {"chatNo" : roomNo},
+					dataType : 'json',
+					type : 'post',
+					success : data=>{
+						
+											
+						
+						
+					}
+				});
+			}
+			
+			$("#backChats").on("click",function(){
+				location.href = "${path}/chatting/chatList.do";
+				
+			});
 		</script>
 	
 	</body>
