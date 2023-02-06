@@ -117,5 +117,8 @@ public class AdminPerforServiceImpl implements AdminPerforService{
 		// TODO Auto-generated method stub
 		return dao.selectAverage(session,mCode);
 	}
-	
+	@Override
+	public int deleteComment(int reviewNo) {
+		return dao.deleteComment(session,reviewNo);
+	}
 }

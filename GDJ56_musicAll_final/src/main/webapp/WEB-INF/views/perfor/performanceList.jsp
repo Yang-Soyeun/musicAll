@@ -12,7 +12,6 @@
     <br>
         <section class="hbody">
           <article class="nav2">
-         
           <div id="menu">
             <li><input type="checkbox" id="original">&nbsp;오리지널 내한공연</li>
             <li><input type="checkbox" id="license">&nbsp;라이센스 뮤지컬</li>
@@ -48,11 +47,19 @@
         <img src="${path }/resources/images/performance/fourth.png" id="countimg4" style="width:70px; height: 75px; ">
     </div>
     <c:forEach var="p" items="${musicalPhoto}">
-    <div class="photo-box" style>
-        <img src="${path }/resources/upload/performance/${p.getIName()}" class="perView" style="float:left;"onclick="location.href='${path}/perfor/performanceView.do?mCode=${p.getMCode() }';"/>
-    </div>
+    <c:if test="${empty loginMember  }">
+    	<div class="photo-box">
+        	<img src="${path }/resources/upload/performance/${p.getIName()}" class="perView" style="float:left;" onclick="location.href='${path}/perfor/performanceView1.do?mCode=${p.getMCode()}'" >
+   		</div>
+    </c:if>
+     <c:if test="${not empty loginMember  }">
+    	<div class="photo-box">
+        	<img src="${path }/resources/upload/performance/${p.getIName()}" class="perView" style="float:left;" onclick="location.href='${path}/perfor/performanceView.do?mCode=${p.getMCode()}'" >
+   		</div>
+    </c:if>
     </c:forEach>
 </section>
+
 <br>
 <br>
 <br>

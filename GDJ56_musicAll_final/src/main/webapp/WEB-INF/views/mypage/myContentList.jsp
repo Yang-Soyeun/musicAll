@@ -29,7 +29,6 @@
         			url:"${path }/mypage/orderReview.do",
         			data:{keyword:$(obj).val(),member_No:$("#member_No").val()},
         			success:data=>{
-//         				console.log(data);
         				
 						$(".reviewCon #rvScore").empty();//별점 초기화
 //         				$(".rvPhoto").attr('href','###');//a태그 주소 바꾸기!!!?!수정 필요!!!!!!!!!??????
@@ -41,7 +40,7 @@
         					
         					$(".reviewCon #rvTitle")[i].innerText=data[i].M_TITLE;//제목
         					$(".reviewCon #rvContent")[i].innerText=data[i].REVIEW_CONTENT;//내용
-        					var img=$("<img src='${path }/resources/images/performance/"+data[i].I_NAME+
+        					var img=$("<img src='${path }/resources/upload/performance/"+data[i].I_NAME+
         							"' alt='Blog-post Thumbnail' class='reviewImg'></img>")[0];//사진 생성
         							
 							$(".rvPhoto")[i].append(img);//사진 넣기	

@@ -30,4 +30,6 @@ public interface AdminPerforService {
 	List<Map<String, Review>> selectComment(int mCode);
 
 	int selectAverage(int mCode);
+
+	int deleteComment(int reviewNo);
 }

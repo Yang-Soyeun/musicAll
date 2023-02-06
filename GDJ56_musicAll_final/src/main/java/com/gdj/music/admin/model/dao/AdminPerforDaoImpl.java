@@ -84,4 +84,8 @@ public class AdminPerforDaoImpl implements AdminPerforDao {
 	public int selectAverage(SqlSessionTemplate session, int mCode) {
 		return session.selectOne("review.selectAverage",mCode);
 	}
+	@Override
+	public int deleteComment(SqlSessionTemplate session, int reviewNo) {
+		return session.delete("review.deleteComment",reviewNo);
+	}
 }

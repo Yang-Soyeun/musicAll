@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.gdj.music.perfor.model.vo.Mlike;
 import com.gdj.music.perfor.model.vo.Performance2;
 import com.gdj.music.perfor.model.vo.PerformancePhoto;
 import com.gdj.music.perfor.model.vo.Review;
@@ -30,6 +31,12 @@ public interface PerformanceDao {
 	List<Map<String,Review>> selectComment(SqlSessionTemplate session,int mCode);
 
 	int selectAverage(SqlSessionTemplate session, int mCode);
+
+	int insertMyMusical(SqlSessionTemplate session, Mlike like);
+
+	List<Mlike> selectMlike(SqlSessionTemplate session, Mlike like);
+
+	int deleteMyMusical(SqlSessionTemplate session, Mlike like);
 	
 	
 
