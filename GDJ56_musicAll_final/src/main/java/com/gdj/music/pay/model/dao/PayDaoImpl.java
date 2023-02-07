@@ -39,7 +39,7 @@ public class PayDaoImpl implements PayDao{
 	//포인트 내역
 	@Override
 	public int insertPoint(SqlSessionTemplate session, Point p) {
-		return session.insert("pay.insertPay", p);
+		return session.insert("pay.insertPoint", p);
 	}
 
 	//포인트 차감
