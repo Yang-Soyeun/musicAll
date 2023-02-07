@@ -55,7 +55,8 @@ public class AdminPerforController {
 	  //공연리스트 출력
 	  @RequestMapping("/performanceList.do")
 	  public ModelAndView adminPerformanceList(ModelAndView mv) {
-		  mv.addObject("musicalPhoto",service.selectPerforList());
+		  List<Map<String,PerformancePhoto>> pp= service.selectPerforList();
+		  mv.addObject("musicalPhoto",pp);
 		  mv.setViewName("/admin/Perfor/adminPerformanceList");
 		  return mv;
 		   }
@@ -168,6 +169,7 @@ public class AdminPerforController {
 	      System.out.println("시작날"+startDay);
 	      System.out.println("종료날"+endDay);
 	      Performance2 p = Performance.builder()
+	    		.mCode(mCode)
 	            .mTitle(Performance.getMTitle())
 	            .mType(Performance.getMType())
 	            .mAge(Performance.getMAge())
@@ -193,6 +195,7 @@ public class AdminPerforController {
 	               .sDay(days[0])
 	               .sTime(Performance.getSTime())
 	               .sNum(1)
+	               .mCode(mCode)
 	               .build());
 	//         2회차에 대한 저장
 	         if(days.length>2) {
@@ -201,6 +204,7 @@ public class AdminPerforController {
 	                  .sDay(days[0])
 	                  .sTime(Performance.getSTime())
 	                  .sNum(2)
+	                  .mCode(mCode)
 	                  .build());
 	         }
 	      }

@@ -14,7 +14,7 @@ import com.gdj.music.reservation.model.vo.Reservation;
 
 public interface PerformanceDao {
 
-	List<PerformancePhoto> selectPerforList(SqlSessionTemplate session);
+	List<Map<String, PerformancePhoto>> selectPerforList(SqlSessionTemplate session);
 
 	Performance2 selectPerformanceView(SqlSessionTemplate session,int mCode);
 
@@ -37,6 +37,12 @@ public interface PerformanceDao {
 	List<Mlike> selectMlike(SqlSessionTemplate session, Mlike like);
 
 	int deleteMyMusical(SqlSessionTemplate session, Mlike like);
+
+	List<Map<String, PerformancePhoto>> orderbyBest(SqlSessionTemplate session);
+
+	List<Map<String,PerformancePhoto>> orderbyRecent(SqlSessionTemplate session);
+
+	List<Map<String, PerformancePhoto>> orderbyEnd(SqlSessionTemplate session);
 	
 	
 

@@ -21,7 +21,7 @@ public interface AdminPerforDao {
 
 	int insertPhoto(SqlSessionTemplate session, PerformancePhoto pp);
 
-	List<PerformancePhoto> selectPerforList(SqlSessionTemplate session);
+	List<Map<String, PerformancePhoto>> selectPerforList(SqlSessionTemplate session);
 
 	Performance2 selectPerformanceView(SqlSessionTemplate session, int mCode);
 
