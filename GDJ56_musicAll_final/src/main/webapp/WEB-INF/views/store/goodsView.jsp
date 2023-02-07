@@ -242,7 +242,7 @@
 							<div class="col-lg-6 add_review_col">
 
 								<div class="add_review">
-									<form id="review_form" name="review_form" method="post" onsubmit="return false;" action="${path }/goods/addReview.do?memberNo=${loginMember.member_No }">
+									<form id="review_form" name="review_form" method="post" onsubmit="return addReview();" action="${path }/goods/addReview.do?memberNo=${loginMember.member_No }">
 										<div>
 										<input type="hidden" name="gdCode" value="${goods.gdCode }">
 										</div>
@@ -258,7 +258,7 @@
 											<textarea id="review_message" class="input_review" name="review"  placeholder="Your Review" rows="4" required data-error="Please, leave us a review."></textarea>
 										</div>
 										<div class="text-left text-sm-right">
-											<button id="review_submit" type="submit" onclick="addReview();" class="red_button review_submit_btn trans_300">등록</button>
+											<button id="review_submit" type="submit" class="red_button review_submit_btn trans_300">등록</button>
 										</div>
 									</form>
 								</div>
@@ -393,46 +393,48 @@
 			
 		});
 		
-		<c:forEach var='m' items="${mygoods}">
-				console.log(${m.gdCode });
-			</c:forEach>
 			
-		//상품평
+		 //상품평
         const addReview=()=>{
-        	
-        	var memberNo='${loginMember.member_No}';
-        	var my = 0;
-        	
-        	<c:forEach var='m' items="${mygoods}">
-	        	if(${m.gdCode } != ${goods.gdCode }){
-					my = 1;
-	    		}
-        	</c:forEach>	
+           
+           var memberNo='${loginMember.member_No}';
+           var my = 0;
+           
+           <c:forEach var='m' items="${mygoods}">
+              if(${m.gdCode } == ${goods.gdCode }){
+               	my = 1;
+             }
+           </c:forEach>   
 
-        	if(memberNo=null){
-        		
-        		alert("로그인한 회원만 작성가능합니다.");
-        		location.assign("${path}/member/login.do");
-        		
-        	}else{
-        		
-        		<c:forEach var='m' items="${mygoods}">
-        			
-        		
-        			if(my=1){
-        				
-        				alert("상품을 구매한 회원만 작성가능합니다.");
-	        			return false;
-        			
-	        		}
-        			
-        		</c:forEach>	
-	        		
-	        		
-        			
-        	}
+           if(memberNo=null){
+              
+              alert("로그인한 회원만 작성가능합니다.");
+              location.assign("${path}/member/login.do");
+              
+           }else{
+              
+              <c:forEach var='m' items="${mygoods}">
+                 
+              
+                 if(my!=1){
+                    
+                    alert("상품을 구매한 회원만 작성가능합니다.");
+                    return false;
+                 
+                 } else {
+                    
+                    return true;
+                    
+                 }
+                 
+              </c:forEach>   
+                 
+                 
+                 
+           }
 
         }
+
 		
 		
 	</script>
