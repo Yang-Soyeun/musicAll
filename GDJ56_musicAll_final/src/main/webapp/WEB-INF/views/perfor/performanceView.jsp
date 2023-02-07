@@ -133,7 +133,7 @@
 
         <div class="oneComment" style="height:150px;  display: none; "><!--한줄평 입력하기-->
             <div id="starBox">
-                <form name="myform" class="myform" method="post" action="${path }/perfor/insertComment.do">
+                <form name="myform" id="commentWrite" class="myform" method="post" action="${path }/perfor/insertComment.do">
                      <input type="hidden" name="mCode" value="${musical.getMCode() }">
                     <fieldset>
                     	<input type="radio">
@@ -263,27 +263,23 @@
         const fn_submit=()=>{
         	var memberNo='${loginMember.member_No}';
         	var mCode=$("input[name=mCode]").val();
-        	//console.log(reserNo);
+        	console.log(memberNo);
         	let reservations=[];
         	<c:forEach var='e' items="${reservation}">
         		reservations.push('${e.memberNo}');
         	</c:forEach>
-        	console.log(reservations);
-        	if(memberNo=null){
-        		alert("로그인한 회원만 작성가능합니다.");
-        		location.assign("${path}/member/login.do");
-        	}else{
+        	console.log("예약자 번호 배열:"+reservations);
         		if(reservations.indexOf(memberNo) !=-1){
         			console.log("일치");
         			console.log(mCode);
         			alert("한줄평 등록이 완료되었습니다! 감사합니다.");
-        			$(".commentWrite").submit();
+        			$("#commentWrite").submit();
         		}else{
         			console.log("불일치");
         			alert("공연을 예매한 회원만 작성가능합니다.");
         			return false;
         		}
-        	}
+        	
         }
         
         //관심공연 등록하기 

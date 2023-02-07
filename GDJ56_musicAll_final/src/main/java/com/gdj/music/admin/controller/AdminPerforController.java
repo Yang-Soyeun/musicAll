@@ -95,6 +95,7 @@ public class AdminPerforController {
 		  model.addAttribute("sdayMap",ss);
 		  model.addAttribute("photo",service.selectPhoto(mCode));
 		  model.addAttribute("mCode",mCode);
+		  
 		  return"/admin/Perfor/modifyPerformance";
 	  }
 	  
