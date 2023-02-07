@@ -23,7 +23,7 @@
 	              <td><b>주문번호</b></td>
 	              <td><b>상품명</b></td>
 	              <td><b>수량</b></td>
-	              <td><b>가격</b></td>
+	              <td><b>결제금액</b></td>
 	              <td><b>결제일</b></td>
 	              <td><b>환불/취소</b></td>
 	            </tr>
@@ -40,7 +40,7 @@
 	                  <h5 class="product-title font-alt"><c:out value="${shop.get('SB_COUNT') }"/></h5>
 	                </td>
 	                <td class="">
-	                  <h5 class="product-title font-alt"><fmt:formatNumber value="${shop.get('TOTAL') }" pattern="###,###"/></h5>
+	                  <h5 class="product-title font-alt"><fmt:formatNumber value="${shop.get('P_PRICE') }" pattern="###,###"/></h5>
 	                </td>
 	                <td>
 	                  <h5 class="product-title font-alt">
