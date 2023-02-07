@@ -45,6 +45,13 @@ public class ChatServiceImpl implements ChatService {
 	public List<ChatHistory> chatHistory(int chatNo) {
 		return dao.chatHistory(chatNo, session);
 	}
+
+
+
+	@Override
+	public ChatListVo chatImg(String roomNo) {
+		return dao.chatImg(roomNo,session);
+	}
 	
 	
 	

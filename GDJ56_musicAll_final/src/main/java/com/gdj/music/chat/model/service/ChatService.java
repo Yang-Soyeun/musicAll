@@ -19,4 +19,7 @@ public interface ChatService {
 
 
 	List<ChatHistory> chatHistory(int chatNo);
+
+
+	ChatListVo chatImg(String roomNo);
 }

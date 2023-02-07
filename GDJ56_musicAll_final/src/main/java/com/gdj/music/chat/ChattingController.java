@@ -32,14 +32,19 @@ public class ChattingController {
 		this.service = service;
 	}
 	
-
+	//채팅페이지를 들어왔을경우
 	@RequestMapping("/chatting/chattingpage.do")
 	public String chattingPage(HttpServletRequest request, Model model) {
 		
 		//방번호를 모델에 담았음!!
 		String roomNo = request.getParameter("roomNo");
-		System.out.println(" roomNo L " + roomNo);
 		
+		ChatListVo cl = service.chatImg(roomNo);
+		System.out.println("=====방금=========");
+		System.out.println(cl);
+		System.out.println("=====방금=========");
+		
+		model.addAttribute("cl",cl);
 		model.addAttribute("roomNo", roomNo);
 
 		//현재 날짜를 원하는 형식으로 바꾸기 위해 SimpleDateFormat 사용
