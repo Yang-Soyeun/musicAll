@@ -418,12 +418,21 @@
            
            var memberNo='${loginMember.member_No}';
            var my = 0;
+           var mrv = 0;
            
+           //상품 구매 확인
            <c:forEach var='m' items="${mygoods}">
               if(${m.gdCode } == ${goods.gdCode }){
                	my = 1;
              }
            </c:forEach>   
+           
+           //이미 작성했는지 확인
+           <c:forEach var='mr' items="${review}">
+	           if(${mr.G_CODE } == ${goods.gdCode } && ${mr.GR_CODE } != null){
+	            	mrv = 1;
+	          }
+	        </c:forEach>  
 
            if(memberNo=null){
               
@@ -441,6 +450,13 @@
                     return false;
                  
                  } else {
+                	 
+                	 if(mrv==1) {
+                		 
+                		 alert("상품평을 이미 작성하셨습니다.");
+                		 return false;
+                		 
+                	 }
                     
                     return true;
                     
