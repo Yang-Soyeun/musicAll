@@ -180,6 +180,10 @@ public class GoodsController {
 	
 		Point point = Point.builder().mpPrice(usedPoint).mpType("-").memberNo(Integer.parseInt(info[0])).mpHistory("결제 시 사용").mpPoint(mpPoint).build();
 		
+		//상품 잔여 수량
+		int gCount = service.selectgCount(Integer.parseInt(info[2]));
+		
+		
 		//결제 정보 저장
 		int result = servicePay.goodsPay(p);
 		
@@ -224,6 +228,9 @@ public class GoodsController {
 				mv.addObject("goods", goods);
 				
 				service.deleteCart(Integer.parseInt(info[2]));
+				
+				
+				servicePay.updategCount(g);
 				
 				mv.setViewName("/store/payEnd");
 		

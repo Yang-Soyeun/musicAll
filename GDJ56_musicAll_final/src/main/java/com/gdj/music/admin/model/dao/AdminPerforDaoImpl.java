@@ -33,7 +33,7 @@ public class AdminPerforDaoImpl implements AdminPerforDao {
 		return session.insert("img.insertPhoto",pp);
 	}
 	@Override
-	public List<PerformancePhoto> selectPerforList(SqlSessionTemplate session) {
+	public List<Map<String, PerformancePhoto>> selectPerforList(SqlSessionTemplate session) {
 		return session.selectList("img.selectPerforList");
 	}
 	@Override

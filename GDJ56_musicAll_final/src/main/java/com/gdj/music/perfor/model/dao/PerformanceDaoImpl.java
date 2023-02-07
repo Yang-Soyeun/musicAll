@@ -17,7 +17,7 @@ import com.gdj.music.reservation.model.vo.Reservation;
 public class PerformanceDaoImpl implements PerformanceDao{
 	
 	@Override
-	public List<PerformancePhoto> selectPerforList(SqlSessionTemplate session) {
+	public List<Map<String, PerformancePhoto>> selectPerforList(SqlSessionTemplate session) {
 		return session.selectList("img.selectPerforList");
 	}
 	@Override
@@ -64,5 +64,17 @@ public class PerformanceDaoImpl implements PerformanceDao{
 	@Override
 	public int deleteMyMusical(SqlSessionTemplate session, Mlike like) {
 		return session.delete("mLike.deleteMyMusical",like);
+	}
+	@Override
+	public List<Map<String, PerformancePhoto>> orderbyBest(SqlSessionTemplate session) {
+		return session.selectList("img.orderbyBest");
+	}
+	@Override
+	public List<Map<String,PerformancePhoto>>  orderbyRecent(SqlSessionTemplate session) {
+		return session.selectList("img.orderbyRecent");
+	}
+	@Override
+	public List<Map<String, PerformancePhoto>> orderbyEnd(SqlSessionTemplate session) {
+		return session.selectList("img.orderbyEnd");
 	}
 }

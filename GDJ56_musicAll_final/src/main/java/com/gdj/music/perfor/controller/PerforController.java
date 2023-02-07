@@ -17,6 +17,7 @@ import com.gdj.music.admin.model.service.AdminPerforService;
 import com.gdj.music.member.model.vo.Member;
 import com.gdj.music.perfor.model.service.PerformanceService;
 import com.gdj.music.perfor.model.vo.Mlike;
+import com.gdj.music.perfor.model.vo.PerformancePhoto;
 import com.gdj.music.perfor.model.vo.Review;
 import com.gdj.music.perfor.model.vo.Schedule;
 import com.gdj.music.reservation.model.service.ReservationService;
@@ -35,9 +36,10 @@ public class PerforController {
 	//공연 리스트
 	@RequestMapping("/performanceList.do")
 	public ModelAndView performanceList(ModelAndView mv) {
-
-		mv.addObject("musicalPhoto",service.selectPerforList());
+		List<Map<String,PerformancePhoto>> pp= service.selectPerforList();
+		mv.addObject("musicalPhoto",pp);
 		mv.setViewName("perfor/performanceList");
+		
 		return mv;
 	}
 	//공연 상세페이지(비회원일 경우)
@@ -162,8 +164,33 @@ public class PerforController {
 		
 	}
 	
+	//예매랭킹순 출력하기 
+	@RequestMapping("/orderbyBest.do")
+	public ModelAndView orderbyBest(ModelAndView mv) {
+		List<Map<String,PerformancePhoto>> pp= service.orderbyBest();
+		mv.addObject("musicalPhoto",pp);
+		mv.setViewName("perfor/performanceList");
+		return mv;
+
+	}
 	
+	//최신등록순 출력하기
+	@RequestMapping("/orderbyRecent.do")
+	public ModelAndView orderbyRecent(ModelAndView mv) {
+		List<Map<String,PerformancePhoto>> pp= service.orderbyRecent();
+		mv.addObject("musicalPhoto",pp);
+		mv.setViewName("perfor/performanceList");
+		return mv;
+	}
 	
+	//마감임박순 출력하기 
+	@RequestMapping("/orderbyEnd.do")
+	public ModelAndView orderbyEnd(ModelAndView mv) {
+		List<Map<String,PerformancePhoto>> pp= service.orderbyEnd();
+		mv.addObject("musicalPhoto",pp);
+		mv.setViewName("perfor/performanceList");
+		return mv;
+	}
 	
 	
 	@RequestMapping("/performance.do")

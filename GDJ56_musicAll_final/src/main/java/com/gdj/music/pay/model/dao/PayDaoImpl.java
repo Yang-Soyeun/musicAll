@@ -39,7 +39,7 @@ public class PayDaoImpl implements PayDao{
 	//포인트 내역
 	@Override
 	public int insertPoint(SqlSessionTemplate session, Point p) {
-		return session.insert("pay.insertPay", p);
+		return session.insert("pay.insertPoint", p);
 	}
 
 	//포인트 차감
@@ -58,6 +58,13 @@ public class PayDaoImpl implements PayDao{
 	@Override
 	public int insertMygoods(SqlSessionTemplate session, MyGoods g) {
 		return session.insert("pay.insertMygoods", g);
+	}
+
+	
+	//굿즈 보유 수량 차감
+	@Override
+	public int updategCount(SqlSessionTemplate session, MyGoods g) {
+		return session.update("pay.minusgCount", g);
 	}
 	
 }

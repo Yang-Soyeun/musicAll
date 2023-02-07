@@ -12,7 +12,7 @@ import com.gdj.music.reservation.model.vo.Reservation;
 
 public interface PerformanceService {
 
-	List<PerformancePhoto> selectPerforList();
+	List<Map<String, PerformancePhoto>> selectPerforList();
 
 	Performance2 selectPerformanceView(int mCode);
 
@@ -34,6 +34,12 @@ public interface PerformanceService {
 	List<Mlike> selectMlike(Mlike like);
 
 	int deleteMyMusical(Mlike like);
+
+	List<Map<String, PerformancePhoto>> orderbyBest();
+
+	List<Map<String,PerformancePhoto>>  orderbyRecent();
+
+	List<Map<String, PerformancePhoto>> orderbyEnd();
 
 
 }

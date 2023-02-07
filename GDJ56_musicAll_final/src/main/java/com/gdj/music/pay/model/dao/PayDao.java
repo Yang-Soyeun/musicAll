@@ -28,4 +28,7 @@ public interface PayDao {
 	
 	//굿즈 구매 내역 저장
 	int insertMygoods(SqlSessionTemplate session, MyGoods g);
+	
+	//굿즈 보유 수량 차감
+	int updategCount(SqlSessionTemplate session, MyGoods g);
 }
