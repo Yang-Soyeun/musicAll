@@ -19,12 +19,13 @@ public class KakaoLoginBO {
 	private final static String KAKAO_SCOPE = "profile_nickname,account_email";
 	private final static String KAKAO_CLIENT_SECRET = "클라이언트 시크릿";
 	private final static String KAKAO_REDIRECT_SERVER = "http://localhost:9090/GDJ56_musicAll_final";
+	//private final static String KAKAO_REDIRECT_SERVER = "http://gd1class.iptime.org:9999/GDJ56_musicAll_final";
 	private final static String KAKAO_JOIN_REDIRECT_URL = KAKAO_REDIRECT_SERVER+"/member/kakaoJoinEnd.do"; //Redirect URL
 	private final static String KAKAO_LOGIN_REDIRECT_URL = KAKAO_REDIRECT_SERVER+"/member/kakaoLoginEnd.do"; //Redirect URL
 	private final static String SESSION_STATE = "kakao_oauth_state";
 	private final static String PROFILE_API_URL = "https://kapi.kakao.com/v2/user/me";
 	private final static String LOGOUT_API_URL = "https://kapi.kakao.com/v1/user/logout";
-	
+	//https://gd1class.iptime.org:8844/GDJ56_musicAll_final";
 	
 	public String getAuthorizationUrl(HttpSession session, String callbackUrl) {
 		String state = generateRandomString();

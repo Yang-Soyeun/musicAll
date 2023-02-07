@@ -88,12 +88,17 @@
           </div>
           <div class="collapse navbar-collapse" id="custom-collapse">
             <ul class="nav navbar-nav navbar-right">
-			
+         
               <li class="dropdown"><a href="${path }/perfor/performanceList.do" >공연</a></li>
               <li class="dropdown"><a href="${path }/booking/bookinglist.do" >예매</a></li>
               <li class="dropdown"><a href="${path }/goods/goodsMain.do" >스토어</a></li>
-              <li class="dropdown"><a href="${path }/question/question.do" >1:1문의</a></li>
-			
+              <li class="dropdown"><a class="dropdown-toggle" href="${path }/noticeList.do" data-toggle="dropdown">고객센터</a>
+              <ul class="dropdown-menu" role="menu">
+                     <li><a href="${path }/noticeList.do"><i class="fa fa-list-ul fa-sm"></i>공지사항</a></li>
+                     <li><a href="${path }/question/question.do"><i class="fa fa-pencil-square-o"></i> 1:1문의</a></li>
+             </ul>
+              </li>
+         
 
               <c:if test="${loginMember==null }">
                  <li class="dropdown"><a href="${path }/member/login.do" >로그인</a></li>
@@ -115,20 +120,20 @@
                  <li class="dropdown"><a href="${path }/member/logout.do" >로그아웃</a></li>  
               </c:if>
               <c:if test="${(loginMember!=null) && (loginMember.member_Id eq 'admin') }" ><!-- 관리자가 로그인하면-->
-         		<li class="dropdown"><a href="${path }/admin/adminMain.do" >관리자페이지</a></li>
-         		<li class="dropdown"><a href="${path }/member/logout.do" >로그아웃</a></li>  
-   	  		</c:if>	
+               <li class="dropdown"><a href="${path }/admin/adminMain.do" >관리자페이지</a></li>
+               <li class="dropdown"><a href="${path }/member/logout.do" >로그아웃</a></li>  
+              </c:if>   
             
             </ul>
           </div>
         </div>
       </nav>
       <!-- 하단 메세지 이미지 (로그인시에만 이미지가 보여야함) -->
-		<c:if test="${ (loginMember!=null) && (loginMember.member_Id ne 'admin') }">
-			<a class="cs-btn" onclick="click_msg_btn();" id="cs_btn">
-				<img src="${path}/resources/images/chatting-icon.png" id="cs_btn_img" width="50" height="50">
-			</a>
-		</c:if>
+      <c:if test="${ (loginMember!=null) && (loginMember.member_Id ne 'admin') }">
+         <a class="cs-btn" onclick="click_msg_btn();" id="cs_btn">
+            <img src="${path}/resources/images/chatting-icon.png" id="cs_btn_img" width="50" height="50">
+         </a>
+      </c:if>
       </main>
 
 
@@ -150,7 +155,7 @@
                   </div>
                   <div class="modal-footer">
                      <button type="button" class="btn btn-g btn-round"
-                     	 onclick="fn_updateMember();"><i class="fa fa-cog fa-spin"></i>확인</button>
+                         onclick="fn_updateMember();"><i class="fa fa-cog fa-spin"></i>확인</button>
                      <button type="button" class="btn btn-g btn-round"
                      data-dismiss="modal">취소</button>
                   </div>
@@ -162,19 +167,19 @@
 
       
       <script>
-      	const fn_updateMember=()=>{
-      		$.get("${path}/mypage/checkPwd.do?member_No="+$("#member_No").val()+"&password="+$("#memberPwd").val()
-					,data=>{
-						if(data==null || data==""){//비밀번호 틀리면
-							$("span#checkPwd").show();
-						}else{//비밀번호 일치하면
-							location.replace("${path }/mypage/updateMember.do?member_No="+data.member_No);
-						}
-					});
-      	}
-      	
-      	const click_msg_btn=()=>{
-      		window.open('${path}/chatting/chatList.do', 'chatList_window', 'width=500, height=500, location=no, status=no, scrollbars=yes');
-      	}
-      	
+         const fn_updateMember=()=>{
+            $.get("${path}/mypage/checkPwd.do?member_No="+$("#member_No").val()+"&password="+$("#memberPwd").val()
+               ,data=>{
+                  if(data==null || data==""){//비밀번호 틀리면
+                     $("span#checkPwd").show();
+                  }else{//비밀번호 일치하면
+                     location.replace("${path }/mypage/updateMember.do?member_No="+data.member_No);
+                  }
+               });
+         }
+         
+         const click_msg_btn=()=>{
+            window.open('${path}/chatting/chatList.do', 'chatList_window', 'width=500, height=500, location=no, status=no, scrollbars=yes');
+         }
+         
       </script>

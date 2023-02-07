@@ -30,6 +30,7 @@
 	.d-flex {display: flex!important;}
 	.justify-content-center {justify-content: center!important;}
 	.tab_container {margin-left: 10%; margin-right: -14%;}
+	#review_form input[type=radio] {display: none;}
 
 </style>
 	
@@ -244,18 +245,18 @@
 									<form id="review_form" action="post">
 										
 										<div>
-											<h1>Your Rating:</h1>
+											<h1 style="margin-left: 5px;">My rating :</h1>
 											<ul class="user_star_rating">
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+												<li><input type="radio" name="rating" value="5" id="rate6"><i class="fa fa-star" aria-hidden="true"></i></li>
+												<li><input type="radio"  name="rating" value="4" id="rate7"><i class="fa fa-star" aria-hidden="true"></i></li>
+												<li><input type="radio"  name="rating" value="3" id="rate8"><i class="fa fa-star" aria-hidden="true"></i></li>
+												<li><input type="radio"  name="rating" value="2" id="rate9"><i class="fa fa-star" aria-hidden="true"></i></li>
+												<li><input type="radio" name="rating" value="1" id="rate10"><i class="fa fa-star-o" aria-hidden="true"></i></li>
 											</ul>
 											<textarea id="review_message" class="input_review" name="message"  placeholder="Your Review" rows="4" required data-error="Please, leave us a review."></textarea>
 										</div>
 										<div class="text-left text-sm-right">
-											<button id="review_submit" type="submit" class="red_button review_submit_btn trans_300" value="Submit">submit</button>
+											<button id="review_submit" onclick="addReview();" class="red_button review_submit_btn trans_300">등록</button>
 										</div>
 									</form>
 								</div>
@@ -358,6 +359,35 @@
 
 			
 		}
+		
+		//상품평
+        const addReview=()=>{
+        	
+        	var memberNo='${loginMember.member_No}';
+        	var gdCode=${goods.gdCode };
+
+        	let storebuy=[];
+        	<c:forEach var='s' items="${storebuy}">
+        		reservations.push('${s.memberNo}');
+        	</c:forEach>
+
+        	if(memberNo=null){
+        		alert("로그인한 회원만 작성가능합니다.");
+        		location.assign("${path}/member/login.do");
+        	}else{
+        		if(storebuy.indexOf(memberNo) !=-1){
+        			alert("상품평이 등록되었습니다. 감사합니다.");
+        			$(".commentWrite").submit();
+        			
+        		}else{
+        			
+        			console.log("불일치");
+        			alert("상품을 구매한 회원만 작성가능합니다.");
+        			return false;
+        			
+        		}
+        	}
+        }
 		
 		
 	</script>

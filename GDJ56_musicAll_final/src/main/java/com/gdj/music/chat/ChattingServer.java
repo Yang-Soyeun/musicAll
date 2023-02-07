@@ -73,7 +73,7 @@ public class ChattingServer extends TextWebSocketHandler {
 		clients.put(roomNo, roomInfo);
 		/************************************************/
 		
-		SendMessage adminmsg=new SendMessage("connection","","",msg.getSender()+"가 접속했습니다.",roomNo,0);
+		SendMessage adminmsg=new SendMessage("connection","","",msg.getSender()+"님이 들어오셨습니다.",roomNo,0);
 		System.out.println(clients.toString());
 		
 		//해당 방에 있는 사람 가져와서 입장 메세지 전달
@@ -102,6 +102,7 @@ public class ChattingServer extends TextWebSocketHandler {
 	//시스템메세지 (DB 저장안됨)
 	private void sendAdminMessage(SendMessage msg) throws IOException {
 		Map<String,WebSocketSession> roomMembers = getRoomMember(msg.getRoom());
+		
 		for(String id:roomMembers.keySet()) {
 			WebSocketSession client=roomMembers.get(id);
 			client.sendMessage(new TextMessage(mapper.writeValueAsString(msg)));
@@ -135,7 +136,7 @@ public class ChattingServer extends TextWebSocketHandler {
 							roomMember.remove(memberId);//세션삭제 = 로그아웃 처리
 							
 							//방을 나가면 방의사람에게 방 나갔다고 메세지 출력
-							SendMessage adminmsg=new SendMessage("disconnection","","",memberId+"가 방을 나갔습니다.",roomNo,0);						
+							SendMessage adminmsg=new SendMessage("disconnection","","",memberId+"님이 나가셨습니다.",roomNo,0);						
 							sendAdminMessage(adminmsg);
 						}
 					}
