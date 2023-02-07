@@ -122,7 +122,28 @@ public class GoodsServiceImpl implements GoodsService {
 		return dao.rCount(session, gdCode);
 	}
 
+	//별점 평균
+	@Override
+	public int rAvg(int gdCode) {
+		return dao.rAvg(session, gdCode);
+	}
 
+
+	//리뷰 체크
+//	@Override
+//	public MyGoods checkReview(MyGoods g) {
+//		return dao.checkReview(session, g);
+//	}
+//
+//
+//	//변경	
+//	@Override
+//	public int updateCheck(int sbCode) {
+//		return dao.updateCheck(session, sbCode);
+//	}
+
+	
+	
 	
 
 }

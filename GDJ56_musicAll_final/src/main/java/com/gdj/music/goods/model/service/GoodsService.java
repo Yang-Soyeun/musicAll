@@ -53,4 +53,13 @@ public interface GoodsService {
 	
 	//상품평 개수
 	int rCount(int gdCode);
+	
+	//리뷰 체크
+//	MyGoods checkReview(MyGoods g);
+//	
+//	//n->y 변경
+//	int updateCheck(int sbCode);
+	
+	//별점 평균
+	int rAvg(int gdCode);
 }

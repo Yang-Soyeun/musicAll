@@ -98,11 +98,48 @@
 									<div class="original_price"><fmt:formatNumber value="${goods.gdPrice }" pattern="#,###" />원</div>
 									<div class="product_price"><fmt:formatNumber value="${goods.gdPrice }" pattern="#,###" />원</div>
 									<ul class="star_rating">
-										<li><i class="fa fa-star" aria-hidden="true"></i></li>
-										<li><i class="fa fa-star" aria-hidden="true"></i></li>
-										<li><i class="fa fa-star" aria-hidden="true"></i></li>
-										<li><i class="fa fa-star" aria-hidden="true"></i></li>
-										<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+										<c:if test="${rAvg == 0 }">
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+										</c:if>
+										<c:if test="${rAvg == 5 }">
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+										</c:if>
+										<c:if test="${rAvg == 4 }">
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+										</c:if>
+										<c:if test="${rAvg == 3 }">
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+										</c:if>
+										<c:if test="${rAvg == 2 }">
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+										</c:if>
+										<c:if test="${rAvg == 1 }">
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+										</c:if>
 									</ul>
 									<div class="product_color">
 										<span>예상 적립 포인트:</span>
@@ -246,6 +283,13 @@
 									</div>
 								</div>
 								</c:forEach>
+							</c:if>
+							<c:if test="${empty review}">
+								<div class="user_review_container d-flex flex-column flex-sm-row">
+									<div class="review">
+										<h5 style="color:lightslategray;font-weight: bolder;font-size:14px;">아직 상품에 대한 리뷰가 없습니다.</h5>								
+									</div>
+								</div>
 							</c:if>
 									
 						</div>
@@ -412,7 +456,7 @@
            
            var memberNo='${loginMember.member_No}';
            var my = 0;
-           var mrv = 0;
+          
            
            //상품 구매 확인
            <c:forEach var='m' items="${mygoods}">
@@ -421,15 +465,7 @@
              }
            </c:forEach>   
            
-           //이미 작성했는지 확인
-           <c:forEach var='mr' items="${review}">
-           		var grCode = '${mr.GR_CODE }';
-	           if('${mr.MEMBER_NO }' == memberNo && !grCode ){
-	            	mrv = 1;
-	          }
-	        </c:forEach>  
-
-	        console.log(mrv);
+           
 	        
            if(memberNo=null){
               
@@ -437,35 +473,18 @@
               location.assign("${path}/member/login.do");
               
            }else{
-              
-              <c:forEach var='m' items="${mygoods}">
-                 
-              
+ 
                  if(my!=1){
                     
                     alert("상품을 구매한 회원만 작성가능합니다.");
                     return false;
                  
                  } else {
-                	 
-                	 if(mrv==1) {
-                		 
-                		 alert("상품평을 이미 작성하셨습니다.");
-                		 return false;
-                		 
-                	 } else {
                 		 
                 		 return true;
-                	 }
-                    
-                    
-                    
+
                  }
-                 
-              </c:forEach>   
-                 
-                 
-                 
+
            }
 
         }
