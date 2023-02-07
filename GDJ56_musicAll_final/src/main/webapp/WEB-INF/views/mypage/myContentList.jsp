@@ -89,7 +89,7 @@
 			    <div class="col-sm-6 col-md-3 col-lg-3 reviewCon" >
 			        <div class="post">
 			          <div class="post-thumbnail">
-			          	<a href="#" class="rvPhoto">
+			          	<a href="${path}/perfor/performanceView1.do?mCode=${rv.get('M_CODE')}" class="rvPhoto">
 			          		<img src="${path }/resources/upload/performance/${rv.get('I_NAME') }" 
 			          			alt="Blog-post Thumbnail" class="reviewImg"/>
 			          	</a>
