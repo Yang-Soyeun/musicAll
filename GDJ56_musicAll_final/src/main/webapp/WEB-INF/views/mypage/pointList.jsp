@@ -33,7 +33,7 @@
                         <tr>
                           <td style="max-width:80px;">
                             <h5 class="product-title font-alt" >
-                            	<fmt:formatDate value="${mp.mpDate }" pattern="yyyy-MM-dd (E) hh:mm"/>
+                            	<fmt:formatDate value="${mp.mpDate }" type="both" pattern="yyyy-MM-dd (E) hh:mm"/>
                             </h5>
                           </td>
                           <td class="">
