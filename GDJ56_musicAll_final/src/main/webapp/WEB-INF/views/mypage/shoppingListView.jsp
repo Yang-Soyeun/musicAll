@@ -12,45 +12,40 @@
 	  <div class="container">
 	    <div class="row">
 	      <div class="col-sm-6 col-sm-offset-3">
-	        <h1 class="module-title font-alt">예매 내역</h1>
+	        <h1 class="module-title font-alt">굿즈 결제 내역</h1>
 	      </div>
 	    </div>
-	    <hr class="divider-w pt-20"><h4 class="font-alt" style="padding-left: 20px;"><c:out value="${rvDetail.M_TITLE }"/></h4>
+	    <hr class="divider-w pt-20"><h4 class="font-alt" style="padding-left: 20px;"><c:out value="${goodsDetail.G_NAME }"/></h4>
 	    <div class="row">
 	      <div class="col-sm-12">
 	        <table class="table table-striped table-border checkout-table">
 	          <tbody>
 	            <tr>
-	              <td style="max-width: 50px;" rowspan="4" class="hidden-xs"><img src="${path}/resources/upload/performance/${rvDetail.I_NAME }" alt="공연포스터"/></td>
+	              <td style="max-width: 50px;" rowspan="4" class="hidden-xs">
+	              	<img src="${path}/resources/upload/goods/${goodsDetail.I_NAME }" alt="굿즈사진"
+	              		style="height: 155px;margin-left: 13%;"/>
+	              </td>
 	              <td>
-	                <h5 class="product-title font-alt">예매번호</h5>
+	                <h5 class="product-title font-alt">주문번호</h5>
 	              </td>
 	              <td class="hidden-xs">
-	                <h5 class="product-title font-alt"><c:out value="${rvDetail.R_CODE }"/></h5>
+	                <h5 class="product-title font-alt"><c:out value="${goodsDetail.SB_CODE }"/></h5>
 	              </td>
 	            </tr>
 	            <tr>
 	              <td>
-	                <h5 class="product-title font-alt">관람일  |  시간</h5>
+	                <h5 class="product-title font-alt">구매일</h5>
 	              </td>
 	              <td class="hidden-xs">
-	                <h5 class="product-title font-alt"><fmt:formatDate value="${rvDetail.R_DATE }" pattern="yyyy-MM-dd"/>  |  <c:out value="${rvDetail.R_TIME }"/></h5>
+	                <h5 class="product-title font-alt"><fmt:formatDate value="${goodsDetail.P_DATE }" pattern="yyyy-MM-dd hh:mm"/></h5>
 	              </td>
 	            </tr>
 	            <tr>
 	              <td>
-	                <h5 class="product-title font-alt">티켓수량  |  가격</h5>
+	                <h5 class="product-title font-alt">구매수량  |  가격</h5>
 	              </td>
 	              <td class="hidden-xs">
-	                <h5 class="product-title font-alt"><c:out value="${rvDetail.SEATCOUNT }"/>  |  <fmt:formatNumber value="${rvDetail.SEATPRICE }" pattern="###,###"/>원</h5>
-	              </td>
-	            </tr>
-	            <tr>
-	              <td>
-	                <h5 class="product-title font-alt">예매좌석</h5>
-	              </td>
-	              <td class="hidden-xs">
-	                <h5 class="product-title font-alt"><c:out value="${rvDetail.R_SEAT }"/></h5>
+	                <h5 class="product-title font-alt"><c:out value="${goodsDetail.SB_COUNT }"/>  |  <fmt:formatNumber value="${goodsDetail.TOTAL }" pattern="###,###"/>원</h5>
 	              </td>
 	            </tr>
 	          </tbody>
@@ -61,32 +56,32 @@
 	    <div class="row mt-70">
 	      <div class="col-sm-12 ">
 	        <div class="shop-Cart-totalbox">
-	          <h6 class="product-title font-alt">결제일시 : <fmt:formatDate value="${rsDetail.P_DATE }" pattern="yyyy-MM-dd hh:mm:ss"/></h6>
+	          <h6 class="product-title font-alt">결제일시 : <fmt:formatDate value="${goodsDetail.P_DATE }" pattern="yyyy-MM-dd hh:mm:ss"/></h6>
 	          <table class="table table-striped table-border checkout-table">
 	            <tbody>
 	              <tr>
 	                <th style="max-width: 50px;">결제 금액 : </th>
-	                <td><fmt:formatNumber value="${rsDetail.SEATPRICE }" pattern="###,###"/>원</td>
+	                <td><fmt:formatNumber value="${goodsDetail.TOTAL }" pattern="###,###"/>원</td>
 	              </tr>
 	              <tr>
 	                <th style="max-width: 50px;">포인트 사용 : </th>
-	                <td><fmt:formatNumber value="${rsDetail.PAYPOINT }" pattern="###,###"/>P</td>
+	                <td><fmt:formatNumber value="${goodsDetail.PAYPOINT }" pattern="###,###"/>P</td>
 	              </tr>
 	              <tr class="shop-Cart-totalprice">
 	                <th style="max-width: 50px;">총 결제 금액 : </th>
 	                 <td id="totalPrice" >
-	                 	<fmt:formatNumber value="${rsDetail.P_PRICE }" pattern="###,###"/>원
+	                 	<fmt:formatNumber value="${goodsDetail.P_PRICE }" pattern="###,###"/>원
 	                 </td>
 	              </tr>
 	            </tbody>
 	          </table>
-	       		<c:if test="${rsDetail.containsKey('RF_DATE') }">
+	       		<c:if test="${goodsDetail.containsKey('RF_DATE') }">
 		           <h6 class="product-title font-alt" style="color: rgb(194, 35, 35);">
-		           	취소일시 : <fmt:formatDate value="${rsDetail.RF_DATE }" pattern="yyyy-MM-dd hh:mm:ss"/>
+		           	취소일시 : <fmt:formatDate value="${goodsDetail.RF_DATE }" pattern="yyyy-MM-dd hh:mm:ss"/>
 		           </h6>
 	    		</c:if>
 	          <button class="btn btn-lg btn-block btn-round btn-d" 
-	          	onclick="location.assign('${path }/mypage/musicalList.do?No=${loginMember.member_No}');">예매목록</button>
+	          	onclick="location.assign('${path }/mypage/shoppingList.do');">구매목록</button>
 	        </div>
 	      </div>
 	    </div>
