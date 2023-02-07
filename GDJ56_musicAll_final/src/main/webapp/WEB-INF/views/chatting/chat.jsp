@@ -91,7 +91,7 @@ display: flex;
   background-color: white;
   padding : 10px 5px;
   border-radius: 2px;
-  font-size: 15px;
+  font-size: 20px;
 }
 
 .chat__message-center {
@@ -197,9 +197,13 @@ display: flex;
 		<!-- <input id="msg"><button id="sendBtn">전송</button> -->
 		
 		<script>
-			//오자마자 접속시작
-			let websocket = new WebSocket("ws://localhost:9090/GDJ56_musicAll_final/chatting");//자동적으로 채팅접속
+			let isload = false;
 			
+			//오자마자 접속시작
+			let websocket = new WebSocket("ws://localhost:9090/GDJ56_musicAll_final/chatting");//자동적으로 채팅접속(서버올릴시-카카오맵x)
+			//let websocketp = new WebSocket("wss://gd1class.iptime.org:8844/GDJ56_musicAll_final/chatting");카카오맵 사용시
+			//let serverWeb = new WebSocket("ws://localhost:9090/GDJ56_musicAll_final/chatting")//서버x
+			//new WebSocket("ws://gd1class.iptime.org:9999/GDJ56_musicAll_final/chatting");//자동적으로 채팅접속(서버올릴시-카카오맵x)
 			//채팅구현(on open, on message, on close)
 			websocket.onopen=(data)=>{
 				
@@ -219,19 +223,31 @@ display: flex;
 				switch(msg.type){
 					case "connection" :
 						addMsgSystem(msg);
-						getHistory();
+						if(isload==false){//isload 거짓이면
+							getHistory();	//히스토리 함수를 불러오고
+							isload = true;//isload 참으로 만들어라 - > 즉! 커넥션이 일회성만 돌게 만들어라!
+						}
 						break;
 					case "msg" : printMsg('${sessionScope.loginMember.member_Id}',msg);break;//나는 오른쪽? 너는 왼쪽? 이거 구현하기 위해서!
 					case "disconnection" : addMsgSystem(msg);break;		
 							
 				}
 			}
+			//엔터치면 전송되게끔!
+			$("#msg").on("keyup",function(e){
+		 		if(e.keyCode == '13'){
+		 			$("#sendBtn").click();
+		 		}
+		 	});
+			
 			
 			$("#sendBtn").click(e=>{
 				let roomNo = $("#roomNo").val();
 				const msg=$("#msg").val();
 				const sendData=new Message("msg",'${sessionScope.loginMember.member_Id}',"",msg,roomNo,"${sessionScope.loginMember.member_No}");
 				websocket.send(JSON.stringify(sendData));
+				
+				$("#msg").val('');
 			});//메세지보낸것
 			
 			
@@ -247,11 +263,16 @@ display: flex;
 				//**********우린 특정대상이x 모든 회원이 참여가능! 그래서 reciever을 뺄지 고민중..그럼 다시 다바꿔야하므로..패스//
 			}
 		
-			function addMsgSystem(msg){
+			function addMsgSystem(msg){//시스템 메세지
 				console.log(msg);
-				const $h3=$("<h3>").css("textAlign","center").text("==== "+msg.msg+"====");
+				const $h3=$("<div class='enter'>").text(msg.msg);
 				$("#chattingcontainer").append($h3);
+				
+				//스크롤 최하단으로 내리기
+				window.scrollTo(0, document.body.scrollHeight);//인터넷
 			}
+			
+			//채팅방 출력
 			function printMsg(myId,msg){
 				//내가 입력한 입력한 값과 내가 받은값의 디자인이 class로 나뉘어져 있음
 				//따라서 3항연산자를 사용하여 divCls에 class 명을 넣음
@@ -268,7 +289,6 @@ display: flex;
 			}
 			//접속했을때
 			const getHistory=()=>{
-				console.log("잉?");
 				let roomNo = $("#roomNo").val();
 				$.ajax({
 					url : '${path}/chatting/chatContent.do', 
@@ -276,9 +296,21 @@ display: flex;
 					dataType : 'json',
 					type : 'post',
 					success : data=>{
+						console.log("==여기서부터다====")
+						console.log(data);
 						
-											
-						
+						for(i=0 ; i<data.length ; i++){
+							
+							//로그인한 멤버아이디가 작성자와 같다면 chat__message-from-me 이고 아니면 chat__message-to-me이다
+							const chatMe = "${sessionScope.loginMember.member_Id}"==data[i].memberId ? "chat__message chat__message-from-me" : "chat__message chat__message-to-me";
+							//const chatSender = data[i].memberId!=data[i].memberId?"chat_message message-username" : "chat__message chat__message-to-me";
+							var now=data[i].msgTime;
+							let html = '<div class="'+chatMe+'"><div class="chat__message-center"><h3 class="chat__message-username">' + data[i].memberId 
+										+ '</h3><span class="chat__message-body">' +  data[i].msgContent + '</span></div><span class="chat__message-time">' 
+										+ now.substr(11,5) + '</span></div>';//인터넷...ㅎㅎ 
+										
+							$("#chattingcontainer").append(html);
+						}				
 						
 					}
 				});

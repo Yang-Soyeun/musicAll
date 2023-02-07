@@ -1,5 +1,6 @@
 package com.gdj.music.chat;
 
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,11 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gdj.music.chat.model.service.ChatService;
 import com.gdj.music.chat.model.vo.ChatHistory;
-import com.gdj.music.chat.model.vo.ChatMessage;
+import com.gdj.music.chat.model.vo.ChatListVo;
 import com.gdj.music.member.model.vo.Member;
-import com.gdj.music.perfor.model.vo.Performance2;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
 @Controller
 public class ChattingController {
@@ -58,7 +56,9 @@ public class ChattingController {
 		
 		Member memberInfo = (Member) session.getAttribute("loginMember");//로그인한 사람이 어떤채팅방에 들어가 있는지 알기위함
 		
-		List<Performance2> list = service.chatRoom(memberInfo);//채팅목록이 여러개이니까 list로!
+		List<ChatListVo> list = service.chatRoom(memberInfo);//채팅목록이 여러개이니까 list로!
+		
+		System.out.println(list);
 		
 		md.addAttribute("list",list);
 		
@@ -68,13 +68,20 @@ public class ChattingController {
 	//채팅방 목록 클릭시 디비 채팅내용 불러오기
 	@ResponseBody
 	@RequestMapping("/chatting/chatContent.do")
-	public void chatContent(int chatNo, HttpServletResponse response) throws IOException {
+	public List<ChatHistory> chatContent(int chatNo, HttpServletResponse response) throws IOException {
+		
 		List<ChatHistory> list = service.chatHistory(chatNo);
+//		list.get(0).getMsgTime().toLocalDate()..getHours();
 		
-		response.setContentType("application/json;charset=utf-8");//Gson
+		System.out.println(list);
 		
-		new Gson().toJson(list,response.getWriter());//Gson
+//		response.setContentType("application/json;charset=utf-8");//Gson
+//		
+//		new Gson().toJson(list,response.getWriter());//Gson
+		
+		return list;
 	}
 	
 
 }
+

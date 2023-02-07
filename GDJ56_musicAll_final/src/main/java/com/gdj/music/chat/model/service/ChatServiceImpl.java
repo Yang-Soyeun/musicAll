@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.gdj.music.chat.model.dao.ChatDao;
 import com.gdj.music.chat.model.vo.ChatHistory;
+import com.gdj.music.chat.model.vo.ChatListVo;
 import com.gdj.music.chat.model.vo.ChatMessage;
 import com.gdj.music.member.model.vo.Member;
-import com.gdj.music.perfor.model.vo.Performance2;
+
 @Service
 public class ChatServiceImpl implements ChatService {
 
@@ -34,7 +35,7 @@ public class ChatServiceImpl implements ChatService {
 
 
 	@Override
-	public List<Performance2> chatRoom(Member m) {
+	public List<ChatListVo> chatRoom(Member m) {
 		return dao.chatRoom(m,session);
 	}
 
