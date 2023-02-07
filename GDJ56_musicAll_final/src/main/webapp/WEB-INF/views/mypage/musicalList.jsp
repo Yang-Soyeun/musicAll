@@ -80,8 +80,10 @@
 				           </td>
 				           <td>
 			             	<c:choose>
-			             		<c:when test="${r.containsKey('refund') && !r.containsKey('RF_CODE')}"><!-- 공연일이 지났고 환불기록이 없으면 -->
-			             			<button class="btn btn-warning btn-circle">리뷰 작성</button>
+<%-- 			             		<c:when test="${r.containsKey('refund') && !r.containsKey('RF_CODE')}"><!-- 공연일이 지났고 환불기록이 없으면 --> --%>
+			             		<c:when test="${!r.containsKey('RF_CODE')}"><!-- 환불기록이 없으면 -->
+			             			<button class="btn btn-warning btn-circle" 
+			             				onclick="location.assign('${path}/perfor/performanceView1.do?mCode=${r.M_CODE }');">리뷰 작성</button>
 			             		</c:when>
 			             		<c:otherwise>
 					             <h5 class="product-title font-alt">관람 후 작성 가능</h5>
@@ -223,12 +225,12 @@
 				$("#refundTitle").text(data.result.M_TITLE);
 				
 				$("#SEATPRICE").text(data.result.SEATPRICE+'원');//공연 가격
-				$("#P_PRICE").text(data.refund.P_PRICE+'원');//결제 금액
-				$("#Point").text('+'+(data.refund.P_PRICE/10)+'P');//적립 포인트
-				$("#PAYPOINT").text('-'+data.refund.PAYPOINT+'P');//사용 포인트
-				$("#refundTotal").text(data.refund.P_PRICE+'원');//총 환급액
+				$("#P_PRICE").text(data.refund.P_PRICE);//결제 금액
+				$("#Point").text('+'+(data.refund.P_PRICE/10));//적립 포인트
+				$("#PAYPOINT").text('-'+data.refund.PAYPOINT);//사용 포인트
+				$("#refundTotal").text(data.refund.P_PRICE);//총 환급액
 				$("#refundPoint").text(
-						(data.refund.P_PRICE/10)-data.refund.PAYPOINT+'P'
+						(data.refund.P_PRICE/10)-data.refund.PAYPOINT
 						);//총 환급포인트
 				$("#merchant_uid").val(data.refund.M_UID);
 				$("#imp_uid").val(data.refund.P_UID);
