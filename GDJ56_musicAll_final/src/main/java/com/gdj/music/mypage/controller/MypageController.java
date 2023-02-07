@@ -409,7 +409,7 @@ public class MypageController {
 	@RequestMapping("/shoppingList.do")
 	public ModelAndView shoppingList(ModelAndView mv,HttpSession session,
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
-			@RequestParam(value="numPerpage", defaultValue="5")int numPerpage) {
+			@RequestParam(value="numPerpage", defaultValue="7")int numPerpage) {
 		
 		Member loginMember = (Member) session.getAttribute("loginMember");
 		int member_No = loginMember.getMember_No();
