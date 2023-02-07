@@ -48,6 +48,10 @@ public interface AdminPerforDao {
 	int selectAverage(SqlSessionTemplate session, int mCode);
 
 	int deleteComment(SqlSessionTemplate session, int reviewNo);
+
+	List<Map<String, PerformancePhoto>> orderbyRecent(SqlSessionTemplate session);
+
+	List<Map<String, PerformancePhoto>> orderbyEnd(SqlSessionTemplate session);
 	
 	
 }

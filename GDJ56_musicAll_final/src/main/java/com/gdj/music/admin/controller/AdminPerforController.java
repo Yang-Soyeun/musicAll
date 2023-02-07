@@ -394,8 +394,21 @@ public class AdminPerforController {
 		  mv.setViewName("common/msg");
 		  return mv;
 	  }
+	
+	@RequestMapping("/orderbyRecent.do")
+	public ModelAndView orderbyRecent(ModelAndView mv) {
+		List<Map<String,PerformancePhoto>> pp= service.orderbyRecent();
+		mv.addObject("musicalPhoto",pp);
+		mv.setViewName("/admin/Perfor/adminPerformanceList");
+		return mv;
+	}
 	      
-	      
-	         
+	@RequestMapping("/orderbyEnd.do")
+	public ModelAndView orderbyEnd(ModelAndView mv) {
+		List<Map<String,PerformancePhoto>> pp= service.orderbyEnd();
+		mv.addObject("musicalPhoto",pp);
+		mv.setViewName("/admin/Perfor/adminPerformanceList");
+		return mv;
+	}         
 	      
 }	   

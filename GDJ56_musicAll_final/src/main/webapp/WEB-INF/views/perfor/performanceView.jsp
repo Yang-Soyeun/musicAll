@@ -23,7 +23,7 @@
         <br>
         <br>
         <br>
-        <p>라이센스 뮤지컬 - 1위</p>
+        <p>${musical.getMType() }</p>
         <strong style="font-size:30px;">${musical.getMTitle() }</strong>
         <form name="myform" class="myform" method="post" >
 		<br>

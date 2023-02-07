@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <link href="${path }/resources/css/admin/performance/performanceList.css" rel="stylesheet"/>
-
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 
 <section>
 <button style="width:80px; height:30px; font-size:20px; margin-top:10px; margin-left:10px;"
@@ -41,11 +41,10 @@ onclick="location.assign('${path}/admin/adminMain.do')">back</button>
         </form>
     </div>
     <div class="select-box" >
-        <select style="width:140px; height:40px;font-size:18px; ">
-            <option value="">예매랭킹순</option>
-            <option value="">최신등록순</option>
-            <option value="">공연마감 임박순</option>
-            <option value="">공연명순</option>
+        <select id="orderby" style="width:140px; height:40px;font-size:18px; ">
+            <option value="예매랭킹순">예매랭킹순</option>
+            <option value="최신등록순">최신등록순</option>
+            <option value="공연마감임박순">공연마감 임박순</option>
         </select>
     </div>
     <c:choose>
@@ -75,11 +74,25 @@ onclick="location.assign('${path}/admin/adminMain.do')">back</button>
 		</c:otherwise>
 	</c:choose>
 </section>
-<!--<script>
-	$(function(){
+<script>
+	/* $(function(){
 	    $('#datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
-	})
-</script> -->
+	}) */
+	
+	$('#orderby').change(function(){
+		var select=$("#orderby option:selected").val();
+		console.log(select);
+		if(select=='최신등록순'){
+			location.assign("${path}/adminPerfor/orderbyRecent.do");
+		}else if(select=='예매랭킹순'){
+			location.assign("${path}/adminPerfor/orderbyBest.do");
+		}else if(select=='공연마감임박순'){
+			location.assign("${path}/adminPerfor/orderbyEnd.do");
+		}
+	}
+	)		
+	
+</script> 
 
 <!-- jquery 기본 js파일 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0
@@ -92,6 +105,8 @@ onclick="location.assign('${path}/admin/adminMain.do')">back</button>
 <!-- //jquery ui css파일 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs
 /jqueryui/1.12.1/jquery-ui.min.css"/>
+
+
 <br>
 
 
