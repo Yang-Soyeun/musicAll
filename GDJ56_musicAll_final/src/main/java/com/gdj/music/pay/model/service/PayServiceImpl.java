@@ -70,6 +70,12 @@ public class PayServiceImpl implements PayService {
 	public int insertMygoods(MyGoods g) {
 		return dao.insertMygoods(session, g);
 	}
+
+	//굿즈 보유 수량 차감
+	@Override
+	public int updategCount(MyGoods g) {
+		return dao.updategCount(session, g);
+	}
 	
 	
 	

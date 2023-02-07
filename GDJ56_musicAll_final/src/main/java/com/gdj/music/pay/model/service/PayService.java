@@ -29,4 +29,7 @@ public interface PayService {
 	//구매 내역 저장
 	int insertMygoods(MyGoods g);
 	
+	//굿즈 수량 차감
+	int updategCount(MyGoods g);
+	
 }
