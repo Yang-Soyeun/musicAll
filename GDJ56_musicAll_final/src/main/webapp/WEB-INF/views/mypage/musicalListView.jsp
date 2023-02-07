@@ -21,7 +21,7 @@
 	        <table class="table table-striped table-border checkout-table">
 	          <tbody>
 	            <tr>
-	              <td rowspan="4" class="hidden-xs"><img src="${path}/resources/upload/performance/${rvDetail.I_NAME }" alt="공연포스터"/></td>
+	              <td style="max-width: 50px;" rowspan="4" class="hidden-xs"><img src="${path}/resources/upload/performance/${rvDetail.I_NAME }" alt="공연포스터"/></td>
 	              <td>
 	                <h5 class="product-title font-alt">예매번호</h5>
 	              </td>
@@ -65,15 +65,15 @@
 	          <table class="table table-striped table-border checkout-table">
 	            <tbody>
 	              <tr>
-	                <th>결제 금액 : </th>
+	                <th style="max-width: 50px;">결제 금액 : </th>
 	                <td><fmt:formatNumber value="${rsDetail.SEATPRICE }" pattern="###,###"/>원</td>
 	              </tr>
 	              <tr>
-	                <th>포인트 사용 : </th>
+	                <th style="max-width: 50px;">포인트 사용 : </th>
 	                <td><fmt:formatNumber value="${rsDetail.PAYPOINT }" pattern="###,###"/>P</td>
 	              </tr>
 	              <tr class="shop-Cart-totalprice">
-	                <th>총 결제 금액 : </th>
+	                <th style="max-width: 50px;">총 결제 금액 : </th>
 	                 <td id="totalPrice" >
 	                 	<fmt:formatNumber value="${rsDetail.P_PRICE }" pattern="###,###"/>원
 	                 </td>
