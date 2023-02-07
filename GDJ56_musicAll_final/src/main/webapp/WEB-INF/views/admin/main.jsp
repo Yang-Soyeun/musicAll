@@ -230,7 +230,7 @@
             </div>
           </li>
                <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts" onclick="location.assign('${path}/notice/noticeList.do');">
             <i class="icon-grid-2 menu-icon"></i>
               <span class="menu-title">고객센터</span>
               <i class="menu-arrow"></i>
@@ -319,7 +319,7 @@
                 </div>
         		<div class="col-md-6 mb-4 stretch-card transparent">
                   <div class="card card-tale">
-                    <div class="card-body" onclick="location.assign('${path}/adminPerfor/performanceList.do');">
+                    <div class="card-body" onclick="location.assign('${path}/notice/noticeList.do');">
                       <p class="mb-4">Customer Service</p>
                       <p class="fs-30 mb-2">고객센터</p>
                       <p>&nbsp;</p>
