@@ -267,7 +267,7 @@
 												<li><i class="fa fa-star" aria-hidden="true" id="r1"><input type="radio" name="rating" value="1" id="rate1"></i></li>
 												<li><i class="fa fa-star" aria-hidden="true" id="r2"><input type="radio"  name="rating" value="2" id="rate2"></i></li>
 												<li><i class="fa fa-star" aria-hidden="true" id="r3"><input type="radio"  name="rating" value="3" id="rate3"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true" id="r4"> <input type="radio"  name="rating" value="4" id="rate4"></i></li>
+												<li><i class="fa fa-star" aria-hidden="true" id="r4"> <input type="radio"  name="rating" value="4" id="rate4" checked></i></li>
 												<li><i class="fa fa-star-o" aria-hidden="true" id="r5"><input type="radio" name="rating" value="5" id="rate5"></i></li>
 											</ul>
 											<textarea id="review_message" class="input_review" name="review"  placeholder="Your Review" rows="4" required data-error="Please, leave us a review."></textarea>
@@ -402,13 +402,7 @@
 				
 				$("input#rate5").attr("checked", "checked");
 				
-			} else {
-				
-				$("input#rate4").attr("checked", "checked");
-				
-			}
-			
-			
+			} 
 			
 		});
 		
@@ -429,11 +423,14 @@
            
            //이미 작성했는지 확인
            <c:forEach var='mr' items="${review}">
-	           if(${mr.G_CODE } == ${goods.gdCode } && ${mr.GR_CODE } != null){
+           		var grCode = '${mr.GR_CODE }';
+	           if('${mr.MEMBER_NO }' == memberNo && !grCode ){
 	            	mrv = 1;
 	          }
 	        </c:forEach>  
 
+	        console.log(mrv);
+	        
            if(memberNo=null){
               
               alert("로그인한 회원만 작성가능합니다.");
@@ -456,9 +453,12 @@
                 		 alert("상품평을 이미 작성하셨습니다.");
                 		 return false;
                 		 
+                	 } else {
+                		 
+                		 return true;
                 	 }
                     
-                    return true;
+                    
                     
                  }
                  
