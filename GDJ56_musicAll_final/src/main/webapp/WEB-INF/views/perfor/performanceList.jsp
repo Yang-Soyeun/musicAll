@@ -29,15 +29,14 @@
             <input type="text" id="searchPer" placeholder="제목으로 검색하기" >&nbsp;
             <input type="text" id="datepicker" placeholder="관람일자로 검색하기" style="width:200px; height:48px;">
             <button class="searchBtn" type="submit" >검색</button>
-
         </form>
+        
     </div>
     <div class="select-box">
-        <select style="width:140px; height:40px;font-size:18px;">
-            <option value="">예매랭킹순</option>
-            <option value="">최신등록순</option>
-            <option value="">공연마감 임박순</option>
-            <option value="">공연명순</option>
+        <select id="orderby" style="width:140px; height:40px;font-size:18px;">
+            <option value="예매랭킹순">예매랭킹순</option>
+            <option value="최신등록순">최신등록순</option>
+            <option value="공연마감임박순">공연마감 임박순</option>
         </select>
     </div>
     <div class="count-box">
@@ -47,17 +46,17 @@
         <img src="${path }/resources/images/performance/fourth.png" id="countimg4" style="width:70px; height: 75px; ">
     </div>
     <c:forEach var="p" items="${musicalPhoto}">
-    <c:if test="${empty loginMember  }">
-    	<div class="photo-box">
-        	<img src="${path }/resources/upload/performance/${p.getIName()}" class="perView" style="float:left;" onclick="location.href='${path}/perfor/performanceView1.do?mCode=${p.getMCode()}'" >
-   		</div>
-    </c:if>
-     <c:if test="${not empty loginMember  }">
-    	<div class="photo-box">
-        	<img src="${path }/resources/upload/performance/${p.getIName()}" class="perView" style="float:left;" onclick="location.href='${path}/perfor/performanceView.do?mCode=${p.getMCode()}'" >
-   		</div>
-    </c:if>
-    </c:forEach>
+    	<c:if test="${empty loginMember  }">
+    		<div class="photo-box">
+        		<img src="${path }/resources/upload/performance/${p.I_NAME}" class="perView" style="float:left;" onclick="location.href='${path}/perfor/performanceView1.do?mCode=${p.M_CODE}'" >
+   			</div>
+   		</c:if>
+     	<c:if test="${not empty loginMember  }">
+    		<div class="photo-box">
+        		<img src="${path }/resources/upload/performance/${p.I_NAME}" class="perView" style="float:left;" onclick="location.href='${path}/perfor/performanceView.do?mCode=${p.M_CODE}'" >
+   			</div>
+    	</c:if>
+    </c:forEach> 
 </section>
 
 <br>
@@ -87,6 +86,24 @@
 	$(function(){
 	    $('#datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
 	})
+	
+	$('#orderby').change(function(){
+		var select=$("#orderby option:selected").val();
+		console.log(select);
+		if(select=='최신등록순'){
+			location.assign("${path}/perfor/orderbyRecent.do");
+		}else if(select=='예매랭킹순'){
+			location.assign("${path}/perfor/orderbyBest.do");
+		}else if(select=='공연마감임박순'){
+			location.assign("${path}/perfor/orderbyEnd.do");
+		}
+	}
+	)		
+	
+	
+	
+	
+	
 </script>
 
 <!-- jquery 기본 js파일 -->

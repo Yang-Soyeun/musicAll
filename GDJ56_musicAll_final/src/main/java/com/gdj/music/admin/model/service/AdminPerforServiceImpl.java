@@ -53,7 +53,7 @@ public class AdminPerforServiceImpl implements AdminPerforService{
 	}
 	
 	@Override
-	public List<PerformancePhoto> selectPerforList(){
+	public List<Map<String, PerformancePhoto>> selectPerforList(){
 		return dao.selectPerforList(session);
 	}
 	
