@@ -37,4 +37,10 @@ public interface GoodsService {
 	//장바구니 삭제
 	int deleteCart(int gdCode);
 
+	
+	//구매 내역
+	MyGoods selectMygoods(Goods g);
+	
+	//굿즈 보유 수량
+	int selectgCount(int gdCode);
 }

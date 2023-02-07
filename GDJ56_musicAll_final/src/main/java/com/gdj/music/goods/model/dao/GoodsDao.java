@@ -38,5 +38,11 @@ public interface GoodsDao {
 	
 	//장바구니 삭제
 	int deleteCart(SqlSessionTemplate session, int gdCode);
+	
+	//구매 내역
+	MyGoods selectMygoods(SqlSessionTemplate session, Goods g);
+	
+	//보유 굿즈 수량
+	int selectgCount(SqlSessionTemplate session, int gdCode);
 
 }

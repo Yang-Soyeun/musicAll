@@ -29,19 +29,21 @@
         			url:"${path }/mypage/orderReview.do",
         			data:{keyword:$(obj).val(),member_No:$("#member_No").val()},
         			success:data=>{
-//         				console.log(data);
-        				
+        				console.log(data);
 						$(".reviewCon #rvScore").empty();//별점 초기화
-//         				$(".rvPhoto").attr('href','###');//a태그 주소 바꾸기!!!?!수정 필요!!!!!!!!!??????
-						//혹은 div post-thumbnail 아래 자식 태그 지웠다가 a 태그 생성해서 append하기
+						
 						
         				$(".rvPhoto").empty();//기존 사진 지우기
 						
         				for(i=0;i<data.length;i++){
         					
+        					
+	        				$($(".rvPhoto")[i]).attr("href","${path}/perfor/performanceView1.do?mCode="+data[i].M_CODE);//a태그 주소 바꾸기
+	        				0
+	        				
         					$(".reviewCon #rvTitle")[i].innerText=data[i].M_TITLE;//제목
         					$(".reviewCon #rvContent")[i].innerText=data[i].REVIEW_CONTENT;//내용
-        					var img=$("<img src='${path }/resources/images/performance/"+data[i].I_NAME+
+        					var img=$("<img src='${path }/resources/upload/performance/"+data[i].I_NAME+
         							"' alt='Blog-post Thumbnail' class='reviewImg'></img>")[0];//사진 생성
         							
 							$(".rvPhoto")[i].append(img);//사진 넣기	
@@ -87,7 +89,7 @@
 			    <div class="col-sm-6 col-md-3 col-lg-3 reviewCon" >
 			        <div class="post">
 			          <div class="post-thumbnail">
-			          	<a href="#" class="rvPhoto">
+			          	<a href="${path}/perfor/performanceView1.do?mCode=${rv.get('M_CODE')}" class="rvPhoto">
 			          		<img src="${path }/resources/upload/performance/${rv.get('I_NAME') }" 
 			          			alt="Blog-post Thumbnail" class="reviewImg"/>
 			          	</a>

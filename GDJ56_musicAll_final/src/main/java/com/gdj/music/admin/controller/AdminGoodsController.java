@@ -46,7 +46,7 @@ public class AdminGoodsController {
 		
 		//페이징처리
 		int totalData = service.totalData();
-		mv.addObject("pageBar",PageFactory.getPage(cPage, numPerpage, totalData,"memberList.do" ));
+		mv.addObject("pageBar",PageFactory.getPage(cPage, numPerpage, totalData,"adgMain.do" ));
 		
 		//굿즈 리스트
 		mv.addObject("goods", goods);

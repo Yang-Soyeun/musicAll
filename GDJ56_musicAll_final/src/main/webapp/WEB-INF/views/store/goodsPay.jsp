@@ -5,7 +5,7 @@
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
- 	<jsp:param name="title" value="MainPage"/>
+ 	<jsp:param name="title" value="GoodsPage"/>
 </jsp:include>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css" />
@@ -122,8 +122,7 @@
 			        <div>
 	    				<select id="payway" name="payway">
 						  <option value="신용카드">신용카드</option>
-						  <option value="계좌이체">계좌이체</option>
-						  <option value="네이버페이">네이버페이</option>
+						  <option value="페이코">페이코</option>
 						  <option value="카카오페이">카카오페이</option>
 						</select>
 	    			</div>
@@ -151,7 +150,7 @@
 	const apply=()=>{	
 		
 		const discount=(Number)($(".point").val());
-		const userPoint = ${point.mpPoint==null?0:point.mpPoint }
+		const userPoint = ${p.mpPoint==null?0:p.mpPoint }
 		
 		if(discount>userPoint){
 			alert("포인트가 부족합니다.");
@@ -169,40 +168,142 @@
 		
 	}
 	
-	const requestPay = () =>{
+const requestPay = () =>{
+		
+		const payway = $("select[name=payway] option:selected").val();
+		console.log(payway);
+		
 		<c:if test="${loginMember==null }">
 			alert("로그인 후 이용해주세요.");
 		</c:if>
 		<c:if test="${loginMember!=null }">
 			const discount=(Number)($(".point").val());
-			IMP.init("imp28146203");
-			IMP.request_pay({
-				pg : "html5_inicis",
-				name : "티켓예매",
-				pay_method : "card",
-				amount : ${goods.gdPrice*gc}-discount,
-				buyer_name:"${loginMember.name}",
-				buyer_email:"${loginMember.email}"
-			}, function(rsp){
+			
+			IMP.init("imp21475352");
+			
+			if(payway == '신용카드') {
+					IMP.request_pay({
+						pg : "html5_inicis.INIpayTest",
+						name : "굿즈 구매",
+						pay_method : "card",
+						amount : ${goods.gdPrice*gc}-discount,
+						buyer_name:"${loginMember.name}",
+						buyer_email:"${loginMember.email}",
+						buyer_tel : "${loginMember.phone}"
+					}, function(rsp){
+						
+						const discount=(Number)($(".point").val());
+						const amount = ${goods.gdPrice*gc}-discount;
 				
-				const discount=(Number)($(".point").val());
-				const amount = ${goods.gdPrice*gc}-discount;
-		
-				if(rsp.success){
-					
-					let info = new Array();
-					
-					
-					
-					//location.assign("${path}/goods/payend.do?info="+info);
-				}
-			else{
-				 
-				alert(rsp.error_msg);
+						if(rsp.success){
+							
+							let info = new Array();
+							
+							info.push(${loginMember.member_No});
+							info.push("card");
+							info.push(${goods.gdCode});
+							info.push(${gc});
+							info.push(amount);
+							info.push("예술의전당");
+							
+							info.push(rsp.imp_uid);
+							info.push(rsp.merchant_uid);
+							info.push((Number)($(".point").val()));
+							info.push(amount/10);
+							
+							location.assign("${path}/goods/payEnd.do?info="+info);
+							
+
+						}
+					else{
+						 
+						alert(rsp.error_msg);
+					}
+				});
 			}
-		});
+			
+			if(payway == '카카오페이') {
+				IMP.request_pay({
+				    pg : 'kakaopay',
+				    pay_method : 'kakaopay', //생략 가능
+				    merchant_uid: "order_no_0001", // 상점에서 관리하는 주문 번호
+				    name : "굿즈 구매",
+				    amount : ${goods.gdPrice*gc}-discount,
+				    buyer_email : "${loginMember.email}",
+				    buyer_name : "${loginMember.name}",
+				    buyer_tel : "${loginMember.phone}"
+				}, function(rsp){
+					
+					if(rsp.success){
+						
+						let info = new Array();
+						
+						info.push(${loginMember.member_No});
+						info.push("카카오페이");
+						info.push(${goods.gdCode});
+						info.push(${gc});
+						info.push(amount);
+						info.push("예술의 전당");
+						
+						info.push(rsp.imp_uid);
+						info.push(rsp.merchant_uid);
+						info.push((Number)($(".point").val()));
+						info.push(amount/10);
+						
+						location.assign("${path}/goods/payEnd.do?info="+info);
+						
+
+					}
+					else{
+						 
+						alert(rsp.error_msg);
+					}
+				});
+			}
+			
+			if(payway == '페이코') {
+				IMP.request_pay({
+				    pg : 'payco.PARTNERTEST',
+				    pay_method : 'payco', //생략 가능
+				    merchant_uid: "order_no_0001", // 상점에서 관리하는 주문 번호
+				    name : "굿즈 구매",
+				    amount : ${goods.gdPrice*gc}-discount,
+				    buyer_email : "${loginMember.email}",
+				    buyer_name : "${loginMember.name}",
+				    buyer_tel : "${loginMember.phone}"
+				}, function(rsp){
+					
+					if(rsp.success){
+						
+						let info = new Array();
+						
+						info.push(${loginMember.member_No});
+						info.push("페이코");
+						info.push(${goods.gdCode});
+						info.push(${gc});
+						info.push(amount);
+						info.push("예술의 전당");
+						
+						info.push(rsp.imp_uid);
+						info.push(rsp.merchant_uid);
+						info.push((Number)($(".point").val()));
+						info.push(amount/10);
+						
+						location.assign("${path}/goods/payEnd.do?info="+info);
+						
+
+					}
+					else{
+						 
+						alert(rsp.error_msg);
+					}
+				});
+				
+			}
 		</c:if>
 }	
+	
+	
 
 	function noBack(){window.history.forward();}
 
