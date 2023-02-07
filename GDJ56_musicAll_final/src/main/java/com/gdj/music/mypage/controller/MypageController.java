@@ -164,7 +164,7 @@ public class MypageController {
 		return mv;
 	}
 	
-	//환불값 가져오기
+	//공연예매 환불값 가져오기
 	@RequestMapping("/refundMusical.do")
 	@ResponseBody
 	public Map<String,Object> refundMusical(@RequestParam Map r){
@@ -177,7 +177,55 @@ public class MypageController {
 		return Map.of("result",result,"refund",refund);
 	}
 	
-	//환불과정
+	//굿즈 환불값 가져오기
+	@RequestMapping("/refundGoods.do")
+	@ResponseBody
+	public Map<String,Object> refundGoods(@RequestParam Map r) {
+//		System.out.println(r);
+		Map<String,Object> goods=service.selectGoods(r);
+		System.out.println(goods);
+		return goods;
+	}
+	
+	//굿즈 환불과정
+	@RequestMapping(value ="/cancelPayGoods", method = { RequestMethod.POST })
+	@ResponseBody
+	public int cancelPayGoods(
+				@RequestParam(value= "memberNo") int memberNo,
+				@RequestParam(value= "imp_uid") String imp_uid,
+				@RequestParam(value= "gCode") int gCode,//굿즈코드
+				@RequestParam(value= "SB_COUNT") int sbCount,//구매수량
+				@RequestParam(value= "cancel_request_amount") int pPrice,//환불금액
+				@RequestParam(value= "cancel_request_point") String requestPoint,//돌려줄 포인트
+				@RequestParam(value= "cancel_response_point") String responsePoint//돌려받을 포인트
+				) throws IOException, ParseException  {
+
+//		System.out.println(imp_uid);
+		
+//		환불 처리!!
+		PaymentCheck obj = new PaymentCheck();
+		String token = obj.getImportTokenSB();//토큰가져오기
+		
+		int result=obj.cancelPayment(token, imp_uid, pPrice);//환불 성공!
+		if(result>0) {//환불 성공시
+			//1. 수량 원상복구
+			Map.of("gCode",gCode,"sbCount",sbCount);
+			int countUpdate=service.updateSbcount(Map.of("gCode",gCode,"sbCount",sbCount));//수량원상복구
+			System.out.println("수량 원상복구 성공 여부 : "+countUpdate);
+			
+			//2. 환불 기록
+			Pay pay=service.getPcode(imp_uid);//주문번호로 pay에서 pCode가져오기
+			int rfResult=service.insertRefund(pay);//환불기록 넣기
+			System.out.println("환불기록 넣기 성공여부 : "+rfResult);
+			
+			return result;	
+		}else {
+			return result;
+		}
+		
+	}
+	
+	//공연예매 환불과정
 	@RequestMapping(value ="/cancelPay", method = { RequestMethod.POST })
 	@ResponseBody
 	public int cancelPay(
@@ -219,7 +267,7 @@ public class MypageController {
 			p=service.selectPoint(memberNo);//멤버번호의 최종 남은포인트
 			System.out.println("최종 포인트 현황 : "+p);
 			
-			Pay pay=service.getPcode(merchant_uid);//주문번호로 pay에서 pCode가져오기
+			Pay pay=service.getPcode(imp_uid);//주문번호로 pay에서 pCode가져오기
 //		System.out.println(pay);
 			
 			//2. 좌석 취소
@@ -357,7 +405,7 @@ public class MypageController {
 		return mv;
 	}
 	
-	//상품구매내역	 환불처리 해야함!!!!!!!!!!!!!!!!!!!
+	//상품구매내역
 	@RequestMapping("/shoppingList.do")
 	public ModelAndView shoppingList(ModelAndView mv,HttpSession session,
 			@RequestParam(value="cPage", defaultValue="1")int cPage,
@@ -377,7 +425,7 @@ public class MypageController {
 		int totalData=service.selectSpCount(member_No);//페이징처리 위한 카운트
 		
 		mv.addObject("myShopping",map);//쇼핑내역저장
-		mv.addObject("pageBar",PageFactory.searchPage(cPage,numPerpage,totalData,"myContentList.do",member_No));//쇼핑페이지바
+		mv.addObject("pageBar",PageFactory.searchPage(cPage,numPerpage,totalData,"shoppingList.do",member_No));//쇼핑페이지바
 		
 		mv.setViewName("mypage/shoppingList");
 		return mv;
