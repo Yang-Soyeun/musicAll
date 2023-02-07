@@ -23,7 +23,7 @@
 	            <tr>
 	              <td rowspan="4" class="hidden-xs"><img src="${path}/resources/upload/performance/${rvDetail.I_NAME }" alt="공연포스터"/></td>
 	              <td>
-	                <h5 class="product-title font-alt">예약번호</h5>
+	                <h5 class="product-title font-alt">예매번호</h5>
 	              </td>
 	              <td class="hidden-xs">
 	                <h5 class="product-title font-alt"><c:out value="${rvDetail.R_CODE }"/></h5>
@@ -34,7 +34,7 @@
 	                <h5 class="product-title font-alt">관람일  |  시간</h5>
 	              </td>
 	              <td class="hidden-xs">
-	                <h5 class="product-title font-alt"><fmt:formatDate value="${rvDetail.R_DATE }" pattern="yyyy-MM-dd"/>  |  <c:out value="${rvDetail.R_TIME }"/>PM</h5>
+	                <h5 class="product-title font-alt"><fmt:formatDate value="${rvDetail.R_DATE }" pattern="yyyy-MM-dd"/>  |  <c:out value="${rvDetail.R_TIME }"/></h5>
 	              </td>
 	            </tr>
 	            <tr>
@@ -42,12 +42,12 @@
 	                <h5 class="product-title font-alt">티켓수량  |  가격</h5>
 	              </td>
 	              <td class="hidden-xs">
-	                <h5 class="product-title font-alt"><c:out value="${rvDetail.SEATCOUNT }"/>  |  <fmt:formatNumber value="${rvDetail.SEATPRICE }" pattern="###,###"/></h5>
+	                <h5 class="product-title font-alt"><c:out value="${rvDetail.SEATCOUNT }"/>  |  <fmt:formatNumber value="${rvDetail.SEATPRICE }" pattern="###,###"/>원</h5>
 	              </td>
 	            </tr>
 	            <tr>
 	              <td>
-	                <h5 class="product-title font-alt">좌석</h5>
+	                <h5 class="product-title font-alt">예매좌석</h5>
 	              </td>
 	              <td class="hidden-xs">
 	                <h5 class="product-title font-alt"><c:out value="${rvDetail.R_SEAT }"/></h5>
