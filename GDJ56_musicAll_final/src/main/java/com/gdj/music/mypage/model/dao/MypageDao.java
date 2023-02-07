@@ -27,7 +27,10 @@ public interface MypageDao {
 	Map<String, Reservation> selectRvView(SqlSessionTemplate session,Map<String,Integer> r);//예매세부내역상단
 	Map<String, Reservation> selectRsview(SqlSessionTemplate session,Map<String,Integer> r);//예매세부내역하단
 	
-	Pay getPcode(SqlSessionTemplate session,String merchant_uid);//주문번호로 pay에서 pCode가져오기
+	Map<String,Object> selectGoods(SqlSessionTemplate session,Map<String,Integer> r);//굿즈 환불정보 가져오기
+	int updateSbcount(SqlSessionTemplate session,Map<String,Integer> r);//굿즈 수량 원상복구
+	
+	Pay getPcode(SqlSessionTemplate session,String imp_uid);//주문번호로 pay에서 pCode가져오기
 	
 	Map<String,Object> selectSeat(SqlSessionTemplate session,Pay pay);// pCode로 r_seat,r_date,r_time 가져오기
 	int deleteSeat(SqlSessionTemplate session,Map<String,Object> seat);//좌석삭제하기

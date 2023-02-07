@@ -30,7 +30,7 @@ public class PerformanceServiceImpl implements PerformanceService{
 		this.dao = dao;
 	}
 	@Override
-	public List<PerformancePhoto> selectPerforList(){
+	public List<Map<String, PerformancePhoto>> selectPerforList(){
 		return dao.selectPerforList(session);
 		
 	}
@@ -81,5 +81,17 @@ public class PerformanceServiceImpl implements PerformanceService{
 	@Override
 	public int deleteMyMusical(Mlike like) {
 		return dao.deleteMyMusical(session,like);
+	}
+	@Override
+	public List<Map<String, PerformancePhoto>> orderbyBest() {
+		return dao.orderbyBest(session);
+	}
+	@Override
+	public List<Map<String,PerformancePhoto>> orderbyRecent() {
+		return dao.orderbyRecent(session);
+	}
+	@Override
+	public List<Map<String, PerformancePhoto>> orderbyEnd() {
+		return dao.orderbyEnd(session);
 	}
 }

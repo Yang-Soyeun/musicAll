@@ -5,7 +5,7 @@
 
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
- 	<jsp:param name="title" value="MainPage"/>
+ 	<jsp:param name="title" value="GoodsPage"/>
 </jsp:include>
 <link href="${path}/resources/css/reservation/selectSeat.css" rel="stylesheet">
 <script>
@@ -59,35 +59,33 @@
                   <tbody>
                     <tr>
                       <th colspan="2">상품 정보</th>
-                      
-                      <th class="hidden-xs">상품 금액</th>
                       <th>수량</th>
-
+					  <th class="hidden-xs">결제 금액</th>
                       <th></th>
                     </tr>
                     
                     <tr>
-                      <td class="hidden-xs">
-                      <c:if test="${not empty img }">
-                      <c:forEach var="i" items="${img }">
-                         <c:if test="${i.gdCode == goods.gdCode }">
-                               <a href="#"><img src="${path }/resources/upload/goods/${i.imName}" alt="Accessories Pack"/></a>
-                            </c:if>
-                         </c:forEach>
-                      </c:if>
+                      <td class="hidden-xs" style="border-right: none; max-width: 25px;">
+	                      <c:if test="${not empty img }">
+	                      <c:forEach var="i" items="${img }">
+	                         <c:if test="${i.gdCode == goods.gdCode }">
+	                               <a href="#"><img src="${path }/resources/upload/goods/${i.imName}" style="border-radius: 13%;"/></a>
+	                            </c:if>
+	                         </c:forEach>
+	                      </c:if>
                       </td>
-                      <td>
+                      <td style="border-left: none; max-width: 104px;">
                         <h5 class="product-title font-alt"><c:out value="${goods.gdName }"/></h5>
                       </td>
                       <td>
-                        <input class="form-control" id="quantity_value" type="number" name="" value="${info[3] }개" max="50" min="1"/>
+                        <h5 class="product-title font-alt"><c:out value="${info[3] }개"/></h5>
                       </td>
                       <td class="hidden-xs">
                         <h5 class="product-title font-alt"><fmt:formatNumber value="${info[4] }" pattern="#,###" />원</h5>
                       </td>
            
-                      <td class="pr-remove">
-                         <button class="btn btn-danger btn-round btn-sm" type="submit" style="margin: 2%;">환불</button>
+                      <td class="pr-remove" style="max-width: 59px;">
+                         <button class="btn btn-danger btn-round" type="submit" style="margin: 2%;">환불</button>
                       </td>
                     </tr>
 

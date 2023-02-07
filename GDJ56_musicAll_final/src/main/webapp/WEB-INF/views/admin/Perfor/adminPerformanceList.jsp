@@ -63,8 +63,8 @@ onclick="location.assign('${path}/admin/adminMain.do')">back</button>
 	    	</div>
 	    	<c:forEach var="f" items="${musicalPhoto }">
 	    		<div class="photo-box">
-					<img src="${path }/resources/upload/performance/${f.getIName()}" class="perView" style="margin-left:110px; float:left; border-radius:10px;"
-					 onclick="location.assign('${path}/adminPerfor/performanceView.do?mCode=${f.getMCode()}')" >
+					<img src="${path }/resources/upload/performance/${f.I_NAME}" class="perView" style="margin-left:110px; float:left; border-radius:10px;"
+					 onclick="location.assign('${path}/adminPerfor/performanceView.do?mCode=${f.M_CODE}')" >
 					
 					
 				</div>

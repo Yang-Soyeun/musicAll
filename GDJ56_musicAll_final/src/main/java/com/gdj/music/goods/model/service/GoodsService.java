@@ -40,4 +40,7 @@ public interface GoodsService {
 	
 	//구매 내역
 	MyGoods selectMygoods(Goods g);
+	
+	//굿즈 보유 수량
+	int selectgCount(int gdCode);
 }

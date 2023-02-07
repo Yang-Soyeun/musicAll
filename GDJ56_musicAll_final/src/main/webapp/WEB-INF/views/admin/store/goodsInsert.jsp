@@ -17,7 +17,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${path }/resources/css/admin/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${path }/resources/images/favicon.png" />
+  <link rel="icon" href="${path}/resources/images/favicons/logo.png">
 
 	<style>
 		.goodsForm {

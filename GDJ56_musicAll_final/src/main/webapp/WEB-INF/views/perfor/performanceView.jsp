@@ -8,7 +8,7 @@
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
   integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous"></script>
 <script>
-  Kakao.init('c089c8172def97eb00c07217cae17495'); // 사용하려는 앱의 JavaScript 키 입력
+  Kakao.init('159a9195668e221c0f6db2e6d888709d'); // 사용하려는 앱의 JavaScript 키 입력
 </script>
 
 <jsp:include page="/WEB-INF/views/common/header.jsp">
@@ -105,11 +105,14 @@
                <p>s석:${musical.getSPrice() }원</p>
                <b class="info">장소</b><p>${musical.getHName() }</p><br><br>
              <button class="btn btn-danger" id="go1" onclick="location.href='${path}/booking/bookingview.do?mCode=${musical.getMCode()} '">예매하러 가기</button><br>
-			<c:if test="${empty mLike}">	
-             	<button class="btn btn-danger" id="go2" onclick="fn_addMyMusical();">관심공연 등록</button><br><br>
-			</c:if>
-			<c:if test="${not empty mLike}">
-             	<button class="btn btn-danger" id="go2" onclick="fn_deleteMyMusical();">관심공연 해제</button><br><br> 
+			<br><br>
+			<c:if test="${not empty loginMember}">
+				<c:if test="${empty mLike}">	
+             		<button class="btn btn-danger" id="go2" onclick="fn_addMyMusical();">관심공연 등록</button>
+				</c:if>
+				<c:if test="${not empty mLike}">
+	             	<button class="btn btn-danger" id="go2" onclick="fn_deleteMyMusical();">관심공연 해제</button> 
+				</c:if>
 			</c:if>
          </div>
        </div>
@@ -148,6 +151,7 @@
                 </form>
             </div>
         </div>
+        <c:if test="${not empty comment}">
         <c:forEach var="ct" items="${comment }">
          <div class="oneComment" style="height:150px;  display: none; margin-top:10px;">
             <div id="starBox">
@@ -208,6 +212,7 @@
             </div>
         </div>
         </c:forEach>
+        </c:if>
         <br>
 </div>
 </section>
@@ -216,8 +221,8 @@
         container: '#kakaotalk-sharing-btn',
         objectType: 'feed',
         content: {
-          title: '딸기 치즈 케익',
-          description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
+          title: '${musical.getMTitle() }',
+          description: '#공연정보 #뮤지컬 #데이트 #분위기',
           imageUrl:
             'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
           link: {
@@ -239,13 +244,7 @@
               webUrl: 'http://localhost:9090/GDJ56_musicAll_final/perfor/performanceView1.do?mCode=${musical.getMCode()}',
             },
           },
-          {
-            title: '앱으로 보기',
-            link: {
-              mobileWebUrl: 'https://developers.kakao.com',
-              webUrl: 'https://developers.kakao.com',
-            },
-          },
+         
         ],
       });
     
@@ -286,13 +285,14 @@
         		}
         	}
         }
+        
         //관심공연 등록하기 
         const fn_addMyMusical=()=>{
            var memberNo='${loginMember.member_No}';
            var mCode=$("input[name=mCode]").val();
            console.log(memberNo);
            console.log(mCode);
-           if(memberNo=null){
+           if(memberNo==null){
               alert("로그인한 회원만 작성가능합니다.");
               location.assign("${path}/member/login.do");
            }

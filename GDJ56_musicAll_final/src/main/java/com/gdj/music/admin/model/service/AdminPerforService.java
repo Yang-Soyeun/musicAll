@@ -13,7 +13,7 @@ public interface AdminPerforService {
 	
 	int insertPerformance(Performance2 p, List<Schedule> sc, List<PerformancePhoto> files);
 
-	List<PerformancePhoto> selectPerforList();
+	List<Map<String, PerformancePhoto>> selectPerforList();
 
 	Performance2 selectPerformanceView(int mCode);
 

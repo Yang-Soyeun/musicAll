@@ -68,10 +68,23 @@ public class MypageServiceImpl implements MypageService {
 	public Map<String, Reservation> selectRsview(Map<String, Integer> r) {
 		return dao.selectRsview(session,r);
 	}
+	
+	//굿즈 환불정보
+	@Override
+	public Map<String, Object> selectGoods(Map<String, Integer> r) {
+		return dao.selectGoods(session, r);
+	}
+	
+	//굿즈 수량 원상복구
+	@Override
+	public int updateSbcount(Map<String, Integer> r) {
+		return dao.updateSbcount(session, r);
+	}
+
 	//주문번호로 pay에서 pcode값 가져오기
 	@Override
-	public Pay getPcode(String merchant_uid) {
-		return dao.getPcode(session, merchant_uid);
+	public Pay getPcode(String imp_uid) {
+		return dao.getPcode(session, imp_uid);
 	}
 	// pCode로 r_seat,r_date,r_time 가져오기
 	@Override
