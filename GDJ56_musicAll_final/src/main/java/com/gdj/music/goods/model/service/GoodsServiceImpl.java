@@ -96,4 +96,10 @@ public class GoodsServiceImpl implements GoodsService {
 		return dao.selectMygoods(session, g);
 	}
 
+
+	@Override
+	public int selectgCount(int gdCode) {
+		return dao.selectgCount(session, gdCode);
+	}
+
 }

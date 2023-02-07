@@ -82,6 +82,13 @@ public class GoodsDaoImpl implements GoodsDao {
 	public MyGoods selectMygoods(SqlSessionTemplate session, Goods g) {
 		return session.selectOne("goods.selectMygoods", g);
 	}
+
+	
+	//굿즈 보유 수량
+	@Override
+	public int selectgCount(SqlSessionTemplate session, int gdCode) {
+		return session.selectOne("goods.selectgCount", gdCode);
+	}
 	
 
 }

@@ -5,7 +5,7 @@
 
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <jsp:include page="/WEB-INF/views/common/header.jsp">
- 	<jsp:param name="title" value="MainPage"/>
+ 	<jsp:param name="title" value="GoodsPage"/>
 </jsp:include>
 <link href="${path}/resources/css/reservation/selectSeat.css" rel="stylesheet">
 <script>

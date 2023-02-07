@@ -59,5 +59,12 @@ public class PayDaoImpl implements PayDao{
 	public int insertMygoods(SqlSessionTemplate session, MyGoods g) {
 		return session.insert("pay.insertMygoods", g);
 	}
+
+	
+	//굿즈 보유 수량 차감
+	@Override
+	public int updategCount(SqlSessionTemplate session, MyGoods g) {
+		return session.update("pay.minusgCount", g);
+	}
 	
 }
