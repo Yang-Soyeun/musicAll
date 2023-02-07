@@ -5,7 +5,7 @@
 <link href="${path}/resources/css/performance/performanceList.css" rel="stylesheet">
 
 <jsp:include page="/WEB-INF/views/common/header.jsp">
- 	<jsp:param name="title" value="MainPage"/>
+    <jsp:param name="title" value="MainPage"/>
 </jsp:include>
 <section style="margin-top:100px;">
     <p id="nowShowing" style="font-size:25px; text-align:center;">현재 상영작</p>
@@ -49,7 +49,7 @@
     </div>
     <c:forEach var="p" items="${musicalPhoto}">
     <div class="photo-box" style>
-        <img src="${path }/resources/upload/performance/${p.getIName()}" class="perView" style="float:left;"onclick="location.href='${path}/booking/bookingview.do?mCode=${p.getMCode() }';"/>
+        <img src="${path }/resources/upload/performance/${p.I_NAME}" class="perView" style="float:left;"onclick="location.href='${path}/booking/bookingview.do?mCode=${p.M_CODE }';"/>
     </div>
     </c:forEach>
 </section>
@@ -77,9 +77,9 @@
 <br>
 
 <script>
-	$(function(){
-	    $('#datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
-	})
+   $(function(){
+       $('#datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
+   })
 </script>
 
 <!-- jquery 기본 js파일 -->
