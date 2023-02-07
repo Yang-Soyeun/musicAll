@@ -25,7 +25,7 @@
 		     <table class="table table-striped table-border checkout-table" style="text-align:center;">
 		       <tbody>
 		         <tr >
-		           <td><b>예매번호</b></td>
+		           <td style="max-width:75px;"><b>예매번호</b></td>
 		           <td><b>공연번호</b></td>
 		           <td><b>공연명</b></td>
 		           <td><b>예매일</b></td>
@@ -54,7 +54,7 @@
 				           <td>
 				             <h5 class="product-title font-alt">
 				             	<fmt:formatDate value="${r.get('R_DATE') }" pattern="yyyy-MM-dd"/>
-				             	<c:out value="${r.get('R_TIME') }"/>PM
+				             	<c:out value="${r.get('R_TIME') }"/>
 				             </h5>
 				           </td>
 				           <td class="">
@@ -98,53 +98,6 @@
 		         	</tr>
 		         </c:if>
 		         
-<!-- 		         <tr> -->
-<!-- 		           <td> -->
-<!-- 		             <h5 class="product-title font-alt">122</h5> -->
-<!-- 		           </td> -->
-<!-- 		           <td class=""> -->
-<!-- 		             <h5 class="product-title font-alt">302</h5> -->
-<!-- 		           </td> -->
-<!-- 		           <td class=""> -->
-<!-- 		             <h5 class="product-title font-alt">뮤지컬 신나</h5> -->
-<!-- 		           </td> -->
-<!-- 		           <td class=""> -->
-<!-- 		             <h5 class="product-title font-alt">2023-01-15</h5> -->
-<!-- 		           </td> -->
-<!-- 		           <td> -->
-<!-- 		             <h5 class="product-title font-alt">2023-01-22</h5> -->
-<!-- 		           </td> -->
-<!-- 		           <td class=""> -->
-<!-- 		             <button class="btn btn-g btn-circle" disabled>불가</button> -->
-<!-- 		           </td> -->
-<!-- 		           <td> -->
-<!-- 		             <button class="btn btn-warning btn-circle">리뷰 작성</button> -->
-<!-- 		           </td> -->
-<!-- 		         </tr> -->
-<!-- 		         <tr> -->
-<!-- 		           <td> -->
-<!-- 		             <h5 class="product-title font-alt">122</h5> -->
-<!-- 		           </td> -->
-<!-- 		           <td class=""> -->
-<!-- 		             <h5 class="product-title font-alt">302</h5> -->
-<!-- 		           </td> -->
-<!-- 		           <td class=""> -->
-<!-- 		             <h5 class="product-title font-alt">뮤지컬 신나</h5> -->
-<!-- 		           </td> -->
-<!-- 		           <td class=""> -->
-<!-- 		             <h5 class="product-title font-alt">2023-01-15</h5> -->
-<!-- 		           </td> -->
-<!-- 		           <td> -->
-<!-- 		             <h5 class="product-title font-alt">2023-01-22</h5> -->
-<!-- 		           </td> -->
-<!-- 		           <td class=""> -->
-<!-- 		             <button class="btn btn-d btn-circle">완료</button> -->
-<!-- 		           </td> -->
-<!-- 		           <td> -->
-<!-- 		             <h5 class="product-title font-alt">관람 후 작성 가능</h5> -->
-<!-- 		           </td> -->
-<!-- 		         </tr> -->
-		         
 		       </tbody>
 		     </table>
 		   </div>
@@ -167,7 +120,8 @@
      <h4 style="margin-top:30px;"><b style="margin-left:50px; margin-right:50px;">적립 포인트</b> <b id="Point"></b></h4>
      <h4 style="margin-top:30px;"><b style="margin-left:50px; margin-right:50px;">사용 포인트</b> <b id="PAYPOINT"></b></h4>
      <hr class="divider-w">
-     <h4 style="margin-top:30px;"><b style="margin-left:50px; margin-right:50px;">총 환급액　</b> <b id="refundTotal"></b></h4>
+     <h4 style="margin-top:30px;"><b style="margin-left:50px; margin-right:50px; color:#d43f3a;">총 환급액　</b> <b id="refundTotal"></b></h4>
+     <h4 style="margin-top:30px;"><b style="margin-left:50px; margin-right:50px;color:#d43f3a;">환급 포인트</b> <b id="refundPoint"></b></h4>
      <input type="hidden" id="merchant_uid"/>
      <input type="hidden" id="imp_uid"/>
       
@@ -268,13 +222,14 @@
 				$("#refundNo").text('No.'+data.result.R_CODE);
 				$("#refundTitle").text(data.result.M_TITLE);
 				
-				$("#SEATPRICE").text(data.result.SEATPRICE);//공연 가격
-				$("#P_PRICE").text(data.refund.P_PRICE);//결제 금액
-				$("#Point").text('-'+(data.refund.P_PRICE)/10);//적립 포인트
-				$("#PAYPOINT").text('+'+data.refund.PAYPOINT);//사용 포인트
-				$("#refundTotal").text(
-						(data.refund.P_PRICE)-(data.refund.P_PRICE/10)+(data.refund.PAYPOINT)
-						);//총 환급액
+				$("#SEATPRICE").text(data.result.SEATPRICE+'원');//공연 가격
+				$("#P_PRICE").text(data.refund.P_PRICE+'원');//결제 금액
+				$("#Point").text('+'+(data.refund.P_PRICE/10)+'P');//적립 포인트
+				$("#PAYPOINT").text('-'+data.refund.PAYPOINT+'P');//사용 포인트
+				$("#refundTotal").text(data.refund.P_PRICE+'원');//총 환급액
+				$("#refundPoint").text(
+						(data.refund.P_PRICE/10)-data.refund.PAYPOINT+'P'
+						);//총 환급포인트
 				$("#merchant_uid").val(data.refund.M_UID);
 				$("#imp_uid").val(data.refund.P_UID);
 				
