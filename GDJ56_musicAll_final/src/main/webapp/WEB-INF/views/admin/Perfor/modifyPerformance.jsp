@@ -227,6 +227,7 @@
         <!-- //Form -->    
       </form>
         <script>
+        alert("사진은 두장 모두 업로드 해주세요!");
             //daterangepicker
             //$('input[name="daterange"]').daterangepicker();
             $("#daterange").daterangepicker({

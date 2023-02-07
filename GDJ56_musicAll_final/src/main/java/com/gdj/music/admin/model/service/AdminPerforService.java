@@ -32,4 +32,8 @@ public interface AdminPerforService {
 	int selectAverage(int mCode);
 
 	int deleteComment(int reviewNo);
+
+	List<Map<String, PerformancePhoto>> orderbyRecent();
+
+	List<Map<String, PerformancePhoto>> orderbyEnd();
 }

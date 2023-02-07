@@ -88,4 +88,12 @@ public class AdminPerforDaoImpl implements AdminPerforDao {
 	public int deleteComment(SqlSessionTemplate session, int reviewNo) {
 		return session.delete("review.deleteComment",reviewNo);
 	}
+	@Override
+	public List<Map<String, PerformancePhoto>> orderbyRecent(SqlSessionTemplate session) {
+		return session.selectList("img.orderbyRecent");
+	}
+	@Override
+	public List<Map<String, PerformancePhoto>> orderbyEnd(SqlSessionTemplate session) {
+		return session.selectList("img.orderbyEnd");
+	}
 }

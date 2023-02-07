@@ -26,6 +26,8 @@ public interface MypageService {
 	Map<String, Reservation> selectRvView(Map<String,Integer> r);//예매세부내역상단
 	Map<String, Reservation> selectRsview(Map<String,Integer> r);//예매세부내역하단
 	
+	Map<String,Goods> selectGoodsView(Map<String,Integer>r);//굿즈세부내역
+	
 	Map<String,Object> selectGoods(Map<String,Integer> r);//굿즈 환불정보 가져오기
 	int updateSbcount(Map<String,Integer> r);//굿즈 수량 원상복구
 	
