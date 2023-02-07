@@ -45,31 +45,7 @@
 <!-- Start Content -->
 	<div class="container py-5" style="margin: 8%; margin-left: 14%; width: 70%;">      
    		<div class="container single_product_container">
-		<div class="row">
-			<div class="col">
 
-				<!-- Breadcrumbs -->
-
-				<div class="breadcrumbs d-flex flex-row align-items-center">
-					<ul>
-						<li><a href="${path }">Home</a></li>
-						<li><a href="${path }/goods/goodsMain.do"><i class="fa fa-angle-right" aria-hidden="true"></i>굿즈 스토어</a></li>
-						<li class="active"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i>상세 페이지</a></li>
-					</ul>
-					
-					<div id="cart" class="cart" data-totalitems="0" style="float: right; margin-top: -1%; margin-left: 70%;">
-					  	<button type="button" class="btn btn-secondary" onclick="location.assign('${path }/goods/goodsCart.do?memberNo=${loginMember.member_No }')">
-			                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
-							  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-							</svg>
-			       		</button>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-		
-	
 			<c:if test="${not empty img }">
        			<c:forEach var="i" items="${img }">
        				<c:if test="${i.sumImage.equals('ok') }">
@@ -255,7 +231,7 @@
 											<textarea id="review_message" class="input_review" name="message"  placeholder="Your Review" rows="4" required data-error="Please, leave us a review."></textarea>
 										</div>
 										<div class="text-left text-sm-right">
-											<button id="review_submit" onclick="addReview();" type="submit" class="red_button review_submit_btn trans_300" value="Submit">submit</button>
+											<button id="review_submit" type="submit" class="red_button review_submit_btn trans_300" value="Submit">submit</button>
 										</div>
 									</form>
 								</div>
@@ -275,117 +251,7 @@
    	
    	<!-- script -->
    	<script>
-		var $js = jQuery.noConflict();
-			
-		//장바구니 개수 출력
-		var cart = $('#cart');
-		var cartTotal = cart.attr('data-totalitems', '${total}');
 
-		//장바구니 클릭 이벤트
-	  $('.addtocart').on('click',function(){
-		 
-		//로그인 x  
-		<c:if test="${loginMember==null }">
-			alert("로그인 후 이용해주세요.");
-		</c:if>
-	    
-		//로그인 o
-		<c:if test="${loginMember!=null }">
-		    //var button = $(this);
-		    var newCartTotal = ${total} + 1;
-
-		    //장바구니 담기 기능
-		    var ctCount = $('#quantity_value').text();
-		 
-		    $.ajax({
-		    	url: "${path}/goods/addCart.do",
-		    	data: {"ctCount" : ctCount, "gdCode" : ${goods.gdCode }, "member_no" : ${loginMember.member_No }},
-		    	type: "post",
-		    	dataType: "json",
-		        success: data=>{
-		        	
-		        	console.log(data);
-		        	
-		        	if(data=='1') {
-		        		
-		        		//장바구니에 추가 성공시 애니메이션
-		        		//button.addClass('sendtocart');
-					    
-					    setTimeout(function(){
-					      //button.removeClass('sendtocart');
-					      //장바구니 개수 변경
-					      cart.addClass('shake').attr('data-totalitems', newCartTotal);
-					      setTimeout(function(){
-					        cart.removeClass('shake');
-					        setTimeout(function(){
-					        	//성공시
-					        	alert("장바구니에 추가하였습니다.");
-					        },200)
-					      },500)
-					    },1000);
-		        	} 
-				},
-				error: function(){
-					alert("이미 추가된 상품입니다.");
-				}
-			});
-	    
-	    </c:if>
-	    
-	  });
-			
-		
-		//구매 페이지로 넘기기
-		const buyPage=()=>{
-			
-			var gdCount = $("#quantity_value").text();
-			
-			//console.log($("#quantity_value").text());
-			console.log(gdCount);
-			
-			$.ajax({
-				url: "${path }/goods/goodsPay.do",
-				data: {"gdCount" : gdCount, "gdCode" : ${goods.gdCode }, "member_no" : ${loginMember.member_No }},
-				type: "post",
-				success: function(data) {
-					//alert("넘기기 성공")
-					location.assign('${path }/goods/goodsPay.do?gdCode='+${goods.gdCode }+'&member_no='+${loginMember.member_No }+'&gdCount='+gdCount);
-				},
-				error: function(){
-					alert("에러")
-				}
-			});
-
-			
-		}
-		
-		//상품평
-        const addReview=()=>{
-        	
-        	var memberNo='${loginMember.member_No}';
-        	var gdCode=${goods.gdCode };
-
-        	let reservations=[];
-        	<c:forEach var='e' items="${reservation}">
-        		reservations.push('${e.memberNo}');
-        	</c:forEach>
-        	console.log(reservations);
-        	if(memberNo=null){
-        		alert("로그인한 회원만 작성가능합니다.");
-        		location.assign("${path}/member/login.do");
-        	}else{
-        		if(reservations.indexOf(memberNo) !=-1){
-        			console.log("일치");
-        			console.log(mCode);
-        			alert("한줄평 등록이 완료되었습니다! 감사합니다.");
-        			$(".commentWrite").submit();
-        		}else{
-        			console.log("불일치");
-        			alert("공연을 예매한 회원만 작성가능합니다.");
-        			return false;
-        		}
-        	}
-        }
 		
 		
 	</script>
