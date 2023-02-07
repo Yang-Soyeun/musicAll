@@ -47,4 +47,10 @@ public interface GoodsService {
 	
 	//상품평 등록
 	int addReview(GReview r);
+	
+	//상품평 리스트
+	List<Map<String,GReview>> selectReview(int gdCode);
+	
+	//상품평 개수
+	int rCount(int gdCode);
 }

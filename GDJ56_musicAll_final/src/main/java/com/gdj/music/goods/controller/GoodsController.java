@@ -79,10 +79,18 @@ public class GoodsController {
 		m.addAttribute("goods", service.goodsView(gdCode));
 		m.addAttribute("img", service.goodsViewImg(gdCode));
 		
+		//구매 내역
 		m.addAttribute("mygoods", service.selectMygoods(memberNo));
-		System.out.println(memberNo);
-		System.out.println(service.selectMygoods(memberNo));
+//		System.out.println(memberNo);
+//		System.out.println(service.selectMygoods(memberNo));
 		
+		//상품평 리스트
+		m.addAttribute("review", service.selectReview(gdCode));
+		
+		//상품평 개수
+		m.addAttribute("rCount", service.rCount(gdCode));
+		
+		//장바구니에 담은 상품 개수
 		m.addAttribute("total", service.countCart(memberNo));
 		
 		return "/store/goodsView";

@@ -187,55 +187,70 @@
 
 							<!-- User Reviews -->
 
-							<div class="col-lg-6 reviews_col">
-								<div class="tab_title reviews_title">
-									<h4>Reviews (2)</h4>
-								</div>
-
-								<!-- User Review -->
-
-								<div class="user_review_container d-flex flex-column flex-sm-row">
-									<div class="user">
-										<div class="user_pic"></div>
-										<div class="user_rating">
-											<ul class="star_rating">
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-											</ul>
-										</div>
-									</div>
-									<div class="review">
-										<div class="review_date">27 Aug 2016</div>
-										<div class="user_name">Brandon William</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-									</div>
-								</div>
-
-								<!-- User Review -->
-
-								<div class="user_review_container d-flex flex-column flex-sm-row">
-									<div class="user">
-										<div class="user_pic"></div>
-										<div class="user_rating">
-											<ul class="star_rating">
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-											</ul>
-										</div>
-									</div>
-									<div class="review">
-										<div class="review_date">27 Aug 2016</div>
-										<div class="user_name">Brandon William</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-									</div>
-								</div>
+						<div class="col-lg-6 reviews_col">
+							<div class="tab_title reviews_title">
+								<h4>Reviews (<c:out value="${rCount }"/>)</h4>
 							</div>
+
+								<!-- User Review -->
+							<c:if test="${not empty review}">
+							<c:forEach var="r" items="${review }">
+								<div class="user_review_container d-flex flex-column flex-sm-row">
+									<div class="user">
+										<div class="user_pic"><img src="${path }/resources/images/store/person.png"></div>
+										<div class="user_rating">
+											<ul class="star_rating">
+												<c:if test="${r.GR_SCORE == 5 }">
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+												</c:if>
+												<c:if test="${r.GR_SCORE == 4 }">
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+												</c:if>
+												<c:if test="${r.GR_SCORE == 3 }">
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+												</c:if>
+												<c:if test="${r.GR_SCORE == 2 }">
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+												</c:if>
+												<c:if test="${r.GR_SCORE == 1 }">
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+												</c:if>
+											</ul>
+										</div>
+									</div>
+									<div class="review">
+										<div class="review_date"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${r.GR_DATE }" /></div>
+										<div class="user_name"><c:out value="${r.MEMBER_ID }" /></div>
+										<p><c:out value="${r.GR_CONTENT }" /></p>
+										
+									</div>
+								</div>
+								</c:forEach>
+							</c:if>
+									
+						</div>
+
+								
 
 							<!-- Add Review -->
 
@@ -375,7 +390,7 @@
 				
 				$("input#rate2").attr("checked", "checked");
 				
-			} else if($(this).attr('id') == 'r2') {
+			} else if($(this).attr('id') == 'r3') {
 				
 				$("input#rate3").attr("checked", "checked");
 				
@@ -387,7 +402,11 @@
 				
 				$("input#rate5").attr("checked", "checked");
 				
-			} 
+			} else {
+				
+				$("input#rate4").attr("checked", "checked");
+				
+			}
 			
 			
 			
