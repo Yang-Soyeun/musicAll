@@ -16,6 +16,7 @@ import com.gdj.music.pay.model.service.PayService;
 import com.gdj.music.pay.model.vo.Pay;
 import com.gdj.music.perfor.model.service.PerformanceService;
 import com.gdj.music.perfor.model.vo.Performance;
+import com.gdj.music.perfor.model.vo.PerformancePhoto;
 import com.gdj.music.reservation.model.service.ReservationService;
 import com.gdj.music.reservation.model.vo.Point;
 import com.gdj.music.reservation.model.vo.Reservation;
@@ -44,7 +45,8 @@ public class ReservationController {
 	//예매할 공연리스트
 	@RequestMapping("/bookinglist.do")
 		public ModelAndView bookingList(ModelAndView mv) {
-			mv.addObject("musicalPhoto",service4.selectPerforList());
+			List<Map<String,PerformancePhoto>> pp = service4.selectPerforList();
+			mv.addObject("musicalPhoto",pp);
 			mv.setViewName("reservation/bookingList");
 			return mv;
 		

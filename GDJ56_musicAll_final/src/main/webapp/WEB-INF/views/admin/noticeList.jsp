@@ -249,55 +249,50 @@
       	<div class="main-panel">
       	<div class="main">
 	<section class="module">
-	  <div class="container">
+	  <div class="container" style="margin-left: 15%; margin-top: 1%;">
 	    <div class="row">
-	      <div class="col-sm-6 col-sm-offset-3"><br><br>
-	        <h2 class="module-title font-alt">1:1문의관리</h2>
+	      <div class="col-sm-6 col-sm-offset-3" style="margin-bottom: 1.5%;"><br><br>
+	        <h2 class="module-title font-alt">공지사항</h2>
 	      </div>
 	    </div>
 	    <div class="row">
 	      <div class="col-sm-12">
+	      			<div>
+			<button class="btn btn-primary btn-circle btn-sm" onclick="location.assign('${path}/notice/noticeInsert.do');" 
+			style="float: right; margin-top: -3.5%; margin-right: 2.1%;">등록</button>
+			</div>
 	        <table class="table table-striped table-border checkout-table" style="text-align:center;">
 	          <tbody>
 	            <tr >
 	              <td><b>번호</b></td>
-	              <td><b>유형</b></td>
 	              <td><b>제목</b></td>
 	              <td><b>작성자</b></td>
-	              <td><b>답변유무</b></td>
 	              <td><b>작성일</b></td>
-	              <td><b>답변하기</b></td>
+	             
+	          
 	            </tr>
-	            <c:if test="${not empty question }">
-	            	<c:forEach var="q" items="${question }">
+	            <c:if test="${not empty notices }">
+	            	<c:forEach var="n" items="${notices }">
 	              <tr>
 	                <td>
-	                  <h5 class="product-title font-alt"><c:out value="${q.qsNo}"/></h5>
+	                  <h5 class="product-title font-alt"><c:out value="${n.noticeNo }"/></h5>
 	                </td>
-	                <td class="">
-	                  <h5 class="product-title font-alt"><c:out value="${q.qsHeadTitle }"/></h5>
+	    			<td style="cursor:pointer" onclick="location.assign('${path}/notice/noticeView.do?noticeNo=${n.noticeNo }')">
+	                  <h5 class="product-title font-alt"><c:out value="${n.noticeTitle }"/></h5>
 	                </td>
-	                <td class="">
-	                  <h5 class="product-title font-alt"><c:out value="${q.qsTitle }"/></h5>
+	                <td>
+	                  <h5 class="product-title font-alt"><c:out value="admin"/></h5>
 	                </td>
-	                <td class="">
-	                  <h5 class="product-title font-alt"><c:out value="${q.memberId}"/></h5>
+	                <td>
+	                  <h5 class="product-title font-alt"><c:out value="${n.noticeDate }"/></h5>
 	                </td>
-	                <td class="">
-	                  <h5 class="product-title font-alt"><c:out value="${q.qsResult }"/></h5>
-	                </td>
-	                <td class="">
-	                  <h5 class="product-title font-alt"><c:out value="${q.qsDate }"/></h5>
-	                </td>
-	                <td class="">
-	                  <input type="button" class="btn btn-danger btn-circle btn-sm" onclick="javascript:bt_answerQ('${q.qsNo}');" id="bt_answer" value="답변하기">
-	                </td>
+	            
 	              </tr>
 	      	</c:forEach>
 	            </c:if>
 	            <c:if test="">
 	            	<tr>
-	            		<td colspan="6">조회된 회원이 없습니다.</td>
+	            		<td colspan="6">조회된 공지가 없습니다.</td>
 	            	</tr>
 	            </c:if>
 	          </tbody>
@@ -306,10 +301,11 @@
 			 	
 	  
 	    </div>
-	    <div id="page">
+	    	<div id="page">
 			  	${pageBar }
-				</div>
+			</div>
 	  </div>
+
 	</section>
       </div>
     </div> 	
@@ -354,15 +350,3 @@ font-family: "Nunito", sans-serif;
 	}
 </style>
 </html>
-
-<script>
-
-	const bt_answerQ=(qsNo)=>{
-		
-		location.href = "${path}/adminq/answerQ.do?qsNo=" + qsNo ;
-	}
-
-
-
-</script>
-

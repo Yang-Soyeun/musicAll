@@ -60,7 +60,7 @@
                     <tr>
                       <th colspan="2">상품 정보</th>
                       <th>수량</th>
-					  <th class="hidden-xs">상품 금액</th>
+					  <th class="hidden-xs">결제 금액</th>
                       <th></th>
                     </tr>
                     

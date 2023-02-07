@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
-<script src="${path}/resources/lib/jquery/dist/jquery.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-   <link href="${path}/resources/lib/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
- <!-- plugins:css -->
+  <!-- plugins:css -->
   <link rel="stylesheet" href="${path }/resources/css/admin/vendors/feather/feather.css">
   <link rel="stylesheet" href="${path }/resources/css/admin/vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="${path }/resources/css/admin/vendors/css/vendor.bundle.base.css">
@@ -20,13 +17,44 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${path }/resources/css/admin/css/vertical-layout-light/style.css">
   <!-- endinject -->
-<link rel="icon" href="${path}/resources/images/favicons/logo.png">
+  <link rel="icon" href="${path}/resources/images/favicons/logo.png">
+
+	<style>
+		.noticeForm {
+			
+			justify-content: center;
+			margin-left: 18%;
+			margin-top: 3%;
+			margin-bottom: 3%;
+			background: #e5e5e5;
+			/* height: 1000px; */
+			padding: 4%;
+			width: 50%;
+			border-radius: 1%;
+	}
+	
+		.noticeAdd{
+			display: grid;
+			background-color: transparent;
+		}
+		
+		.text-label {
+			color: #cdcdcd;
+			font-weight: bold;
+		}
+		
+		input[type=text] {
+			border: none; 
+			width: 40%;
+			height: 143%;
+		}
+	</style>
 
 <body>
-   <div class="container">
+ <div class="container">
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <a class="navbar-brand" href="${path }">musicAll</a>
+        <a class="navbar-brand brand-logo mr-5" href="index.html"></a>
 		
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -178,7 +206,6 @@
             <a class="nav-link" href="index.html">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">공연관리</span>
-               <i class="menu-arrow"></i>
             </a>
           </li>
           <li class="nav-item">
@@ -246,123 +273,131 @@
         </ul>
       </nav>
       	<!-- partial -->
+      	
+      	<!--등록 폼 -->
       	<div class="main-panel">
-      	<div class="main">
-	<section class="module">
-	  <div class="container">
-	    <div class="row">
-	      <div class="col-sm-6 col-sm-offset-3"><br><br>
-	        <h2 class="module-title font-alt">1:1문의관리</h2>
-	      </div>
-	    </div>
-	    <div class="row">
-	      <div class="col-sm-12">
-	        <table class="table table-striped table-border checkout-table" style="text-align:center;">
-	          <tbody>
-	            <tr >
-	              <td><b>번호</b></td>
-	              <td><b>유형</b></td>
-	              <td><b>제목</b></td>
-	              <td><b>작성자</b></td>
-	              <td><b>답변유무</b></td>
-	              <td><b>작성일</b></td>
-	              <td><b>답변하기</b></td>
-	            </tr>
-	            <c:if test="${not empty question }">
-	            	<c:forEach var="q" items="${question }">
-	              <tr>
-	                <td>
-	                  <h5 class="product-title font-alt"><c:out value="${q.qsNo}"/></h5>
-	                </td>
-	                <td class="">
-	                  <h5 class="product-title font-alt"><c:out value="${q.qsHeadTitle }"/></h5>
-	                </td>
-	                <td class="">
-	                  <h5 class="product-title font-alt"><c:out value="${q.qsTitle }"/></h5>
-	                </td>
-	                <td class="">
-	                  <h5 class="product-title font-alt"><c:out value="${q.memberId}"/></h5>
-	                </td>
-	                <td class="">
-	                  <h5 class="product-title font-alt"><c:out value="${q.qsResult }"/></h5>
-	                </td>
-	                <td class="">
-	                  <h5 class="product-title font-alt"><c:out value="${q.qsDate }"/></h5>
-	                </td>
-	                <td class="">
-	                  <input type="button" class="btn btn-danger btn-circle btn-sm" onclick="javascript:bt_answerQ('${q.qsNo}');" id="bt_answer" value="답변하기">
-	                </td>
-	              </tr>
-	      	</c:forEach>
-	            </c:if>
-	            <c:if test="">
-	            	<tr>
-	            		<td colspan="6">조회된 회원이 없습니다.</td>
-	            	</tr>
-	            </c:if>
-	          </tbody>
-	        </table>
-	      </div>
-			 	
-	  
-	    </div>
-	    <div id="page">
-			  	${pageBar }
-				</div>
-	  </div>
-	</section>
-      </div>
-    </div> 	
+      	
+      		<div class="noticeForm">
+      			<form id="noticeForm">
+				
+					<div style="display: flex; justify-content: center; margin-bottom: 3%;"><h3>공지사항 등록</h3></div>
+					<hr>
+					 
+					<div class="noticeAdd">
+						<h4>제목</h4>
+						<input type="text" value="" placeholder="제목을 작성해 주세요" id="noticeTitle"/>
+										
+						<br>
+						
+						<h4>내용</h4>
+						<textarea style="border: none; height: 100px;" id="noticeContent"> </textarea>
+						
+						<br>
+						
+						
+						<h4>카테고리</h4>
+						<select name="m" id="noticeCategory">
+							<option value="공연">공연</option> 
+							<option value="예매">예매</option> 
+							<option value="굿즈">굿즈</option> 
+							<option value="기타">기타</option> 
+						</select>
+						
+						<br>
+				
+						<hr> 
+			
+						<h4>사진</h4>
+						<input type="file" value="" style="border: none;" name="upFile" onchange="readURL2(this);" />
+						<img id="preview2" style="width:300px; height: 400px;"/>
+					
+			        </div>
+			        
+			        <div style="margin-top:7%; margin-left: 25%;">
+			            <button class="btn btn-danger" style="width:200px; font-size:15px; float:left;" type="button" onclick="n_insert()">등록</button>
+			            <button class="btn btn-secondary" style="width:110px;background-color:lightgray;color:black;font-size:15px; float:left;">취소</button>
+			        </div>
+		      	</form>
+		        
+	        </div>
+        
+		</div>
 
-</body>
+	</div>
+	
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 
-<style>
-.font-alt {
-font-family: "Nunito", sans-serif;
-    letter-spacing: 2px;
-    
-    
-}
-
-	.td{
-	font-size:16px;
-	margin:0px 0px 8px;
-	font-family: "Nunito", sans-serif;
-	}
+	<script>
 	
 	
-	.pagination {
-	    display: inline-block;
-	    padding-left: 0;
-	    margin: 20px 0;
-	    border-radius: 4px;
-	    margin: 0px 0px 8px;
-	}
-	
-	.pagination a {
-	    border: 1px solid #eaeaea;
-	    display: inline-block;
-	    text-transform: uppercase;
-	    text-align: center;
-	    color: #999;
-	    padding: 4px 12px;
-	}
-	
-	#page {
-	   text-align:center;
-	   
-	}
-</style>
-</html>
-
-<script>
-
-	const bt_answerQ=(qsNo)=>{
+		//상세정보
+		function readURL2(input) {
+		    if (input.files && input.files[0]) {
+		        var reader = new FileReader();
+		        reader.onload = function(e) {
+		        document.getElementById('preview2').src = e.target.result;
+		        };
+		    reader.readAsDataURL(input.files[0]);
+		    } 
+		}
 		
-		location.href = "${path}/adminq/answerQ.do?qsNo=" + qsNo ;
-	}
+		//굿즈 등록 데이터 보내기
+		const n_insert=()=>{
+			
+			//사진
+			const upFile=$("input[name=upFile]")[0].files[0];
+			
+	
+			
+			let form = new FormData();
+			
+	
+			const category = $("#noticeCategory option:selected").val();
+			
+			
+			form.append("noticeTitle", $("#noticeTitle").val());
+			form.append("noticeContent", $("#noticeContent").val());
+			form.append("noticeCategory", category);
+			form.append("upFile", upFile);
+			
+			
+			for (var key of form.keys()) {
 
+				  console.log(key);
 
+				}
 
-</script>
+				for (var value of form.values()) {
 
+				  console.log(value);
+
+				}
+			
+	 		 $.ajax({
+				enctype: 'multipart/form-data',
+				url: "${path}/notice/noticeEnd.do",
+				data: form,
+				type: 'post',
+				dataType: 'json',
+				contentType: false,
+		        processData: false,
+		        cache:false,
+		        success:function(data){
+						alert("등록 성공");
+						location.replace("${pageContext.request.contextPath}/notice/noticeList.do");
+					} ,
+			    error:function(e){
+					alert("등록 실패");
+					location.replace("${pageContext.request.contextPath}/notice/noticeInsert.do");
+				}
+					
+				
+			});    
+			
+			
+			
+		}
+		
+	</script>
+</body>
+</html>

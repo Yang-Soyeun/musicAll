@@ -285,6 +285,7 @@
         		}
         	}
         }
+        
         //관심공연 등록하기 
         const fn_addMyMusical=()=>{
            var memberNo='${loginMember.member_No}';
