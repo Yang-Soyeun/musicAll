@@ -31,7 +31,9 @@
 	            	<c:forEach var="shop" items="${myShopping }">
 	              <tr>
 	                <td>
-	                  <h5 class="product-title font-alt"><c:out value="${shop.get('SB_CODE') }"/></h5>
+	                	<a href="${path }/mypage/shoppingListView.do?member_No=${loginMember.member_No}&sbCode=${shop.get('SB_CODE') }" >
+	                  		<h5 style="color:#6e1515;font-weight:800;" class="product-title font-alt"><c:out value="${shop.get('SB_CODE') }"/></h5>
+	                  	</a>
 	                </td>
 	                <td class="">
 	                  <h5 class="product-title font-alt"><c:out value="${shop.get('G_NAME') }"/></h5>

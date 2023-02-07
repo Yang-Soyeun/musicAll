@@ -163,6 +163,17 @@ public class MypageController {
 		mv.setViewName("mypage/musicalListView");
 		return mv;
 	}
+	//굿즈 결제 세부내역
+	@RequestMapping("/shoppingListView.do")
+	public ModelAndView shoppingListView(ModelAndView mv,@RequestParam Map r){
+		
+		Map<String,Goods> result=service.selectGoodsView(r);
+//		System.out.println(result);
+		
+		mv.addObject("goodsDetail",result);
+		mv.setViewName("mypage/shoppingListView");
+		return mv;
+	}
 	
 	//공연예매 환불값 가져오기
 	@RequestMapping("/refundMusical.do")
@@ -183,7 +194,7 @@ public class MypageController {
 	public Map<String,Object> refundGoods(@RequestParam Map r) {
 //		System.out.println(r);
 		Map<String,Object> goods=service.selectGoods(r);
-		System.out.println(goods);
+//		System.out.println(goods);
 		return goods;
 	}
 	
@@ -362,7 +373,7 @@ public class MypageController {
 			List<Map<String,Mlike>> list=service.selectMlikeList(member_No,
 					Map.of("cPage",cPage,"numPerpage",numPerpage)
 					);
-			System.out.println(list);
+//			System.out.println(list);
 			
 			
 			
