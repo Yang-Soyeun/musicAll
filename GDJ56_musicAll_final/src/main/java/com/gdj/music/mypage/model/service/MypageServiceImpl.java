@@ -69,6 +69,12 @@ public class MypageServiceImpl implements MypageService {
 		return dao.selectRsview(session,r);
 	}
 	
+	//굿즈세부내역
+	@Override
+	public Map<String, Goods> selectGoodsView(Map<String, Integer> r) {
+		return dao.selectGoodsView(session, r);
+	}
+
 	//굿즈 환불정보
 	@Override
 	public Map<String, Object> selectGoods(Map<String, Integer> r) {

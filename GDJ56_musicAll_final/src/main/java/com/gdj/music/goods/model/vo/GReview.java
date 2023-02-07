@@ -19,5 +19,6 @@ public class GReview {
 	private int grScore;
 	private int memberNo;
 	private int gdCode;
+	private int sbCode;
 
 }

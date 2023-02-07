@@ -121,4 +121,12 @@ public class AdminPerforServiceImpl implements AdminPerforService{
 	public int deleteComment(int reviewNo) {
 		return dao.deleteComment(session,reviewNo);
 	}
+	@Override
+	public List<Map<String, PerformancePhoto>> orderbyRecent() {
+		return dao.orderbyRecent(session);
+	}
+	@Override
+	public List<Map<String, PerformancePhoto>> orderbyEnd() {
+		return dao.orderbyEnd(session);
+	}
 }

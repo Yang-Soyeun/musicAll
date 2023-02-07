@@ -98,11 +98,48 @@
 									<div class="original_price"><fmt:formatNumber value="${goods.gdPrice }" pattern="#,###" />원</div>
 									<div class="product_price"><fmt:formatNumber value="${goods.gdPrice }" pattern="#,###" />원</div>
 									<ul class="star_rating">
-										<li><i class="fa fa-star" aria-hidden="true"></i></li>
-										<li><i class="fa fa-star" aria-hidden="true"></i></li>
-										<li><i class="fa fa-star" aria-hidden="true"></i></li>
-										<li><i class="fa fa-star" aria-hidden="true"></i></li>
-										<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+										<c:if test="${rAvg == 0 }">
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+										</c:if>
+										<c:if test="${rAvg == 5 }">
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+										</c:if>
+										<c:if test="${rAvg == 4 }">
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+										</c:if>
+										<c:if test="${rAvg == 3 }">
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+										</c:if>
+										<c:if test="${rAvg == 2 }">
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+										</c:if>
+										<c:if test="${rAvg == 1 }">
+											<li><i class="fa fa-star" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+											<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+										</c:if>
 									</ul>
 									<div class="product_color">
 										<span>예상 적립 포인트:</span>
@@ -187,76 +224,100 @@
 
 							<!-- User Reviews -->
 
-							<div class="col-lg-6 reviews_col">
-								<div class="tab_title reviews_title">
-									<h4>Reviews (2)</h4>
-								</div>
-
-								<!-- User Review -->
-
-								<div class="user_review_container d-flex flex-column flex-sm-row">
-									<div class="user">
-										<div class="user_pic"></div>
-										<div class="user_rating">
-											<ul class="star_rating">
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-											</ul>
-										</div>
-									</div>
-									<div class="review">
-										<div class="review_date">27 Aug 2016</div>
-										<div class="user_name">Brandon William</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-									</div>
-								</div>
-
-								<!-- User Review -->
-
-								<div class="user_review_container d-flex flex-column flex-sm-row">
-									<div class="user">
-										<div class="user_pic"></div>
-										<div class="user_rating">
-											<ul class="star_rating">
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-											</ul>
-										</div>
-									</div>
-									<div class="review">
-										<div class="review_date">27 Aug 2016</div>
-										<div class="user_name">Brandon William</div>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-									</div>
-								</div>
+						<div class="col-lg-6 reviews_col">
+							<div class="tab_title reviews_title">
+								<h4>Reviews (<c:out value="${rCount }"/>)</h4>
 							</div>
+
+								<!-- User Review -->
+							<c:if test="${not empty review}">
+							<c:forEach var="r" items="${review }">
+								<div class="user_review_container d-flex flex-column flex-sm-row">
+									<div class="user">
+										<div class="user_pic"><img src="${path }/resources/images/store/person.png"></div>
+										<div class="user_rating">
+											<ul class="star_rating">
+												<c:if test="${r.GR_SCORE == 5 }">
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+												</c:if>
+												<c:if test="${r.GR_SCORE == 4 }">
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+												</c:if>
+												<c:if test="${r.GR_SCORE == 3 }">
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+												</c:if>
+												<c:if test="${r.GR_SCORE == 2 }">
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+												</c:if>
+												<c:if test="${r.GR_SCORE == 1 }">
+													<li><i class="fa fa-star" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+													<li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+												</c:if>
+											</ul>
+										</div>
+									</div>
+									<div class="review">
+										<div class="review_date"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${r.GR_DATE }" /></div>
+										<div class="user_name"><c:out value="${r.MEMBER_ID }" /></div>
+										<p><c:out value="${r.GR_CONTENT }" /></p>
+										
+									</div>
+								</div>
+								</c:forEach>
+							</c:if>
+							<c:if test="${empty review}">
+								<div class="user_review_container d-flex flex-column flex-sm-row">
+									<div class="review">
+										<h5 style="color:lightslategray;font-weight: bolder;font-size:14px;">아직 상품에 대한 리뷰가 없습니다.</h5>								
+									</div>
+								</div>
+							</c:if>
+									
+						</div>
+
+								
 
 							<!-- Add Review -->
 
 							<div class="col-lg-6 add_review_col">
 
 								<div class="add_review">
-									<form id="review_form" action="post">
-										
+									<form id="review_form" name="review_form" method="post" onsubmit="return addReview();" action="${path }/goods/addReview.do?memberNo=${loginMember.member_No }">
 										<div>
-											<h1 style="margin-left: 5px;">My rating :</h1>
+										<input type="hidden" name="gdCode" value="${goods.gdCode }">
+										</div>
+										<div>
+											<h1 style="margin-left: 5px;">My rating :</h1><br>
 											<ul class="user_star_rating">
-												<li><input type="radio" name="rating" value="5" id="rate6"><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><input type="radio"  name="rating" value="4" id="rate7"><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><input type="radio"  name="rating" value="3" id="rate8"><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><input type="radio"  name="rating" value="2" id="rate9"><i class="fa fa-star" aria-hidden="true"></i></li>
-												<li><input type="radio" name="rating" value="1" id="rate10"><i class="fa fa-star-o" aria-hidden="true"></i></li>
+												<li><i class="fa fa-star" aria-hidden="true" id="r1"><input type="radio" name="rating" value="1" id="rate1"></i></li>
+												<li><i class="fa fa-star" aria-hidden="true" id="r2"><input type="radio"  name="rating" value="2" id="rate2"></i></li>
+												<li><i class="fa fa-star" aria-hidden="true" id="r3"><input type="radio"  name="rating" value="3" id="rate3"></i></li>
+												<li><i class="fa fa-star" aria-hidden="true" id="r4"> <input type="radio"  name="rating" value="4" id="rate4" checked></i></li>
+												<li><i class="fa fa-star-o" aria-hidden="true" id="r5"><input type="radio" name="rating" value="5" id="rate5"></i></li>
 											</ul>
-											<textarea id="review_message" class="input_review" name="message"  placeholder="Your Review" rows="4" required data-error="Please, leave us a review."></textarea>
+											<textarea id="review_message" class="input_review" name="review"  placeholder="Your Review" rows="4" required data-error="Please, leave us a review."></textarea>
 										</div>
 										<div class="text-left text-sm-right">
-											<button id="review_submit" onclick="addReview();" class="red_button review_submit_btn trans_300">등록</button>
+											<button id="review_submit" type="submit" class="red_button review_submit_btn trans_300">등록</button>
 										</div>
 									</form>
 								</div>
@@ -360,34 +421,74 @@
 			
 		}
 		
-		//상품평
+		
+		
+		//별점
+		$('i').on('click',function(){
+			
+			if($(this).attr('id') == 'r1') {
+				
+				$("input#rate1").attr("checked", "checked");
+				
+			} else if($(this).attr('id') == 'r2') {
+				
+				$("input#rate2").attr("checked", "checked");
+				
+			} else if($(this).attr('id') == 'r3') {
+				
+				$("input#rate3").attr("checked", "checked");
+				
+			} else if($(this).attr('id') == 'r4') {
+				
+				$("input#rate4").attr("checked", "checked");
+				
+			} else if($(this).attr('id') == 'r5') {
+				
+				$("input#rate5").attr("checked", "checked");
+				
+			} 
+			
+		});
+		
+			
+		 //상품평
         const addReview=()=>{
-        	
-        	var memberNo='${loginMember.member_No}';
-        	var gdCode=${goods.gdCode };
+           
+           var memberNo='${loginMember.member_No}';
+           var my = 0;
+          
+           
+           //상품 구매 확인
+           <c:forEach var='m' items="${mygoods}">
+              if(${m.gdCode } == ${goods.gdCode }){
+               	my = 1;
+             }
+           </c:forEach>   
+           
+           
+	        
+           if(memberNo=null){
+              
+              alert("로그인한 회원만 작성가능합니다.");
+              location.assign("${path}/member/login.do");
+              
+           }else{
+ 
+                 if(my!=1){
+                    
+                    alert("상품을 구매한 회원만 작성가능합니다.");
+                    return false;
+                 
+                 } else {
+                		 
+                		 return true;
 
-        	let storebuy=[];
-        	<c:forEach var='s' items="${storebuy}">
-        		reservations.push('${s.memberNo}');
-        	</c:forEach>
+                 }
 
-        	if(memberNo=null){
-        		alert("로그인한 회원만 작성가능합니다.");
-        		location.assign("${path}/member/login.do");
-        	}else{
-        		if(storebuy.indexOf(memberNo) !=-1){
-        			alert("상품평이 등록되었습니다. 감사합니다.");
-        			$(".commentWrite").submit();
-        			
-        		}else{
-        			
-        			console.log("불일치");
-        			alert("상품을 구매한 회원만 작성가능합니다.");
-        			return false;
-        			
-        		}
-        	}
+           }
+
         }
+
 		
 		
 	</script>

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.gdj.music.common.interceptor.PageFactory;
 import com.gdj.music.goods.model.service.GoodsService;
+import com.gdj.music.goods.model.vo.GReview;
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.goods.model.vo.GoodsCart;
 import com.gdj.music.goods.model.vo.MyGoods;
@@ -77,10 +78,59 @@ public class GoodsController {
 		
 		m.addAttribute("goods", service.goodsView(gdCode));
 		m.addAttribute("img", service.goodsViewImg(gdCode));
-
+		
+		//구매 내역
+		m.addAttribute("mygoods", service.selectMygoods(memberNo));
+//		System.out.println(memberNo);
+//		System.out.println(service.selectMygoods(memberNo));
+		
+		//상품평 리스트
+		m.addAttribute("review", service.selectReview(gdCode));
+		
+		//상품평 개수
+		m.addAttribute("rCount", service.rCount(gdCode));
+		
+		//별점 평균
+		m.addAttribute("rAvg", service.rAvg(gdCode));
+		
+		//장바구니에 담은 상품 개수
 		m.addAttribute("total", service.countCart(memberNo));
 		
 		return "/store/goodsView";
+	}
+	
+	//상품평 등록
+	@RequestMapping("/addReview.do")
+	public ModelAndView addReview(ModelAndView mv, int rating, int gdCode, String review, int memberNo) {
+
+		GReview r = GReview.builder()
+				.grContent(review)
+				.grScore(rating)
+				.memberNo(memberNo)
+				.gdCode(gdCode)
+				
+				.build();
+		
+		
+		int result = service.addReview(r);
+		
+		if(result > 0) {
+			
+			mv.addObject("msg", "상품평이 등록되었습니다. 감사합니다.");
+			mv.addObject("loc", "/goods/goodsView.do?gdCode="+gdCode+"&memberNo="+memberNo);
+			
+		} else {
+			
+			mv.addObject("msg", "상품평 등록에 실패했습니다. 다시 등록해 주세요.");
+			mv.addObject("loc", "/goods/goodsView.do?gdCode="+gdCode+"&memberNo="+memberNo);
+			
+		}
+
+		
+		mv.setViewName("common/msg");
+				
+		return mv;
+		
 	}
 	
 	//결제 페이지

@@ -163,6 +163,17 @@ public class MypageController {
 		mv.setViewName("mypage/musicalListView");
 		return mv;
 	}
+	//굿즈 결제 세부내역
+	@RequestMapping("/shoppingListView.do")
+	public ModelAndView shoppingListView(ModelAndView mv,@RequestParam Map r){
+		
+		Map<String,Goods> result=service.selectGoodsView(r);
+//		System.out.println(result);
+		
+		mv.addObject("goodsDetail",result);
+		mv.setViewName("mypage/shoppingListView");
+		return mv;
+	}
 	
 	//공연예매 환불값 가져오기
 	@RequestMapping("/refundMusical.do")
@@ -183,7 +194,7 @@ public class MypageController {
 	public Map<String,Object> refundGoods(@RequestParam Map r) {
 //		System.out.println(r);
 		Map<String,Object> goods=service.selectGoods(r);
-		System.out.println(goods);
+//		System.out.println(goods);
 		return goods;
 	}
 	
@@ -200,7 +211,6 @@ public class MypageController {
 				@RequestParam(value= "cancel_response_point") String responsePoint//돌려받을 포인트
 				) throws IOException, ParseException  {
 
-//		System.out.println(imp_uid);
 		
 //		환불 처리!!
 		PaymentCheck obj = new PaymentCheck();
@@ -208,12 +218,34 @@ public class MypageController {
 		
 		int result=obj.cancelPayment(token, imp_uid, pPrice);//환불 성공!
 		if(result>0) {//환불 성공시
-			//1. 수량 원상복구
+			//1. 환불 시 포인트 처리
+			Point p=service.selectPoint(memberNo);//멤버번호의 남은포인트
+			
+			if(requestPoint!="0") {//클라이언트에게 돌려줄 포인트가 있으면
+				int rqP=Integer.parseInt(requestPoint.substring(1));
+				
+				Point point=Point.builder().mpPrice(rqP).mpType("+").memberNo(memberNo)
+						.mpHistory("결제 시 사용 포인트 반환").mpPoint(p.getMpPoint()+rqP).build();
+				service2.insertPoint(point);//포인트 적립
+			}
+			p=service.selectPoint(memberNo);//멤버번호의 남은포인트
+			
+			if(responsePoint!="0") {//클라이언트에게 돌려받을 포인트가 있으면
+				int rsP=Integer.parseInt(responsePoint.substring(1));
+				
+				Point point=Point.builder().mpPrice(rsP).mpType("-").memberNo(memberNo)
+						.mpHistory("예매 적립 포인트 반환").mpPoint(p.getMpPoint()-rsP).build();
+				service2.insertPoint(point);//포인트 반환
+			}
+			p=service.selectPoint(memberNo);//멤버번호의 최종 남은포인트
+//			System.out.println("최종 포인트 현황 : "+p);
+			
+			//2. 수량 원상복구
 			Map.of("gCode",gCode,"sbCount",sbCount);
 			int countUpdate=service.updateSbcount(Map.of("gCode",gCode,"sbCount",sbCount));//수량원상복구
 			System.out.println("수량 원상복구 성공 여부 : "+countUpdate);
 			
-			//2. 환불 기록
+			//3. 환불 기록
 			Pay pay=service.getPcode(imp_uid);//주문번호로 pay에서 pCode가져오기
 			int rfResult=service.insertRefund(pay);//환불기록 넣기
 			System.out.println("환불기록 넣기 성공여부 : "+rfResult);
@@ -265,7 +297,7 @@ public class MypageController {
 				service2.insertPoint(point);//포인트 반환
 			}
 			p=service.selectPoint(memberNo);//멤버번호의 최종 남은포인트
-			System.out.println("최종 포인트 현황 : "+p);
+//			System.out.println("최종 포인트 현황 : "+p);
 			
 			Pay pay=service.getPcode(imp_uid);//주문번호로 pay에서 pCode가져오기
 //		System.out.println(pay);
@@ -341,7 +373,7 @@ public class MypageController {
 			List<Map<String,Mlike>> list=service.selectMlikeList(member_No,
 					Map.of("cPage",cPage,"numPerpage",numPerpage)
 					);
-			System.out.println(list);
+//			System.out.println(list);
 			
 			
 			

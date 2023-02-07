@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.gdj.music.goods.model.vo.GReview;
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.goods.model.vo.GoodsCart;
 import com.gdj.music.goods.model.vo.GoodsImg;
@@ -40,9 +41,27 @@ public interface GoodsDao {
 	int deleteCart(SqlSessionTemplate session, int gdCode);
 	
 	//구매 내역
-	MyGoods selectMygoods(SqlSessionTemplate session, Goods g);
+	List<MyGoods> selectMygoods(SqlSessionTemplate session, int memberNo);
 	
 	//보유 굿즈 수량
 	int selectgCount(SqlSessionTemplate session, int gdCode);
 
+	//상품평 등록
+	int addReview(SqlSessionTemplate session, GReview r);
+	
+	//상품평 리스트
+	List<Map<String,GReview>> selectReview(SqlSessionTemplate session, int gdCode);
+
+	//상품평 개수
+	int rCount(SqlSessionTemplate session, int gdCode);
+	
+	//별점 평균
+	int rAvg(SqlSessionTemplate session, int gdCode);
+	
+	//리뷰 체크
+//	MyGoods checkReview(SqlSessionTemplate session, MyGoods g);
+//	
+//	//n->y 변경
+//	int updateCheck(SqlSessionTemplate session, int sbCode);
+	
 }

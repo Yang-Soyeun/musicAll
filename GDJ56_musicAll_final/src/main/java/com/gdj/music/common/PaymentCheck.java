@@ -139,7 +139,7 @@ public class PaymentCheck {
 	//환불요청하기
 	public int cancelPayment(String access_token, String imp_uid,int amount)throws IOException, ParseException {
 		int result=0;
-		System.out.println("결제 취소");
+//		System.out.println("결제 취소");
 		
 		HttpURLConnection conn=null;
 		URL url=new URL("https://api.iamport.kr/payments/cancel");

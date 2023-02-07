@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gdj.music.goods.model.dao.GoodsDao;
+import com.gdj.music.goods.model.vo.GReview;
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.goods.model.vo.GoodsCart;
 import com.gdj.music.goods.model.vo.GoodsImg;
@@ -92,14 +93,57 @@ public class GoodsServiceImpl implements GoodsService {
 
 	//구매 내역
 	@Override
-	public MyGoods selectMygoods(Goods g) {
-		return dao.selectMygoods(session, g);
+	public List<MyGoods> selectMygoods(int memberNo) {
+		return dao.selectMygoods(session, memberNo);
 	}
 
-
+	//굿즈 보유 수량
 	@Override
 	public int selectgCount(int gdCode) {
 		return dao.selectgCount(session, gdCode);
 	}
+
+
+	//상품평 등록
+	@Override
+	public int addReview(GReview r) {
+		return dao.addReview(session, r);
+	}
+
+	//상품평 리스트
+	@Override
+	public List<Map<String,GReview>> selectReview(int gdCode) {
+		return dao.selectReview(session, gdCode);
+	}
+
+	//상품평 개수
+	@Override
+	public int rCount(int gdCode) {
+		return dao.rCount(session, gdCode);
+	}
+
+	//별점 평균
+	@Override
+	public int rAvg(int gdCode) {
+		return dao.rAvg(session, gdCode);
+	}
+
+
+	//리뷰 체크
+//	@Override
+//	public MyGoods checkReview(MyGoods g) {
+//		return dao.checkReview(session, g);
+//	}
+//
+//
+//	//변경	
+//	@Override
+//	public int updateCheck(int sbCode) {
+//		return dao.updateCheck(session, sbCode);
+//	}
+
+	
+	
+	
 
 }
