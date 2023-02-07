@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.gdj.music.admin.model.service.AdminGoodsService;
 import com.gdj.music.common.interceptor.PageFactory;
+import com.gdj.music.goods.model.service.GoodsService;
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.goods.model.vo.GoodsImg;
 import com.gdj.music.perfor.model.vo.Schedule;
@@ -29,11 +31,13 @@ import com.gdj.music.perfor.model.vo.Schedule;
 public class AdminGoodsController {
 	
 	private AdminGoodsService service;
+	private GoodsService serviceGoods;
 
 	@Autowired
-	public AdminGoodsController(AdminGoodsService service) {
+	public AdminGoodsController(AdminGoodsService service, GoodsService serviceGoods) {
 		super();
 		this.service = service;
+		this.serviceGoods = serviceGoods;
 	}
 	
 	//관리자 굿즈 메인
@@ -140,6 +144,17 @@ public class AdminGoodsController {
 		
 		
 		return result > 0;
+	}
+	
+	//굿즈 상세 페이지
+	@RequestMapping("/adminGoodsView.do")
+	public String adminGoodsView(Model m, int gdCode) {
+		
+		m.addAttribute("goods", serviceGoods.goodsView(gdCode));
+		m.addAttribute("img", serviceGoods.goodsViewImg(gdCode));
+		
+		return "/admin/store/adminGoodsView";
+		
 	}
 	
 
