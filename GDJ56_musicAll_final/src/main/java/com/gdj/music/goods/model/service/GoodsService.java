@@ -3,6 +3,7 @@ package com.gdj.music.goods.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.gdj.music.goods.model.vo.GReview;
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.goods.model.vo.GoodsCart;
 import com.gdj.music.goods.model.vo.GoodsImg;
@@ -39,8 +40,11 @@ public interface GoodsService {
 
 	
 	//구매 내역
-	MyGoods selectMygoods(Goods g);
+	List<MyGoods> selectMygoods(int memberNo);
 	
 	//굿즈 보유 수량
 	int selectgCount(int gdCode);
+	
+	//상품평 등록
+	int addReview(GReview r);
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gdj.music.goods.model.dao.GoodsDao;
+import com.gdj.music.goods.model.vo.GReview;
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.goods.model.vo.GoodsCart;
 import com.gdj.music.goods.model.vo.GoodsImg;
@@ -92,14 +93,24 @@ public class GoodsServiceImpl implements GoodsService {
 
 	//구매 내역
 	@Override
-	public MyGoods selectMygoods(Goods g) {
-		return dao.selectMygoods(session, g);
+	public List<MyGoods> selectMygoods(int memberNo) {
+		return dao.selectMygoods(session, memberNo);
 	}
 
-
+	//굿즈 보유 수량
 	@Override
 	public int selectgCount(int gdCode) {
 		return dao.selectgCount(session, gdCode);
 	}
+
+
+	//상품평 등록
+	@Override
+	public int addReview(GReview r) {
+		return dao.addReview(session, r);
+	}
+
+
+	
 
 }
