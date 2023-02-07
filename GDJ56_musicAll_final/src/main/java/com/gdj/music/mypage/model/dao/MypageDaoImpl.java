@@ -58,11 +58,21 @@ public class MypageDaoImpl implements MypageDao {
 	public Map<String, Reservation> selectRsview(SqlSessionTemplate session, Map<String, Integer> r) {
 		return session.selectOne("mypage.selectRsview",r);
 	}
-
+	
+	//굿즈 환불정보
+	@Override
+	public Map<String, Object> selectGoods(SqlSessionTemplate session, Map<String, Integer> r) {
+		return session.selectOne("mypage.selectGoods",r);
+	}
+	//굿즈 수량 원상복구
+	@Override
+	public int updateSbcount(SqlSessionTemplate session, Map<String, Integer> r) {
+		return session.update("mypage.updateSbcount",r);
+	}
 	//주문번호로 pay에서 pcode값 가져오기
 	@Override
-	public Pay getPcode(SqlSessionTemplate session, String merchant_uid) {
-		return session.selectOne("mypage.getPcode",merchant_uid);
+	public Pay getPcode(SqlSessionTemplate session, String imp_uid) {
+		return session.selectOne("mypage.getPcode",imp_uid);
 	}
 	// pCode로 r_seat,r_date,r_time 가져오기
 	@Override
