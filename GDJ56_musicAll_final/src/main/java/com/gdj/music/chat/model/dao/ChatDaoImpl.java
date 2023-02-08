@@ -27,6 +27,11 @@ public class ChatDaoImpl implements ChatDao {
 	public List<ChatHistory> chatHistory(int chatNo, SqlSessionTemplate session) {
 		return session.selectList("chat.chatHistory",chatNo);
 	}
+
+	@Override
+	public ChatListVo chatImg(String roomNo, SqlSessionTemplate session) {
+		return session.selectOne("chat.chatImg",roomNo);
+	}
 	
 	
 

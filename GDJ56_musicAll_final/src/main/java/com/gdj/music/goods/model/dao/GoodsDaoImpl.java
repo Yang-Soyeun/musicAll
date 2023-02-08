@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.gdj.music.goods.model.vo.GReview;
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.goods.model.vo.GoodsCart;
 import com.gdj.music.goods.model.vo.GoodsImg;
@@ -79,8 +80,8 @@ public class GoodsDaoImpl implements GoodsDao {
 	
 	//구매 내역
 	@Override
-	public MyGoods selectMygoods(SqlSessionTemplate session, Goods g) {
-		return session.selectOne("goods.selectMygoods", g);
+	public List<MyGoods> selectMygoods(SqlSessionTemplate session, int memberNo) {
+		return session.selectList("goods.selectMygoods", memberNo);
 	}
 
 	
@@ -89,6 +90,44 @@ public class GoodsDaoImpl implements GoodsDao {
 	public int selectgCount(SqlSessionTemplate session, int gdCode) {
 		return session.selectOne("goods.selectgCount", gdCode);
 	}
+
+	//상품평 등록
+	@Override
+	public int addReview(SqlSessionTemplate session, GReview r) {
+		return session.insert("goods.addReview", r);
+	}
+
+	//상품평 리스트
+	@Override
+	public List<Map<String,GReview>> selectReview(SqlSessionTemplate session, int gdCode) {
+		return session.selectList("goods.selectReview", gdCode);
+	}
+	
+	//상품평 개수
+	@Override
+	public int rCount(SqlSessionTemplate session, int gdCode) {
+		return session.selectOne("goods.rCount", gdCode);
+	}
+
+	//별점 평균
+	@Override
+	public int rAvg(SqlSessionTemplate session, int gdCode) {
+		return session.selectOne("goods.rAvg", gdCode);
+	}
+
+	
+	//리뷰 체크
+//	public MyGoods checkReview(SqlSessionTemplate session, MyGoods g) {
+//
+//		return session.selectOne("goods.checkReview", g);
+//	}
+//	
+//	//n->y 변경
+//	@Override
+//	public int updateCheck(SqlSessionTemplate session, int sbCode) {
+//		return session.update("goods.updateCheck", sbCode);
+//	}
+
 	
 
 }

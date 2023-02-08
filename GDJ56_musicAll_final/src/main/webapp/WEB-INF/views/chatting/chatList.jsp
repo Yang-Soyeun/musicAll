@@ -12,13 +12,29 @@
 <script src="${path}/resources/js/jquery-3.6.1.min.js"></script>
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/chat/materialize.min.css"  media="screen,projection"/>
 <link type="text/css" rel="stylesheet" href="${path}/resources/css/chat/chat.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet"> 
 
+<style>
+body{
+	font-family: Hi Melody;
+}
+
+#spTitle{
+	background-color: #964b00;
+	font-size : 25px;
+}
+
+.titleSt{
+	font-size: 22px;
+}
+
+</style>
 
 <body>
     <header class="navbar-fixed">
         <nav>
             <div class="nav-wrapper valign-wrapper">
-                <span id="spTitle" class="brand-logo center">채팅방</span>
+                <span id="spTitle" class="brand-logo center" >채팅</span>
             </div>
         </nav>
     </header>
@@ -29,7 +45,7 @@
 			 	<c:forEach var="l" items="${list }">
 				        <li class="collection-item avatar" onclick="bt_preview(${l.getMCode()});" style="line-height:3.5rem;">
 				            <img src="${path}/resources/upload/performance/${l.getIName()}" alt="" class="circle">
-				            <span class="title">${l.getMTitle() }</span>
+				            <span class="titleSt">${l.getMTitle() }</span>
 		<!-- 		            <p>eee</p>
 				            <a href="#!" class="secondary-content">ef</a> -->
 				        </li>
