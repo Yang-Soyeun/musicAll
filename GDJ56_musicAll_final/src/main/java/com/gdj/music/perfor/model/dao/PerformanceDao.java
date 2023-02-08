@@ -43,6 +43,10 @@ public interface PerformanceDao {
 	List<Map<String,PerformancePhoto>> orderbyRecent(SqlSessionTemplate session);
 
 	List<Map<String, PerformancePhoto>> orderbyEnd(SqlSessionTemplate session);
+
+	List<Map<String, PerformancePhoto>> searchForTitle(SqlSessionTemplate session, Map<String,Object> map);
+
+	List<Map<String, PerformancePhoto>> searchForType(SqlSessionTemplate session, String mType1);
 	
 	
 

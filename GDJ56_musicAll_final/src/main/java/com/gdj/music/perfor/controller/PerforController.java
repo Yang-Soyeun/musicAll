@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gdj.music.admin.model.service.AdminPerforService;
@@ -191,6 +193,52 @@ public class PerforController {
 		mv.setViewName("perfor/performanceList");
 		return mv;
 	}
+	
+	//제목으로 검색하기 
+	@RequestMapping("/searchForTitle.do")
+	public ModelAndView searchForTitle(ModelAndView mv,String mTitle) {
+
+		Map<String,Object> map=Map.of("mTitle",mTitle);
+		System.out.println("제목"+mTitle);
+		
+		List<Map<String,PerformancePhoto>> pp=service.searchForTitle(map);
+		mv.addObject("musicalPhoto",pp);
+		mv.setViewName("perfor/performanceList");
+		return mv;
+
+	}
+	
+	//타입으로 검색하기
+	@RequestMapping("/searchForType.do")
+	@ResponseBody
+	public ModelAndView searchForType(ModelAndView mv,int mType) {
+		//System.out.println("공연 유형"+mType);
+		String mType1="";
+		if(mType==1) {
+			mType1="오리지널";
+		}
+		if(mType==2) {
+			mType1="라이센스";
+		}
+		if(mType==3) {
+			mType1="창작뮤지컬";
+		}
+		if(mType==4) {
+			mType1="넌버벌";
+		}
+		if(mType==5) {
+			mType1="아동";
+		}
+		//Map<String,Object> map=Map.of("mType",mType1);
+		List<Map<String,PerformancePhoto>> p=service.searchForType(mType1);
+		System.out.println("출력결과"+p);
+	
+		mv.addObject("musicalPhoto",p);
+		mv.setViewName("perfor/performanceList");
+		return mv;
+
+	}
+	
 	
 	
 	@RequestMapping("/performance.do")

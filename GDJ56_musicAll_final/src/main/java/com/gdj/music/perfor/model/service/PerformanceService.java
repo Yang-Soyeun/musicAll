@@ -41,5 +41,9 @@ public interface PerformanceService {
 
 	List<Map<String, PerformancePhoto>> orderbyEnd();
 
+	List<Map<String, PerformancePhoto>> searchForTitle(Map<String,Object> map);
+
+	List<Map<String, PerformancePhoto>> searchForType(String mType1);
+
 
 }
