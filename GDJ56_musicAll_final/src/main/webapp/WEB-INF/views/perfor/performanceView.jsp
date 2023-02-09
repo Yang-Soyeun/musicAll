@@ -89,7 +89,7 @@
 
 
     <div class="parent">
-        <div id="info-box">
+        <div id="info-box" style=" height:700px;">
             <div style="display:inline-block; " >
                 <img src="${path }/resources/upload/performance/${perPhoto.get(0).IName}" id="imgView"/><br>
                   <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
@@ -103,9 +103,9 @@
              <b class="info">가격</b><p>vip석:${musical.getVipPrice() }원</p>
                <p>r석:${musical.getRPrice() }원</p>
                <p>s석:${musical.getSPrice() }원</p>
-               <b class="info">장소</b><p>${musical.getHName() }</p><br><br>
+               <b class="info">장소</b><p>${musical.getHName() }</p><a href="javascript:showPopUp()">지도보기➤</a><br><br>
              <button class="btn btn-danger" id="go1" onclick="location.href='${path}/booking/bookingview.do?mCode=${musical.getMCode()} '">예매하러 가기</button><br>
-			<br><br>
+			<br>
 			<c:if test="${not empty loginMember}">
 				<c:if test="${empty mLike}">	
              		<button class="btn btn-danger" id="go2" onclick="fn_addMyMusical();">관심공연 등록</button>
@@ -126,6 +126,30 @@
                 <li><a href="#" id="Comment" style="font-size: 20px;">한줄평</a></li>
             </ul>
         </div>
+	<div id="map" style="width:500px;height:400px;"></div>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=159a9195668e221c0f6db2e6d888709d"></script>
+	<script>
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(37.541, 127.0024), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    	};
+
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		
+		// 마커가 표시될 위치입니다 
+		var markerPosition  = new kakao.maps.LatLng(37.541, 127.0024); 
+		
+		// 마커를 생성합니다
+		var marker = new kakao.maps.Marker({
+		    position: markerPosition
+		});
+		
+		// 마커가 지도 위에 표시되도록 설정합니다
+		marker.setMap(map);
+		
+
+	</script>
 
         <div id="detailInfo"><!--상세정보-->
             <img src="${path }/resources/upload/performance/${perPhoto.get(1).IName}" width="800" height="2000" style="margin-left: 550px;">
@@ -216,7 +240,8 @@
         <br>
 </div>
 </section>
-    <script>
+<script>
+    //카카오톡으로 공유하기
     Kakao.Share.createDefaultButton({
         container: '#kakaotalk-sharing-btn',
         objectType: 'feed',
@@ -305,6 +330,29 @@
         	location.assign("${path}/perfor/deleteMyMusical.do?mCode=${musical.getMCode()}&&memberNo=${loginMember.member_No}");
 
         }
+        
+        function showPopUp() {
+        	
+        	//창 크기 지정
+        	var width = 500;
+        	var height = 500;
+        	
+        	//pc화면기준 가운데 정렬
+        	var left = (window.screen.width / 2) - (width/2);
+        	var top = (window.screen.height / 4);
+        	
+            	//윈도우 속성 지정
+        	var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top+', scrollbars=yes, status=yes, resizable=yes, titlebar=yes';
+        	
+            	//연결하고싶은url
+            	const url = "${path}/perfor/placeMap.do";
+
+        	//등록된 url 및 window 속성 기준으로 팝업창을 연다.
+        	window.open(url, "hello popup", windowStatus);
+        }
+        
+        
+        
         //채팅함수->방번호 넘김!
         const bt_chat =  function(){
         	let url = "${path}/chatting/chattingpage.do?roomNo=" +${param.mCode}; 
@@ -312,7 +360,7 @@
         	/* location.href="${path}/chatting/chattingpage.do?roomNo="+${param.mCode}; */ 
 
         }
-    </script>
+</script>
 
 
     <br>

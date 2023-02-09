@@ -236,8 +236,19 @@ public class PerforController {
 		mv.addObject("musicalPhoto",p);
 		mv.setViewName("perfor/performanceList");
 		return mv;
-
 	}
+	
+	//지도화면 전환하기
+	@RequestMapping("/placeMap.do")
+	public ModelAndView placeMap(ModelAndView mv) {
+		//mv.addObject("musicalPhoto",pp);
+		mv.setViewName("perfor/placeMap");
+		return mv;
+	}
+	
+	
+	
+	
 	
 	
 	
