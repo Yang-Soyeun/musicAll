@@ -114,23 +114,20 @@
     		result = event.target.value;
     		console.log(result);
     		if(result=='오리지널')	{
-    			location.assign("${path}/perfor//searchForType.do?mType=1");
+    			location.assign("${path}/perfor/searchForType.do?mType=1");
     		}
     		if(result=='라이센스')	{
-    			location.assign("${path}/perfor//searchForType.do?mType=2");
+    			location.assign("${path}/perfor/searchForType.do?mType=2");
     		}
     		if(result=='창작뮤지컬')	{
-    			location.assign("${path}/perfor//searchForType.do?mType=3");
+    			location.assign("${path}/perfor/searchForType.do?mType=3");
     		}
     		if(result=='넌버벌')	{
-    			location.assign("${path}/perfor//searchForType.do?mType=4");
+    			location.assign("${path}/perfor/searchForType.do?mType=4");
     		}
     		if(result=='아동')	{
-    			location.assign("${path}/perfor//searchForType.do?mType=5");
+    			location.assign("${path}/perfor/searchForType.do?mType=5");
     		}
-    		
-
-
   		}else{
     		result = '';
   		}

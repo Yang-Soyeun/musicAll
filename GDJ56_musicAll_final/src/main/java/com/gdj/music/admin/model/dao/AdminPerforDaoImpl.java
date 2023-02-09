@@ -96,4 +96,12 @@ public class AdminPerforDaoImpl implements AdminPerforDao {
 	public List<Map<String, PerformancePhoto>> orderbyEnd(SqlSessionTemplate session) {
 		return session.selectList("img.orderbyEnd");
 	}
+	@Override
+	public List<Map<String, PerformancePhoto>> searchForType(SqlSessionTemplate session, String mType1) {
+		return session.selectList("img.searchForType",mType1);
+	}
+	@Override
+	public List<Map<String, PerformancePhoto>> searchForTitle(SqlSessionTemplate session, Map<String, Object> map) {
+		return session.selectList("img.searchForTitle",map);
+	}
 }
