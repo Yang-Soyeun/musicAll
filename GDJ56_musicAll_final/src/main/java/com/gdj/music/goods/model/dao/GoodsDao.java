@@ -20,6 +20,12 @@ public interface GoodsDao {
 	
 	int totalData(SqlSessionTemplate session);
 	
+	//굿즈 리스트 낮은 가격순
+	List<Goods> goodsLowSort(SqlSessionTemplate session, Map<String, Integer> param);
+	
+	//굿즈 리스트 높은 가격순
+	List<Goods> goodsHighSort(SqlSessionTemplate session, Map<String, Integer> param);
+	
 	//굿즈 상세 화면
 	Goods goodsView(SqlSessionTemplate session, int gdCode);
 	
