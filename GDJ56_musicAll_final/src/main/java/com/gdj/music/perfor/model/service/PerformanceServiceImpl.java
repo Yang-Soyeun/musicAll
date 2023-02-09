@@ -94,4 +94,12 @@ public class PerformanceServiceImpl implements PerformanceService{
 	public List<Map<String, PerformancePhoto>> orderbyEnd() {
 		return dao.orderbyEnd(session);
 	}
+	@Override
+	public List<Map<String, PerformancePhoto>> searchForTitle(Map<String,Object> map) {
+		return dao.searchForTitle(session,map);
+	}
+	@Override
+	public List<Map<String, PerformancePhoto>> searchForType(String mType1) {
+		return dao.searchForType(session,mType1);
+	}
 }

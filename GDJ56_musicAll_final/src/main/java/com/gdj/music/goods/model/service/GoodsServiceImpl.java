@@ -110,7 +110,40 @@ public class GoodsServiceImpl implements GoodsService {
 		return dao.addReview(session, r);
 	}
 
+	//상품평 리스트
+	@Override
+	public List<Map<String,GReview>> selectReview(int gdCode) {
+		return dao.selectReview(session, gdCode);
+	}
 
+	//상품평 개수
+	@Override
+	public int rCount(int gdCode) {
+		return dao.rCount(session, gdCode);
+	}
+
+	//별점 평균
+	@Override
+	public int rAvg(int gdCode) {
+		return dao.rAvg(session, gdCode);
+	}
+
+
+	//리뷰 체크
+//	@Override
+//	public MyGoods checkReview(MyGoods g) {
+//		return dao.checkReview(session, g);
+//	}
+//
+//
+//	//변경	
+//	@Override
+//	public int updateCheck(int sbCode) {
+//		return dao.updateCheck(session, sbCode);
+//	}
+
+	
+	
 	
 
 }

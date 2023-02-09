@@ -10,6 +10,7 @@
 <title>채팅창</title>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet"> 
+<%-- <link type="text/css" rel="stylesheet" href="${path}/resources/css/chat/materialize.min.css"  media="screen,projection"/> --%>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.6.1.min.js"></script>
 <style>
 body {
@@ -42,7 +43,7 @@ body {
 
 .chat .date-divider {
   text-align: center;
-  font-size: 12px;
+  font-size: 20px;
   color: rgba(0, 0, 0, 0.5);
   margin-bottom: 15px;
 }
@@ -151,7 +152,7 @@ display: flex;
 }
 
 .header__column {
-    height: 20px;
+    height: 45px;
 }
 
 #receiver {
@@ -165,6 +166,22 @@ display: flex;
 .enter {
 	text-align: center;
 	color: gray;
+	font-size:20px;
+}
+
+#chatimage{
+	width:72px;
+	height:78px;
+	margin-left:45%;
+	margin-top:5px;
+	float:right;
+}
+#titleL{
+	font-size:20px;
+    margin-top: -10px;
+}
+#backChats{
+	margin-top: 38px;
 }
 </style>
 
@@ -173,12 +190,20 @@ display: flex;
 	<body>
 	<!-- 방번호를 히든에 담고 메세지를 보낼때 방번호를 추가로 보냄! -->
 		<input type="hidden" id="roomNo" value="${roomNo }"/>
-		<header class= "top-header chat-header">
-			<div class="header__column">
+		<header class= "top-header chat-header" style="height: 88px;">
+			<div class="header__column" id="titleImg" style="float:left;">
 				<i class="fa fa-chevron-left fa-lg" id="backChats"></i>
 			</div>
-			<div class="header__column">
-				<span class="header__text"></span>
+			<div id="titleL" style="display : table;">
+				<div style="display : table-cell;width: 70%;">
+					<img src="${path}/resources/upload/performance/${cl.getIName()}" id="chatimage" class="circle">
+				</div>
+				<div style="display : table-cell;vertical-align: middle;">
+					<span>
+						<c:out value="${cl.getMTitle() }"/>
+					</span>
+				</div>
+				
 			</div>
 		</header>
 		<main class="chat">
@@ -296,9 +321,6 @@ display: flex;
 					dataType : 'json',
 					type : 'post',
 					success : data=>{
-						console.log("==여기서부터다====")
-						console.log(data);
-						
 						for(i=0 ; i<data.length ; i++){
 							
 							//로그인한 멤버아이디가 작성자와 같다면 chat__message-from-me 이고 아니면 chat__message-to-me이다

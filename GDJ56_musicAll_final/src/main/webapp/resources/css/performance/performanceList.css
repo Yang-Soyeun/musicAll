@@ -48,7 +48,7 @@
 
         .search-box {
             
-            margin-top: 30px;
+            margin-top: 40px;
             left: 80%;
             transform: translate(-50%, -50%);
         }
@@ -101,8 +101,12 @@
             margin-left: 325px;
         }
         #searchPer{
-        	width:600px;
-        	height:50px;
+        	width:400px;
+        	height:45px;
+        	
+        }
+        #datepicker{
+        
         }
 		.searchBtn{
 			width:50px;

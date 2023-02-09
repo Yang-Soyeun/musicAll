@@ -239,11 +239,11 @@ const requestPay = () =>{
 						let info = new Array();
 						
 						info.push(${loginMember.member_No});
-						info.push("카카오페이");
+						info.push("card");
 						info.push(${goods.gdCode});
 						info.push(${gc});
 						info.push(amount);
-						info.push("예술의 전당");
+						info.push("블루스퀘어");
 						
 						info.push(rsp.imp_uid);
 						info.push(rsp.merchant_uid);
@@ -278,11 +278,11 @@ const requestPay = () =>{
 						let info = new Array();
 						
 						info.push(${loginMember.member_No});
-						info.push("페이코");
+						info.push("card");
 						info.push(${goods.gdCode});
 						info.push(${gc});
 						info.push(amount);
-						info.push("예술의 전당");
+						info.push("예술의전당");
 						
 						info.push(rsp.imp_uid);
 						info.push(rsp.merchant_uid);

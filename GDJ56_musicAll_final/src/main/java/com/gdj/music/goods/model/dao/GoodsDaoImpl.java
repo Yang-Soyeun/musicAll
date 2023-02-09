@@ -97,7 +97,37 @@ public class GoodsDaoImpl implements GoodsDao {
 		return session.insert("goods.addReview", r);
 	}
 
+	//상품평 리스트
+	@Override
+	public List<Map<String,GReview>> selectReview(SqlSessionTemplate session, int gdCode) {
+		return session.selectList("goods.selectReview", gdCode);
+	}
 	
+	//상품평 개수
+	@Override
+	public int rCount(SqlSessionTemplate session, int gdCode) {
+		return session.selectOne("goods.rCount", gdCode);
+	}
+
+	//별점 평균
+	@Override
+	public int rAvg(SqlSessionTemplate session, int gdCode) {
+		return session.selectOne("goods.rAvg", gdCode);
+	}
+
+	
+	//리뷰 체크
+//	public MyGoods checkReview(SqlSessionTemplate session, MyGoods g) {
+//
+//		return session.selectOne("goods.checkReview", g);
+//	}
+//	
+//	//n->y 변경
+//	@Override
+//	public int updateCheck(SqlSessionTemplate session, int sbCode) {
+//		return session.update("goods.updateCheck", sbCode);
+//	}
+
 	
 
 }
