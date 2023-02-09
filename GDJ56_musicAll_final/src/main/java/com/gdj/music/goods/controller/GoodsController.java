@@ -306,6 +306,19 @@ public class GoodsController {
 		
 	}
 	
+	//전체 결제 페이지
+	@RequestMapping("/goodsPayAll.do")
+	public String goodsPayAll(Model m, int gdCode, @RequestParam("member_no") String memberNo, int gdCount) {
+		
+		m.addAttribute("gc", gdCount);
+		m.addAttribute("p", serviceMp.selectPoint(Integer.parseInt(memberNo)));
+		m.addAttribute("goods", service.goodsView(gdCode));
+		m.addAttribute("img", service.goodsViewImg(gdCode));
+		//m.addAttribute("total", service.countCart(Integer.parseInt(memberNo)));
+		
+		return "/store/goodsPayAll";
+	}
+		
 	//전체 구매 시 결제
 	@RequestMapping("/payAllEnd.do")
 	public ModelAndView payAllEnd(String[] info, ModelAndView mv) {

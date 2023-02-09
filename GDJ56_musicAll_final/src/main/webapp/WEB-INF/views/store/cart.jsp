@@ -12,7 +12,7 @@
 
 <style>
       .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
-         vertical-align: inherit;
+         vertical-align: inherit; text-align: center;
       }
    
 </style>
@@ -53,8 +53,9 @@
                 <table class="table table-striped table-border checkout-table">
                   <tbody>
                     <tr>
+                   	  <th><input type="checkbox" onclick="selectAll(this);"></th>
                       <th></th>
-                      <th>상품</th>
+                      <th>상품명</th>
                       <th class="hidden-xs">가격</th>
                       <th>수량</th>
                       <th>총 금액</th>
@@ -69,10 +70,14 @@
                   <c:forEach var="g" items="${goodsCt }">
                     <tr>
                       <td class="hidden-xs">
+                      		<input type="checkbox" id="price${sumgoods+1 }" name="price${sumgoods+1 }" value="${g.goods.gdPrice }" onclick="itemSum(event)">
+        
+                      </td>
+                      <td class="hidden-xs" style="width: 10%;">
                       <c:if test="${not empty img }">
-                      <c:forEach var="i" items="${img }">
-                         <c:if test="${i.gdCode == g.gdCode }">
-                               <a href="#"><img src="${path }/resources/upload/goods/${i.imName}" alt="Accessories Pack"/></a>
+	                      <c:forEach var="i" items="${img }">
+	                         <c:if test="${i.gdCode == g.gdCode }">
+                               <a href="#"><img src="${path }/resources/upload/goods/${i.imName}" alt="Accessories Pack" /></a>
                             </c:if>
                          </c:forEach>
                       </c:if>
@@ -135,20 +140,20 @@
             <div class="row mt-70">
               <div class="col-sm-5 col-sm-offset-7">
                 <div class="shop-Cart-totalbox">
-                  <h4 class="font-alt">전체</h4>
+                  <h4 class="font-alt">선택 구매</h4>
                   <table class="table table-striped table-border checkout-table">
                     <tbody>
                       <tr>
-                        <th>장바구니 상품 개수</th>
-                        <td><c:out value="${sumgoods }"/></td>
+                        <th>선택 상품 개수</th>
+                        <td><div class="count">0</div></td>
                       </tr>
                       <tr class="shop-Cart-totalprice">
                         <th>총 금액</th>
-                        <td><fmt:formatNumber value="${sumprice }" pattern="#,###" />원</td>
+                        <td><div class="result">0원</div></td>
                       </tr>
                     </tbody>
                   </table>
-                  <button class="btn btn-lg btn-block btn-round btn-d" type="submit" onclick="location.assign('${path }/goods/goodsPay.do')">전체 구매하기</button>
+                  <button class="btn btn-lg btn-block btn-round btn-d" type="submit" onclick="location.assign('${path }/goods/goodsPayAll.do')">구매하기</button>
                 </div>
               </div>
             </div>
@@ -163,6 +168,53 @@
     
     <script>
       //수량 변경
+      
+      //전체 선택, 해제
+      function selectAll(selectAll)  {
+		  const checkboxes 
+		     = document.querySelectorAll('input[type="checkbox"]');
+		  
+		  checkboxes.forEach((checkbox) => {
+		    checkbox.checked = selectAll.checked
+		  });
+		}
+      
+      //선택 구매 계산
+      
+      
+      function itemSum(event)  {
+    	  
+		  var total = 0;
+		  //var count = $("input:checkbox[name=price]:checked").length;
+		  
+		  
+		 
+		  for(let i=1; i<=8; i++){
+              let chkbox = document.getElementById("price"+i);
+              if(chkbox.checked){
+                  total += Number(chkbox.value);
+                  count += 1;
+              }
+              $(".count").html(count); 
+              $(".result").html(total+'원'); 
+          }
+		  
+			
+			
+	      }
+      
+	      for(let i = 1; i <= 8; i++){
+	    	  
+              let check = document.getElementById("price"+i);
+              check.onclick = itemSum();
+              
+          }
+
+		  
+		   
+	
+         
+      
       
     </script>
     
