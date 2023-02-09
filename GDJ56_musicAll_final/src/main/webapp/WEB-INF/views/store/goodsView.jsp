@@ -404,7 +404,7 @@
         	var my = 0;
         	
         	<c:forEach var='m' items="${mygoods}">
-	        	if(${m.gdCode } != ${goods.gdCode }){
+	        	if(${m.gdCode } == ${goods.gdCode }){
 					my = 1;
 	    		}
         	</c:forEach>	
@@ -419,11 +419,16 @@
         		<c:forEach var='m' items="${mygoods}">
         			
         		
-        			if(my=1){
+        			if(my!=1){
         				
         				alert("상품을 구매한 회원만 작성가능합니다.");
 	        			return false;
         			
+	        		} else {
+	        			
+	        			alert("ㅇ");
+	        			return true;
+	        			
 	        		}
         			
         		</c:forEach>	
