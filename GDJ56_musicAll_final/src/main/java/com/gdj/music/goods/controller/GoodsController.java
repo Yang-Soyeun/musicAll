@@ -79,10 +79,21 @@ public class GoodsController {
 		m.addAttribute("goods", service.goodsView(gdCode));
 		m.addAttribute("img", service.goodsViewImg(gdCode));
 		
+		//구매 내역
 		m.addAttribute("mygoods", service.selectMygoods(memberNo));
-		System.out.println(memberNo);
-		System.out.println(service.selectMygoods(memberNo));
+//		System.out.println(memberNo);
+//		System.out.println(service.selectMygoods(memberNo));
 		
+		//상품평 리스트
+		m.addAttribute("review", service.selectReview(gdCode));
+		
+		//상품평 개수
+		m.addAttribute("rCount", service.rCount(gdCode));
+		
+		//별점 평균
+		m.addAttribute("rAvg", service.rAvg(gdCode));
+		
+		//장바구니에 담은 상품 개수
 		m.addAttribute("total", service.countCart(memberNo));
 		
 		return "/store/goodsView";
@@ -91,13 +102,15 @@ public class GoodsController {
 	//상품평 등록
 	@RequestMapping("/addReview.do")
 	public ModelAndView addReview(ModelAndView mv, int rating, int gdCode, String review, int memberNo) {
-		
+
 		GReview r = GReview.builder()
 				.grContent(review)
 				.grScore(rating)
 				.memberNo(memberNo)
 				.gdCode(gdCode)
+				
 				.build();
+		
 		
 		int result = service.addReview(r);
 		
@@ -112,9 +125,10 @@ public class GoodsController {
 			mv.addObject("loc", "/goods/goodsView.do?gdCode="+gdCode+"&memberNo="+memberNo);
 			
 		}
+
 		
 		mv.setViewName("common/msg");
-			
+				
 		return mv;
 		
 	}

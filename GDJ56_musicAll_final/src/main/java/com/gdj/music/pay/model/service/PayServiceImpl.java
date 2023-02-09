@@ -2,6 +2,7 @@ package com.gdj.music.pay.model.service;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gdj.music.goods.model.vo.MyGoods;
 import com.gdj.music.pay.model.dao.PayDao;
@@ -67,6 +68,7 @@ public class PayServiceImpl implements PayService {
 	
 	//굿즈 구매 내역 저장
 	@Override
+	@Transactional
 	public int insertMygoods(MyGoods g) {
 		return dao.insertMygoods(session, g);
 	}

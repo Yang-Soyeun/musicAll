@@ -48,4 +48,20 @@ public interface GoodsDao {
 
 	//상품평 등록
 	int addReview(SqlSessionTemplate session, GReview r);
+	
+	//상품평 리스트
+	List<Map<String,GReview>> selectReview(SqlSessionTemplate session, int gdCode);
+
+	//상품평 개수
+	int rCount(SqlSessionTemplate session, int gdCode);
+	
+	//별점 평균
+	int rAvg(SqlSessionTemplate session, int gdCode);
+	
+	//리뷰 체크
+//	MyGoods checkReview(SqlSessionTemplate session, MyGoods g);
+//	
+//	//n->y 변경
+//	int updateCheck(SqlSessionTemplate session, int sbCode);
+	
 }
