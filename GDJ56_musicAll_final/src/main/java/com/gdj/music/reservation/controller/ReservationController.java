@@ -52,7 +52,17 @@ public class ReservationController {
 		
 	}
 	
-	
+	//제목 검색
+	@RequestMapping("/searchForTitle.do")
+	public ModelAndView searchForTitle(ModelAndView mv,String mTitle) {
+
+		Map<String,Object> map=Map.of("mTitle",mTitle);		
+		List<Map<String,PerformancePhoto>> pp=service4.searchForTitle(map);
+		mv.addObject("musicalPhoto",pp);
+		mv.setViewName("reservation/bookingList");
+		return mv;
+
+	}
 	
 	//예매하기 화면
 	@RequestMapping("/bookingview.do")

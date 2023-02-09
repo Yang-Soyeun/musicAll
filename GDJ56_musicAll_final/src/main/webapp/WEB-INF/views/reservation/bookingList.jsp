@@ -10,16 +10,15 @@
 <section style="margin-top:100px;">
     <p id="nowShowing" style="font-size:25px; text-align:center;">현재 상영작</p>
     <br>
-  
+  	
 
     
-    <div class="search-box">
-        <form action="." method="post">
-            <input type="text" id="searchPer" placeholder="제목으로 검색하기" >&nbsp;
-            <input type="text" id="datepicker" placeholder="관람일자로 검색하기" style="width:200px; height:48px;">
+       <div class="search-box">
+        <form action="${path }/booking/searchForTitle.do" method="post">
+            <input type="text" name="mTitle" id="searchPer" style="width:400px; height:45px;margin-left:180px;" placeholder="제목을 입력해주세요." >&nbsp;
             <button class="searchBtn" type="submit" >검색</button>
-
         </form>
+        
     </div>
 
     <div class="count-box">
