@@ -10,19 +10,7 @@
 <section style="margin-top:100px;">
     <p id="nowShowing" style="font-size:25px; text-align:center;">현재 상영작</p>
     <br>
-        <section class="hbody">
-          <article class="nav2">
-         
-          <div id="menu">
-            <li><input type="checkbox" id="original">&nbsp;오리지널 내한공연</li>
-            <li><input type="checkbox" id="license">&nbsp;라이센스 뮤지컬</li>
-            <li><input type="checkbox" id="making">&nbsp;창작 뮤지컬</li>
-            <li><input type="checkbox" id="nonverbal">&nbsp;넌버벌 퍼포먼스</li>
-            <li><input type="checkbox" id="child">&nbsp;아동</li>
-          </div>
-          
-          </article>
-        </section>
+  
 
     
     <div class="search-box">
@@ -33,14 +21,7 @@
 
         </form>
     </div>
-    <div class="select-box">
-        <select style="width:140px; height:40px;font-size:18px;">
-            <option value="">예매랭킹순</option>
-            <option value="">최신등록순</option>
-            <option value="">공연마감 임박순</option>
-            <option value="">공연명순</option>
-        </select>
-    </div>
+
     <div class="count-box">
         <img src="${path }/resources/images/performance/first.png" id="countimg1" style="width:80px; height: 80px;">
         <img src="${path }/resources/images/performance/second.png" id="countimg2" style="width:70px; height: 75px;">
