@@ -216,7 +216,7 @@ public class GoodsController {
 		
 	}
 	
-	
+	//결제 완료
 	@RequestMapping("/payEnd.do") 
 	public ModelAndView payEnd(String[] info, ModelAndView mv) {
 		
@@ -306,6 +306,110 @@ public class GoodsController {
 		
 	}
 	
+	//전체 결제 페이지
+	@RequestMapping("/goodsPayAll.do")
+	public String goodsPayAll(Model m, int gdCode, @RequestParam("member_no") String memberNo, int gdCount) {
+		
+		m.addAttribute("gc", gdCount);
+		m.addAttribute("p", serviceMp.selectPoint(Integer.parseInt(memberNo)));
+		m.addAttribute("goods", service.goodsView(gdCode));
+		m.addAttribute("img", service.goodsViewImg(gdCode));
+		//m.addAttribute("total", service.countCart(Integer.parseInt(memberNo)));
+		
+		return "/store/goodsPayAll";
+	}
+		
+	//전체 구매 시 결제
+	@RequestMapping("/payAllEnd.do")
+	public ModelAndView payAllEnd(String[] info, ModelAndView mv) {
+		
+		Pay p = Pay.builder().pWay(info[1]).pPrice(Integer.parseInt(info[4]))
+				.pUid(info[6]).mUid(info[7]).build();
+		
+		System.out.println(p);
+		
+		MyGoods g = MyGoods.builder().memberNo(Integer.parseInt(info[0])).gdCode(Integer.parseInt(info[2]))
+				.sbCount(Integer.parseInt(info[3])).sbHall(info[5]).build();
+		
+		
+		//사용 포인트
+		int usedPoint = Integer.parseInt(info[8]);
+		//결제 적립금
+		int payPoint = (Integer.parseInt(info[9]))/10;
+		//사용자 보유 포인트
+		int mpPoint = serviceMp.selectPoint(Integer.parseInt(info[0]))==null?0:serviceMp.selectPoint(Integer.parseInt(info[0])).getMpPoint();
+	
+		Point point = Point.builder().mpPrice(usedPoint).mpType("-").memberNo(Integer.parseInt(info[0])).mpHistory("결제 시 사용").mpPoint(mpPoint).build();
+		
+		//상품 잔여 수량
+		int gCount = service.selectgCount(Integer.parseInt(info[2]));
+		
+		
+		//결제 정보 저장
+		int result = servicePay.goodsPay(p);
+		
+		int result2 = 0;
+		
+		if(result > 0) {
+			
+			//내 구매 리스트 저장
+			result2 = servicePay.insertMygoods(g);
+			
+			if(result2 > 0) {
+				
+				if(usedPoint > 0) {
+					
+					//포인트 사용 내역 저장
+					servicePay.insertPoint(point);
+					
+					Point p1 = serviceMp.selectPoint(Integer.parseInt(info[0]));
+					
+					//포인트 사용 차감
+					servicePay.minusPoint(p1);
+					
+				}
+				
+				//총 포인트 다시 조회
+				mpPoint = serviceMp.selectPoint(Integer.parseInt(info[0]))==null?0:serviceMp.selectPoint(Integer.parseInt(info[0])).getMpPoint();
+				
+				//적립 포인트 내역 저장
+				Point point2 = Point.builder().mpPrice(payPoint).mpType("+").memberNo(Integer.parseInt(info[0])).mpHistory("굿즈 구매 적립").mpPoint(mpPoint).build();
+				servicePay.insertPoint(point2);
+				
+				//적립 포인트 합산
+				Point p2 =  serviceMp.selectPoint(Integer.parseInt(info[0]));
+				servicePay.addPoint(p2);
+				
+				mv.addObject("msg","상품 구매가 완료되었습니다.");
+				mv.addObject("info", info);
+				mv.addObject("img", service.goodsImg());
+				
+				Goods goods = service.goodsView(Integer.parseInt(info[2]));
+				
+				mv.addObject("goods", goods);
+				
+				service.deleteCart(Integer.parseInt(info[2]));
+				
+				
+				servicePay.updategCount(g);
+				
+				mv.setViewName("/store/payEnd");
+		
+				
+			}
+			return mv;
+		}
+		
+		else {
+			mv.addObject("msg","구매가 정상적이지 못했습니다. 다시 시도해주세요.");
+			mv.addObject("loc","/");
+			mv.setViewName("common/msg");
+			return mv;
+		}
+		
+	}
+	
+	
 	//낮은 가격순
 	@RequestMapping("goodsLowSort.do")
 	public ModelAndView goodsLowSort (ModelAndView mv,
@@ -323,7 +427,7 @@ public class GoodsController {
 		mv.addObject("goods", goods);
 		mv.addObject("img", service.goodsImg()); //이미지 가져오기
 		
-		
+		System.out.println();
 		//장바구니 개수 표시
 		if(session.getAttribute("loginMember") == null) {
 			
@@ -377,10 +481,39 @@ public class GoodsController {
 	}
 	
 	//태그 검색
-//	@RequestMapping("/tagSearch.do")
-//	public {
-//		
-//	}
+	@RequestMapping("/tagSearch.do")
+	public ModelAndView tagSearch (ModelAndView mv, String gdTag,
+			@RequestParam(value="cPage", defaultValue="1")int cPage,
+			@RequestParam(value="numPerpage", defaultValue="10")int numPerpage,
+			HttpSession session, HttpServletResponse response) {
+
+		List<Goods> goods = service.tagSearch(gdTag, Map.of("cPage",cPage,"numPerpage",numPerpage));
+		
+		//페이징처리
+		int totalData = service.totalData();
+		mv.addObject("pageBar",PageFactory.getPage(cPage, numPerpage, totalData,"goodsMain.do" ));
+		
+		//굿즈 리스트
+		mv.addObject("goods", goods);
+		mv.addObject("img", service.goodsImg()); //이미지 가져오기
+		
+		
+		//장바구니 개수 표시
+		if(session.getAttribute("loginMember") == null) {
+			
+			mv.addObject("total", 0);
+			
+		} else {
+			Member m = (Member) session.getAttribute("loginMember");
+			
+			mv.addObject("total", service.countCart(m.getMember_No()));
+		}
+		
+		mv.setViewName("/store/goodsMain");
+		
+		
+		return mv;
+	}
 	
 	@RequestMapping("/goodsRefund.do")
 	public String goodsRefund() {
