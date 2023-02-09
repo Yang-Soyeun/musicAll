@@ -18,4 +18,6 @@ public interface ChatDao {
 
 	List<ChatHistory> chatHistory(int chatNo, SqlSessionTemplate session);
 
+	ChatListVo chatImg(String roomNo, SqlSessionTemplate session);
+
 }

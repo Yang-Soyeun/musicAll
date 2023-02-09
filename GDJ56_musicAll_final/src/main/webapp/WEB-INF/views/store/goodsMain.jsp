@@ -20,6 +20,7 @@
 	
 	.card-body-1 {margin: 8%;}
 	.h2 {color: #d73535;}
+	.h4 {padding-right: 9%;}
 	#addtocart {border: none; background-color: transparent;}
 	.btn {padding: 8px 14px;}
 </style>
@@ -38,8 +39,30 @@
 
             <div class="col-lg-3">
                 <h1 class="h3 pb-4">태그 검색</h1>
-                
+                <div style="margin-top: 13%;">
+                <%-- <c:if test="${not empty goods }">
+                	<c:forEach var="g" items="${goods }">
+                		<a class="h4 text-dark text-decoration-none mr-3" href="${path }/goods/goodsLowSort.do"><c:out value="#${g.gdTag }" /></a>
+		        	</c:forEach>
+		        </c:if> --%>
+			        	<button style="border: none; background-color: transparent; width: 25%;"
+			        		onclick="location.assign('${path }/goods/tagSearch.do?gdTag=키링')"><a class="h4 text-dark text-decoration-none mr-3">#키링</a></button>
+			        	<button style="border: none; background-color: transparent; width: 32%;"
+			        		onclick="location.assign('${path }/goods/tagSearch.do?gdTag=텀블러')"><a class="h4 text-dark text-decoration-none mr-3">#텀블러</a></button>
+			        	<button style="border: none; background-color: transparent; width: 25%;"
+			        		onclick="location.assign('${path }/goods/tagSearch.do?gdTag=가방')"><a class="h4 text-dark text-decoration-none mr-3">#가방</a></button><br><br>
+			        	<button style="border: none; background-color: transparent; width: 32%;"
+			        		onclick="location.assign('${path }/goods/tagSearch.do?gdTag=스티커')"><a class="h4 text-dark text-decoration-none mr-3">#스티커</a></button>
+			        	<button style="border: none; background-color: transparent; width: 25%;"
+			        		onclick="location.assign('${path }/goods/tagSearch.do?gdTag=책')"><a class="h4 text-dark text-decoration-none mr-3">#책</a></button><br><br>
+			        	<button style="border: none; background-color: transparent; width: 50%;"
+			        		onclick="location.assign('${path }/goods/tagSearch.do?gdTag=브로치/뱃지')"><a class="h4 text-dark text-decoration-none mr-3">#브로치/뱃지</a></button><br><br>
+			        	<button style="border: none; background-color: transparent; width: 32%;"
+			        		onclick="location.assign('${path }/goods/tagSearch.do?gdTag=마그넷')"><a class="h4 text-dark text-decoration-none mr-3">#마그넷</a></button>
+			        	<button style="border: none; background-color: transparent; width: 40%;"
+			        		onclick="location.assign('${path }/goods/tagSearch.do?gdTag=OST앨범')"><a class="h4 text-dark text-decoration-none mr-3">#OST앨범</a></button>
 
+				</div>
             </div>
 
             <div class="col-lg-9">
@@ -47,16 +70,16 @@
                     <div class="col-md-6">
                         <ul class="list-inline shop-top-menu pb-3 pt-1">
                             <li class="list-inline-item">
-                                <a class="h5 text-dark text-decoration-none mr-3" href="#">All</a>
+                                <a class="h5 text-dark text-decoration-none mr-3" href="${path }/goods/goodsMain.do">All</a>
                             </li>
                             <li class="list-inline-item">
-                                <a class="h5 text-dark text-decoration-none mr-3" href="#">낮은 가격순 ↓</a>
+                                <a class="h5 text-dark text-decoration-none mr-3" href="${path }/goods/goodsLowSort.do">낮은 가격순 ↓</a>
                             </li>
                             <li class="list-inline-item">
-                                <a class="h5 text-dark text-decoration-none" href="#">높은 가격순 ↑</a>
+                                <a class="h5 text-dark text-decoration-none" href="${path }/goods/goodsHighSort.do">높은 가격순 ↑</a>
                             </li>
                             <li>
-                            	<a class="h5 text-dark text-decoration-none" href="#">내 구매내역</a>
+                            	<a class="h5 text-dark text-decoration-none" href="${path }/mypage/shoppingList.do">내 구매내역</a>
                             </li>
                         </ul>
                     </div>
@@ -131,18 +154,8 @@
                     </div>
                     
                 <div class="row">
-                    <ul class="pagination pagination-lg justify-content-end">
-                        <li class="page-item disabled">
-                            <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="#" tabindex="-1">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">3</a>
-                        </li>
-                    </ul>
-                    <a href="#" class="btn btn-sm btn-danger btn-lg-square back-to-top" style="float: right; margin-top: 2%;"><i class="bi bi-arrow-up"></i></a>
+                    <center>${pageBar }</center>
+                    <a href="#" class="btn btn-sm btn-danger btn-lg-square back-to-top" style="float: right; margin-top: 0%;"><i class="bi bi-arrow-up"></i></a>
                 </div>
             </div>
 

@@ -114,7 +114,6 @@ public class AdminPerforServiceImpl implements AdminPerforService{
 	}
 	@Override
 	public int selectAverage(int mCode) {
-		// TODO Auto-generated method stub
 		return dao.selectAverage(session,mCode);
 	}
 	@Override
@@ -128,5 +127,13 @@ public class AdminPerforServiceImpl implements AdminPerforService{
 	@Override
 	public List<Map<String, PerformancePhoto>> orderbyEnd() {
 		return dao.orderbyEnd(session);
+	}
+	@Override
+	public List<Map<String, PerformancePhoto>> searchForType(String mType1) {
+		return dao.searchForType(session,mType1);
+	}
+	@Override
+	public List<Map<String, PerformancePhoto>> searchForTitle(Map<String, Object> map) {
+		return dao.searchForTitle(session,map);
 	}
 }

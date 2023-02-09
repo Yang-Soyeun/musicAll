@@ -36,4 +36,8 @@ public interface AdminPerforService {
 	List<Map<String, PerformancePhoto>> orderbyRecent();
 
 	List<Map<String, PerformancePhoto>> orderbyEnd();
+
+	List<Map<String, PerformancePhoto>> searchForType(String mType1);
+
+	List<Map<String, PerformancePhoto>> searchForTitle(Map<String, Object> map);
 }

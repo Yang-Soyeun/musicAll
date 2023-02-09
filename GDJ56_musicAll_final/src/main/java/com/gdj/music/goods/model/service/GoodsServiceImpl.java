@@ -41,6 +41,25 @@ public class GoodsServiceImpl implements GoodsService {
 		return dao.goodsImg(session);
 	}
 	
+	//굿즈 낮은 가격순
+	@Override
+	public List<Goods> goodsLowSort(Map<String, Integer> param) {
+		return dao.goodsLowSort(session, param);
+	}
+
+	//굿즈 높은 가격순
+	@Override
+	public List<Goods> goodsHighSort(Map<String, Integer> param) {
+		return dao.goodsHighSort(session, param);
+	}
+	
+	//굿즈 태그 검색
+	@Override
+	public List<Goods> tagSearch(String gdTag, Map<String, Integer> param) {
+		return dao.tagSearch(session, gdTag, param);
+	}
+
+	//페이징
 	@Override
 	public int totalData() {
 		return dao.totalData(session);

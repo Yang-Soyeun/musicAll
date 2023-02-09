@@ -89,7 +89,7 @@
 
 
     <div class="parent">
-        <div id="info-box">
+        <div id="info-box" style=" height:700px;">
             <div style="display:inline-block; " >
                 <img src="${path }/resources/upload/performance/${perPhoto.get(0).IName}" id="imgView"/><br>
                   <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
@@ -103,9 +103,9 @@
              <b class="info">가격</b><p>vip석:${musical.getVipPrice() }원</p>
                <p>r석:${musical.getRPrice() }원</p>
                <p>s석:${musical.getSPrice() }원</p>
-               <b class="info">장소</b><p>${musical.getHName() }</p><br><br>
+               <b class="info">장소</b><p>${musical.getHName() }</p><a href="javascript:showPopUp()">지도보기➤</a><br><br>
              <button class="btn btn-danger" id="go1" onclick="location.href='${path}/booking/bookingview.do?mCode=${musical.getMCode()} '">예매하러 가기</button><br>
-			<br><br>
+			<br>
 			<c:if test="${not empty loginMember}">
 				<c:if test="${empty mLike}">	
              		<button class="btn btn-danger" id="go2" onclick="fn_addMyMusical();">관심공연 등록</button>
@@ -126,7 +126,7 @@
                 <li><a href="#" id="Comment" style="font-size: 20px;">한줄평</a></li>
             </ul>
         </div>
-
+	
         <div id="detailInfo"><!--상세정보-->
             <img src="${path }/resources/upload/performance/${perPhoto.get(1).IName}" width="800" height="2000" style="margin-left: 550px;">
         </div>
@@ -216,7 +216,8 @@
         <br>
 </div>
 </section>
-    <script>
+<script>
+    //카카오톡으로 공유하기
     Kakao.Share.createDefaultButton({
         container: '#kakaotalk-sharing-btn',
         objectType: 'feed',
@@ -305,6 +306,28 @@
         	location.assign("${path}/perfor/deleteMyMusical.do?mCode=${musical.getMCode()}&&memberNo=${loginMember.member_No}");
 
         }
+        
+        //지도 창 
+        function showPopUp() {
+        	
+        	var hCode='${musical.getHCode() }';
+        	//console.log(hCode);
+        	
+        	var width = 420;
+        	var height = 340;
+        	
+        	var left = (window.screen.width / 2) - (width/2);
+        	var top = (window.screen.height / 4);
+        	
+        	var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top+', scrollbars=yes, status=yes, resizable=yes, titlebar=yes';
+        	
+            const url = "${path}/perfor/placeMap.do?hCode=${musical.getHCode() }";
+
+        	window.open(url, "hello popup", windowStatus);
+        }
+        
+        
+        
         //채팅함수->방번호 넘김!
         const bt_chat =  function(){
         	let url = "${path}/chatting/chattingpage.do?roomNo=" +${param.mCode}; 
@@ -312,7 +335,7 @@
         	/* location.href="${path}/chatting/chattingpage.do?roomNo="+${param.mCode}; */ 
 
         }
-    </script>
+</script>
 
 
     <br>
