@@ -62,9 +62,17 @@ public class GoodsController {
 		mv.addObject("goods", goods);
 		mv.addObject("img", service.goodsImg()); //이미지 가져오기
 		
-		Member m = (Member) session.getAttribute("loginMember");
 		
-		mv.addObject("total", service.countCart(m.getMember_No()));
+		//장바구니 개수 표시
+		if(session.getAttribute("loginMember") == null) {
+			
+			mv.addObject("total", 0);
+			
+		} else {
+			Member m = (Member) session.getAttribute("loginMember");
+			
+			mv.addObject("total", service.countCart(m.getMember_No()));
+		}
 		
 		mv.setViewName("/store/goodsMain");
 		
@@ -300,6 +308,6 @@ public class GoodsController {
 
 	@RequestMapping("/goodsRefund.do")
 	public String goodsRefund() {
-		return "/store/refund";
+		return "/mypage/shoppingList.do";
 	}
 }

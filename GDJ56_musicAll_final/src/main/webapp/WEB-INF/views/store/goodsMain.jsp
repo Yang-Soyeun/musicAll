@@ -47,16 +47,16 @@
                     <div class="col-md-6">
                         <ul class="list-inline shop-top-menu pb-3 pt-1">
                             <li class="list-inline-item">
-                                <a class="h5 text-dark text-decoration-none mr-3" href="#">All</a>
+                                <a class="h5 text-dark text-decoration-none mr-3" href="${path }/goods/goodsMain.do">All</a>
                             </li>
                             <li class="list-inline-item">
-                                <a class="h5 text-dark text-decoration-none mr-3" href="#">낮은 가격순 ↓</a>
+                                <a class="h5 text-dark text-decoration-none mr-3" href="${path }/goods/goodsMain.do">낮은 가격순 ↓</a>
                             </li>
                             <li class="list-inline-item">
-                                <a class="h5 text-dark text-decoration-none" href="#">높은 가격순 ↑</a>
+                                <a class="h5 text-dark text-decoration-none" href="${path }/goods/goodsMain.do">높은 가격순 ↑</a>
                             </li>
                             <li>
-                            	<a class="h5 text-dark text-decoration-none" href="#">내 구매내역</a>
+                            	<a class="h5 text-dark text-decoration-none" href="${path }/mypage/shoppingList.do">내 구매내역</a>
                             </li>
                         </ul>
                     </div>
