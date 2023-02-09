@@ -62,9 +62,17 @@ public class GoodsController {
 		mv.addObject("goods", goods);
 		mv.addObject("img", service.goodsImg()); //이미지 가져오기
 		
-		Member m = (Member) session.getAttribute("loginMember");
 		
-		mv.addObject("total", service.countCart(m.getMember_No()));
+		//장바구니 개수 표시
+		if(session.getAttribute("loginMember") == null) {
+			
+			mv.addObject("total", 0);
+			
+		} else {
+			Member m = (Member) session.getAttribute("loginMember");
+			
+			mv.addObject("total", service.countCart(m.getMember_No()));
+		}
 		
 		mv.setViewName("/store/goodsMain");
 		
@@ -297,9 +305,85 @@ public class GoodsController {
 		}
 		
 	}
+	
+	//낮은 가격순
+	@RequestMapping("goodsLowSort.do")
+	public ModelAndView goodsLowSort (ModelAndView mv,
+			@RequestParam(value="cPage", defaultValue="1")int cPage,
+			@RequestParam(value="numPerpage", defaultValue="10")int numPerpage,
+			HttpSession session, HttpServletResponse response) {
 
+		List<Goods> goods = service.goodsLowSort(Map.of("cPage",cPage,"numPerpage",numPerpage));
+		
+		//페이징처리
+		int totalData = service.totalData();
+		mv.addObject("pageBar",PageFactory.getPage(cPage, numPerpage, totalData,"goodsMain.do" ));
+		
+		//굿즈 리스트
+		mv.addObject("goods", goods);
+		mv.addObject("img", service.goodsImg()); //이미지 가져오기
+		
+		
+		//장바구니 개수 표시
+		if(session.getAttribute("loginMember") == null) {
+			
+			mv.addObject("total", 0);
+			
+		} else {
+			Member m = (Member) session.getAttribute("loginMember");
+			
+			mv.addObject("total", service.countCart(m.getMember_No()));
+		}
+		
+		mv.setViewName("/store/goodsMain");
+		
+		
+		return mv;
+	}
+	
+	//높은 가격순
+	@RequestMapping("goodsHighSort.do") 
+	public ModelAndView goodsHighSort (ModelAndView mv,
+			@RequestParam(value="cPage", defaultValue="1")int cPage,
+			@RequestParam(value="numPerpage", defaultValue="10")int numPerpage,
+			HttpSession session, HttpServletResponse response) {
+
+		List<Goods> goods = service.goodsHighSort(Map.of("cPage",cPage,"numPerpage",numPerpage));
+		
+		//페이징처리
+		int totalData = service.totalData();
+		mv.addObject("pageBar",PageFactory.getPage(cPage, numPerpage, totalData,"goodsMain.do" ));
+		
+		//굿즈 리스트
+		mv.addObject("goods", goods);
+		mv.addObject("img", service.goodsImg()); //이미지 가져오기
+		
+		
+		//장바구니 개수 표시
+		if(session.getAttribute("loginMember") == null) {
+			
+			mv.addObject("total", 0);
+			
+		} else {
+			Member m = (Member) session.getAttribute("loginMember");
+			
+			mv.addObject("total", service.countCart(m.getMember_No()));
+		}
+		
+		mv.setViewName("/store/goodsMain");
+		
+		
+		return mv;
+	}
+	
+	//태그 검색
+//	@RequestMapping("/tagSearch.do")
+//	public {
+//		
+//	}
+	
 	@RequestMapping("/goodsRefund.do")
 	public String goodsRefund() {
-		return "/store/refund";
+		return "/mypage/shoppingList.do";
 	}
 }

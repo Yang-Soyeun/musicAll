@@ -126,31 +126,7 @@
                 <li><a href="#" id="Comment" style="font-size: 20px;">한줄평</a></li>
             </ul>
         </div>
-	<div id="map" style="width:500px;height:400px;"></div>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=159a9195668e221c0f6db2e6d888709d"></script>
-	<script>
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = { 
-        center: new kakao.maps.LatLng(37.541, 127.0024), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    	};
-
-		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-		
-		// 마커가 표시될 위치입니다 
-		var markerPosition  = new kakao.maps.LatLng(37.541, 127.0024); 
-		
-		// 마커를 생성합니다
-		var marker = new kakao.maps.Marker({
-		    position: markerPosition
-		});
-		
-		// 마커가 지도 위에 표시되도록 설정합니다
-		marker.setMap(map);
-		
-
-	</script>
-
+	
         <div id="detailInfo"><!--상세정보-->
             <img src="${path }/resources/upload/performance/${perPhoto.get(1).IName}" width="800" height="2000" style="margin-left: 550px;">
         </div>
@@ -333,9 +309,11 @@
         
         function showPopUp() {
         	
+        	var hCode='${musical.getHCode() }';
+        	console.log(hCode);
         	//창 크기 지정
-        	var width = 500;
-        	var height = 500;
+        	var width = 420;
+        	var height = 340;
         	
         	//pc화면기준 가운데 정렬
         	var left = (window.screen.width / 2) - (width/2);
@@ -345,7 +323,7 @@
         	var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top+', scrollbars=yes, status=yes, resizable=yes, titlebar=yes';
         	
             	//연결하고싶은url
-            	const url = "${path}/perfor/placeMap.do";
+            	const url = "${path}/perfor/placeMap.do?hCode=${musical.getHCode() }";
 
         	//등록된 url 및 window 속성 기준으로 팝업창을 연다.
         	window.open(url, "hello popup", windowStatus);
