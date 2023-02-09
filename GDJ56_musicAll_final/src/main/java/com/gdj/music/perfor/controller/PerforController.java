@@ -240,8 +240,22 @@ public class PerforController {
 	
 	//지도화면 전환하기
 	@RequestMapping("/placeMap.do")
-	public ModelAndView placeMap(ModelAndView mv) {
-		//mv.addObject("musicalPhoto",pp);
+	public ModelAndView placeMap(ModelAndView mv,int hCode) {
+		String hCode1="";
+		String hCode2="";
+		
+		if(hCode==1) {
+			hCode1="37.4788";
+			hCode2="127.0119";
+					
+		}
+		if(hCode==2) {
+			hCode1="37.541";
+			hCode2="127.0024";
+					
+		}
+		mv.addObject("hCode1",hCode1);
+		mv.addObject("hCode2",hCode2);
 		mv.setViewName("perfor/placeMap");
 		return mv;
 	}
