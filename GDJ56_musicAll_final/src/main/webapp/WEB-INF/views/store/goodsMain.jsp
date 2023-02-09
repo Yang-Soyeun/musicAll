@@ -38,6 +38,9 @@
 
             <div class="col-lg-3">
                 <h1 class="h3 pb-4">태그 검색</h1>
+                <div>
+                	
+                </div>
                 
 
             </div>
@@ -50,10 +53,10 @@
                                 <a class="h5 text-dark text-decoration-none mr-3" href="${path }/goods/goodsMain.do">All</a>
                             </li>
                             <li class="list-inline-item">
-                                <a class="h5 text-dark text-decoration-none mr-3" href="${path }/goods/goodsMain.do">낮은 가격순 ↓</a>
+                                <a class="h5 text-dark text-decoration-none mr-3" href="${path }/goods/goodsLowSort.do">낮은 가격순 ↓</a>
                             </li>
                             <li class="list-inline-item">
-                                <a class="h5 text-dark text-decoration-none" href="${path }/goods/goodsMain.do">높은 가격순 ↑</a>
+                                <a class="h5 text-dark text-decoration-none" href="${path }/goods/goodsHighSort.do">높은 가격순 ↑</a>
                             </li>
                             <li>
                             	<a class="h5 text-dark text-decoration-none" href="${path }/mypage/shoppingList.do">내 구매내역</a>

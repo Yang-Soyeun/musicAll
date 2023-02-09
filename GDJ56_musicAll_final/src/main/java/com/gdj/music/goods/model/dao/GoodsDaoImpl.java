@@ -29,6 +29,20 @@ public class GoodsDaoImpl implements GoodsDao {
 	public List<GoodsImg> goodsImg(SqlSessionTemplate session) {
 		return session.selectList("goodsImg.goodsImgList");
 	}
+	
+	//굿즈 낮은 가격순
+	@Override
+	public List<Goods> goodsLowSort(SqlSessionTemplate session, Map<String, Integer> param) {
+		return session.selectList("goods.goodsLowSort",null,new RowBounds((param.get("cPage")-1)*param.get("numPerpage")
+				,param.get("numPerpage")));
+	}
+
+	//굿즈 높은 가격순
+	@Override
+	public List<Goods> goodsHighSort(SqlSessionTemplate session, Map<String, Integer> param) {
+		return session.selectList("goods.goodsHighSort",null,new RowBounds((param.get("cPage")-1)*param.get("numPerpage")
+				,param.get("numPerpage")));
+	}
 
 	//페이징
 	@Override
