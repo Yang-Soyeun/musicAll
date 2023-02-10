@@ -72,6 +72,38 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 	public int totalData() {
 		return dao.totalData(session);
 	}
+
+
+	@Override
+	@Transactional
+	public int updateGoods(Goods g, List<GoodsImg> files) {
+		
+		int result = dao.updateGoods(session, g);
+		
+		int gdCode = g.getGdCode();
+		
+		if(result > 0) {
+			if(files.size()>0) {
+				int result2 = dao.deleteGoodsImg(session, gdCode);;
+				
+				for(GoodsImg gi : files) {
+					
+					result2 += dao.updateGoodsImg(session, gi);
+					System.out.println("update 사진:"+ gi);
+					
+				}
+			}
+			
+//			if(result2 != files.size()) throw new RuntimeException("이미지 수정 실패");
+			
+		} else {
+			
+			throw new RuntimeException("굿즈 수정 실패");
+		
+		}
+		
+		return result;
+	}
 	
 	
 	

@@ -52,6 +52,12 @@ public class GoodsServiceImpl implements GoodsService {
 	public List<Goods> goodsHighSort(Map<String, Integer> param) {
 		return dao.goodsHighSort(session, param);
 	}
+	
+	//굿즈 태그 검색
+	@Override
+	public List<Goods> tagSearch(String gdTag, Map<String, Integer> param) {
+		return dao.tagSearch(session, gdTag, param);
+	}
 
 	//페이징
 	@Override
