@@ -237,5 +237,18 @@ public class AdminGoodsController {
 		return result;
 	}
 	
+	//굿즈 삭제
+	@RequestMapping("/deleteGoods.do")
+	public ModelAndView deleteGoods(ModelAndView mv, int gdCode) {
+	  
+		int result = service.deleteGoods(gdCode);
+		mv.addObject("msg" ,result>0?"삭제가 완료되었습니다.":"실패");
+		mv.addObject("loc", "/adminGoods/adgMain.do");
+		  
+		mv.setViewName("common/msg");
+		return mv;
+	  
+	}
+	
 
 }

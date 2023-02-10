@@ -21,6 +21,9 @@ public interface AdminGoodsService {
 	
 	//굿즈 수정
 	int updateGoods(Goods g, List<GoodsImg> files);
+	
+	//굿즈 삭제
+	int deleteGoods(int gdCode);
 
 	
 }

@@ -106,6 +106,23 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 		return result;
 	}
 	
+	//굿즈 삭제
+	@Override
+	public int deleteGoods(int gdCode) {
+		
+		int result = dao.deleteGoods(session, gdCode);
+		
+		if(result > 0) {
+			
+			result = dao.deleteGoodsImg(session, gdCode);
+			
+		}
+		
+		return result;
+		
+	}
+
+	
 	
 	
 }
