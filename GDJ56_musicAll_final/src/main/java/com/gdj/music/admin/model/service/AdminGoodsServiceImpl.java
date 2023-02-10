@@ -74,6 +74,7 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 	}
 
 
+	//굿즈 수정
 	@Override
 	@Transactional
 	public int updateGoods(Goods g, List<GoodsImg> files) {
