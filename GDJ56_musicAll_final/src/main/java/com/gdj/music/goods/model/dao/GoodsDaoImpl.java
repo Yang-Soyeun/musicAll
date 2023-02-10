@@ -136,6 +136,19 @@ public class GoodsDaoImpl implements GoodsDao {
 		return session.selectOne("goods.rAvg", gdCode);
 	}
 
+	//상품평 수정
+	@Override
+	public int updateReview(SqlSessionTemplate session, GReview r) {
+		return session.update("goods.updateReview", r);
+	}
+
+	//상품평 삭제
+	@Override
+	public int deleteReview(SqlSessionTemplate session, int grNo) {
+		return session.delete("goods.deleteReview", grNo);
+	}
+	
+
 	
 	//리뷰 체크
 //	public MyGoods checkReview(SqlSessionTemplate session, MyGoods g) {

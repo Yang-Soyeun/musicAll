@@ -67,6 +67,12 @@ public interface GoodsDao {
 	//별점 평균
 	int rAvg(SqlSessionTemplate session, int gdCode);
 	
+	//상품평 수정
+	int updateReview(SqlSessionTemplate session, GReview r);
+	
+	//상품평 삭제
+	int deleteReview(SqlSessionTemplate session, int grNo);
+	
 	//리뷰 체크
 //	MyGoods checkReview(SqlSessionTemplate session, MyGoods g);
 //	
