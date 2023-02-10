@@ -53,7 +53,7 @@
                 <table class="table table-striped table-border checkout-table">
                   <tbody>
                     <tr>
-                   	  <th><input type="checkbox" onclick="selectAll(this);"></th>
+                   	  <!-- <th><input type="checkbox" onclick="selectAll(this);"></th> -->
                       <th></th>
                       <th>상품명</th>
                       <th class="hidden-xs">가격</th>
@@ -69,11 +69,11 @@
                  <c:if test="${not empty goodsCt }">
                   <c:forEach var="g" items="${goodsCt }">
                     <tr>
-                      <td class="hidden-xs">
+                      <%-- <td class="hidden-xs">
                       		<input type="checkbox" id="price${sumgoods+1 }" name="price${sumgoods+1 }" value="${g.goods.gdPrice }" onchange="itemSum(event)">
         
-                      </td>
-                      <td class="hidden-xs" style="width: 10%;">
+                      </td> --%>
+                      <td class="hidden-xs" style="width: 9%;">
                       <c:if test="${not empty img }">
 	                      <c:forEach var="i" items="${img }">
 	                         <c:if test="${i.gdCode == g.gdCode }">
@@ -82,7 +82,7 @@
                          </c:forEach>
                       </c:if>
                       </td>
-                      <td>
+                      <td style="width: 38%;">
                         <h5 class="product-title font-alt"><c:out value="${g.goods.gdName }"/></h5>
                       </td>
                       <td class="hidden-xs">
@@ -95,7 +95,7 @@
                         <h5 class="product-title font-alt"><fmt:formatNumber value="${g.goods.gdPrice }" pattern="#,###" />원</h5>
                       </td>
                       <td class="pr-remove">
-                         <button class="btn btn-round btn-g btn-sm" id="${g.gdCode }" type="submit" style="margin: 2%;" onclick="location.assign('${path }/goods/goodsPay.do?gdCode=${g.gdCode }&member_no=${loginMember.member_No }&gdCount=${g.ctCount }')">구매하기</button><br>
+                         <button class="buy btn btn-round btn-g btn-sm" id="${g.gdCode }" type="submit" style="margin: 2%;" onclick="buyPage()">구매하기</button><br>
                          <button class="btn btn-danger btn-round btn-sm" type="submit" style="margin: 2%;" onclick="location.assign('${path }/goods/deleteCart.do?gdCode=${g.gdCode }&memberNo=${loginMember.member_No }')">나중에 구매</button>
                       </td>
                     </tr>
@@ -129,31 +129,25 @@
             </div>
             
        
-            <div class="row" >
-              <div class="col-sm-3 col-sm-offset-3" style="float:right;">
-                <div class="form-group">
-                  <button class="btn btn-block btn-round btn-d pull-right" type="submit" style="margin-bottom: 7%;">변경</button>
-                </div>
-              </div>
-            </div>
+            
             <hr class="divider-w">
             <div class="row mt-70">
               <div class="col-sm-5 col-sm-offset-7">
                 <div class="shop-Cart-totalbox">
-                  <h4 class="font-alt">선택 구매</h4>
+                  <h4 class="font-alt">현황</h4>
                   <table class="table table-striped table-border checkout-table">
                     <tbody>
                       <tr>
-                        <th>선택 상품 개수</th>
-                        <td><div class="count">0</div></td>
+                        <th>총 개수</th>
+                        <td><div class="count"><c:out value="${sumgoods }" />개</div></td>
                       </tr>
                       <tr class="shop-Cart-totalprice">
                         <th>총 금액</th>
-                        <td><div class="result">0원</div></td>
+                        <td><div class="result"><fmt:formatNumber value="${sumprice }" pattern="#,###" />원</div></td>
                       </tr>
                     </tbody>
                   </table>
-                  <button class="btn btn-lg btn-block btn-round btn-d" type="submit" onclick="location.assign('${path }/goods/goodsPayAll.do')">구매하기</button>
+                  <%-- <button class="btn btn-lg btn-block btn-round btn-d" type="submit" onclick="location.assign('${path }/goods/goodsPayAll.do')">구매하기</button> --%>
                 </div>
               </div>
             </div>
@@ -168,9 +162,45 @@
     
     <script>
       //수량 변경
+      $("#quantity_value").on("change keyup paste", function(){
+    	  
+    	  	var gdCount = $(this).val();
+    	  	
+    	  	console.log(gdCount);
+    	  	
+    	  	
+		});
+
+      //구매 페이지로 넘기기
+		 $('.buy').on('click',function(){
+		
+		gdCount = $("#quantity_value").val();
+		
+		console.log(gdCount);
+		
+		var gdCode = $(this).attr('id');
+		
+		//console.log($("#quantity_value").text());
+		console.log(gdCount);
+		
+		$.ajax({
+			url: "${path }/goods/goodsPay.do",
+			data: {"gdCount" : gdCount, "gdCode" : gdCode, "member_no" : ${loginMember.member_No }},
+			type: "post",
+			success: function(data) {
+				//alert("넘기기 성공")
+				location.assign('${path }/goods/goodsPay.do?gdCode='+gdCode+'&member_no='+${loginMember.member_No }+'&gdCount='+gdCount);
+			},
+			error: function(){
+				alert("실패했습니다. 다시 시도해 주세요.")
+			}
+		});
+
+			
+		});
       
       //전체 선택, 해제
-      function selectAll(selectAll)  {
+     /*  function selectAll(selectAll)  {
 		  const checkboxes 
 		     = document.querySelectorAll('input[type="checkbox"]');
 		  
@@ -207,7 +237,7 @@
               check.onclick = itemSum(event);
               
           }
-
+ */
         
          
    
