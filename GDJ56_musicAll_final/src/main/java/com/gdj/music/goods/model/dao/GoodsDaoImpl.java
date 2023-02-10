@@ -43,6 +43,13 @@ public class GoodsDaoImpl implements GoodsDao {
 		return session.selectList("goods.goodsHighSort",null,new RowBounds((param.get("cPage")-1)*param.get("numPerpage")
 				,param.get("numPerpage")));
 	}
+	
+	//굿즈 태그 검색
+	@Override
+	public List<Goods> tagSearch(SqlSessionTemplate session, String gdTag, Map<String, Integer> param) {
+		return session.selectList("goods.tagSearch", gdTag, new RowBounds((param.get("cPage")-1)*param.get("numPerpage")
+				,param.get("numPerpage")));
+	}
 
 	//페이징
 	@Override

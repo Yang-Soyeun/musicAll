@@ -31,14 +31,35 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao {
 				,param.get("numPerpage")));
 	}
 	
+	//이미지 리스트
 	@Override
 	public List<GoodsImg> goodsImg(SqlSessionTemplate session) {
 		return session.selectList("goodsImg.goodsImgList");
 	}
 
+	//개수
 	@Override
 	public int totalData(SqlSessionTemplate session) {
 		return session.selectOne("goods.totalData");
+	}
+
+	//굿즈 수정
+	@Override
+	public int updateGoods(SqlSessionTemplate session, Goods g) {
+		return session.update("musical.updateGoods", g);
+	}
+
+	
+	//이미지 삭제
+	@Override
+	public int deleteGoodsImg(SqlSessionTemplate session, int gdCode) {
+		return session.delete("img.deleteGoodsImg", gdCode);
+	}
+
+	//이미지 수정
+	@Override
+	public int updateGoodsImg(SqlSessionTemplate session, GoodsImg gi) {
+		return session.insert("img.updateGoodsImg", gi);
 	}
 		
 
