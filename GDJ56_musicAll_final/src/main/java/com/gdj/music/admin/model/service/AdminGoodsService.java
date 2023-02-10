@@ -19,9 +19,6 @@ public interface AdminGoodsService {
 	
 	int totalData();
 	
-	//굿즈 상세화면
-
-	
 	//굿즈 수정
 	int updateGoods(Goods g, List<GoodsImg> files);
 

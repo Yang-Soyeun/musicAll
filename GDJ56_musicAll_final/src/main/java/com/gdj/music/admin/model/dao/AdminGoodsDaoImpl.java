@@ -46,20 +46,20 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao {
 	//굿즈 수정
 	@Override
 	public int updateGoods(SqlSessionTemplate session, Goods g) {
-		return session.update("musical.updateGoods", g);
+		return session.update("goods.updateGoods", g);
 	}
 
 	
 	//이미지 삭제
 	@Override
 	public int deleteGoodsImg(SqlSessionTemplate session, int gdCode) {
-		return session.delete("img.deleteGoodsImg", gdCode);
+		return session.delete("goodsImg.deleteGoodsImg", gdCode);
 	}
 
 	//이미지 수정
 	@Override
 	public int updateGoodsImg(SqlSessionTemplate session, GoodsImg gi) {
-		return session.insert("img.updateGoodsImg", gi);
+		return session.insert("goodsImg.updateGoodsImg", gi);
 	}
 		
 

@@ -70,7 +70,7 @@
                   <c:forEach var="g" items="${goodsCt }">
                     <tr>
                       <td class="hidden-xs">
-                      		<input type="checkbox" id="price${sumgoods+1 }" name="price${sumgoods+1 }" value="${g.goods.gdPrice }" onclick="itemSum(event)">
+                      		<input type="checkbox" id="price${sumgoods+1 }" name="price${sumgoods+1 }" value="${g.goods.gdPrice }" onchange="itemSum(event)">
         
                       </td>
                       <td class="hidden-xs" style="width: 10%;">
@@ -179,17 +179,15 @@
 		  });
 		}
       
-      //선택 구매 계산
-      
-      
-      function itemSum(event)  {
-    	  
-		  var total = 0;
-		  //var count = $("input:checkbox[name=price]:checked").length;
-		  
-		  
-		 
-		  for(let i=1; i<=8; i++){
+      //선택 구매 계산  
+	  function itemSum(event)  {
+         
+        var total = 0;
+        var count = 0;
+        
+        
+       
+        for(let i=1; i<=8; i++){
               let chkbox = document.getElementById("price"+i);
               if(chkbox.checked){
                   total += Number(chkbox.value);
@@ -198,21 +196,21 @@
               $(".count").html(count); 
               $(".result").html(total+'원'); 
           }
-		  
-			
-			
-	      }
+        
+         
+         
+     }
       
-	      for(let i = 1; i <= 8; i++){
-	    	  
+         for(let i = 1; i <= 8; i++){
+            
               let check = document.getElementById("price"+i);
-              check.onclick = itemSum();
+              check.onclick = itemSum(event);
               
           }
 
-		  
-		   
-	
+        
+         
+   
          
       
       
