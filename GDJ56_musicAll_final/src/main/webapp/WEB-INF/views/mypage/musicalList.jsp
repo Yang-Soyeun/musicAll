@@ -83,7 +83,7 @@
 <%-- 			             		<c:when test="${r.containsKey('refund') && !r.containsKey('RF_CODE')}"><!-- 공연일이 지났고 환불기록이 없으면 --> --%>
 			             		<c:when test="${!r.containsKey('RF_CODE')}"><!-- 환불기록이 없으면 -->
 			             			<button class="btn btn-warning btn-circle" 
-			             				onclick="location.assign('${path}/perfor/performanceView1.do?mCode=${r.M_CODE }');">리뷰 작성</button>
+			             				onclick="location.assign('${path}/perfor/performanceView.do?mCode=${r.M_CODE }');">리뷰 작성</button>
 			             		</c:when>
 			             		<c:otherwise>
 					             <h5 class="product-title font-alt">관람 후 작성 가능</h5>

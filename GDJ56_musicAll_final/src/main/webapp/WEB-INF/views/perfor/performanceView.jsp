@@ -91,9 +91,9 @@
     <div class="parent">
         <div id="info-box" style=" height:700px;">
             <div style="display:inline-block; " >
-                <img src="${path }/resources/upload/performance/${perPhoto.get(0).IName}" id="imgView"/><br>
-                  <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
-  					id="kakaotalk-sharing-btn" href="javascript:;" style="margin-left:310px;margin-top:-80px;"alt="카카오톡 공유 보내기 버튼" />
+                <img src="${path }/resources/upload/performance/${perPhoto.get(0).IName}" id="imgView" /><br>
+                  <img src="${path }/resources/images/performance/share.png"
+  					id="kakaotalk-sharing-btn" href="javascript:;" style="margin-left:220px;margin-top:-130px; width:70px; height:70px; "alt="카카오톡 공유 보내기 버튼" />
                 <input type="button" onclick="bt_chat();" value="채팅">
             </div>
         <div class="info-box2">         
@@ -307,25 +307,22 @@
 
         }
         
+        //지도 창 
         function showPopUp() {
         	
         	var hCode='${musical.getHCode() }';
-        	console.log(hCode);
-        	//창 크기 지정
+        	//console.log(hCode);
+        	
         	var width = 420;
         	var height = 340;
         	
-        	//pc화면기준 가운데 정렬
         	var left = (window.screen.width / 2) - (width/2);
         	var top = (window.screen.height / 4);
         	
-            	//윈도우 속성 지정
         	var windowStatus = 'width='+width+', height='+height+', left='+left+', top='+top+', scrollbars=yes, status=yes, resizable=yes, titlebar=yes';
         	
-            	//연결하고싶은url
-            	const url = "${path}/perfor/placeMap.do?hCode=${musical.getHCode() }";
+            const url = "${path}/perfor/placeMap.do?hCode=${musical.getHCode() }";
 
-        	//등록된 url 및 window 속성 기준으로 팝업창을 연다.
         	window.open(url, "hello popup", windowStatus);
         }
         

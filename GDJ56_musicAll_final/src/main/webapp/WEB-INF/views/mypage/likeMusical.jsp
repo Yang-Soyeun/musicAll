@@ -65,7 +65,7 @@
 										</div>
 									</div>
 									
-									<div class="red_button add_to_cart_button"><a href="#">공연정보 보러가기</a></div>
+									<div class="red_button add_to_cart_button"><a href="${path}/perfor/performanceView.do?mCode=${m.get('M_CODE') }">공연정보 보러가기</a></div>
 								</div>
 							</c:forEach>
 						</c:if>

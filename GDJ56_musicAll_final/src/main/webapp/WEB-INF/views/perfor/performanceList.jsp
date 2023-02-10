@@ -8,9 +8,11 @@
  	<jsp:param name="title" value="MainPage"/>
 </jsp:include>
 
-<section style="margin-top:100px;">
+<section style="margin-top:100px; margin-bottom:1000px;">
     <p id="nowShowing" style="font-size:25px; text-align:center;">현재 상영작</p>
     <br>
+    <div style>
+    <div style="background-color:#E6E6E6; width:1800px; margin:auto;">
         <section class="hbody">
           <article class="nav2">
           <div id="menu">
@@ -25,16 +27,17 @@
         </section>
 
 
-    <div class="search-box">
-        <form action="${path }/perfor/searchForTitle.do" method="post">
-            <input type="text" name="mTitle" id="searchPer" style="width:400px; height:45px;margin-left:180px;" placeholder="제목을 입력해주세요." >&nbsp;
-            <button class="searchBtn" type="submit" >검색</button>
-        </form>
-        
+    	<div class="search-box">
+        	<form action="${path }/perfor/searchForTitle.do" method="post">
+            	<input type="text" name="mTitle" id="searchPer" style="width:500px; height:45px;margin-left:180px; border:solid 0.5px;" placeholder="제목을 입력해주세요." >&nbsp;
+            	<button class="searchBtn" type="submit" style="font-size:15px; background-color:#A4A4A4; border:none; border-radius:5px">검색</button>
+        	</form>
+    	</div>
     </div>
-    <div class="select-box">
-        <select id="orderby" style="width:140px; height:40px;font-size:18px;">
-            <option value="예매랭킹순">예매랭킹순</option>
+    </div>
+    <div class="select-box" sylt="margin-right:10px;">
+        <select id="orderby" style="width:140px; height:40px;font-size:18px; margin-top:10px; margin-right:40px;">
+            <option value="예매랭킹순">정렬</option>
             <option value="예매랭킹순">예매랭킹순</option>
             <option value="최신등록순">최신등록순</option>
             <option value="공연마감임박순">공연마감 임박순</option>
@@ -44,56 +47,37 @@
     	<p style="font-size:20px; text-align:center;">조회된 공연이 없습니다.</p>
     </c:if>
     <c:if test="${not empty musicalPhoto }">
-    <div class="count-box">
+    <%-- <div class="count-box">
         <img src="${path }/resources/images/performance/first.png" id="countimg1" style="width:80px; height: 80px;">
         <img src="${path }/resources/images/performance/second.png" id="countimg2" style="width:70px; height: 75px;">
         <img src="${path }/resources/images/performance/third.png" id="countimg3" style="width:70px; height: 65px;">
         <img src="${path }/resources/images/performance/fourth.png" id="countimg4" style="width:70px; height: 75px; ">
-    </div>
-    <c:forEach var="p" items="${musicalPhoto}">
-    	<c:if test="${empty loginMember  }">
-    		<div class="photo-box">
-        		<img src="${path }/resources/upload/performance/${p.I_NAME}" class="perView" style="float:left;" onclick="location.href='${path}/perfor/performanceView1.do?mCode=${p.M_CODE}'" >
-   			</div>
-   		</c:if>
-     	<c:if test="${not empty loginMember  }">
-    		<div class="photo-box">
-        		<img src="${path }/resources/upload/performance/${p.I_NAME}" class="perView" style="float:left;" onclick="location.href='${path}/perfor/performanceView.do?mCode=${p.M_CODE}'" >
-   			</div>
-    	</c:if>
-    </c:forEach> 
+    </div> --%>
+    <br><br><br>
+    	<div style="margin-left:220px;">
+    		<b style=" float:left; font-size:25px;">상영작</b><b style="float:left; margin-left:10px; font-size:25px; color:#FA5858;">Top4</b>
+    	</div>
+    	<br><br>
+    	<div>
+    	<c:forEach var="p" items="${musicalPhoto}">
+    		<c:if test="${empty loginMember  }">
+    			<div class="photo-box">
+        			<img src="${path }/resources/upload/performance/${p.I_NAME}" class="perView" style="float:left; margin-top:30px;" onclick="location.href='${path}/perfor/performanceView1.do?mCode=${p.M_CODE}'" >
+   				</div>
+   			</c:if>
+     		<c:if test="${not empty loginMember  }">
+    			<div class="photo-box">
+        			<img src="${path }/resources/upload/performance/${p.I_NAME}" class="perView" style="float:left; margin-top:50px;" onclick="location.href='${path}/perfor/performanceView.do?mCode=${p.M_CODE}'" >
+   				</div>
+    		</c:if>
+    	</c:forEach> 
+    	</div>
     </c:if>
 </section>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
 
 <script>
-	//datepicker
-	$(function(){
-	    $('#datepicker').datepicker({ dateFormat: 'yy-mm-dd' });
-	})
-	
 	//옵션별 정렬
 	$('#orderby').change(function(){
 		var select=$("#orderby option:selected").val();
@@ -114,23 +98,20 @@
     		result = event.target.value;
     		console.log(result);
     		if(result=='오리지널')	{
-    			location.assign("${path}/perfor//searchForType.do?mType=1");
+    			location.assign("${path}/perfor/searchForType.do?mType=1");
     		}
     		if(result=='라이센스')	{
-    			location.assign("${path}/perfor//searchForType.do?mType=2");
+    			location.assign("${path}/perfor/searchForType.do?mType=2");
     		}
     		if(result=='창작뮤지컬')	{
-    			location.assign("${path}/perfor//searchForType.do?mType=3");
+    			location.assign("${path}/perfor/searchForType.do?mType=3");
     		}
     		if(result=='넌버벌')	{
-    			location.assign("${path}/perfor//searchForType.do?mType=4");
+    			location.assign("${path}/perfor/searchForType.do?mType=4");
     		}
     		if(result=='아동')	{
-    			location.assign("${path}/perfor//searchForType.do?mType=5");
+    			location.assign("${path}/perfor/searchForType.do?mType=5");
     		}
-    		
-
-
   		}else{
     		result = '';
   		}

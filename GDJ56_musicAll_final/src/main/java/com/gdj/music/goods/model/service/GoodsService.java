@@ -22,6 +22,9 @@ public interface GoodsService {
 	//굿즈 리스트 높은 가격순
 	List<Goods> goodsHighSort(Map<String, Integer> param);
 	
+	//굿즈 태그 검색
+	List<Goods> tagSearch(String gdTag, Map<String, Integer> param);
+	
 	int totalData();
 	
 	//굿즈 상세 화면
