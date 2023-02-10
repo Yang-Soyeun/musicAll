@@ -91,9 +91,9 @@
     <div class="parent">
         <div id="info-box" style=" height:700px;">
             <div style="display:inline-block; " >
-                <img src="${path }/resources/upload/performance/${perPhoto.get(0).IName}" id="imgView"/><br>
-                  <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png"
-  					id="kakaotalk-sharing-btn" href="javascript:;" style="margin-left:310px;margin-top:-80px;"alt="카카오톡 공유 보내기 버튼" />
+                <img src="${path }/resources/upload/performance/${perPhoto.get(0).IName}" id="imgView" /><br>
+                  <img src="${path }/resources/images/performance/share.png"
+  					id="kakaotalk-sharing-btn" href="javascript:;" style="margin-left:220px;margin-top:-130px; width:70px; height:70px; "alt="카카오톡 공유 보내기 버튼" />
                 <input type="button" onclick="bt_chat();" value="채팅">
             </div>
         <div class="info-box2">         
