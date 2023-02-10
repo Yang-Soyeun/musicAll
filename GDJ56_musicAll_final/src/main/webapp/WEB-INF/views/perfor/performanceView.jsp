@@ -228,8 +228,8 @@
             'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
           link: {
             // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
-            mobileWebUrl: 'http://localhost:9090/GDJ56_musicAll_final/perfor/performanceView1.do?mCode=${musical.getMCode()}',
-            webUrl: 'http://localhost:9090/GDJ56_musicAll_final/perfor/performanceView1.do?mCode=${musical.getMCode()}',
+            mobileWebUrl: 'https://gd1class.iptime.org:8844/GDJ56_musicAll_final/perfor/performanceView1.do?mCode=${musical.getMCode()}',
+            webUrl: 'https://gd1class.iptime.org:8844/GDJ56_musicAll_final/perfor/performanceView1.do?mCode=${musical.getMCode()}',
           },
         },
         social: {
@@ -241,8 +241,8 @@
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl: 'http://localhost:9090/GDJ56_musicAll_final/perfor/performanceView1.do?mCode=${musical.getMCode()}',
-              webUrl: 'http://localhost:9090/GDJ56_musicAll_final/perfor/performanceView1.do?mCode=${musical.getMCode()}',
+              mobileWebUrl: 'https://gd1class.iptime.org:8844/GDJ56_musicAll_final/perfor/performanceView1.do?mCode=${musical.getMCode()}',
+              webUrl: 'https://gd1class.iptime.org:8844/GDJ56_musicAll_final/perfor/performanceView1.do?mCode=${musical.getMCode()}',
             },
           },
          
