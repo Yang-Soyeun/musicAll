@@ -35,7 +35,7 @@
 	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="취소/환불/발권" disabled="disabled" <c:if test="${qt.qsHeadTitle eq '취소/환불/발권'}">checked</c:if>> 취소/환불/발권</span>
 	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="포인트문의" disabled="disabled" <c:if test="${qt.qsHeadTitle eq '포인트문의'}">checked</c:if>> 포인트문의</span>
 	<span class="radiocheck" style="display:"><input name="qsHeadTitle" type="radio" value="기타" disabled="disabled" <c:if test="${qt.qsHeadTitle eq '기타'}">checked</c:if>> 기타</span>
-강
+
 </td>
 </tr>
 
@@ -62,12 +62,19 @@
 </tbody></table>
 
 <div class="ASKbtn" id="divWriteForm" style="display:block; margin-left: 33%;" >
+
 <c:if test="${ empty cm.qcAnswer }">
 	<span><input type="button" onclick="bt_comment();" value="확인" class="btn btn-danger btn-circle"></span>
 </c:if>
+
 <c:if test="${not empty cm.qcAnswer }">
 	<span><input type="button" onclick="bt_recomment();" value="수정" class="btn btn-danger btn-circle"></span>
 </c:if>
+
+<c:if test="${not empty cm.qcAnswer }">
+	<span><input type="button" onclick="bt_list();" value="목록" class="btn btn-danger btn-circle"></span>
+</c:if>
+
 </div>
 
 
@@ -128,6 +135,11 @@
 			}
 		});
 		
+	}
+	
+	//목록이동
+	const bt_list=()=>{
+		location.href = "${path}/adminq/questionList.do"
 	}
 
 		

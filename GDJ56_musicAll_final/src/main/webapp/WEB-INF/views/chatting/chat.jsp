@@ -179,6 +179,8 @@ display: flex;
 #titleL{
 	font-size:20px;
     margin-top: -10px;
+    display : flex;
+    justify-content : center;
 }
 #backChats{
 	margin-top: 38px;
@@ -194,11 +196,11 @@ display: flex;
 			<div class="header__column" id="titleImg" style="float:left;">
 				<i class="fa fa-chevron-left fa-lg" id="backChats"></i>
 			</div>
-			<div id="titleL" style="display : table;">
-				<div style="display : table-cell;width: 70%;">
+			<div id="titleL">
+				<div >
 					<img src="${path}/resources/upload/performance/${cl.getIName()}" id="chatimage" class="circle">
 				</div>
-				<div style="display : table-cell;vertical-align: middle;">
+				<div style="display:flex; align-items:center;">
 					<span>
 						<c:out value="${cl.getMTitle() }"/>
 					</span>
@@ -225,8 +227,8 @@ display: flex;
 			let isload = false;
 			
 			//오자마자 접속시작
-			let websocket = new WebSocket("ws://localhost:9090/GDJ56_musicAll_final/chatting");//자동적으로 채팅접속(서버올릴시-카카오맵x)
-			//let websocketp = new WebSocket("wss://gd1class.iptime.org:8844/GDJ56_musicAll_final/chatting");카카오맵 사용시
+			//let websocket = new WebSocket("ws://localhost:9090/GDJ56_musicAll_final/chatting");//자동적으로 채팅접속(서버올릴시-카카오맵x)
+			let websocket = new WebSocket("wss://gd1class.iptime.org:8844/GDJ56_musicAll_final/chatting");//카카오맵 사용시
 			//let serverWeb = new WebSocket("ws://localhost:9090/GDJ56_musicAll_final/chatting")//서버x
 			//new WebSocket("ws://gd1class.iptime.org:9999/GDJ56_musicAll_final/chatting");//자동적으로 채팅접속(서버올릴시-카카오맵x)
 			//채팅구현(on open, on message, on close)
