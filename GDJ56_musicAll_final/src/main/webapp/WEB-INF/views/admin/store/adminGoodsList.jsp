@@ -258,7 +258,7 @@
 	    <div class="row">
 	      <div class="col-sm-12">
 	      			<div>
-			<button class="btn btn-primary btn-circle btn-sm" onclick="alert('test');location.assign('${path}/adminGoods/goodsInsert.do');" 
+			<button class="btn btn-primary btn-circle btn-sm" onclick="location.assign('${path}/adminGoods/goodsInsert.do');" 
 			style="float: right; margin-top: -3.5%; margin-right: 2.1%;">굿즈등록</button>
 			</div>
 	        <table class="table table-striped table-border checkout-table" style="text-align:center;">
@@ -287,7 +287,9 @@
 		                </c:forEach>
 		            </c:if>
 	                <td class="">
-	                  <h5 class="product-title font-alt"><c:out value="${g.gdName }"/></h5>
+	                  <h5 class="product-title font-alt">
+	                  	<a href="${path }/adminGoods/adminGoodsView.do?gdCode=${g.gdCode }"><c:out value="${g.gdName }"/></a>
+	                  </h5>
 	                </td>
 	                <td class="">
 	                  <h5 class="product-title font-alt"><c:out value="${g.gdPrice }"/>원</h5>

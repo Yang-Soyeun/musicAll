@@ -55,7 +55,7 @@ public class AdminGoodsController {
 		//굿즈 리스트
 		mv.addObject("goods", goods);
 		mv.addObject("img", service.goodsImg()); //이미지 가져오기
-		mv.setViewName("/admin/store/adminGoodsList2");
+		mv.setViewName("/admin/store/adminGoodsList");
 		
 		
 		return mv;
@@ -160,7 +160,7 @@ public class AdminGoodsController {
 	//굿즈 수정
 	@RequestMapping("/updateGoods.do")
 	@ResponseBody
-	public int updateGoods(HttpSession session, MultipartFile upFile, 
+	public int updateGoods(HttpSession session, MultipartFile upFile, int gdCode,
 			MultipartFile upFile2,
 			Goods goods, HttpServletResponse response) throws Exception {
 		
@@ -191,6 +191,7 @@ public class AdminGoodsController {
 					GoodsImg.builder()
 					.sumImage("ok")
 					.imName(renameFile)
+					.gdCode(gdCode)
 					.build());
 			}catch(IOException e) {
 				e.printStackTrace();
@@ -211,6 +212,7 @@ public class AdminGoodsController {
 				files.add(
 						GoodsImg.builder()
 						.imName(renameFile2)
+						.gdCode(gdCode)
 						.build());
 				}catch(IOException e) {
 						e.printStackTrace();
@@ -218,6 +220,7 @@ public class AdminGoodsController {
 		}
 		
 		Goods g = Goods.builder()
+				.gdCode(gdCode)
 				.gdName(goods.getGdName())
 				.gdPrice(goods.getGdPrice())
 				.gdContent(goods.getGdContent())
@@ -229,6 +232,7 @@ public class AdminGoodsController {
 
 
 		int result = service.updateGoods(g, files);
+		System.out.println(result);
 		
 		return result;
 	}
