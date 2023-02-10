@@ -358,7 +358,6 @@ font-family: "Nunito", sans-serif;
 <script>
 
 	const bt_answerQ=(qsNo)=>{
-		
 		location.href = "${path}/adminq/answerQ.do?qsNo=" + qsNo ;
 	}
 

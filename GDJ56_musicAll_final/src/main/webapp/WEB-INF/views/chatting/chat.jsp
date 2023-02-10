@@ -179,6 +179,8 @@ display: flex;
 #titleL{
 	font-size:20px;
     margin-top: -10px;
+    display : flex;
+    justify-content : center;
 }
 #backChats{
 	margin-top: 38px;
@@ -194,11 +196,11 @@ display: flex;
 			<div class="header__column" id="titleImg" style="float:left;">
 				<i class="fa fa-chevron-left fa-lg" id="backChats"></i>
 			</div>
-			<div id="titleL" style="display : table;">
-				<div style="display : table-cell;width: 70%;">
+			<div id="titleL">
+				<div >
 					<img src="${path}/resources/upload/performance/${cl.getIName()}" id="chatimage" class="circle">
 				</div>
-				<div style="display : table-cell;vertical-align: middle;">
+				<div style="display:flex; align-items:center;">
 					<span>
 						<c:out value="${cl.getMTitle() }"/>
 					</span>
