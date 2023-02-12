@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gdj.music.admin.model.service.AdminGoodsService;
 import com.gdj.music.common.interceptor.PageFactory;
 import com.gdj.music.goods.model.service.GoodsService;
 import com.gdj.music.goods.model.vo.GReview;
@@ -35,13 +36,15 @@ import com.google.gson.JsonObject;
 public class GoodsController {
 	
 	private GoodsService service;
+	private AdminGoodsService service2;
 	private MypageService serviceMp;
 	private PayService servicePay;
 
 	@Autowired
-	public GoodsController(GoodsService service, MypageService serviceMp, PayService servicePay) {
+	public GoodsController(GoodsService service, AdminGoodsService service2, MypageService serviceMp, PayService servicePay) {
 		super();
 		this.service = service;
+		this.service2 = service2;
 		this.serviceMp = serviceMp;
 		this.servicePay = servicePay;
 	}
@@ -103,6 +106,9 @@ public class GoodsController {
 		
 		//장바구니에 담은 상품 개수
 		m.addAttribute("total", service.countCart(memberNo));
+		
+		//뮤지컬
+		m.addAttribute("perfor", service2.perforList());
 		
 		return "/store/goodsView";
 	}

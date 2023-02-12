@@ -288,7 +288,7 @@
 		            </c:if>
 	                <td class="">
 	                  <h5 class="product-title font-alt">
-	                  	<a href="${path }/adminGoods/adminGoodsView.do?gdCode=${g.gdCode }"><c:out value="${g.gdName }"/></a>
+	                  	<a href="${path }/adminGoods/adminGoodsView.do?gdCode=${g.gdCode }" style="text-decoration: none; color: black;"><c:out value="${g.gdName }"/></a>
 	                  </h5>
 	                </td>
 	                <td class="">

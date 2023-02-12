@@ -306,10 +306,15 @@
 						
 						<h4>공연/무</h4>
 						<select name="m" id="selectM">
-							<c:if test="${goods.MCode == 0 }">
-								<option value="관련없음">관련없음</option> 
+							<option value="">공연 선택</option> 
+							<option value="관련없음">관련없음</option> 
+							<c:if test="${not empty perfor }">
+								<c:forEach var="p" items="${perfor }">
+									<option value="${p.MCode }"><c:out value="${p.MTitle }"/></option> 
+								</c:forEach>
 							</c:if>
-							<option value="뮤지컬리스트">뮤지컬리스트</option> 
+							<c:if test="${empty perfor }">
+							</c:if>							
 						</select>
 						
 						<br>
@@ -329,7 +334,7 @@
 						<label><input type="radio" name="gTag" id="book" value="책" ${goods.gdTag.equals("책")?"checked":"" }>&nbsp;책</label> 
 						<label><input type="radio" name="gTag" id="b" value="브로치/뱃지" ${goods.gdTag.equals("브로치/뱃지")?"checked":"" }>&nbsp;브로치/뱃지</label> 
 						<label><input type="radio" name="gTag" id="magnet" value="마그넷" ${goods.gdTag.equals("마그넷")?"checked":"" }>&nbsp;마그넷</label> 
-						<label><input type="radio" name="gTag" id="ost" value="ost앨범" ${goods.gdTag.equals("OST앨범")?"checked":"" }>&nbsp;OST앨범</label>
+						<label><input type="radio" name="gTag" id="ost" value="ost앨범" ${goods.gdTag.equals("ost앨범")?"checked":"" }>&nbsp;OST앨범</label>
 					
 						<hr> 
 						
@@ -354,7 +359,6 @@
 			        
 			        <div style="margin-top:7%; margin-left: 25%;">
 			            <button class="btn btn-danger" style="width:200px; font-size:15px; float:left;" type="button" onclick="g_insert()">수정</button>
-			            <button class="btn btn-danger" style="width:200px; font-size:15px; float:left;" type="button" onclick="g_delete()">품절</button>
 			            <button class="btn btn-secondary" style="width:110px;background-color:lightgray;color:black;font-size:15px; float:left;">취소</button>
 			        </div>
 		      	</form>
@@ -417,8 +421,8 @@
 		let form = new FormData();
 		
 		if($("#selectM").val() != '관련없음') {
-		
-			var mCode = '27';
+			
+			var mCode = $("#selectM").val();
 			form.append("mCode", mCode);
 			
 		}

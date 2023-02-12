@@ -137,7 +137,8 @@
 		        
 		        <div style="margin-top:7%; margin-left: 29%;">
 		            <button class="btn btn-danger" style="width:200px; font-size:15px;" type="button" onclick="requestPay();" >결제하기</button>
-		            <button class="btn btn-secondary" style="width:110px;background-color:lightgray;color:black;font-size:15px;">취소</button>
+		            <button class="btn btn-secondary" style="width:110px;background-color:lightgray;color:black;font-size:15px;"
+		            	onclick="location.assign('${path }/goods/goodsView.do?gdCode=${goods.gdCode }&memberNo=${loginMember.member_No }')">취소</button>
 		        </div>
 	        </div>
     	</div>

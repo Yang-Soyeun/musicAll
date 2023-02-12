@@ -166,6 +166,19 @@
 										</div>
 										<!-- <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div> -->
 									</div>
+									<div class="product_color" style="margin-top: 15%;">
+										<c:if test="${not empty perfor }">
+											<c:forEach var="p" items="${perfor }">
+												<c:if test="${goods.MCode == p.MCode }">
+													<span>관련 뮤지컬 바로 가기>></span>&nbsp;&nbsp;
+													<span><a href="${path}/perfor/performanceView1.do?mCode=${p.MCode}"><c:out value="${p.MTitle }"/></a></span>
+												</c:if>
+											</c:forEach>
+										</c:if>
+										<c:if test="${empty perfor }">
+										</c:if>							
+										
+									</div>
 								</div>
 							</div>
 						</div>

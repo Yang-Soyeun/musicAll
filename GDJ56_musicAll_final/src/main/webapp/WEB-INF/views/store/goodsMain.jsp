@@ -23,6 +23,13 @@
 	.h4 {padding-right: 9%;}
 	#addtocart {border: none; background-color: transparent;}
 	.btn {padding: 8px 14px;}
+	.a {overflow: hidden;}
+	.a img {
+	  transition: all 0.3s linear;
+	}
+	.a:hover img {
+	  transform: scale(1.15);
+	}
 </style>
 <body>
     <!-- Spinner Start -->
@@ -60,7 +67,7 @@
 			        	<button style="border: none; background-color: transparent; width: 32%;"
 			        		onclick="location.assign('${path }/goods/tagSearch.do?gdTag=마그넷')"><a class="h4 text-dark text-decoration-none mr-3">#마그넷</a></button>
 			        	<button style="border: none; background-color: transparent; width: 40%;"
-			        		onclick="location.assign('${path }/goods/tagSearch.do?gdTag=OST앨범')"><a class="h4 text-dark text-decoration-none mr-3">#OST앨범</a></button>
+			        		onclick="location.assign('${path }/goods/tagSearch.do?gdTag=ost앨범')"><a class="h4 text-dark text-decoration-none mr-3">#OST앨범</a></button>
 
 				</div>
             </div>
@@ -109,7 +116,7 @@
 	                            <c:if test="${not empty img }">
 			                		<c:forEach var="i" items="${img }">
 				                		<c:if test="${i.gdCode == g.gdCode }">
-				                            <div class="card rounded-0" >
+				                            <div class="a card rounded-0" >
 				                               <img src="${path }/resources/upload/goods/${i.imName}" id="countimg1" style="width: 250px;height: 300px;">
 				                            </div>
 		                            	</c:if>

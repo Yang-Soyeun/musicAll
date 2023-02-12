@@ -24,6 +24,7 @@ import com.gdj.music.common.interceptor.PageFactory;
 import com.gdj.music.goods.model.service.GoodsService;
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.goods.model.vo.GoodsImg;
+import com.gdj.music.perfor.model.vo.Performance2;
 import com.gdj.music.perfor.model.vo.Schedule;
 
 @Controller
@@ -64,8 +65,14 @@ public class AdminGoodsController {
 	
 	//굿즈 등록 페이지
 	@RequestMapping("/goodsInsert.do")
-	public String goodsInsert() {
-		return "/admin/store/goodsInsert";
+	public ModelAndView goodsInsert(ModelAndView mv) {
+		
+		List<Performance2> p = service.perforList();
+		
+		mv.addObject("perfor", p); //이미지 가져오기
+		mv.setViewName("/admin/store/goodsInsert");
+		
+		return mv;
 	}
 	
 	//굿즈 등록 기능
@@ -152,6 +159,11 @@ public class AdminGoodsController {
 		
 		m.addAttribute("goods", serviceGoods.goodsView(gdCode));
 		m.addAttribute("img", serviceGoods.goodsViewImg(gdCode));
+		
+		List<Performance2> p = service.perforList();
+		
+		m.addAttribute("perfor", p); //이미지 가져오기
+		
 		
 		return "/admin/store/adminGoodsView";
 		
