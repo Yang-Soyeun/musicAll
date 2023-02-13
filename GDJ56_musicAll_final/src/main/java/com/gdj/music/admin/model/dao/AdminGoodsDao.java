@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.goods.model.vo.GoodsImg;
+import com.gdj.music.perfor.model.vo.Performance2;
 
 
 public interface AdminGoodsDao {
@@ -35,5 +36,10 @@ public interface AdminGoodsDao {
 	//이미지 수정
 	int updateGoodsImg(SqlSessionTemplate session, GoodsImg gi);
 	
+	//굿즈 사게
+	int deleteGoods(SqlSessionTemplate session, int gdCode);
+	
+	//뮤지컬 리스트
+	List<Performance2> perforList(SqlSessionTemplate session);
 
 }

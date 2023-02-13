@@ -16,7 +16,7 @@
 	.payForm {
 			display: grid;
 			justify-content: center;
-			margin-left: 14%;
+			margin-left: 15.5%;
 			margin-top: 3%;
 			background: #e5e5e5;
 			height: 950px;
@@ -62,7 +62,7 @@
     onpageshow="if(event.persisted) noBack();" 
     onunload="">
 
-        <div id="icon">
+        <div id="icon" style="margin-top: 3%;">
             <img src="${path }/resources/images/reservation/아이콘3.png" width="50px" height="50px" style="margin-top:-1%;margin-left:33%;"/><b style="color:gray">상품 구매</b><img src="${path }/resources/images/reservation/아이콘2.jpg" width="30px" style="margin-top:-5px;margin-left:100px;">
             <img src="${path }/resources/images/reservation/아이콘.png" width="50px" height="50px" style="margin-top:-1%;margin-left:6%;"><b style="color:black">결제하기</b>
         </div>
@@ -137,7 +137,8 @@
 		        
 		        <div style="margin-top:7%; margin-left: 29%;">
 		            <button class="btn btn-danger" style="width:200px; font-size:15px;" type="button" onclick="requestPay();" >결제하기</button>
-		            <button class="btn btn-secondary" style="width:110px;background-color:lightgray;color:black;font-size:15px;">취소</button>
+		            <button class="btn btn-secondary" style="width:110px;background-color:lightgray;color:black;font-size:15px;"
+		            	onclick="location.assign('${path }/goods/goodsView.do?gdCode=${goods.gdCode }&memberNo=${loginMember.member_No }')">취소</button>
 		        </div>
 	        </div>
     	</div>

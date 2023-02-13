@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.goods.model.vo.GoodsImg;
+import com.gdj.music.perfor.model.vo.Performance2;
 
 @Repository
 public class AdminGoodsDaoImpl implements AdminGoodsDao {
@@ -60,6 +61,18 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao {
 	@Override
 	public int updateGoodsImg(SqlSessionTemplate session, GoodsImg gi) {
 		return session.insert("goodsImg.updateGoodsImg", gi);
+	}
+	
+	//굿즈 삭제
+	@Override
+	public int deleteGoods(SqlSessionTemplate session, int gdCode) {
+		return session.delete("goods.deleteGoods", gdCode);
+	}
+
+	//뮤지컬 리스트
+	@Override
+	public List<Performance2> perforList(SqlSessionTemplate session) {
+		return session.selectList("goods.selectPerfor");
 	}
 		
 

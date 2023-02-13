@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gdj.music.admin.model.service.AdminGoodsService;
 import com.gdj.music.common.interceptor.PageFactory;
 import com.gdj.music.goods.model.service.GoodsService;
 import com.gdj.music.goods.model.vo.GReview;
@@ -35,13 +36,15 @@ import com.google.gson.JsonObject;
 public class GoodsController {
 	
 	private GoodsService service;
+	private AdminGoodsService service2;
 	private MypageService serviceMp;
 	private PayService servicePay;
 
 	@Autowired
-	public GoodsController(GoodsService service, MypageService serviceMp, PayService servicePay) {
+	public GoodsController(GoodsService service, AdminGoodsService service2, MypageService serviceMp, PayService servicePay) {
 		super();
 		this.service = service;
+		this.service2 = service2;
 		this.serviceMp = serviceMp;
 		this.servicePay = servicePay;
 	}
@@ -104,6 +107,9 @@ public class GoodsController {
 		//장바구니에 담은 상품 개수
 		m.addAttribute("total", service.countCart(memberNo));
 		
+		//뮤지컬
+		m.addAttribute("perfor", service2.perforList());
+		
 		return "/store/goodsView";
 	}
 	
@@ -116,7 +122,6 @@ public class GoodsController {
 				.grScore(rating)
 				.memberNo(memberNo)
 				.gdCode(gdCode)
-				
 				.build();
 		
 		
@@ -137,6 +142,42 @@ public class GoodsController {
 		
 		mv.setViewName("common/msg");
 				
+		return mv;
+		
+	}
+	
+	//상품평 수정
+	@RequestMapping("/updateReview.do")
+	public void updateReview(HttpServletResponse response, ModelAndView mv, int grNo, String review)
+			throws IOException{
+		
+		System.out.println(grNo+review);
+		
+		GReview r = new GReview().builder()
+				.grNo(grNo)
+				.grContent(review)
+				.build();
+		
+		System.out.println(r);
+		
+		int result = service.updateReview(r);
+		
+		response.getWriter().print(result);
+	}
+
+	
+	//상품평 삭제
+	@RequestMapping("/deleteReview.do")
+	public ModelAndView deleteReview(ModelAndView mv, int grNo, int gdCode, int memberNo) {
+		
+		int result = service.deleteReview(grNo);
+		
+		mv.addObject("msg",result>0?"상품평이 삭제되었습니다.":"삭제에 실패했습니다. 다시 시도해 주세요.");
+		mv.addObject("loc","/goods/goodsView.do?gdCode="+gdCode+"&memberNo="+memberNo);
+
+	  
+		mv.setViewName("common/msg");
+		
 		return mv;
 		
 	}

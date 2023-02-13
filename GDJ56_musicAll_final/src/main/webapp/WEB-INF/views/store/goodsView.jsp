@@ -31,7 +31,8 @@
 	.justify-content-center {justify-content: center!important;}
 	.tab_container {margin-left: 10%; margin-right: -14%;}
 	#review_form input[type=radio] {display: none;}
-
+	.update {color: #666; height: 34px; float: left; margin-left: 80%; margin-top: -20%; background-color: #dddddd;}
+	.delete {color: #666; height: 34px; float: left; margin-left: 100%; margin-top: -20%; background-color: #dddddd;}
 </style>
 	
 <body>
@@ -165,6 +166,19 @@
 										</div>
 										<!-- <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div> -->
 									</div>
+									<div class="product_color" style="margin-top: 15%;">
+										<c:if test="${not empty perfor }">
+											<c:forEach var="p" items="${perfor }">
+												<c:if test="${goods.MCode == p.MCode }">
+													<span>관련 뮤지컬 바로 가기>></span>&nbsp;&nbsp;
+													<span><a href="${path}/perfor/performanceView1.do?mCode=${p.MCode}"><c:out value="${p.MTitle }"/></a></span>
+												</c:if>
+											</c:forEach>
+										</c:if>
+										<c:if test="${empty perfor }">
+										</c:if>							
+										
+									</div>
 								</div>
 							</div>
 						</div>
@@ -275,11 +289,18 @@
 											</ul>
 										</div>
 									</div>
-									<div class="review">
+									<div class="review" style="float: left; width: 63%;">
 										<div class="review_date"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${r.GR_DATE }" /></div>
 										<div class="user_name"><c:out value="${r.MEMBER_ID }" /></div>
-										<p><c:out value="${r.GR_CONTENT }" /></p>
-										
+										<div><p><textarea id="t${r.GR_NO }" style="border: none; outline: none; resize: none; width: 80%; background-color: transparent;" disabled><c:out value="${r.GR_CONTENT }" /></textarea></p></div>
+										<c:if test="${r.MEMBER_NO eq loginMember.member_No }">
+										<div>
+											<button id="update${r.GR_NO }" class="update btn red_button btn-circle btn-xsm" onclick="r_update(${r.GR_NO }, this)" >수정</button>
+										</div>
+										<div>
+											<button id="delete${r.GR_NO }" class="delete btn red_button btn-circle btn-xsm" onclick="location.assign('${path}/goods/deleteReview.do?grNo=${r.GR_NO }&gdCode=${goods.gdCode }&memberNo=${loginMember.member_No }');" >삭제</button>
+										</div>
+										</c:if>
 									</div>
 								</div>
 								</c:forEach>
@@ -414,7 +435,7 @@
 					location.assign('${path }/goods/goodsPay.do?gdCode='+${goods.gdCode }+'&member_no='+${loginMember.member_No }+'&gdCount='+gdCount);
 				},
 				error: function(){
-					alert("에러")
+					alert("실패했습니다. 다시 시도해 주세요.")
 				}
 			});
 
@@ -489,6 +510,96 @@
 
         }
 
+        //리뷰 수정
+        function r_update(rid, btn){
+        	
+        	var val = $('#t'+rid).val();
+        	
+        	console.log(rid);
+        	console.log(val);
+        	
+        	var html = "";
+        	var html2 = "";
+        	var html3 = "";
+			
+			$('#t'+rid).innerText= "";
+			$('#update'+rid).innerText= "";
+			$('#delete'+rid).innerText= "";
+			
+			html += '<textarea name="editContent" id="editContent" style="resize: none; width: 70%; border: groove; background-color: transparent;">'+val+'</textarea>';
+		   	
+		   
+		    html2 += '<button id="update" class="update btn red_button btn-circle btn-xsm" onclick="updateReview('+rid+')"> 완료 </button>';
+		    html3 += '<button id="delete" class="delete btn red_button btn-circle btn-xsm" onclick="yesno()"> 취소 </button>';
+		    
+		    $('#t'+rid).replaceWith(html);
+		    $('#update'+rid).replaceWith(html2);
+		    $('#delete'+rid).replaceWith(html3);
+		    
+		  	//수정 취소
+	        function yesno() {
+	        	if (window.confirm("수정을 취소하시겠습니까?")) {
+	        		location.assign('${path }/goods/goodsView.do?gdCode=${goods.gdCode }&memberNo=${loginMember.member_No }');
+	        	
+	              } else {
+	                
+	              }
+	      	}
+	        
+        	
+        }
+        
+      	//수정 취소
+        function yesno() {
+        	if (window.confirm("수정을 취소하시겠습니까?")) {
+        		location.assign('${path }/goods/goodsView.do?gdCode=${goods.gdCode }&memberNo=${loginMember.member_No }');
+        	
+              } else {
+                
+              }
+      	}
+      	
+      	
+      //수정 완료
+      function updateReview(rid) {
+      	
+    	  var editContent = $('#editContent').val();
+    	  
+    	  console.log(editContent);
+    	  console.log(rid);
+    	  
+    	  
+    	  $.ajax({
+			url: "${path }/goods/updateReview.do",
+			data: {"grNo" : rid, "review" : editContent},
+			type: "post",
+			success: function(data) {
+				alert("수정이 완료되었습니다.")
+				location.assign('${path }/goods/goodsView.do?gdCode=${goods.gdCode }&memberNo=${loginMember.member_No }');
+	        	
+			},
+			error: function(){
+				alert("실패했습니다. 다시 시도해 주세요.");
+			}
+		});
+    	  
+      	
+      }
+        
+        
+
+        //textarea 자동 크기 조절
+        function adjustHeight() {
+        	  var textEle = $('textarea');
+        	  textEle[0].style.height = 'auto';
+        	  var textEleHeight = textEle.prop('scrollHeight');
+        	  textEle.css('height', textEleHeight);
+        	};
+        	
+        	var textEle = $('textarea');
+        	textEle.on('keyup', function() {
+        	  adjustHeight();
+        	});
 		
 		
 	</script>

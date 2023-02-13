@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gdj.music.admin.model.dao.AdminGoodsDao;
 import com.gdj.music.goods.model.vo.Goods;
 import com.gdj.music.goods.model.vo.GoodsImg;
+import com.gdj.music.perfor.model.vo.Performance2;
 import com.gdj.music.perfor.model.vo.PerformancePhoto;
 
 @Service
@@ -105,6 +106,29 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 		
 		return result;
 	}
+	
+	//굿즈 삭제
+	@Override
+	public int deleteGoods(int gdCode) {
+		
+		int result = dao.deleteGoods(session, gdCode);
+		
+		if(result > 0) {
+			
+			result = dao.deleteGoodsImg(session, gdCode);
+			
+		}
+		
+		return result;
+		
+	}
+
+	//뮤지컬 리스트
+	@Override
+	public List<Performance2> perforList() {
+		return dao.perforList(session);
+	}
+
 	
 	
 	

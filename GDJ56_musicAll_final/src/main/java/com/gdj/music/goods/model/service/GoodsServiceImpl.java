@@ -147,6 +147,20 @@ public class GoodsServiceImpl implements GoodsService {
 		return dao.rAvg(session, gdCode);
 	}
 
+	//상품평 수정
+	@Override
+	public int updateReview(GReview r) {
+		return dao.updateReview(session, r);
+	}
+
+	//상품평 삭제
+	@Override
+	public int deleteReview(int grNo) {
+		return dao.deleteReview(session, grNo);
+	}
+	
+	
+
 
 	//리뷰 체크
 //	@Override

@@ -308,7 +308,13 @@
 						<select name="m" id="selectM">
 							<option value="">공연 선택</option> 
 							<option value="관련없음">관련없음</option> 
-							<option value="뮤지컬리스트">뮤지컬리스트</option> 
+							<c:if test="${not empty perfor }">
+								<c:forEach var="p" items="${perfor }">
+									<option value="${p.MCode }"><c:out value="${p.MTitle }"/></option> 
+								</c:forEach>
+							</c:if>
+							<c:if test="${empty perfor }">
+							</c:if>							
 						</select>
 						
 						<br>
@@ -429,7 +435,7 @@
 			
 			if($("#selectM").val() != '관련없음') {
 			
-				var mCode = '27';
+				var mCode = $("#selectM").val();
 				form.append("mCode", mCode);
 				
 			}
