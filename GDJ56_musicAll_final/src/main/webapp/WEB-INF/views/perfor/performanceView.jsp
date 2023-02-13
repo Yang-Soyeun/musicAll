@@ -238,7 +238,7 @@
           title: '${musical.getMTitle() }',
           description: '#공연정보 #뮤지컬 #데이트 #분위기',
           imageUrl:
-            'http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+            'https://ibb.co/SyG33LR',
           link: {
             // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
             mobileWebUrl: 'https://gd1class.iptime.org:8844/GDJ56_musicAll_final/perfor/performanceView1.do?mCode=${musical.getMCode()}',

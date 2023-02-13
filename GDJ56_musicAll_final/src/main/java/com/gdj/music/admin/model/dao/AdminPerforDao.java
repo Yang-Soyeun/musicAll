@@ -56,6 +56,8 @@ public interface AdminPerforDao {
 	List<Map<String, PerformancePhoto>> searchForType(SqlSessionTemplate session, String mType1);
 
 	List<Map<String, PerformancePhoto>> searchForTitle(SqlSessionTemplate session, Map<String, Object> map);
+
+	List<Map<String, PerformancePhoto>> orderbyBest(SqlSessionTemplate session);
 	
 	
 	

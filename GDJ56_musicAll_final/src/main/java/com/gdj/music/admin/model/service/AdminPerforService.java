@@ -40,4 +40,6 @@ public interface AdminPerforService {
 	List<Map<String, PerformancePhoto>> searchForType(String mType1);
 
 	List<Map<String, PerformancePhoto>> searchForTitle(Map<String, Object> map);
+
+	List<Map<String, PerformancePhoto>> orderbyBest();
 }
