@@ -227,8 +227,8 @@ display: flex;
 			let isload = false;
 			
 			//오자마자 접속시작
-			//let websocket = new WebSocket("ws://localhost:9090/GDJ56_musicAll_final/chatting");//자동적으로 채팅접속(서버올릴시-카카오맵x)
-			let websocket = new WebSocket("wss://gd1class.iptime.org:8844/GDJ56_musicAll_final/chatting");//카카오맵 사용시
+			let websocket = new WebSocket("ws://localhost:9090/GDJ56_musicAll_final/chatting");//자동적으로 채팅접속(서버올릴시-카카오맵x)
+			//let websocket = new WebSocket("wss://gd1class.iptime.org:8844/GDJ56_musicAll_final/chatting");//카카오맵 사용시
 			//let serverWeb = new WebSocket("ws://localhost:9090/GDJ56_musicAll_final/chatting")//서버x
 			//new WebSocket("ws://gd1class.iptime.org:9999/GDJ56_musicAll_final/chatting");//자동적으로 채팅접속(서버올릴시-카카오맵x)
 			//채팅구현(on open, on message, on close)

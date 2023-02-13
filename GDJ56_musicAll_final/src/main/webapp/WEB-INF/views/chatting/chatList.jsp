@@ -42,6 +42,10 @@ body{
 	<!-- 채팅방들 리스트 -->
 		<div id="tab-1" class="col s12 tabContents">
 			<ul class="collection">
+			<c:if test="${empty list }">
+				<p style="font-size: 22px;text-align: center;">"조회된 채팅목록이 없습니다"</p>
+			</c:if>
+			<c:if test="${not empty list}" >
 			 	<c:forEach var="l" items="${list }">
 				        <li class="collection-item avatar" onclick="bt_preview(${l.getMCode()});" style="line-height:3.5rem;">
 				            <img src="${path}/resources/upload/performance/${l.getIName()}" alt="" class="circle">
@@ -50,6 +54,7 @@ body{
 				            <a href="#!" class="secondary-content">ef</a> -->
 				        </li>
 				</c:forEach>
+			</c:if>
 	    	</ul>
 		</div>
 	</main>
