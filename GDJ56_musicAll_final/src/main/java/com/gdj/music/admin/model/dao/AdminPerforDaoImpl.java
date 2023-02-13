@@ -104,4 +104,8 @@ public class AdminPerforDaoImpl implements AdminPerforDao {
 	public List<Map<String, PerformancePhoto>> searchForTitle(SqlSessionTemplate session, Map<String, Object> map) {
 		return session.selectList("img.searchForTitle",map);
 	}
+	@Override
+	public List<Map<String, PerformancePhoto>> orderbyBest(SqlSessionTemplate session) {
+		return session.selectList("img.orderbyBest");
+	}
 }

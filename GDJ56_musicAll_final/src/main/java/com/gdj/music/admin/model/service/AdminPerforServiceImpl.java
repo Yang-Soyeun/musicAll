@@ -136,4 +136,8 @@ public class AdminPerforServiceImpl implements AdminPerforService{
 	public List<Map<String, PerformancePhoto>> searchForTitle(Map<String, Object> map) {
 		return dao.searchForTitle(session,map);
 	}
+	@Override
+	public List<Map<String, PerformancePhoto>> orderbyBest() {
+		return dao.orderbyBest(session);
+	}
 }

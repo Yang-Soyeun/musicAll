@@ -411,6 +411,15 @@ public class AdminPerforController {
 		return mv;
 	}   
 	
+	@RequestMapping("/orderbyBest.do")
+	public ModelAndView orderbyBest(ModelAndView mv) {
+		List<Map<String,PerformancePhoto>> pp= service.orderbyBest();
+		mv.addObject("musicalPhoto",pp);
+		mv.setViewName("/admin/Perfor/adminPerformanceList");
+		return mv;
+	}
+	
+	
 	//타입으로 검색하기
 	@RequestMapping("/searchForType.do")
 	@ResponseBody
