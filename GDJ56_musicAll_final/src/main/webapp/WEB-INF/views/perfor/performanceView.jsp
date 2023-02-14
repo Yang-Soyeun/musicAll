@@ -89,13 +89,26 @@
 
 
     <div class="parent">
-        <div id="info-box" style=" height:700px;">
-            <div style="display:inline-block; " >
-                <img src="${path }/resources/upload/performance/${perPhoto.get(0).IName}" id="imgView" /><br>
+        <div id="info-box" style=" height:700px;display: flex;">
+          <div style="" >
+          
+          	<div>
+              <img src="${path }/resources/upload/performance/${perPhoto.get(0).IName}" id="imgView" /><br>
+              </div>
+              
+			<div id="icon-box" style="margin-left: 59px;margin-top: 100px;width: 10%;height:70px;float: left;">
                   <img src="${path }/resources/images/performance/share.png"
-  					id="kakaotalk-sharing-btn" href="javascript:;" style="margin-left:220px;margin-top:-130px; width:70px; height:70px; "alt="카카오톡 공유 보내기 버튼" />
-                <input type="button" onclick="bt_chat();" value="채팅">
-            </div>
+  					id="kakaotalk-sharing-btn" href="javascript:;" alt="카카오톡 공유 보내기 버튼" />
+  			</div>		
+  			<div id="chat-icon" style="margin-left:19px;width: 10%;margin-top: 100px;height:70px;float: left;">
+  				<img src="${path }/resources/images/chatting-icon.png" onclick="bt_chat();"  >
+                <!-- <input type="button" onclick="bt_chat();" value="채팅" > -->
+            </div>  
+              
+            
+            
+          </div>
+          
         <div class="info-box2">         
              <b class="info">공연기간</b><p>${musical.getMPeriod() } ~ ${musical.getMPeriodEnd() }</p><br>
              <b class="info">공연시간</b><p>${schedule.get(0).S_TIME}분</p><br>
