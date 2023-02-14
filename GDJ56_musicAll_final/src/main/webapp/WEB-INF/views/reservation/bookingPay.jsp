@@ -126,7 +126,7 @@
 					location.assign("${path}/booking/payend.do?info="+info);
 				}
 			else{
-				 
+			 
 				alert(rsp.error_msg);
 			}
 		});

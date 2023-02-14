@@ -325,10 +325,7 @@
 
 	</div>
 	
-	<script type="text/javascript" src="
-
-com/jquery-latest.js"></script>
-
+	
 	<script>
 	
 	
@@ -343,7 +340,7 @@ com/jquery-latest.js"></script>
 		    } 
 		}
 		
-		//굿즈 등록 데이터 보내기
+		
 		const n_insert=()=>{
 			
 			//사진
