@@ -325,9 +325,7 @@
 
 	</div>
 	
-	<script type="text/javascript" src="
-
-com/jquery-latest.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
 
 	<script>
 	

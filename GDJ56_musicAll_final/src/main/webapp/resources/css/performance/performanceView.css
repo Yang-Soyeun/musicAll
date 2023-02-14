@@ -61,7 +61,7 @@
         #imgView{
             width: 330px;
             height: 450px;
-            margin-top: -560px;
+            margin-top: 14%;
             margin-left: 60px;
         }
         .info{
@@ -71,6 +71,7 @@
         .info-box2{
             margin-top: 50px;
             margin-left: 150px;
+            margin-right: 10%;
             display: inline-block;
         }
         .info-box3{
@@ -104,7 +105,7 @@
             line-height: 40px;
         }
         #downContainer{
-            margin-left: 300px;
+            margin-left: 470px;
             margin-top: 20px;
             text-align: center;/*중앙정렬*/
             padding: 20px 0 20px 0;
