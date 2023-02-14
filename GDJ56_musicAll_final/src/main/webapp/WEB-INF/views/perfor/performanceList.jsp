@@ -3,12 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <link href="${path}/resources/css/performance/performanceList.css" rel="stylesheet">
-
 <jsp:include page="/WEB-INF/views/common/header.jsp">
  	<jsp:param name="title" value="MainPage"/>
 </jsp:include>
-
-<section style="margin-top:100px; margin-bottom:1000px;">
+<section style="margin-top:100px; margin-bottom:1300px;">
     <p id="nowShowing" style="font-size:25px; text-align:center;">현재 상영작</p>
     <br>
     <div style>
@@ -136,5 +134,5 @@
 <!-- //jquery ui css파일 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs
 /jqueryui/1.12.1/jquery-ui.min.css"/>
-<br>
+<br><br><br>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
