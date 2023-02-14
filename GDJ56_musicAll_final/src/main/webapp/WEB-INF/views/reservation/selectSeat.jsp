@@ -358,7 +358,7 @@ const s = document.querySelectorAll(".seat");
 	function mapping(input,input2, i, j) {
 	    if (i === 0) {
 	        input.value = 'A' + j;
-	        input2.value= 1000//${performance.get(0).get("VIP_PRICE")}
+	        input2.value= ${performance.get(0).get("VIP_PRICE")}
 	        input2.classList = 'A'+j;
 	    } else if (i === 1) {
 	        input.value = 'B' + j;
